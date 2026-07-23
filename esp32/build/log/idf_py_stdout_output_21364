@@ -1,0 +1,209 @@
+Command: C:\Espressif\tools\python\v6.0.2\venv\Scripts\python.exe C:\esp\v6.0.2\esp-idf\tools/idf_monitor.py -p COM4 -b 115200 --toolchain-prefix xtensa-esp32s3-elf- --target esp32s3 --revision 0 D:\code\DDL-reminder\esp32\build\ddl_reminder.elf D:\code\DDL-reminder\esp32\build\bootloader\bootloader.elf --force-color -m 'C:\Espressif\tools\python\v6.0.2\venv\Scripts\python.exe' 'C:\esp\v6.0.2\esp-idf\tools\idf.py'
+ESP-ROM:esp32s3-20210327
+ESP-ROM:esp32s3-20210327
+Build:Mar 27 2021
+rst:0x1 (POWERON),boot:0x2a (SPI_FAST_FLASH_BOOT)
+SPIWP:0xee
+mode:DIO, clock div:1
+load:0x3fce2820,len:0x1664
+load:0x403c8700,len:0xf38
+load:0x403cb700,len:0x31e8
+entry 0x403c8930
+[0;32mI (25) boot: ESP-IDF v6.0.2 2nd stage bootloader[0m
+[0;32mI (25) boot: compile time Jul 22 2026 12:27:58[0m
+[0;32mI (25) boot: Multicore bootloader[0m
+[0;32mI (25) boot: chip revision: v0.2[0m
+[0;32mI (28) boot: efuse block revision: v1.4[0m
+[0;32mI (32) qio_mode: Enabling default flash chip QIO[0m
+[0;32mI (36) boot.esp32s3: Boot SPI Speed : 80MHz[0m
+[0;32mI (40) boot.esp32s3: SPI Mode       : QIO[0m
+[0;32mI (43) boot.esp32s3: SPI Flash Size : 16MB[0m
+[0;32mI (47) boot: Enabling RNG early entropy source...[0m
+[0;32mI (52) boot: Partition Table:[0m
+[0;32mI (54) boot: ## Label            Usage          Type ST Offset   Length[0m
+[0;32mI (61) boot:  0 nvs              WiFi data        01 02 00009000 00006000[0m
+[0;32mI (67) boot:  1 phy_init         RF data          01 01 0000f000 00001000[0m
+[0;32mI (74) boot:  2 factory          factory app      00 00 00010000 002ee000[0m
+[0;32mI (80) boot:  3 model            Unknown data     01 82 002fe000 005dc000[0m
+[0;32mI (87) boot: End of partition table[0m
+[0;32mI (90) esp_image: segment 0: paddr=00010020 vaddr=3c0d0020 size=2a3c8h (173000) map[0m
+[0;32mI (124) esp_image: segment 1: paddr=0003a3f0 vaddr=3fc9b900 size=05808h ( 22536) load[0m
+[0;32mI (129) esp_image: segment 2: paddr=0003fc00 vaddr=40374000 size=00418h (  1048) load[0m
+[0;32mI (129) esp_image: segment 3: paddr=00040020 vaddr=42000020 size=ca04ch (827468) map[0m
+[0;32mI (264) esp_image: segment 4: paddr=0010a074 vaddr=40374418 size=173f0h ( 95216) load[0m
+[0;32mI (283) esp_image: segment 5: paddr=0012146c vaddr=50000000 size=00024h (    36) load[0m
+[0;32mI (293) boot: Loaded app from partition at offset 0x10000[0m
+[0;32mI (293) boot: Disabling RNG early entropy source...[0m
+[0;32mI (304) octal_psram: vendor id    : 0x0d (AP)[0m
+[0;32mI (304) octal_psram: dev id       : 0x02 (generation 3)[0m
+[0;32mI (304) octal_psram: density      : 0x03 (64 Mbit)[0m
+[0;32mI (306) octal_psram: good-die     : 0x01 (Pass)[0m
+[0;32mI (310) octal_psram: Latency      : 0x01 (Fixed)[0m
+[0;32mI (314) octal_psram: VCC          : 0x01 (3V)[0m
+[0;32mI (319) octal_psram: SRF          : 0x01 (Fast Refresh)[0m
+[0;32mI (323) octal_psram: BurstType    : 0x01 (Hybrid Wrap)[0m
+[0;32mI (328) octal_psram: BurstLen     : 0x01 (32 Byte)[0m
+[0;32mI (333) octal_psram: Readlatency  : 0x02 (10 cycles@Fixed)[0m
+[0;32mI (338) octal_psram: DriveStrength: 0x00 (1/1)[0m
+[0;32mI (342) MSPI Timing: Enter psram timing tuning[0m
+[0;32mI (347) esp_psram: Found 8MB PSRAM device[0m
+[0;32mI (350) esp_psram: Speed: 80MHz[0m
+[0;32mI (353) cpu_start: Multicore app[0m
+[0;32mI (776) esp_psram: SPI SRAM memory test OK[0m
+[0;32mI (784) cpu_start: GPIO 44 and 43 are used as console UART I/O pins[0m
+[0;32mI (785) cpu_start: Pro cpu start user code[0m
+[0;32mI (785) cpu_start: cpu freq: 240000000 Hz[0m
+[0;32mI (787) app_init: Application information:[0m
+[0;32mI (790) app_init: Project name:     ddl_reminder[0m
+[0;32mI (795) app_init: App version:      1[0m
+[0;32mI (798) app_init: Compile time:     Jul 22 2026 12:22:55[0m
+[0;32mI (803) app_init: ELF file SHA256:  8ed7e57fd...[0m
+[0;32mI (807) app_init: ESP-IDF:          v6.0.2[0m
+[0;32mI (811) efuse_init: Min chip rev:     v0.0[0m
+[0;32mI (815) efuse_init: Max chip rev:     v0.99 [0m
+[0;32mI (819) efuse_init: Chip rev:         v0.2[0m
+[0;32mI (823) heap_init: Initializing. RAM available for dynamic allocation:[0m
+[0;32mI (829) heap_init: At 3FCADF90 len 0003B780 (237 KiB): RAM[0m
+[0;32mI (834) heap_init: At 3FCE9710 len 00005724 (21 KiB): RAM[0m
+[0;32mI (839) heap_init: At 3FCF0000 len 00008000 (32 KiB): DRAM[0m
+[0;32mI (845) heap_init: At 600FE000 len 00001FE8 (7 KiB): RTCRAM[0m
+[0;32mI (850) esp_psram: Adding pool of 8192K of PSRAM memory to heap allocator[0m
+[0;32mI (857) spi_flash: detected chip: generic[0m
+[0;32mI (860) spi_flash: flash io: qio[0m
+[0;33mW (863) i2c: This driver is an old driver, please migrate your application code to adapt `driver/i2c_master.h`[0m
+[0;32mI (873) sleep_gpio: Configure to isolate all GPIO pins in sleep state[0m
+[0;32mI (879) sleep_gpio: Enable automatic switching of GPIO sleep configuration[0m
+[0;32mI (886) main_task: Started on CPU0[0m
+[0;32mI (900) esp_psram: Reserving pool of 48K of internal memory for DMA/internal allocations[0m
+[0;32mI (900) main_task: Calling app_main()[0m
+[0;32mI (900) DDL: === DDL Reminder ESP32-S3 ===[0m
+[0;32mI (1041) LVGL: Starting LVGL task[0m
+[0;32mI (1043) DDL: LCD+Touch ready[0m
+[0;32mI (1044) LED: ready: 4 LEDs GPIO41[0m
+[0;32mI (1045) Encoder: Encoder: CLK=38 DT=39 SW=40[0m
+[0;32mI (1045) bsp_board: 🚀 正在初始化ESP32-S3-DevKitC-1 + INMP441麦克风[0m
+[0;32mI (1050) bsp_board: 🎵 音频参数: 采样率=16000Hz, 声道数=1, 位深=16位[0m
+[0;32mI (1865) bsp_board: I2S 初始化成功[0m
+[0;32mI (1865) bsp_board: ✅ MAX98357A SD引脚已初始化（GPIO8）[0m
+[0;32mI (1865) bsp_board: ✅ I2S音频播放初始化成功[0m
+[0;32mI (1868) AudioManager: 初始化音频管理器...[0m
+[0;32mI (1872) AudioManager: ✓ 录音缓冲区分配成功，大小: 320000 字节 (10 秒)[0m
+[0;32mI (1909) AudioManager: ✓ 响应缓冲区分配成功，大小: 1024000 字节 (32 秒)[0m
+[0;32mI (1909) AudioManager: ✓ 流式播放缓冲区分配成功，大小: 32768 字节[0m
+[0;32mI (1915) pp: pp rom version: e7ae62f[0m
+[0;32mI (1917) net80211: net80211 rom version: e7ae62f[0m
+[0;32mI (1922) wifi:wifi driver task: 3fcc8358, prio:23, stack:6656, core=0[0m
+[0;32mI (1934) wifi:wifi firmware version: 00ad238[0m
+[0;32mI (1935) wifi:wifi certification version: v7.0[0m
+[0;32mI (1935) wifi:config NVS flash: enabled[0m
+[0;32mI (1939) wifi:config nano formatting: disabled[0m
+[0;32mI (1943) wifi:Init data frame dynamic rx buffer num: 32[0m
+[0;32mI (1948) wifi:Init static rx mgmt buffer num: 5[0m
+[0;32mI (1952) wifi:Init management short buffer num: 32[0m
+[0;32mI (1957) wifi:Init dynamic tx buffer num: 32[0m
+[0;32mI (1961) wifi:Init static tx FG buffer num: 2[0m
+[0;32mI (1965) wifi:Init static rx buffer size: 1600[0m
+[0;32mI (1969) wifi:Init static rx buffer num: 10[0m
+[0;32mI (1973) wifi:Init dynamic rx buffer num: 32[0m
+[0;32mI (1978) wifi_init: rx ba win: 6[0m
+[0;32mI (1980) wifi_init: accept mbox: 6[0m
+[0;32mI (1983) wifi_init: tcpip mbox: 32[0m
+[0;32mI (1986) wifi_init: udp mbox: 6[0m
+[0;32mI (1989) wifi_init: tcp mbox: 6[0m
+[0;32mI (1992) wifi_init: tcp tx win: 5760[0m
+[0;32mI (1995) wifi_init: tcp rx win: 5760[0m
+[0;32mI (1998) wifi_init: tcp mss: 1440[0m
+[0;32mI (2001) wifi_init: WiFi IRAM OP enabled[0m
+[0;32mI (2005) wifi_init: WiFi RX IRAM OP enabled[0m
+[0;32mI (2010) phy_init: phy_version 712,87e8c20e,Apr 13 2026,18:51:10[0m
+[0;32mI (2050) wifi:mode : sta (7c:4f:ad:21:52:ec)[0m
+[0;32mI (2050) wifi:enable tsf[0m
+[0;32mI (2052) WiFiManager: 📶 WiFi初始化完成，正在连接到 LC235的场域[0m
+[0;32mI (2056) wifi:state: init -> auth (0xb0)[0m
+[0;32mI (2086) wifi:state: auth -> assoc (0x0)[0m
+[0;32mI (2087) wifi:state: assoc -> init (0x2a0)[0m
+[0;32mI (2089) WiFiManager: 🔄 重试连接WiFi... (1/5)[0m
+[0;32mI (2089) WiFiManager: ❌ WiFi连接失败[0m
+[0;32mI (4391) wifi:state: init -> auth (0xb0)[0m
+[0;32mI (4406) wifi:state: auth -> assoc (0x0)[0m
+[0;32mI (4413) wifi:state: assoc -> run (0x10)[0m
+[0;32mI (4442) wifi:connected with LC235的场域, aid = 8, channel 1, BW20, bssid = 62:67:10:7b:ef:e9[0m
+[0;32mI (4442) wifi:security: WPA2-PSK, phy: bgn, rssi: -31, cipher(pairwise:0x3, group:0x3), pmf:0[0m
+[0;32mI (4449) wifi:pm start, type: 1[0m
+
+[0;32mI (4451) wifi:dp: 1, bi: 102400, li: 3, scale listen interval from 307200 us to 307200 us[0m
+[0;32mI (4459) wifi:set rx beacon pti, rx_bcn_pti: 0, bcn_timeout: 25000, mt_pti: 0, mt_time: 10000[0m
+[0;32mI (4526) wifi:dp: 2, bi: 102400, li: 4, scale listen interval from 307200 us to 409600 us[0m
+[0;32mI (4526) wifi:AP's beacon interval = 102400 us, DTIM period = 2[0m
+[0;32mI (5481) esp_netif_handlers: sta ip: 192.168.49.5, mask: 255.255.255.0, gw: 192.168.49.1[0m
+[0;32mI (5481) WiFiManager: 🏠 获得IP地址:192.168.49.5[0m
+[0;32mI (5483) WiFiManager: ✅ WiFi连接成功: LC235的场域[0m
+[0;32mI (5488) DDL: NTP sync started[0m
+[0;32mI (5491) WebSocketClient: 🌐 正在连接WebSocket服务器: ws://192.168.49.6:8888[0m
+[0;32mI (5500) websocket_client: Started[0m
+[0;32mI (5522) UI: UI ready[0m
+[0;32mI (5522) DDL: Ready. Display=yes[0m
+[0;32mI (6638) wifi:<ba-add>idx:0 (ifx:0, 62:67:10:7b:ef:e9), tid:0, ssn:1, winSize:64[0m
+[1;31mE (15502) esp-tls: [sock=54] select() timeout[0m
+[1;31mE (15502) transport_base: Failed to open a new connection: 32774[0m
+[1;31mE (15502) transport_ws: Error connecting to host 192.168.49.6:8888[0m
+[1;31mE (15507) websocket_client: esp_transport_connect() failed with -1, transport_error=ESP_ERR_ESP_TLS_CONNECTION_TIMEOUT, tls_error_code=0, tls_flags=0, esp_ws_handshake_status_code=0, errno=119[0m
+[0;32mI (15523) WebSocketClient: ❌ WebSocket错误[0m
+[0;32mI (15527) websocket_client: Reconnect after 10000 ms[0m
+[0;32mI (15532) WebSocketClient: 🔌 WebSocket已断开[0m
+[0;32mI (15537) DDL: WS disconnected[0m
+[0;33mW (15540) WebSocketClient: WebSocket客户端已存在[0m
+[1;31mE (35547) esp-tls: [sock=54] select() timeout[0m
+[1;31mE (35547) transport_base: Failed to open a new connection: 32774[0m
+[1;31mE (35547) transport_ws: Error connecting to host 192.168.49.6:8888[0m
+[1;31mE (35551) websocket_client: esp_transport_connect() failed with -1, transport_error=ESP_ERR_ESP_TLS_CONNECTION_TIMEOUT, tls_error_code=0, tls_flags=0, esp_ws_handshake_status_code=0, errno=119[0m
+[0;32mI (35568) WebSocketClient: ❌ WebSocket错误[0m
+[0;32mI (35572) websocket_client: Reconnect after 10000 ms[0m
+[0;32mI (35577) WebSocketClient: 🔌 WebSocket已断开[0m
+[0;32mI (35582) DDL: WS disconnected[0m
+[0;33mW (35585) WebSocketClient: WebSocket客户端已存在[0m
+[1;31mE (55592) esp-tls: [sock=54] select() timeout[0m
+[1;31mE (55592) transport_base: Failed to open a new connection: 32774[0m
+[1;31mE (55592) transport_ws: Error connecting to host 192.168.49.6:8888[0m
+[1;31mE (55596) websocket_client: esp_transport_connect() failed with -1, transport_error=ESP_ERR_ESP_TLS_CONNECTION_TIMEOUT, tls_error_code=0, tls_flags=0, esp_ws_handshake_status_code=0, errno=119[0m
+[0;32mI (55613) WebSocketClient: ❌ WebSocket错误[0m
+[0;32mI (55617) websocket_client: Reconnect after 10000 ms[0m
+[0;32mI (55622) WebSocketClient: 🔌 WebSocket已断开[0m
+[0;32mI (55627) DDL: WS disconnected[0m
+[0;33mW (55630) WebSocketClient: WebSocket客户端已存在[0m
+[1;31mE (75637) esp-tls: [sock=54] select() timeout[0m
+[1;31mE (75637) transport_base: Failed to open a new connection: 32774[0m
+[1;31mE (75637) transport_ws: Error connecting to host 192.168.49.6:8888[0m
+[1;31mE (75641) websocket_client: esp_transport_connect() failed with -1, transport_error=ESP_ERR_ESP_TLS_CONNECTION_TIMEOUT, tls_error_code=0, tls_flags=0, esp_ws_handshake_status_code=0, errno=119[0m
+[0;32mI (75658) WebSocketClient: ❌ WebSocket错误[0m
+[0;32mI (75662) websocket_client: Reconnect after 10000 ms[0m
+[0;32mI (75667) WebSocketClient: 🔌 WebSocket已断开[0m
+[0;32mI (75672) DDL: WS disconnected[0m
+[0;33mW (75675) WebSocketClient: WebSocket客户端已存在[0m
+[1;31mE (95682) esp-tls: [sock=54] select() timeout[0m
+[1;31mE (95682) transport_base: Failed to open a new connection: 32774[0m
+[1;31mE (95682) transport_ws: Error connecting to host 192.168.49.6:8888[0m
+[1;31mE (95686) websocket_client: esp_transport_connect() failed with -1, transport_error=ESP_ERR_ESP_TLS_CONNECTION_TIMEOUT, tls_error_code=0, tls_flags=0, esp_ws_handshake_status_code=0, errno=119[0m
+[0;32mI (95703) WebSocketClient: ❌ WebSocket错误[0m
+[0;32mI (95707) websocket_client: Reconnect after 10000 ms[0m
+[0;32mI (95712) WebSocketClient: 🔌 WebSocket已断开[0m
+[0;32mI (95717) DDL: WS disconnected[0m
+[0;33mW (95720) WebSocketClient: WebSocket客户端已存在[0m
+[1;31mE (115727) esp-tls: [sock=54] select() timeout[0m
+[1;31mE (115727) transport_base: Failed to open a new connection: 32774[0m
+[1;31mE (115727) transport_ws: Error connecting to host 192.168.49.6:8888[0m
+[1;31mE (115732) websocket_client: esp_transport_connect() failed with -1, transport_error=ESP_ERR_ESP_TLS_CONNECTION_TIMEOUT, tls_error_code=0, tls_flags=0, esp_ws_handshake_status_code=0, errno=119[0m
+[0;32mI (115749) WebSocketClient: ❌ WebSocket错误[0m
+[0;32mI (115753) websocket_client: Reconnect after 10000 ms[0m
+[0;32mI (115758) WebSocketClient: 🔌 WebSocket已断开[0m
+[0;32mI (115762) DDL: WS disconnected[0m
+[0;33mW (115765) WebSocketClient: WebSocket客户端已存在[0m
+[1;31mE (135773) esp-tls: [sock=54] select() timeout[0m
+[1;31mE (135773) transport_base: Failed to open a new connection: 32774[0m
+[1;31mE (135773) transport_ws: Error connecting to host 192.168.49.6:8888[0m
+[1;31mE (135778) websocket_client: esp_transport_connect() failed with -1, transport_error=ESP_ERR_ESP_TLS_CONNECTION_TIMEOUT, tls_error_code=0, tls_flags=0, esp_ws_handshake_status_code=0, errno=119[0m
+[0;32mI (135795) WebSocketClient: ❌ WebSocket错误[0m
+[0;32mI (135799) websocket_client: Reconnect after 10000 ms[0m
+[0;32mI (135804) WebSocketClient: 🔌 WebSocket已断开[0m
+[0;32mI (135808) DDL: WS disconnected[0m
+[0;33mW (135811) WebSocketClient: WebSocket客户端已存在[0m

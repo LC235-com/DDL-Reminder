@@ -1,0 +1,30 @@
+# DDL Reminder Server — Python Dependencies
+# Install: pip install -r requirements.txt
+
+# WebSocket Server
+websockets>=11.0.3
+
+# ASR (choose at least one)
+funasr>=1.0.0              # FunASR SenseVoiceSmall (local, free, recommended)
+# dashscope>=1.18.0        # DashScope Paraformer (cloud)
+
+# LLM (OpenAI-compatible)
+httpx>=0.25.0              # Async HTTP client
+openai>=1.0.0              # Openai-compatible SDK (optional, we use httpx directly)
+
+# TTS (choose at least one)
+edge-tts>=6.0.0            # Edge-TTS (free, recommended)
+# dashscope>=1.18.0        # DashScope CosyVoice (cloud, share with ASR)
+
+# Audio Processing
+pydub>=0.25.1              # Audio format conversion (MP3→PCM)
+numpy>=1.24.0              # Audio array operations
+scipy>=1.10.0              # Audio resampling
+
+# Crawlers (optional)
+playwright>=1.40.0         # ZJU browser automation
+requests>=2.31.0           # PTA HTTP client
+python-dateutil>=2.8.0     # Date parsing for PTA
+
+# General
+rich>=13.0.0               # Pretty CLI output (optional)

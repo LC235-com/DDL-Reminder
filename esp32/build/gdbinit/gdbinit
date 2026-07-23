@@ -1,0 +1,2 @@
+source D:/code/DDL-reminder/esp32/build/gdbinit/symbols
+source D:/code/DDL-reminder/esp32/build/gdbinit/connect

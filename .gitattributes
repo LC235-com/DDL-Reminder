@@ -1,0 +1,17 @@
+# 强制所有文本文件在检出时转换为 CRLF，提交时统一为 LF
+* text=auto
+
+# 明确指定某些特殊文件不转换（例如二进制文件）
+*.png binary
+*.jpg binary
+*.gif binary
+*.ico binary
+*.pdf binary
+*.zip binary
+*.mp3 binary
+*.wav binary
+
+# 针对 shell 脚本、Makefile 等特定文件，强制使用 LF（即使在 Windows 上）
+*.sh text eol=lf
+Makefile text eol=lf
+*.mk text eol=lf

@@ -1,0 +1,31 @@
+idf_component_register(
+    SRCS
+        "main.cpp"
+        "bsp_board.cpp"
+        "wifi_manager.cpp"
+        "websocket_client.cpp"
+        "audio_manager.cpp"
+        "protocol.cpp"
+        "led_controller.cpp"
+        "encoder.cpp"
+        "ui/ui_manager.cpp"
+    INCLUDE_DIRS
+        "."
+        "ui"
+    REQUIRES
+        driver
+        esp_wifi
+        esp_driver_i2s
+        esp_driver_ledc
+        esp_driver_spi
+        esp_driver_i2c
+        esp_driver_gpio
+        esp_driver_rmt
+        esp_websocket_client
+        nvs_flash
+        lvgl
+        esp_lvgl_port
+        led_strip
+        esp_lcd
+        espressif__cjson
+)
