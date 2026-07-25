@@ -90,6 +90,7 @@ ProtocolParser::MessageType ProtocolParser::get_message_type(const std::string& 
         else if (cmd_str == "emotion") type = MessageType::EMOTION;
         else if (cmd_str == "led") type = MessageType::LED;
         else if (cmd_str == "config") type = MessageType::CONFIG;
+        else if (cmd_str == "asr_result") type = MessageType::ASR_RESULT;
         else if (cmd_str == "pong") type = MessageType::PONG;
     }
 
@@ -189,6 +190,21 @@ void ProtocolParser::parse_led(const std::string& json_str, std::string& action,
     cJSON_Delete(root);
 }
 
+std::string ProtocolParser::parse_asr_result(const std::string& json_str, bool& is_final) {
+    cJSON* root = cJSON_Parse(json_str.c_str());
+    std::string text;
+    if (root) {
+        if (cJSON* v = cJSON_GetObjectItem(root, "text")) {
+            text = v->valuestring ? v->valuestring : "";
+        }
+        if (cJSON* v = cJSON_GetObjectItem(root, "final")) {
+            is_final = cJSON_IsTrue(v);
+        }
+        cJSON_Delete(root);
+    }
+    return text;
+}
+
 // ── ProtocolBuilder ───────────────────────────────────────────
 
 std::string ProtocolBuilder::build_audio_start() {
@@ -261,6 +277,21 @@ std::string ProtocolBuilder::build_hello() {
     cJSON_AddStringToObject(root, "cmd", "hello");
     cJSON_AddStringToObject(root, "device", "esp32s3-ddl-reminder");
     cJSON_AddStringToObject(root, "version", "1.0.0");
+    char* str = cJSON_PrintUnformatted(root);
+    std::string result(str);
+    cJSON_free(str);
+    cJSON_Delete(root);
+    return result;
+}
+
+std::string ProtocolBuilder::build_add_event(const std::string& title, const std::string& deadline,
+                                              const std::string& course, const std::string& type) {
+    cJSON* root = cJSON_CreateObject();
+    cJSON_AddStringToObject(root, "cmd", "add_event");
+    cJSON_AddStringToObject(root, "title", title.c_str());
+    cJSON_AddStringToObject(root, "deadline", deadline.c_str());
+    cJSON_AddStringToObject(root, "course", course.c_str());
+    cJSON_AddStringToObject(root, "type", type.c_str());
     char* str = cJSON_PrintUnformatted(root);
     std::string result(str);
     cJSON_free(str);

@@ -1,4 +1,4 @@
-"-specs=D:/code/DDL-reminder/esp32/build/bootloader/specs/picolibc.specs"
+"-specs=D:/code/DDL-reminder/DDL-reminder/esp32/build/bootloader/specs/picolibc.specs"
 -mlongcalls
 -fno-builtin-memcpy
 -fno-builtin-memset

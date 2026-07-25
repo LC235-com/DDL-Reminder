@@ -1,0 +1,186 @@
+Command: C:\Espressif\tools\python\v6.0.2\venv\Scripts\python.exe C:\esp\v6.0.2\esp-idf\tools/idf_monitor.py -p COM4 -b 115200 --toolchain-prefix xtensa-esp32s3-elf- --target esp32s3 --revision 0 D:\code\DDL-reminder\DDL-reminder\esp32\build\ddl_reminder.elf D:\code\DDL-reminder\DDL-reminder\esp32\build\bootloader\bootloader.elf --force-color -m 'C:\Espressif\tools\python\v6.0.2\venv\Scripts\python.exe' 'C:\esp\v6.0.2\esp-idf\tools\idf.py'
+ESP-ROM:esp32s3-20210327
+ESP-ROM:esp32s3-20210327
+Build:Mar 27 2021
+rst:0x1 (POWERON),boot:0x2a (SPI_FAST_FLASH_BOOT)
+SPIWP:0xee
+mode:DIO, clock div:1
+load:0x3fce2820,len:0x1664
+load:0x403c8700,len:0xf38
+load:0x403cb700,len:0x31e8
+entry 0x403c8930
+[0;32mI (25) boot: ESP-IDF v6.0.2 2nd stage bootloader[0m
+[0;32mI (25) boot: compile time Jul 23 2026 13:23:45[0m
+[0;32mI (25) boot: Multicore bootloader[0m
+[0;32mI (25) boot: chip revision: v0.2[0m
+[0;32mI (28) boot: efuse block revision: v1.4[0m
+[0;32mI (32) qio_mode: Enabling default flash chip QIO[0m
+[0;32mI (36) boot.esp32s3: Boot SPI Speed : 80MHz[0m
+[0;32mI (40) boot.esp32s3: SPI Mode       : QIO[0m
+[0;32mI (43) boot.esp32s3: SPI Flash Size : 16MB[0m
+[0;32mI (47) boot: Enabling RNG early entropy source...[0m
+[0;32mI (52) boot: Partition Table:[0m
+[0;32mI (54) boot: ## Label            Usage          Type ST Offset   Length[0m
+[0;32mI (61) boot:  0 nvs              WiFi data        01 02 00009000 00006000[0m
+[0;32mI (67) boot:  1 phy_init         RF data          01 01 0000f000 00001000[0m
+[0;32mI (74) boot:  2 factory          factory app      00 00 00010000 002ee000[0m
+[0;32mI (80) boot:  3 model            Unknown data     01 82 002fe000 005dc000[0m
+[0;32mI (87) boot: End of partition table[0m
+[0;32mI (90) esp_image: segment 0: paddr=00010020 vaddr=3c0d0020 size=2a510h (173328) map[0m
+[0;32mI (124) esp_image: segment 1: paddr=0003a538 vaddr=3fc9b900 size=05818h ( 22552) load[0m
+[0;32mI (129) esp_image: segment 2: paddr=0003fd58 vaddr=40374000 size=002c0h (   704) load[0m
+[0;32mI (129) esp_image: segment 3: paddr=00040020 vaddr=42000020 size=cc720h (837408) map[0m
+[0;32mI (265) esp_image: segment 4: paddr=0010c748 vaddr=403742c0 size=17548h ( 95560) load[0m
+[0;32mI (284) esp_image: segment 5: paddr=00123c98 vaddr=50000000 size=00024h (    36) load[0m
+[0;32mI (295) boot: Loaded app from partition at offset 0x10000[0m
+[0;32mI (295) boot: Disabling RNG early entropy source...[0m
+[0;32mI (305) octal_psram: vendor id    : 0x0d (AP)[0m
+[0;32mI (305) octal_psram: dev id       : 0x02 (generation 3)[0m
+[0;32mI (305) octal_psram: density      : 0x03 (64 Mbit)[0m
+[0;32mI (307) octal_psram: good-die     : 0x01 (Pass)[0m
+[0;32mI (312) octal_psram: Latency      : 0x01 (Fixed)[0m
+[0;32mI (316) octal_psram: VCC          : 0x01 (3V)[0m
+[0;32mI (320) octal_psram: SRF          : 0x01 (Fast Refresh)[0m
+[0;32mI (325) octal_psram: BurstType    : 0x01 (Hybrid Wrap)[0m
+[0;32mI (330) octal_psram: BurstLen     : 0x01 (32 Byte)[0m
+[0;32mI (334) octal_psram: Readlatency  : 0x02 (10 cycles@Fixed)[0m
+[0;32mI (340) octal_psram: DriveStrength: 0x00 (1/1)[0m
+[0;32mI (344) MSPI Timing: Enter psram timing tuning[0m
+[0;32mI (349) esp_psram: Found 8MB PSRAM device[0m
+[0;32mI (352) esp_psram: Speed: 80MHz[0m
+[0;32mI (355) cpu_start: Multicore app[0m
+[0;32mI (777) esp_psram: SPI SRAM memory test OK[0m
+[0;32mI (786) cpu_start: GPIO 44 and 43 are used as console UART I/O pins[0m
+[0;32mI (786) cpu_start: Pro cpu start user code[0m
+[0;32mI (786) cpu_start: cpu freq: 240000000 Hz[0m
+[0;32mI (788) app_init: Application information:[0m
+[0;32mI (792) app_init: Project name:     ddl_reminder[0m
+[0;32mI (796) app_init: App version:      3f9e8f7-dirty[0m
+[0;32mI (801) app_init: Compile time:     Jul 23 2026 13:23:03[0m
+[0;32mI (806) app_init: ELF file SHA256:  13e980255...[0m
+[0;32mI (810) app_init: ESP-IDF:          v6.0.2[0m
+[0;32mI (814) efuse_init: Min chip rev:     v0.0[0m
+[0;32mI (818) efuse_init: Max chip rev:     v0.99 [0m
+[0;32mI (822) efuse_init: Chip rev:         v0.2[0m
+[0;32mI (826) heap_init: Initializing. RAM available for dynamic allocation:[0m
+[0;32mI (832) heap_init: At 3FCADFD0 len 0003B740 (237 KiB): RAM[0m
+[0;32mI (837) heap_init: At 3FCE9710 len 00005724 (21 KiB): RAM[0m
+[0;32mI (842) heap_init: At 3FCF0000 len 00008000 (32 KiB): DRAM[0m
+[0;32mI (847) heap_init: At 600FE000 len 00001FE8 (7 KiB): RTCRAM[0m
+[0;32mI (853) esp_psram: Adding pool of 8192K of PSRAM memory to heap allocator[0m
+[0;32mI (860) spi_flash: detected chip: generic[0m
+[0;32mI (863) spi_flash: flash io: qio[0m
+[0;33mW (866) i2c: This driver is an old driver, please migrate your application code to adapt `driver/i2c_master.h`[0m
+[0;32mI (876) sleep_gpio: Configure to isolate all GPIO pins in sleep state[0m
+[0;32mI (882) sleep_gpio: Enable automatic switching of GPIO sleep configuration[0m
+[0;32mI (889) main_task: Started on CPU0[0m
+[0;32mI (903) esp_psram: Reserving pool of 48K of internal memory for DMA/internal allocations[0m
+[0;32mI (903) main_task: Calling app_main()[0m
+[0;32mI (903) DDL: === DDL Reminder ESP32-S3 ===[0m
+[0;32mI (1045) LVGL: Starting LVGL task[0m
+[0;32mI (1047) RemoteDisp: Remote display registered (UDP socket deferred until WiFi up)[0m
+[0;32mI (1047) DDL: LCD+Touch ready[0m
+[0;32mI (1048) LED: ready: 4 LEDs GPIO41[0m
+[0;32mI (1051) Encoder: Encoder: CLK=38 DT=39 SW=40[0m
+[0;32mI (1054) bsp_board: 🚀 正在初始化ESP32-S3-DevKitC-1 + INMP441麦克风[0m
+[0;32mI (1098) bsp_board: 🎵 音频参数: 采样率=16000Hz, 声道数=1, 位深=16位[0m
+[0;32mI (1892) bsp_board: I2S 初始化成功[0m
+[0;32mI (1892) bsp_board: ✅ MAX98357A SD引脚已初始化（GPIO8）[0m
+[0;32mI (1892) bsp_board: ✅ I2S音频播放初始化成功[0m
+[0;32mI (1895) AudioManager: 初始化音频管理器...[0m
+[0;32mI (1899) AudioManager: ✓ 录音缓冲区分配成功，大小: 320000 字节 (10 秒)[0m
+[0;32mI (1936) AudioManager: ✓ 响应缓冲区分配成功，大小: 1024000 字节 (32 秒)[0m
+[0;32mI (1936) AudioManager: ✓ 流式播放缓冲区分配成功，大小: 32768 字节[0m
+[0;32mI (1942) pp: pp rom version: e7ae62f[0m
+[0;32mI (1944) net80211: net80211 rom version: e7ae62f[0m
+[0;32mI (1949) wifi:wifi driver task: 3fcc8950, prio:23, stack:6656, core=0[0m
+[0;32mI (1962) wifi:wifi firmware version: 00ad238[0m
+[0;32mI (1962) wifi:wifi certification version: v7.0[0m
+[0;32mI (1962) wifi:config NVS flash: enabled[0m
+[0;32mI (1966) wifi:config nano formatting: disabled[0m
+[0;32mI (1970) wifi:Init data frame dynamic rx buffer num: 32[0m
+[0;32mI (1975) wifi:Init static rx mgmt buffer num: 5[0m
+[0;32mI (1979) wifi:Init management short buffer num: 32[0m
+[0;32mI (1984) wifi:Init dynamic tx buffer num: 32[0m
+[0;32mI (1988) wifi:Init static tx FG buffer num: 2[0m
+[0;32mI (1992) wifi:Init static rx buffer size: 1600[0m
+[0;32mI (1996) wifi:Init static rx buffer num: 10[0m
+[0;32mI (2000) wifi:Init dynamic rx buffer num: 32[0m
+[0;32mI (2005) wifi_init: rx ba win: 6[0m
+[0;32mI (2007) wifi_init: accept mbox: 6[0m
+[0;32mI (2010) wifi_init: tcpip mbox: 32[0m
+[0;32mI (2013) wifi_init: udp mbox: 6[0m
+[0;32mI (2016) wifi_init: tcp mbox: 6[0m
+[0;32mI (2019) wifi_init: tcp tx win: 5760[0m
+[0;32mI (2022) wifi_init: tcp rx win: 5760[0m
+[0;32mI (2026) wifi_init: tcp mss: 1440[0m
+[0;32mI (2029) wifi_init: WiFi IRAM OP enabled[0m
+[0;32mI (2032) wifi_init: WiFi RX IRAM OP enabled[0m
+[0;32mI (2037) phy_init: phy_version 712,87e8c20e,Apr 13 2026,18:51:10[0m
+[0;32mI (2077) wifi:mode : sta (7c:4f:ad:21:52:ec)[0m
+[0;32mI (2077) wifi:enable tsf[0m
+[0;32mI (2079) WiFiManager: 📶 WiFi初始化完成，正在连接到 LC235的场域[0m
+[0;32mI (2083) wifi:new:<6,0>, old:<1,0>, ap:<255,255>, sta:<6,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (2087) wifi:state: init -> auth (0xb0)[0m
+[0;32mI (2120) wifi:state: auth -> assoc (0x0)[0m
+[0;32mI (2127) wifi:state: assoc -> run (0x10)[0m
+[0;32mI (2144) wifi:state: run -> init (0x2a0)[0m
+[0;32mI (2147) WiFiManager: 🔄 重试连接WiFi... (1/5)[0m
+[0;32mI (2147) WiFiManager: ❌ WiFi连接失败[0m
+[0;32mI (4450) wifi:state: init -> auth (0xb0)[0m
+[0;32mI (4458) wifi:state: auth -> assoc (0x0)[0m
+[0;32mI (4465) wifi:state: assoc -> run (0x10)[0m
+[0;32mI (4493) wifi:connected with LC235的场域, aid = 4, channel 6, BW20, bssid = be:ad:35:ef:11:23[0m
+[0;32mI (4493) wifi:security: WPA2-PSK, phy: bgn, rssi: -32, cipher(pairwise:0x3, group:0x3), pmf:0[0m
+[0;32mI (4501) wifi:pm start, type: 1[0m
+
+[0;32mI (4502) wifi:dp: 1, bi: 102400, li: 3, scale listen interval from 307200 us to 307200 us[0m
+[0;32mI (4510) wifi:set rx beacon pti, rx_bcn_pti: 0, bcn_timeout: 25000, mt_pti: 0, mt_time: 10000[0m
+[0;32mI (4518) wifi:dp: 2, bi: 102400, li: 4, scale listen interval from 307200 us to 409600 us[0m
+[0;32mI (4526) wifi:AP's beacon interval = 102400 us, DTIM period = 2[0m
+[0;32mI (5547) esp_netif_handlers: sta ip: 192.168.49.4, mask: 255.255.255.0, gw: 192.168.49.1[0m
+[0;32mI (5547) WiFiManager: 🏠 获得IP地址:192.168.49.4[0m
+[0;32mI (5549) WiFiManager: ✅ WiFi连接成功: LC235的场域[0m
+[0;32mI (5554) DDL: NTP sync started[0m
+[0;32mI (5557) WebSocketClient: 🌐 正在连接WebSocket服务器: ws://192.168.49.5:8888[0m
+[0;32mI (5566) websocket_client: Started[0m
+[0;32mI (5589) UI: UI ready[0m
+[0;32mI (5589) DDL: Ready. Display=yes[0m
+[0;32mI (5590) RemoteDisp: Remote display UDP ready on port 24680[0m
+[0;32mI (6548) wifi:<ba-add>idx:0 (ifx:0, be:ad:35:ef:11:23), tid:0, ssn:1, winSize:64[0m
+[0;32mI (6943) WebSocketClient: 🔗 WebSocket已连接[0m
+[0;32mI (6943) DDL: WS connected[0m
+[0;32mI (7372) Protocol: Parsed sync: 3 events[0m
+[0;32mI (7577) Protocol: Parsed sync: 3 events[0m
+[0;32mI (87451) RemoteDisp: PC client connected, sending display...[0m
+[0;32mI (100965) RemoteDisp: PC client connected, sending display...[0m
+[0;32mI (105885) RemoteDisp: PC client connected, sending display...[0m
+[0;32mI (121862) RemoteDisp: PC client connected, sending display...[0m
+[0;32mI (123493) RemoteDisp: PC client connected, sending display...[0m
+[0;32mI (184568) AudioManager: 开始录音...[0m
+[0;32mI (194577) AudioManager: 停止录音，当前长度: 160000 样本 (10.00 秒)[0m
+[0;32mI (209315) AudioManager: 开始流式音频播放[0m
+[0;32mI (223448) AudioManager: 结束流式音频播放[0m
+[0;32mI (223667) bsp_board: ✅ I2S音频输出已停止[0m
+[0;32mI (223667) bsp_board: 音频播放完成，播放了 1024 字节[0m
+[0;32mI (223667) AudioManager: ✅ 播放剩余音频: 1024 字节[0m
+[0;32mI (341407) RemoteDisp: PC client connected, sending display...[0m
+[0;32mI (364552) RemoteDisp: PC client connected, sending display...[0m
+[0;32mI (365784) RemoteDisp: PC client connected, sending display...[0m
+[0;32mI (405429) AudioManager: 开始录音...[0m
+[0;32mI (412507) AudioManager: 停止录音，当前长度: 113920 样本 (7.12 秒)[0m
+[0;32mI (419052) AudioManager: 开始录音...[0m
+[0;32mI (421672) AudioManager: 停止录音，当前长度: 42560 样本 (2.66 秒)[0m
+[0;32mI (423744) AudioManager: 开始流式音频播放[0m
+[0;32mI (427161) AudioManager: 结束流式音频播放[0m
+[0;32mI (427384) bsp_board: ✅ I2S音频输出已停止[0m
+[0;32mI (427384) bsp_board: 音频播放完成，播放了 1024 字节[0m
+[0;32mI (427384) AudioManager: ✅ 播放剩余音频: 1024 字节[0m
+[0;32mI (432142) AudioManager: 开始流式音频播放[0m
+[0;32mI (436250) AudioManager: 结束流式音频播放[0m
+[0;32mI (436473) bsp_board: ✅ I2S音频输出已停止[0m
+[0;32mI (436473) bsp_board: 音频播放完成，播放了 1024 字节[0m
+[0;32mI (436473) AudioManager: ✅ 播放剩余音频: 1024 字节[0m
+[0;32mI (656001) RemoteDisp: PC client connected, sending display...[0m
+[0;32mI (657017) RemoteDisp: PC client connected, sending display...[0m
+[0;32mI (658043) RemoteDisp: PC client connected, sending display...[0m

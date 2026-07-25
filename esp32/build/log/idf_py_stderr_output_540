@@ -1,0 +1,31 @@
+Command: C:\Espressif\tools\python\v6.0.2\venv\Scripts\python.exe C:\esp\v6.0.2\esp-idf\tools/idf_monitor.py -p COM4 -b 115200 --toolchain-prefix xtensa-esp32s3-elf- --target esp32s3 --revision 0 D:\code\DDL-reminder\DDL-reminder\esp32\build\ddl_reminder.elf D:\code\DDL-reminder\DDL-reminder\esp32\build\bootloader\bootloader.elf --force-color -m 'C:\Espressif\tools\python\v6.0.2\venv\Scripts\python.exe' 'C:\esp\v6.0.2\esp-idf\tools\idf.py'
+[0;33m--- Warning: GDB cannot open serial ports accessed as COMx[0m
+[0;33m--- Using \\.\COM4 instead...[0m
+[0;33m--- esp-idf-monitor 1.9.0 on \\.\COM4 115200[0m
+[0;33m--- Quit: Ctrl+] | Menu: Ctrl+T | Help: Ctrl+T followed by Ctrl+H[0m
+[0m--- 0x403c8700: [0;33m_stext[0m[0m at [0;32m??[0m[0m:[1;31m?[0m
+[0m--- 0x403c8930: [0;33mcall_start_cpu0[0m[0m at [0;32mC:/esp/v6.0.2/esp-idf/components/bootloader/subproject/main/bootloader_start.c[0m[0m:[1;31m27[0m
+[0m--- 0x420bb47a: [0;33m__wrap___cxa_allocate_exception[0m[0m at [0;32mC:/esp/v6.0.2/esp-idf/components/cxx/cxx_exception_stubs.cpp[0m[0m:[1;31m184[0m
+[0m--- 0x403818e5: [0;33mpanic_abort[0m[0m at [0;32mC:/esp/v6.0.2/esp-idf/components/esp_system/panic.c[0m[0m:[1;31m464[0m
+[0m--- 0x403818b1: [0;33mesp_system_abort[0m[0m at [0;32mC:/esp/v6.0.2/esp-idf/components/esp_system/port/esp_system_chip.c[0m[0m:[1;31m87[0m
+[0m--- 0x4037fe1f: [0;33mabort[0m[0m at [0;32mC:/esp/v6.0.2/esp-idf/components/esp_libc/src/abort.c[0m[0m:[1;31m38[0m
+[0m--- 0x420bb47a: [0;33m__wrap___cxa_allocate_exception[0m[0m at [0;32mC:/esp/v6.0.2/esp-idf/components/cxx/cxx_exception_stubs.cpp[0m[0m:[1;31m184[0m
+[0m--- 0x420baac9: [0;33mstd::__throw_length_error(char const*)[0m[0m at [0;32m/builds/idf/crosstool-NG/.build/xtensa-esp-elf/src/gcc/libstdc++-v3/src/c++11/functexcept.cc[0m[0m:[1;31m82[0m
+[0m--- 0x42011c5d: [0;33mstd::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_create(unsigned int&, unsigned int)[0m[0m at [0;32mC:/Espressif/tools/xtensa-esp-elf/esp-15.2.0_20251204/xtensa-esp-elf/xtensa-esp-elf/include/c++/15.2.0/bits/basic_string.tcc[0m[0m:[1;31m149[0m
+[0m--- 0x420128a6: [0;33mstd::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_assign(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&)[0m[0m at [0;32mC:/Espressif/tools/xtensa-esp-elf/esp-15.2.0_20251204/xtensa-esp-elf/xtensa-esp-elf/include/c++/15.2.0/bits/basic_string.tcc[0m[0m:[1;31m319[0m
+[0m--- (inlined by) [0;33mstd::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::assign(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&)[0m[0m at [0;32mC:/Espressif/tools/xtensa-esp-elf/esp-15.2.0_20251204/xtensa-esp-elf/xtensa-esp-elf/include/c++/15.2.0/bits/basic_string.h[0m[0m:[1;31m1774[0m
+[0m--- (inlined by) [0;33mstd::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::operator=(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&)[0m[0m at [0;32mC:/Espressif/tools/xtensa-esp-elf/esp-15.2.0_20251204/xtensa-esp-elf/xtensa-esp-elf/include/c++/15.2.0/bits/basic_string.h[0m[0m:[1;31m906[0m
+[0m--- (inlined by) [0;33mUIManager::show_detail(DDLEvent const&)[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/main/ui/ui_manager.cpp[0m[0m:[1;31m347[0m
+[0m--- 0x420129e2: [0;33mUIManager::cb_list_click(_lv_event_t*)[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/main/ui/ui_manager.cpp[0m[0m:[1;31m380[0m
+[0m--- 0x42018b7c: [0;33mevent_send_core[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/core/lv_event.c[0m[0m:[1;31m461[0m
+[0m--- 0x42018bc6: [0;33mlv_event_send[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/core/lv_event.c[0m[0m:[1;31m74[0m
+[0m--- 0x42018d11: [0;33mindev_proc_release[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/core/lv_indev.c[0m[0m:[1;31m979[0m
+[0m--- 0x4201933a: [0;33mindev_pointer_proc[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/core/lv_indev.c[0m[0m:[1;31m383[0m
+[0m--- (inlined by) [0;33mlv_indev_read_timer_cb[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/core/lv_indev.c[0m[0m:[1;31m101[0m
+[0m--- 0x4202491a: [0;33mlv_timer_exec[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/misc/lv_timer.c[0m[0m:[1;31m313[0m
+[0m--- (inlined by) [0;33mlv_timer_handler[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/misc/lv_timer.c[0m[0m:[1;31m109[0m
+[0m--- 0x42017449: [0;33mlvgl_port_task[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/espressif__esp_lvgl_port/esp_lvgl_port.c[0m[0m:[1;31m691[0m
+[0m--- 0x40381a56: [0;33mesp_restart_noos[0m[0m at [0;32mC:/esp/v6.0.2/esp-idf/components/esp_system/port/soc/esp32s3/system_internal.c[0m[0m:[1;31m165[0m
+[0m--- 0x403c8700: [0;33m_stext[0m[0m at [0;32m??[0m[0m:[1;31m?[0m
+[0m--- 0x403c8930: [0;33mcall_start_cpu0[0m[0m at [0;32mC:/esp/v6.0.2/esp-idf/components/bootloader/subproject/main/bootloader_start.c[0m[0m:[1;31m27[0m
+[0m

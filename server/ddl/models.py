@@ -62,6 +62,49 @@ class DDLItem:
             dl = dl.replace(tzinfo=CST)
         return int((dl - now).total_seconds() / 60)
 
+    def duration_str(self) -> str:
+        """Human-readable countdown like '3d 5h 12m left' or '12m left'.
+        Omits zero units: never shows '0d' or '0h'."""
+        mins = self.minutes_remaining()
+        if mins < 0:
+            mins = -mins
+            d = mins // 1440
+            h = (mins % 1440) // 60
+            m = mins % 60
+            parts = []
+            if d > 0: parts.append(f"{d}d")
+            if h > 0: parts.append(f"{h}h")
+            if m > 0 or not parts: parts.append(f"{m}m")
+            return "OVERDUE by " + " ".join(parts)
+        if mins == 0:
+            return "due now"
+        d = mins // 1440
+        h = (mins % 1440) // 60
+        m = mins % 60
+        parts = []
+        if d > 0: parts.append(f"{d}d")
+        if h > 0: parts.append(f"{h}h")
+        if m > 0 or not parts: parts.append(f"{m}m")
+        return " ".join(parts) + " left"
+
+    def advance_str(self) -> str:
+        """Human-readable advance time like '3d before' or '12h before'."""
+        adv = self.advance_minutes
+        if adv >= 1440:
+            d = adv // 1440
+            h = (adv % 1440) // 60
+            if h > 0:
+                return f"Remind: {d}d {h}h before"
+            return f"Remind: {d}d before"
+        elif adv >= 60:
+            h = adv // 60
+            m = adv % 60
+            if m > 0:
+                return f"Remind: {h}h {m}m before"
+            return f"Remind: {h}h before"
+        else:
+            return f"Remind: {adv}m before"
+
     def tag(self) -> str:
         """Urgency tag emoji."""
         mins = self.minutes_remaining()

@@ -44,12 +44,13 @@ from config import (
     DASHSCOPE_API_KEY, EDGE_TTS_VOICE, COSYVOICE_VOICE,
     SAMPLE_RATE, CHANNELS, BIT_DEPTH,
     REMINDER_CHECK_INTERVAL, CRAWL_INTERVAL,
-    DEFAULT_ADVANCE_MINUTES, EMOTION_ENABLED,
+    CLEANUP_INTERVAL, DEFAULT_ADVANCE_MINUTES, EXPIRED_CLEANUP_DAYS,
+    EMOTION_ENABLED,
     get_llm_config, check_config,
 )
 from protocol import (
     msg_sync, msg_new_event, msg_delete_event, msg_remind,
-    msg_speak, msg_emotion, msg_led, msg_pong,
+    msg_speak, msg_emotion, msg_led, msg_pong, msg_asr_result,
 )
 from ddl.models import DDLItem
 from ddl.store import EventStore
@@ -150,6 +151,9 @@ async def load_system_prompt() -> str:
     else:
         context = "暂无待办事项。"
 
+    # Inject current date so LLM knows the correct year (not 2022)
+    now = datetime.now().strftime("%Y年%m月%d日 %H:%M (周%w)")
+    base = base.replace("{current_date}", f"现在是 {now}，所有DDL截止时间必须基于此日期。")
     return base.replace("{events_context}", context)
 
 
@@ -173,17 +177,16 @@ async def on_reminder_trigger(event: DDLItem):
     """Called by ReminderScheduler when a reminder is due."""
     logger.info(f"🔔 Reminder triggered: {event.title}")
 
-    # Build reminder TTS text
-    mins = event.minutes_remaining()
-    if mins < 0:
+    # Build reminder TTS text using human-readable duration
+    dur = event.duration_str()
+    if "OVERDUE" in dur:
         tts_text = f"提醒：{event.title}已经过期了！"
         emotion = "sad"
-    elif mins < 60:
-        tts_text = f"紧急提醒：{event.title}将在{mins}分钟后截止！"
+    elif "due now" in dur:
+        tts_text = f"紧急提醒：{event.title}现在截止！"
         emotion = "surprised"
     else:
-        hours = mins // 60
-        tts_text = f"提醒：{event.title}将在{hours}小时后截止"
+        tts_text = f"提醒：{event.title}还有{dur.replace(' left','')}截止"
         emotion = "surprised"
 
     # Synthesize reminder audio
@@ -234,8 +237,12 @@ async def process_voice_query(websocket, state: ClientState) -> None:
         return
 
     if not transcript.strip():
+        await websocket.send(json.dumps(msg_asr_result("(未识别到语音)", True), ensure_ascii=False))
         await websocket.send(json.dumps(msg_speak("", "抱歉，我没有听清楚，请再说一遍。", "sad"), ensure_ascii=False))
         return
+
+    # Send ASR result to ESP32 for on-screen display
+    await websocket.send(json.dumps(msg_asr_result(transcript, True), ensure_ascii=False))
 
     # Step 2: LLM — text understanding
     await websocket.send(json.dumps(msg_emotion("thinking"), ensure_ascii=False))
@@ -256,14 +263,19 @@ async def process_voice_query(websocket, state: ClientState) -> None:
     else:
         result["response"] = "AI服务未配置，请检查API密钥。"
 
-    # Step 3: Execute tool calls
+    # Step 3: Execute tool calls (with crash guard)
     tool_result = ""
-    if result["tool_calls"] and intent_parser:
-        tool_result = await intent_parser.execute(result["tool_calls"])
+    original_tool_calls = result.get("tool_calls", [])  # Save BEFORE second LLM call
+    if original_tool_calls and intent_parser:
+        try:
+            tool_result = await intent_parser.execute(original_tool_calls)
+        except Exception as e:
+            logger.error(f"Tool execution failed: {e}", exc_info=True)
+            tool_result = f"操作失败: {e}"
         if tool_result:
             # Feed tool results back to LLM for final response
-            messages.append({"role": "assistant", "content": None, "tool_calls": result["tool_calls"]})
-            messages.append({"role": "tool", "content": tool_result, "tool_call_id": result["tool_calls"][0]["id"]})
+            messages.append({"role": "assistant", "content": None, "tool_calls": original_tool_calls})
+            messages.append({"role": "tool", "content": tool_result, "tool_call_id": original_tool_calls[0]["id"]})
             result = await llm_module.chat(messages, None)
 
     # Update conversation history
@@ -271,6 +283,20 @@ async def process_voice_query(websocket, state: ClientState) -> None:
     state.conversation_history.append({"role": "assistant", "content": result["response"]})
     if len(state.conversation_history) > 20:
         state.conversation_history = state.conversation_history[-20:]
+
+    # After DDL-modifying tools, push updated list to all clients
+    if tool_result and original_tool_calls:
+        read_ops = {"query_ddls", "get_courses"}  # everything else is a write
+        for tc in original_tool_calls:
+            if tc.get("function", {}).get("name") not in read_ops:
+                events = await store.get_pending()
+                sync_data = [e.to_dict() for e in events]
+                for ws_client in connected_clients:
+                    try:
+                        await ws_client.send(json.dumps(msg_sync(sync_data), ensure_ascii=False))
+                    except Exception:
+                        pass
+                break  # only sync once
 
     # Step 4: TTS — text to speech
     response_text = result["response"] or ""
@@ -320,6 +346,31 @@ async def handle_client(websocket, path=None):
         await websocket.send(json.dumps(msg_sync(sync_data), ensure_ascii=False))
         logger.info(f"Sent sync: {len(sync_data)} events")
 
+        # Check for missed reminders (device was offline when reminder should have fired)
+        missed = await store.get_missed_reminders()
+        if missed:
+            logger.info(f"🔔 Found {len(missed)} missed reminder(s) during offline period")
+            for event in missed[:5]:  # cap at 5 to avoid flooding
+                try:
+                    await websocket.send(json.dumps(msg_remind(event.to_dict()), ensure_ascii=False))
+                    dur = event.duration_str()
+                    await websocket.send(json.dumps(
+                        msg_speak("", f"提醒：你在离线时错过了 {event.title} 的提醒，{dur}", "sad"),
+                        ensure_ascii=False))
+                    # TTS for missed reminder
+                    if tts_module:
+                        tts_text = f"提醒：你在离线时错过了 {event.title} 的提醒，{dur}"
+                        audio = await tts_module.synthesize(tts_text)
+                        if audio:
+                            await websocket.send(json.dumps(msg_speak("", tts_text, "sad"), ensure_ascii=False))
+                            CHUNK = 4096
+                            for offset in range(0, len(audio), CHUNK):
+                                await websocket.send(audio[offset:offset + CHUNK])
+                            await websocket.ping()
+                    await store.mark_reminded(event.id)
+                except Exception as e:
+                    logger.error(f"Failed to send missed reminder: {e}")
+
         # Message loop
         async for message in websocket:
             try:
@@ -362,12 +413,26 @@ async def handle_client(websocket, path=None):
                     result = await llm_module.chat(messages, DDL_TOOLS) if llm_module else {"response": "", "tool_calls": [], "emotion": "neutral"}
 
                     # Execute tool calls
-                    if result.get("tool_calls") and intent_parser:
-                        tool_result = await intent_parser.execute(result["tool_calls"])
+                    original_tc = result.get("tool_calls", [])
+                    tool_result = ""
+                    if original_tc and intent_parser:
+                        tool_result = await intent_parser.execute(original_tc)
                         if tool_result:
-                            messages.append({"role": "assistant", "content": None, "tool_calls": result["tool_calls"]})
-                            messages.append({"role": "tool", "content": tool_result})
+                            messages.append({"role": "assistant", "content": None, "tool_calls": original_tc})
+                            messages.append({"role": "tool", "content": tool_result, "tool_call_id": original_tc[0]["id"]})
                             result = await llm_module.chat(messages, None)
+
+                    # Sync after writes
+                    if tool_result and original_tc:
+                        read_ops = {"query_ddls", "get_courses"}
+                        if any(tc.get("function", {}).get("name") not in read_ops for tc in original_tc):
+                            events = await store.get_pending()
+                            sync_data = [e.to_dict() for e in events]
+                            for ws_client in connected_clients:
+                                try:
+                                    await ws_client.send(json.dumps(msg_sync(sync_data), ensure_ascii=False))
+                                except Exception:
+                                    pass
 
                     state.conversation_history.append({"role": "assistant", "content": result.get("response", "")})
 
@@ -398,11 +463,76 @@ async def handle_client(websocket, path=None):
                     elif action == "snooze":
                         await store.update_status(event_id, "snoozed")
                         logger.info(f"⏰ [{client_ip}] Snoozed: {event_id}")
+                    elif action.startswith("edit:"):
+                        # Format: "edit:field_name=new_value"
+                        parts = action[5:].split("=", 1)
+                        if len(parts) == 2:
+                            field, value = parts[0].strip(), parts[1].strip()
+                            updates = {}
+                            if field == "title":
+                                updates["title"] = value
+                            elif field == "course":
+                                updates["course"] = value
+                            elif field == "deadline":
+                                try:
+                                    from datetime import datetime, timezone, timedelta
+                                    CST = timezone(timedelta(hours=8))
+                                    dl = datetime.strptime(value, "%Y-%m-%dT%H:%M")
+                                    updates["deadline"] = dl.replace(tzinfo=CST)
+                                except ValueError:
+                                    logger.warning(f"Invalid deadline format: {value}")
+                            elif field == "advance":
+                                try:
+                                    updates["advance_minutes"] = int(value)
+                                except ValueError:
+                                    logger.warning(f"Invalid advance value: {value}")
+                            if updates:
+                                await store.update_event(event_id, updates)
+                                logger.info(f"✏️ [{client_ip}] Edited {event_id}: {field}={value}")
+                                # Sync back to all clients
+                                events = await store.get_pending()
+                                sync_data = [e.to_dict() for e in events]
+                                for ws_client in connected_clients:
+                                    try:
+                                        await ws_client.send(json.dumps(
+                                            msg_sync(sync_data), ensure_ascii=False))
+                                    except Exception:
+                                        pass
 
                 elif cmd == "request_sync":
                     events = await store.get_pending()
                     sync_data = [e.to_dict() for e in events]
                     await websocket.send(json.dumps(msg_sync(sync_data), ensure_ascii=False))
+
+                elif cmd == "add_event":
+                    # Direct DDL creation from ESP32 (touch form or voice)
+                    title = data.get("title", "")
+                    deadline_str = data.get("deadline", "")
+                    course = data.get("course", "")
+                    try:
+                        from ddl.models import DDLItem
+                        dl = datetime.fromisoformat(deadline_str)
+                        item = DDLItem(
+                            title=title or "未命名",
+                            course=course or "",
+                            type=data.get("type", "自定义"),
+                            source="manual",
+                            deadline=dl,
+                            advance_minutes=data.get("advance_minutes", 1440),
+                        )
+                        await store.upsert(item)
+                        logger.info(f"📝 [{client_ip}] Added DDL: {title}")
+
+                        # Sync back to all clients
+                        new_dict = item.to_dict()
+                        for ws_client in connected_clients:
+                            try:
+                                await ws_client.send(json.dumps(
+                                    msg_new_event(new_dict), ensure_ascii=False))
+                            except Exception:
+                                pass
+                    except Exception as e:
+                        logger.error(f"add_event failed: {e}")
 
                 elif cmd == "ping":
                     await websocket.send(json.dumps(msg_pong(), ensure_ascii=False))
@@ -476,6 +606,20 @@ async def main():
 
     crawler_scheduler.on_new(on_new_crawled)
     await crawler_scheduler.start()
+
+    # Start periodic data cleanup (every 3 days)
+    async def cleanup_loop():
+        while True:
+            await asyncio.sleep(CLEANUP_INTERVAL)
+            try:
+                removed = await store.cleanup_old(expired_days=EXPIRED_CLEANUP_DAYS)
+                if removed > 0:
+                    logger.info(f"🧹 Cleaned up {removed} old DDL records")
+            except Exception as e:
+                logger.error(f"Cleanup error: {e}")
+
+    asyncio.create_task(cleanup_loop())
+    logger.info(f"Data cleanup scheduled every {CLEANUP_INTERVAL//86400} days")
 
     # Start WebSocket server
     print(f"\n🌐 WebSocket server: ws://0.0.0.0:{WS_PORT}")

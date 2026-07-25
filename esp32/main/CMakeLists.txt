@@ -8,7 +8,10 @@ idf_component_register(
         "protocol.cpp"
         "led_controller.cpp"
         "encoder.cpp"
+        "touch_ft6336.cpp"
         "ui/ui_manager.cpp"
+        "remote_display.cpp"
+        "my_chinese_font.c"
     INCLUDE_DIRS
         "."
         "ui"

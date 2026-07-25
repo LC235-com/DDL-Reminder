@@ -46,6 +46,7 @@ public:
         EMOTION,        // Avatar expression control
         LED,            // LED control
         CONFIG,         // Config update
+        ASR_RESULT,     // ASR transcription result
         PONG,           // Heartbeat response
     };
 
@@ -71,6 +72,7 @@ public:
     static SpeakData parse_speak(const std::string& json_str);
     static std::string parse_emotion(const std::string& json_str);
     static void parse_led(const std::string& json_str, std::string& action, std::string& color);
+    static std::string parse_asr_result(const std::string& json_str, bool& is_final);
 };
 
 /**
@@ -85,6 +87,8 @@ public:
     static std::string build_request_sync();
     static std::string build_ping();
     static std::string build_hello();
+    static std::string build_add_event(const std::string& title, const std::string& deadline,
+                                        const std::string& course = "", const std::string& type = "\350\207\252\345\256\232\344\271\211");
 };
 
 #endif // DDL_PROTOCOL_H

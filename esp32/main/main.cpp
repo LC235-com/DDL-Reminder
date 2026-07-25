@@ -23,6 +23,7 @@
 #include "protocol.h"
 #include "led_controller.h"
 #include "encoder.h"
+#include "touch_ft6336.h"
 #include "ui/ui_manager.h"
 static const char* TAG = "DDL";
 
@@ -30,7 +31,14 @@ static const char* TAG = "DDL";
 #define WIFI_PASS  "Lily1314"
 #define WS_URI     "ws://192.168.49.4:8888"
 #define LCD_H_RES  240
-#define LCD_V_RES  240
+#define LCD_V_RES  320
+// Remote display (UDP mirror to PC) — define to enable
+#define DDL_REMOTE_DISPLAY 0  // disabled: UDP send stalls LVGL flush, triggers WDT
+#ifdef DDL_REMOTE_DISPLAY
+#include "remote_display.h"
+static RemoteDisplay* remote_disp = nullptr;
+#endif
+
 static bool has_display = false;
 
 enum State { IDLE, RECORDING, PROCESSING, SPEAKING, REMINDER };
@@ -42,7 +50,7 @@ static LEDController* leds = nullptr;
 static bool rec = false;
 static uint32_t rec_start = 0;
 static bool tts = false;
-static std::vector<DDLEvent> events;
+std::vector<DDLEvent> events;
 #define MAX_REC_MS 10000
 #define SR 16000
 
@@ -71,34 +79,101 @@ static void ws_cb(const WebSocketClient::EventData& e) {
     }
 }
 
-static void proc_msg(const std::string& m) {
-    auto t=ProtocolParser::get_message_type(m);
-    if(t==ProtocolParser::MessageType::SYNC){auto d=ProtocolParser::parse_sync(m);events=d.events;if(has_display)UIManager::instance().update_ddl_list(events);}
-    else if(t==ProtocolParser::MessageType::NEW_EVENT){auto e=ProtocolParser::parse_new_event(m);events.push_back(e);if(has_display)UIManager::instance().update_ddl_list(events);}
-    else if(t==ProtocolParser::MessageType::DELETE_EVENT){std::string id=ProtocolParser::parse_delete_event(m);events.erase(std::remove_if(events.begin(),events.end(),[&](auto&x){return x.id==id;}),events.end());if(has_display)UIManager::instance().update_ddl_list(events);}
-    else if(t==ProtocolParser::MessageType::REMIND){auto d=ProtocolParser::parse_remind(m);if(has_display)UIManager::instance().show_reminder(d.event);leds->set_pattern(LEDController::REMINDER);st=REMINDER;}
-    else if(t==ProtocolParser::MessageType::SPEAK){auto d=ProtocolParser::parse_speak(m);st=SPEAKING;leds->set_pattern(LEDController::SPEAKING);if(has_display)UIManager::instance().set_emotion(d.emotion);}
-    else if(t==ProtocolParser::MessageType::EMOTION){if(has_display)UIManager::instance().set_emotion(ProtocolParser::parse_emotion(m));}
-    else if(t==ProtocolParser::MessageType::LED){std::string a,c;ProtocolParser::parse_led(m,a,c);if(a=="flash")leds->set_pattern(LEDController::REMINDER);else if(a=="off")leds->set_pattern(LEDController::OFF);}
+// UI update callbacks (called from LVGL task via lv_async_call)
+// NOTE: update_ddl_list creates many LVGL objects and WDT if run in timer.
+// Instead, we set a pending flag and process in the main loop.
+static std::vector<DDLEvent>* pending_ddl_update = nullptr;
+static void ui_update_ddl(void* p) {
+    // Store pending update — will be processed in main loop outside lv_timer_handler
+    if (pending_ddl_update) delete pending_ddl_update;
+    pending_ddl_update = (std::vector<DDLEvent>*)p;
+}
+static void ui_show_reminder(void* p) {
+    auto* e = (DDLEvent*)p;
+    UIManager::instance().show_reminder(*e);
+    delete e;
+}
+static void ui_update_emoji(void* p) {
+    auto* s = (std::string*)p;
+    UIManager::instance().set_emotion(*s);
+    delete s;
+}
+static void ui_show_asr(void* p) {
+    auto* pair = (std::pair<std::string,bool>*)p;
+    UIManager::instance().show_asr_text(pair->first, pair->second);
+    delete pair;
 }
 
+static void proc_msg(const std::string& m) {
+    auto t=ProtocolParser::get_message_type(m);
+    if(t==ProtocolParser::MessageType::SYNC){
+        auto d=ProtocolParser::parse_sync(m); events=d.events;
+        if(has_display) lv_async_call(ui_update_ddl, new std::vector<DDLEvent>(events));
+    }
+    else if(t==ProtocolParser::MessageType::NEW_EVENT){
+        auto e=ProtocolParser::parse_new_event(m); events.push_back(e);
+        if(has_display) lv_async_call(ui_update_ddl, new std::vector<DDLEvent>(events));
+    }
+    else if(t==ProtocolParser::MessageType::DELETE_EVENT){
+        std::string id=ProtocolParser::parse_delete_event(m);
+        events.erase(std::remove_if(events.begin(),events.end(),[&](auto&x){return x.id==id;}),events.end());
+        if(has_display) lv_async_call(ui_update_ddl, new std::vector<DDLEvent>(events));
+    }
+    else if(t==ProtocolParser::MessageType::REMIND){
+        auto d=ProtocolParser::parse_remind(m);
+        if(has_display) lv_async_call(ui_show_reminder, new DDLEvent(d.event));
+        leds->set_pattern(LEDController::REMINDER); st=REMINDER;
+    }
+    else if(t==ProtocolParser::MessageType::SPEAK){
+        auto d=ProtocolParser::parse_speak(m); st=SPEAKING;
+        leds->set_pattern(LEDController::SPEAKING);
+        if(has_display){
+            std::string prefix;
+            if(d.emotion=="happy")prefix="^_^ "; else if(d.emotion=="thinking")prefix="o.O ";
+            else if(d.emotion=="surprised")prefix="O_O "; else if(d.emotion=="sad")prefix="T_T ";
+            else if(d.emotion=="speaking")prefix=">_< "; else prefix="-_- ";
+            auto* emo = new std::string(d.emotion);
+            lv_async_call(ui_update_emoji, emo);
+            auto* asr = new std::pair<std::string,bool>(prefix+d.text, true);
+            lv_async_call(ui_show_asr, asr);
+        }
+    }
+    else if(t==ProtocolParser::MessageType::EMOTION){
+        if(has_display) lv_async_call(ui_update_emoji, new std::string(ProtocolParser::parse_emotion(m)));
+    }
+    else if(t==ProtocolParser::MessageType::LED){
+        std::string a,c; ProtocolParser::parse_led(m,a,c);
+        if(a=="flash")leds->set_pattern(LEDController::REMINDER);
+        else if(a=="off")leds->set_pattern(LEDController::OFF);
+    }
+    else if(t==ProtocolParser::MessageType::ASR_RESULT){
+        bool fin=false; std::string txt=ProtocolParser::parse_asr_result(m,fin);
+        if(has_display) lv_async_call(ui_show_asr, new std::pair<std::string,bool>(txt,fin));
+    }
+}
+
+static uint32_t last_rec_stop = 0;
+static bool rec_busy = false;
 static void rec_start_fn() {
-    if(rec) return;
-    rec=true; rec_start=xTaskGetTickCount()*portTICK_PERIOD_MS;
-    leds->set_pattern(LEDController::RECORDING); if(has_display)UIManager::instance().set_emotion("neutral");
+    if(rec || rec_busy) return;
+    uint32_t n=xTaskGetTickCount()*portTICK_PERIOD_MS;
+    if(n - last_rec_stop < 800) return;
+    rec_busy = true; rec=true; rec_start=n;
+    leds->set_pattern(LEDController::RECORDING); if(has_display){UIManager::instance().set_emotion("neutral");UIManager::instance().show_asr_text("\345\220\254\347\235\200...",false);} // 听着...
     audio->startRecording();
     if(ws&&ws->isConnected()) ws->sendText(ProtocolBuilder::build_audio_start());
 }
 static void rec_stop_fn() {
     if(!rec) return;
-    rec=false; leds->set_pattern(LEDController::PROCESSING); if(has_display)UIManager::instance().set_emotion("thinking");
+    rec=false; rec_busy=false; last_rec_stop=xTaskGetTickCount()*portTICK_PERIOD_MS;
+    leds->set_pattern(LEDController::PROCESSING); if(has_display)UIManager::instance().set_emotion("thinking");
     audio->stopRecording();
     size_t len=0; const int16_t* d=audio->getRecordingBuffer(len);
     if(ws&&ws->isConnected()&&len>SR/4){
         auto*raw=(const uint8_t*)d; size_t bytes=len*2;
         for(size_t off=0;off<bytes;off+=4096) ws->sendBinary(raw+off,std::min((size_t)4096,bytes-off));
         ws->sendText(ProtocolBuilder::build_audio_end()); st=PROCESSING;
-    }else{audio->clearRecordingBuffer();st=IDLE;leds->set_pattern(LEDController::IDLE);}
+    }else{audio->clearRecordingBuffer();st=IDLE;rec_busy=false;leds->set_pattern(LEDController::IDLE);}
 }
 
 static esp_lcd_panel_handle_t panel_handle = nullptr;
@@ -126,10 +201,14 @@ static esp_err_t init_lcd() {
     lc.speed_mode = LEDC_LOW_SPEED_MODE;
     lc.channel = LEDC_CHANNEL_0;
     lc.timer_sel = LEDC_TIMER_0;
-    lc.duty = 1023;  // full brightness for testing
+    lc.duty = 0;  // GPIO_11 sinks BL_K through resistor → LOW=ON, HIGH=OFF
     ledc_channel_config(&lc);
 
-    // 2. SPI bus
+    // 2. SPI bus — boost drive strength for clean signals on breadboard
+    gpio_set_drive_capability(MOSI, GPIO_DRIVE_CAP_3);  // 40mA for MOSI
+    gpio_set_drive_capability(CLK, GPIO_DRIVE_CAP_3);   // 40mA for CLK
+    gpio_set_drive_capability(DC, GPIO_DRIVE_CAP_2);    // 20mA for DC
+
     spi_bus_config_t sb = {};
     sb.mosi_io_num = MOSI;
     sb.miso_io_num = -1;
@@ -140,11 +219,13 @@ static esp_err_t init_lcd() {
     spi_bus_initialize(SPI2_HOST, &sb, SPI_DMA_CH_AUTO);
 
     // 3. Panel IO (SPI)
+    // NOTE: Most 1.54" ST7789 boards use SPI mode 0. Mode 3 is for 7-pin variants.
+    // If ghosting persists, toggle between 0 and 3.
     esp_lcd_panel_io_spi_config_t io = {};
     io.cs_gpio_num = CS;
     io.dc_gpio_num = DC;
-    io.spi_mode = 3;  // SPI mode 3 for ST7789
-    io.pclk_hz = 40000000;  // 40MHz (stable for most ST7789 panels)
+    io.spi_mode = 0;  // SPI mode 0 (standard 4-wire ST7789)
+    io.pclk_hz = 20000000;  // 20MHz (reduced from 40MHz for signal integrity on breadboard)
     io.trans_queue_depth = 10;
     io.lcd_cmd_bits = 8;
     io.lcd_param_bits = 8;
@@ -154,14 +235,15 @@ static esp_err_t init_lcd() {
     // 4. ST7789 240x240 panel (1.54" IPS TFT)
     esp_lcd_panel_dev_config_t pd = {};
     pd.reset_gpio_num = RST;
-    pd.rgb_ele_order = LCD_RGB_ELEMENT_ORDER_RGB;  // 1.54" IPS ST7789 uses RGB order
+    pd.rgb_ele_order = LCD_RGB_ELEMENT_ORDER_BGR;  // 1.54" IPS ST7789 uses BGR subpixel order
+    pd.data_endian = LCD_RGB_DATA_ENDIAN_BIG;       // ST7789 datasheet: RGB565 MSB-first
     pd.bits_per_pixel = 16;
     esp_lcd_new_panel_st7789(io_h, &pd, &panel_handle);
 
     // 5. ST7789 init (240x240 typically needs invert + swap_xy depending on panel)
     esp_lcd_panel_reset(panel_handle);
     esp_lcd_panel_init(panel_handle);
-    esp_lcd_panel_invert_color(panel_handle, true);
+    esp_lcd_panel_invert_color(panel_handle, false);
     esp_lcd_panel_swap_xy(panel_handle, false);
     esp_lcd_panel_mirror(panel_handle, false, false);
     esp_lcd_panel_disp_on_off(panel_handle, true);
@@ -169,37 +251,77 @@ static esp_err_t init_lcd() {
     // 6. LVGL port
     lvgl_port_cfg_t lvcfg = {};
     lvcfg.task_priority = 4;
-    lvcfg.task_stack = 6144;
-    lvcfg.task_max_sleep_ms = 10;
+    lvcfg.task_stack = 8192;        // larger stack for font rendering
+    lvcfg.task_max_sleep_ms = 50;   // increased for CJK font rendering time
     lvcfg.timer_period_ms = 5;
     lvgl_port_init(&lvcfg);
 
     lvgl_port_display_cfg_t dc = {};
     dc.io_handle = io_h;
     dc.panel_handle = panel_handle;
-    dc.buffer_size = LCD_H_RES * 30;  // 30 lines buffer for 240px width
+    dc.buffer_size = LCD_H_RES * 40;  // 40 lines buffer (bigger = fewer flush ops)
     dc.double_buffer = false;
     dc.hres = LCD_H_RES;
     dc.vres = LCD_V_RES;
     dc.monochrome = false;
     dc.flags.buff_dma = true;
-    dc.flags.buff_spiram = false;  // DMA can't use SPIRAM, must use internal RAM
+    dc.flags.buff_spiram = false;  // DMA needs internal RAM
     lv_disp_t* disp = lvgl_port_add_disp(&dc);
     if (!disp) {
         ESP_LOGE(TAG, "LVGL display registration failed");
         return ESP_FAIL;
     }
 
-    // 7. Touch I2C
+#ifdef DDL_REMOTE_DISPLAY
+    remote_disp = new RemoteDisplay();
+    remote_disp->init(disp);
+#endif
+
+    // 7. Touch I2C (FT6336U, addr 0x38)
     i2c_config_t i2c = {};
     i2c.mode = I2C_MODE_MASTER;
     i2c.sda_io_num = GPIO_NUM_21;
     i2c.scl_io_num = GPIO_NUM_45;
     i2c.sda_pullup_en = GPIO_PULLUP_ENABLE;
     i2c.scl_pullup_en = GPIO_PULLUP_ENABLE;
-    i2c.master.clk_speed = 400000;
+    i2c.master.clk_speed = 100000;  // 100kHz — more tolerant without external pull-ups
     i2c_param_config(I2C_NUM_0, &i2c);
     i2c_driver_install(I2C_NUM_0, I2C_MODE_MASTER, 0, 0, 0);
+
+    // Quick I2C probe: scan known touch addresses only
+    ESP_LOGI(TAG, "I2C probing touch addresses...");
+    uint8_t probe_addrs[] = {0x38, 0x5D, 0x24, 0x70, 0x48, 0x2A, 0x15, 0x3A};
+    for (int i = 0; i < 8; i++) {
+        i2c_cmd_handle_t cmd = i2c_cmd_link_create();
+        i2c_master_start(cmd);
+        i2c_master_write_byte(cmd, (probe_addrs[i] << 1) | I2C_MASTER_WRITE, true);
+        i2c_master_stop(cmd);
+        esp_err_t r = i2c_master_cmd_begin(I2C_NUM_0, cmd, 20 / portTICK_PERIOD_MS);
+        i2c_cmd_link_delete(cmd);
+        if (r == ESP_OK) ESP_LOGI(TAG, "  Touch found at 0x%02X", probe_addrs[i]);
+    }
+
+    // Try FT6336U at multiple known addresses
+    static TouchFT6336 touch;
+    esp_err_t tr = ESP_FAIL;
+    uint8_t addrs[] = {0x38, 0x5D, 0x24, 0x2A, 0x48, 0x70};
+    for (int i = 0; i < 6; i++) {
+        tr = touch.init(I2C_NUM_0, GPIO_NUM_21, GPIO_NUM_45, GPIO_NUM_13, GPIO_NUM_14,
+                        LCD_H_RES, LCD_V_RES, addrs[i]);
+        if (tr == ESP_OK) break;
+    }
+    if (tr == ESP_OK) {
+        static lv_indev_drv_t indev_drv;
+        lv_indev_drv_init(&indev_drv);
+        indev_drv.type = LV_INDEV_TYPE_POINTER;
+        indev_drv.read_cb = [](lv_indev_drv_t*, lv_indev_data_t* d) {
+            auto p = touch.read();
+            d->state = p.pressed ? LV_INDEV_STATE_PR : LV_INDEV_STATE_REL;
+            d->point.x = p.x; d->point.y = p.y;
+        };
+        lv_indev_drv_register(&indev_drv);
+        ESP_LOGI(TAG, "FT6336U touch registered as LVGL input");
+    }
 
     has_display = true;
     ESP_LOGI(TAG,"LCD+Touch ready");
@@ -248,8 +370,19 @@ extern "C" void app_main(void) {
     int32_t last_enc_count = 0;
     while(1){
         uint32_t n=xTaskGetTickCount()*portTICK_PERIOD_MS;
+        // Process pending DDL list update OUTSIDE lv_timer_handler to avoid WDT
+        if (has_display && pending_ddl_update) {
+            auto* ev = pending_ddl_update;
+            pending_ddl_update = nullptr;
+            UIManager::instance().update_ddl_list(*ev);
+            delete ev;
+        }
         if (has_display) { lv_timer_handler(); lv_task_handler(); }
         if(leds) leds->update();
+
+#ifdef DDL_REMOTE_DISPLAY
+        if (remote_disp) remote_disp->update();
+#endif
 
         // Audio capture: read from I2S mic while recording (buffer locally only)
         if (rec && audio_buf && !audio->isRecordingBufferFull()) {
@@ -259,47 +392,121 @@ extern "C" void app_main(void) {
             }
         }
 
-        // EC11 encoder: rotation → UI list navigation
+        // EC11 encoder: rotation + button with heavy debounce
         if (enc && has_display) {
             int32_t count = enc->encoder_count_.load();
-            if (count != last_enc_count) {
-                int32_t delta = count - last_enc_count;
-                last_enc_count = count;
+            int32_t raw = count - last_enc_count;
+            // Heavy debounce: need 6 detents for one logical step
+            int32_t step = raw / 6;
+            if (step != 0) {
+                last_enc_count = count - (raw - step * 6);  // track remainder
                 auto scr = UIManager::instance().current_screen();
-                if (scr == UIManager::Screen::LIST) {
-                    // Scroll the event list
+                bool cw = (step > 0);
+                int abs_step = (step > 0) ? step : -step;
+
+                for (int s = 0; s < abs_step; s++) {
+                switch (scr) {
+                case UIManager::Screen::MAIN:
+                    // Rotate = switch tabs (carousel style)
+                    UIManager::instance().select_tab(cw ? 1 : -1);
+                    break;
+                case UIManager::Screen::LIST:
+                    // Rotate = prev/next item (snap, not free scroll)
                     if (!events.empty()) {
                         lv_obj_t* list = UIManager::instance().get_event_list();
                         if (list) {
-                            int total = lv_obj_get_child_cnt(list);
-                            if (total > 0) {
-                                int idx = (delta > 0) ? -1 : 1; // scroll direction
-                                // Use lv_obj_scroll_by for smooth scrolling
-                                lv_obj_scroll_by(list, 0, idx * 40, LV_ANIM_OFF);
+                            int cnt = lv_obj_get_child_cnt(list);
+                            if (cnt > 0) {
+                                static int list_idx = 0;
+                                if (cw) list_idx = (list_idx + 1) % cnt;
+                                else list_idx = (list_idx - 1 + cnt) % cnt;
+                                lv_obj_scroll_to_view(lv_obj_get_child(list, list_idx), LV_ANIM_ON);
                             }
                         }
                     }
-                } else if (scr == UIManager::Screen::DETAIL && !events.empty()) {
-                    // Navigate between events with encoder rotation
-                    static int detail_idx = 0;
-                    if (delta > 0) detail_idx = (detail_idx + 1) % events.size();
-                    else detail_idx = (detail_idx - 1 + events.size()) % events.size();
-                    UIManager::instance().show_detail(events[detail_idx]);
+                    break;
+                case UIManager::Screen::SETTINGS:
+                    // Rotate = select settings item / adjust volume if editing
+                    {
+                        static int vol = 8;
+                        vol = std::max(0, std::min(10, vol + (cw ? 1 : -1)));
+                        char vbuf[32];
+                        snprintf(vbuf, sizeof(vbuf), "Vol: %d/10", vol);
+                        UIManager::instance().show_asr_text(vbuf, true);
+                    }
+                    break;
+                case UIManager::Screen::DETAIL:
+                    if (!events.empty()) {
+                        static int detail_idx = 0;
+                        if (cw) detail_idx = (detail_idx + 1) % events.size();
+                        else detail_idx = (detail_idx - 1 + events.size()) % events.size();
+                        UIManager::instance().show_detail(events[detail_idx]);
+                    }
+                    break;
+                default: break;
+                }
                 }
             }
 
-            // EC11 button polling
+            // EC11 button with debounce (50ms)
             bool now_pressed = enc->button_pressed_.load();
+            static uint32_t last_btn_change = 0;
+            if (now_pressed != enc_was_pressed && (n - last_btn_change) > 50) {
+                last_btn_change = n;
+                enc_was_pressed = now_pressed;
+            }
             if (enc_was_pressed && !now_pressed) {
                 uint32_t dur = n - enc->button_press_time_.load();
-                if (dur < 2000) {
-                    if (rec) rec_stop_fn(); else rec_start_fn();
+                auto scr = UIManager::instance().current_screen();
+
+                if (dur < 1000) {  // Short press
+                    switch (scr) {
+                    case UIManager::Screen::MAIN:
+                        UIManager::instance().enter_tab();  // enter selected tab
+                        break;
+                    case UIManager::Screen::LIST:
+                        // Select the highlighted item: find focused child
+                        {
+                            lv_obj_t* list = UIManager::instance().get_event_list();
+                            if (list && lv_obj_get_child_cnt(list) > 0) {
+                                // Trigger click on the first visible child
+                                lv_obj_t* child = lv_obj_get_child(list, 0);
+                                if (child) lv_event_send(child, LV_EVENT_CLICKED, nullptr);
+                            }
+                        }
+                        break;
+                    case UIManager::Screen::SETTINGS:
+                        UIManager::instance().show_screen(UIManager::Screen::MAIN);
+                        break;
+                    case UIManager::Screen::DETAIL:
+                        UIManager::instance().show_screen(UIManager::Screen::MAIN);
+                        break;
+                    case UIManager::Screen::REMINDER_POPUP:
+                        UIManager::instance().show_screen(UIManager::Screen::MAIN);
+                        break;
+                    default: break;
+                    }
+                } else {  // Long press (>1s) = back to main
+                    UIManager::instance().show_screen(UIManager::Screen::MAIN);
                 }
             }
             enc_was_pressed = now_pressed;
         }
 
-        if (has_display && n-lc>1000){UIManager::instance().update_clock();lc=n;}
+        // Separate: mic recording controlled by touch button, not encoder
+        // The encoder button no longer triggers recording
+
+        if (has_display && n-lc>1000){
+            UIManager::instance().update_clock();lc=n;
+            // Auto-refresh countdown on detail screen
+            if(UIManager::instance().current_screen()==UIManager::Screen::DETAIL && !events.empty()){
+                for(auto& ev : events){
+                    if(ev.id == UIManager::instance().current_detail_id()){
+                        UIManager::instance().show_detail(ev); break;
+                    }
+                }
+            }
+        }
         if(ws&&ws->isConnected()&&n-lp>30000){ws->sendText(ProtocolBuilder::build_ping());lp=n;}
         if(rec&&(n-rec_start>MAX_REC_MS)) rec_stop_fn();
         vTaskDelay(pdMS_TO_TICKS(10));

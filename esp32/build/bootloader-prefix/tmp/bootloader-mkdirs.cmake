@@ -10,18 +10,18 @@ if(NOT EXISTS "C:/esp/v6.0.2/esp-idf/components/bootloader/subproject")
   file(MAKE_DIRECTORY "C:/esp/v6.0.2/esp-idf/components/bootloader/subproject")
 endif()
 file(MAKE_DIRECTORY
-  "D:/code/DDL-reminder/esp32/build/bootloader"
-  "D:/code/DDL-reminder/esp32/build/bootloader-prefix"
-  "D:/code/DDL-reminder/esp32/build/bootloader-prefix/tmp"
-  "D:/code/DDL-reminder/esp32/build/bootloader-prefix/src/bootloader-stamp"
-  "D:/code/DDL-reminder/esp32/build/bootloader-prefix/src"
-  "D:/code/DDL-reminder/esp32/build/bootloader-prefix/src/bootloader-stamp"
+  "D:/code/DDL-reminder/DDL-reminder/esp32/build/bootloader"
+  "D:/code/DDL-reminder/DDL-reminder/esp32/build/bootloader-prefix"
+  "D:/code/DDL-reminder/DDL-reminder/esp32/build/bootloader-prefix/tmp"
+  "D:/code/DDL-reminder/DDL-reminder/esp32/build/bootloader-prefix/src/bootloader-stamp"
+  "D:/code/DDL-reminder/DDL-reminder/esp32/build/bootloader-prefix/src"
+  "D:/code/DDL-reminder/DDL-reminder/esp32/build/bootloader-prefix/src/bootloader-stamp"
 )
 
 set(configSubDirs )
 foreach(subDir IN LISTS configSubDirs)
-    file(MAKE_DIRECTORY "D:/code/DDL-reminder/esp32/build/bootloader-prefix/src/bootloader-stamp/${subDir}")
+    file(MAKE_DIRECTORY "D:/code/DDL-reminder/DDL-reminder/esp32/build/bootloader-prefix/src/bootloader-stamp/${subDir}")
 endforeach()
 if(cfgdir)
-  file(MAKE_DIRECTORY "D:/code/DDL-reminder/esp32/build/bootloader-prefix/src/bootloader-stamp${cfgdir}") # cfgdir has leading slash
+  file(MAKE_DIRECTORY "D:/code/DDL-reminder/DDL-reminder/esp32/build/bootloader-prefix/src/bootloader-stamp${cfgdir}") # cfgdir has leading slash
 endif()

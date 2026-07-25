@@ -1,0 +1,23 @@
+[
+    {
+        "title": "提交实验报告",
+        "course": "数字电路设计",
+        "type": "作业",
+        "deadline": "2026-07-25T23:59:00+08:00",
+        "advance_minutes": 1440
+    },
+    {
+        "title": "期中考试",
+        "course": "高等数学",
+        "type": "考试",
+        "deadline": "2026-07-30T14:00:00+08:00",
+        "advance_minutes": 2880
+    },
+    {
+        "title": "项目答辩PPT",
+        "course": "软件工程",
+        "type": "项目",
+        "deadline": "2026-08-05T09:00:00+08:00",
+        "advance_minutes": 4320
+    }
+]

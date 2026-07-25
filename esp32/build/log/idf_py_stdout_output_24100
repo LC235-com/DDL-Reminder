@@ -1,0 +1,1937 @@
+Command: C:\Espressif\tools\python\v6.0.2\venv\Scripts\python.exe C:\esp\v6.0.2\esp-idf\tools/idf_monitor.py -p COM4 -b 115200 --toolchain-prefix xtensa-esp32s3-elf- --target esp32s3 --revision 0 D:\code\DDL-reminder\DDL-reminder\esp32\build\ddl_reminder.elf D:\code\DDL-reminder\DDL-reminder\esp32\build\bootloader\bootloader.elf --force-color -m 'C:\Espressif\tools\python\v6.0.2\venv\Scripts\python.exe' 'C:\esp\v6.0.2\esp-idf\tools\idf.py'
+ESP-ROM:esp32s3-20210327
+ESP-ROM:esp32s3-20210327
+Build:Mar 27 2021
+rst:0x1 (POWERON),boot:0x18 (SPI_FAST_FLASH_BOOT)
+SPIWP:0xee
+mode:DIO, clock div:1
+load:0x3fce2820,len:0x1664
+load:0x403c8700,len:0xf38
+load:0x403cb700,len:0x31e8
+entry 0x403c8930
+[0;32mI (25) boot: ESP-IDF v6.0.2 2nd stage bootloader[0m
+[0;32mI (25) boot: compile time Jul 23 2026 13:23:45[0m
+[0;32mI (25) boot: Multicore bootloader[0m
+[0;32mI (25) boot: chip revision: v0.2[0m
+[0;32mI (28) boot: efuse block revision: v1.4[0m
+[0;32mI (32) qio_mode: Enabling default flash chip QIO[0m
+[0;32mI (36) boot.esp32s3: Boot SPI Speed : 80MHz[0m
+[0;32mI (40) boot.esp32s3: SPI Mode       : QIO[0m
+[0;32mI (43) boot.esp32s3: SPI Flash Size : 16MB[0m
+[0;32mI (47) boot: Enabling RNG early entropy source...[0m
+[0;32mI (52) boot: Partition Table:[0m
+[0;32mI (54) boot: ## Label            Usage          Type ST Offset   Length[0m
+[0;32mI (61) boot:  0 nvs              WiFi data        01 02 00009000 00006000[0m
+[0;32mI (67) boot:  1 phy_init         RF data          01 01 0000f000 00001000[0m
+[0;32mI (74) boot:  2 factory          factory app      00 00 00010000 002ee000[0m
+[0;32mI (80) boot:  3 model            Unknown data     01 82 002fe000 005dc000[0m
+[0;32mI (87) boot: End of partition table[0m
+[0;32mI (90) esp_image: segment 0: paddr=00010020 vaddr=3c0d0020 size=44c00h (281600) map[0m
+[0;32mI (141) esp_image: segment 1: paddr=00054c28 vaddr=3fc9b900 size=05858h ( 22616) load[0m
+[0;32mI (146) esp_image: segment 2: paddr=0005a488 vaddr=40374000 size=05b90h ( 23440) load[0m
+[0;32mI (151) esp_image: segment 3: paddr=00060020 vaddr=42000020 size=cdf44h (843588) map[0m
+[0;32mI (283) esp_image: segment 4: paddr=0012df6c vaddr=40379b90 size=11c78h ( 72824) load[0m
+[0;32mI (298) esp_image: segment 5: paddr=0013fbec vaddr=50000000 size=00024h (    36) load[0m
+[0;32mI (308) boot: Loaded app from partition at offset 0x10000[0m
+[0;32mI (308) boot: Disabling RNG early entropy source...[0m
+[0;32mI (318) octal_psram: vendor id    : 0x0d (AP)[0m
+[0;32mI (319) octal_psram: dev id       : 0x02 (generation 3)[0m
+[0;32mI (319) octal_psram: density      : 0x03 (64 Mbit)[0m
+[0;32mI (321) octal_psram: good-die     : 0x01 (Pass)[0m
+[0;32mI (325) octal_psram: Latency      : 0x01 (Fixed)[0m
+[0;32mI (329) octal_psram: VCC          : 0x01 (3V)[0m
+[0;32mI (333) octal_psram: SRF          : 0x01 (Fast Refresh)[0m
+[0;32mI (338) octal_psram: BurstType    : 0x01 (Hybrid Wrap)[0m
+[0;32mI (343) octal_psram: BurstLen     : 0x01 (32 Byte)[0m
+[0;32mI (348) octal_psram: Readlatency  : 0x02 (10 cycles@Fixed)[0m
+[0;32mI (353) octal_psram: DriveStrength: 0x00 (1/1)[0m
+[0;32mI (357) MSPI Timing: Enter psram timing tuning[0m
+[0;32mI (362) esp_psram: Found 8MB PSRAM device[0m
+[0;32mI (365) esp_psram: Speed: 80MHz[0m
+[0;32mI (368) cpu_start: Multicore app[0m
+[0;32mI (790) esp_psram: SPI SRAM memory test OK[0m
+[0;32mI (799) cpu_start: GPIO 44 and 43 are used as console UART I/O pins[0m
+[0;32mI (799) cpu_start: Pro cpu start user code[0m
+[0;32mI (799) cpu_start: cpu freq: 240000000 Hz[0m
+[0;32mI (801) app_init: Application information:[0m
+[0;32mI (805) app_init: Project name:     ddl_reminder[0m
+[0;32mI (810) app_init: App version:      3f9e8f7-dirty[0m
+[0;32mI (814) app_init: Compile time:     Jul 23 2026 13:23:03[0m
+[0;32mI (819) app_init: ELF file SHA256:  531f706bb...[0m
+[0;32mI (823) app_init: ESP-IDF:          v6.0.2[0m
+[0;32mI (827) efuse_init: Min chip rev:     v0.0[0m
+[0;32mI (831) efuse_init: Max chip rev:     v0.99 [0m
+[0;32mI (835) efuse_init: Chip rev:         v0.2[0m
+[0;32mI (839) heap_init: Initializing. RAM available for dynamic allocation:[0m
+[0;32mI (845) heap_init: At 3FCAE070 len 0003B6A0 (237 KiB): RAM[0m
+[0;32mI (850) heap_init: At 3FCE9710 len 00005724 (21 KiB): RAM[0m
+[0;32mI (855) heap_init: At 3FCF0000 len 00008000 (32 KiB): DRAM[0m
+[0;32mI (861) heap_init: At 600FE000 len 00001FE8 (7 KiB): RTCRAM[0m
+[0;32mI (866) esp_psram: Adding pool of 8192K of PSRAM memory to heap allocator[0m
+[0;32mI (873) spi_flash: detected chip: generic[0m
+[0;32mI (876) spi_flash: flash io: qio[0m
+[0;33mW (879) i2c: This driver is an old driver, please migrate your application code to adapt `driver/i2c_master.h`[0m
+[0;32mI (889) sleep_gpio: Configure to isolate all GPIO pins in sleep state[0m
+[0;32mI (895) sleep_gpio: Enable automatic switching of GPIO sleep configuration[0m
+[0;32mI (902) main_task: Started on CPU0[0m
+[0;32mI (916) esp_psram: Reserving pool of 48K of internal memory for DMA/internal allocations[0m
+[0;32mI (916) main_task: Calling app_main()[0m
+[0;32mI (916) DDL: === DDL Reminder ESP32-S3 ===[0m
+[0;32mI (1058) LVGL: Starting LVGL task[0m
+[0;32mI (1060) RemoteDisp: Remote display ready (UDP deferred). Port 24680[0m
+[0;32mI (1060) DDL: I2C probing touch addresses...[0m
+[0;32mI (1061) DDL:   Touch found at 0x38[0m
+[0;33mW (1180) FT6336: FT6336U not detected at 0x38 (id=0x00). Touch unavailable.[0m
+[0;33mW (1240) FT6336: FT6336U not detected at 0x5D (id=0x00). Touch unavailable.[0m
+[0;33mW (1300) FT6336: FT6336U not detected at 0x24 (id=0x00). Touch unavailable.[0m
+[0;33mW (1360) FT6336: FT6336U not detected at 0x2A (id=0x00). Touch unavailable.[0m
+[0;33mW (1420) FT6336: FT6336U not detected at 0x48 (id=0x00). Touch unavailable.[0m
+[0;33mW (1480) FT6336: FT6336U not detected at 0x70 (id=0x00). Touch unavailable.[0m
+[0;32mI (1480) DDL: LCD+Touch ready[0m
+[0;32mI (1481) LED: ready: 4 LEDs GPIO41[0m
+[0;32mI (1481) Encoder: Encoder: CLK=38 DT=39 SW=40[0m
+[0;32mI (1485) bsp_board: 🚀 正在初始化ESP32-S3-DevKitC-1 + INMP441麦克风[0m
+[0;32mI (1492) bsp_board: 🎵 音频参数: 采样率=16000Hz, 声道数=1, 位深=16位[0m
+[0;32mI (2290) bsp_board: I2S 初始化成功[0m
+[0;32mI (2290) bsp_board: ✅ MAX98357A SD引脚已初始化（GPIO8）[0m
+[0;32mI (2290) bsp_board: ✅ I2S音频播放初始化成功[0m
+[0;32mI (2293) AudioManager: 初始化音频管理器...[0m
+[0;32mI (2297) AudioManager: ✓ 录音缓冲区分配成功，大小: 320000 字节 (10 秒)[0m
+[0;32mI (2334) AudioManager: ✓ 响应缓冲区分配成功，大小: 1024000 字节 (32 秒)[0m
+[0;32mI (2334) AudioManager: ✓ 流式播放缓冲区分配成功，大小: 32768 字节[0m
+[0;32mI (2340) pp: pp rom version: e7ae62f[0m
+[0;32mI (2342) net80211: net80211 rom version: e7ae62f[0m
+[0;32mI (2347) wifi:wifi driver task: 3fcc8ad0, prio:23, stack:6656, core=0[0m
+[0;32mI (2360) wifi:wifi firmware version: 00ad238[0m
+[0;32mI (2360) wifi:wifi certification version: v7.0[0m
+[0;32mI (2360) wifi:config NVS flash: enabled[0m
+[0;32mI (2364) wifi:config nano formatting: disabled[0m
+[0;32mI (2368) wifi:Init data frame dynamic rx buffer num: 32[0m
+[0;32mI (2373) wifi:Init static rx mgmt buffer num: 5[0m
+[0;32mI (2377) wifi:Init management short buffer num: 32[0m
+[0;32mI (2382) wifi:Init dynamic tx buffer num: 32[0m
+[0;32mI (2386) wifi:Init static tx FG buffer num: 2[0m
+[0;32mI (2390) wifi:Init static rx buffer size: 1600[0m
+[0;32mI (2394) wifi:Init static rx buffer num: 10[0m
+[0;32mI (2398) wifi:Init dynamic rx buffer num: 32[0m
+[0;32mI (2403) wifi_init: rx ba win: 6[0m
+[0;32mI (2405) wifi_init: accept mbox: 6[0m
+[0;32mI (2408) wifi_init: tcpip mbox: 32[0m
+[0;32mI (2411) wifi_init: udp mbox: 6[0m
+[0;32mI (2414) wifi_init: tcp mbox: 6[0m
+[0;32mI (2417) wifi_init: tcp tx win: 5760[0m
+[0;32mI (2420) wifi_init: tcp rx win: 5760[0m
+[0;32mI (2423) wifi_init: tcp mss: 1440[0m
+[0;32mI (2426) wifi_init: WiFi IRAM OP enabled[0m
+[0;32mI (2430) wifi_init: WiFi RX IRAM OP enabled[0m
+[0;32mI (2435) phy_init: phy_version 712,87e8c20e,Apr 13 2026,18:51:10[0m
+[0;32mI (2475) wifi:mode : sta (7c:4f:ad:21:52:ec)[0m
+[0;32mI (2475) wifi:enable tsf[0m
+[0;32mI (2476) WiFiManager: 📶 WiFi初始化完成，正在连接到 LC235的场域[0m
+[0;32mI (2481) wifi:new:<6,0>, old:<1,0>, ap:<255,255>, sta:<6,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (2485) wifi:state: init -> auth (0xb0)[0m
+[0;32mI (2508) wifi:state: auth -> assoc (0x0)[0m
+[0;32mI (2515) wifi:state: assoc -> run (0x10)[0m
+[0;32mI (2611) wifi:state: run -> init (0x2a0)[0m
+[0;32mI (2615) WiFiManager: 🔄 重试连接WiFi... (1/5)[0m
+[0;32mI (2615) WiFiManager: ❌ WiFi连接失败[0m
+[0;32mI (4916) wifi:state: init -> auth (0xb0)[0m
+[0;32mI (4923) wifi:state: auth -> assoc (0x0)[0m
+[0;32mI (4932) wifi:state: assoc -> run (0x10)[0m
+[0;32mI (4963) wifi:connected with LC235的场域, aid = 1, channel 6, BW20, bssid = ee:9f:7a:bf:2b:7e[0m
+[0;32mI (4963) wifi:security: WPA2-PSK, phy: bgn, rssi: -36, cipher(pairwise:0x3, group:0x3), pmf:0[0m
+[0;32mI (4970) wifi:pm start, type: 1[0m
+
+[0;32mI (4972) wifi:dp: 1, bi: 102400, li: 3, scale listen interval from 307200 us to 307200 us[0m
+[0;32mI (4980) wifi:set rx beacon pti, rx_bcn_pti: 0, bcn_timeout: 25000, mt_pti: 0, mt_time: 10000[0m
+[0;32mI (5059) wifi:dp: 2, bi: 102400, li: 4, scale listen interval from 307200 us to 409600 us[0m
+[0;32mI (5059) wifi:AP's beacon interval = 102400 us, DTIM period = 2[0m
+[0;32mI (6007) esp_netif_handlers: sta ip: 192.168.49.5, mask: 255.255.255.0, gw: 192.168.49.1[0m
+[0;32mI (6007) WiFiManager: 🏠 获得IP地址:192.168.49.5[0m
+[0;32mI (6009) WiFiManager: ✅ WiFi连接成功: LC235的场域[0m
+[0;32mI (6014) DDL: NTP sync started[0m
+[0;32mI (6017) WebSocketClient: 🌐 正在连接WebSocket服务器: ws://192.168.49.4:8888[0m
+[0;32mI (6026) websocket_client: Started[0m
+[0;32mI (6036) wifi:<ba-add>idx:0 (ifx:0, ee:9f:7a:bf:2b:7e), tid:0, ssn:1, winSize:64[0m
+[0;32mI (6068) UI: UI ready[0m
+[0;32mI (6069) DDL: Ready. Display=yes[0m
+[0;32mI (6070) RemoteDisp: Remote display UDP ready on port 24680[0m
+[0;32mI (6189) WebSocketClient: 🔗 WebSocket已连接[0m
+[0;32mI (6189) DDL: WS connected[0m
+[0;32mI (6357) Protocol: Parsed sync: 5 events[0m
+[0;32mI (32201) RemoteDisp: PC client connected, sending display...[0m
+[0;32mI (116791) AudioManager: 开始录音...[0m
+[0;32mI (121974) AudioManager: 停止录音，当前长度: 80000 样本 (5.00 秒)[0m
+[0;32mI (127717) AudioManager: 开始流式音频播放[0m
+[0;32mI (132840) AudioManager: 结束流式音频播放[0m
+[0;32mI (133075) bsp_board: ✅ I2S音频输出已停止[0m
+[0;32mI (133075) bsp_board: 音频播放完成，播放了 1792 字节[0m
+[0;32mI (133075) AudioManager: ✅ 播放剩余音频: 1792 字节[0m
+[1;31mE (508576) transport_base: tcp_read error, errno=Connection reset by peer[0m
+[1;31mE (508576) transport_ws: Error read data(-2)[0m
+[1;31mE (508577) websocket_client: esp_transport_read() failed with -2, transport_error=ESP_OK, tls_error_code=0, tls_flags=0, errno=104[0m
+[0;32mI (508587) WebSocketClient: ❌ WebSocket错误[0m
+[1;31mE (508591) websocket_client: Error receive data[0m
+[0;32mI (508596) websocket_client: Reconnect after 10000 ms[0m
+[0;32mI (508600) WebSocketClient: 🔌 WebSocket已断开[0m
+[0;32mI (508605) DDL: WS disconnected[0m
+[0;33mW (508608) WebSocketClient: WebSocket客户端已存在[0m
+[1;31mE (528615) esp-tls: [sock=54] select() timeout[0m
+[1;31mE (528615) transport_base: Failed to open a new connection: 32774[0m
+[1;31mE (528615) transport_ws: Error connecting to host 192.168.49.4:8888[0m
+[1;31mE (528620) websocket_client: esp_transport_connect() failed with -1, transport_error=ESP_ERR_ESP_TLS_CONNECTION_TIMEOUT, tls_error_code=0, tls_flags=0, esp_ws_handshake_status_code=101, errno=119[0m
+[0;32mI (528637) WebSocketClient: ❌ WebSocket错误[0m
+[0;32mI (528641) websocket_client: Reconnect after 10000 ms[0m
+[0;32mI (528646) WebSocketClient: 🔌 WebSocket已断开[0m
+[0;32mI (528650) DDL: WS disconnected[0m
+[0;33mW (528653) WebSocketClient: WebSocket客户端已存在[0m
+[1;31mE (548661) esp-tls: [sock=54] select() timeout[0m
+[1;31mE (548661) transport_base: Failed to open a new connection: 32774[0m
+[1;31mE (548661) transport_ws: Error connecting to host 192.168.49.4:8888[0m
+[1;31mE (548666) websocket_client: esp_transport_connect() failed with -1, transport_error=ESP_ERR_ESP_TLS_CONNECTION_TIMEOUT, tls_error_code=0, tls_flags=0, esp_ws_handshake_status_code=101, errno=119[0m
+[0;32mI (548683) WebSocketClient: ❌ WebSocket错误[0m
+[0;32mI (548687) websocket_client: Reconnect after 10000 ms[0m
+[0;32mI (548692) WebSocketClient: 🔌 WebSocket已断开[0m
+[0;32mI (548696) DDL: WS disconnected[0m
+[0;33mW (548699) WebSocketClient: WebSocket客户端已存在[0m
+[1;31mE (568707) esp-tls: [sock=54] select() timeout[0m
+[1;31mE (568707) transport_base: Failed to open a new connection: 32774[0m
+[1;31mE (568707) transport_ws: Error connecting to host 192.168.49.4:8888[0m
+[1;31mE (568712) websocket_client: esp_transport_connect() failed with -1, transport_error=ESP_ERR_ESP_TLS_CONNECTION_TIMEOUT, tls_error_code=0, tls_flags=0, esp_ws_handshake_status_code=101, errno=119[0m
+[0;32mI (568729) WebSocketClient: ❌ WebSocket错误[0m
+[0;32mI (568733) websocket_client: Reconnect after 10000 ms[0m
+[0;32mI (568738) WebSocketClient: 🔌 WebSocket已断开[0m
+[0;32mI (568742) DDL: WS disconnected[0m
+[0;33mW (568745) WebSocketClient: WebSocket客户端已存在[0m
+[1;31mE (588753) esp-tls: [sock=54] select() timeout[0m
+[1;31mE (588753) transport_base: Failed to open a new connection: 32774[0m
+[1;31mE (588753) transport_ws: Error connecting to host 192.168.49.4:8888[0m
+[1;31mE (588758) websocket_client: esp_transport_connect() failed with -1, transport_error=ESP_ERR_ESP_TLS_CONNECTION_TIMEOUT, tls_error_code=0, tls_flags=0, esp_ws_handshake_status_code=101, errno=119[0m
+[0;32mI (588775) WebSocketClient: ❌ WebSocket错误[0m
+[0;32mI (588779) websocket_client: Reconnect after 10000 ms[0m
+[0;32mI (588784) WebSocketClient: 🔌 WebSocket已断开[0m
+[0;32mI (588788) DDL: WS disconnected[0m
+[0;33mW (588791) WebSocketClient: WebSocket客户端已存在[0m
+[1;31mE (608799) esp-tls: [sock=54] select() timeout[0m
+[1;31mE (608799) transport_base: Failed to open a new connection: 32774[0m
+[1;31mE (608799) transport_ws: Error connecting to host 192.168.49.4:8888[0m
+[1;31mE (608804) websocket_client: esp_transport_connect() failed with -1, transport_error=ESP_ERR_ESP_TLS_CONNECTION_TIMEOUT, tls_error_code=0, tls_flags=0, esp_ws_handshake_status_code=101, errno=119[0m
+[0;32mI (608821) WebSocketClient: ❌ WebSocket错误[0m
+[0;32mI (608825) websocket_client: Reconnect after 10000 ms[0m
+[0;32mI (608830) WebSocketClient: 🔌 WebSocket已断开[0m
+[0;32mI (608834) DDL: WS disconnected[0m
+[0;33mW (608837) WebSocketClient: WebSocket客户端已存在[0m
+[1;31mE (628845) esp-tls: [sock=54] select() timeout[0m
+[1;31mE (628845) transport_base: Failed to open a new connection: 32774[0m
+[1;31mE (628845) transport_ws: Error connecting to host 192.168.49.4:8888[0m
+[1;31mE (628850) websocket_client: esp_transport_connect() failed with -1, transport_error=ESP_ERR_ESP_TLS_CONNECTION_TIMEOUT, tls_error_code=0, tls_flags=0, esp_ws_handshake_status_code=101, errno=119[0m
+[0;32mI (628867) WebSocketClient: ❌ WebSocket错误[0m
+[0;32mI (628871) websocket_client: Reconnect after 10000 ms[0m
+[0;32mI (628876) WebSocketClient: 🔌 WebSocket已断开[0m
+[0;32mI (628880) DDL: WS disconnected[0m
+[0;33mW (628883) WebSocketClient: WebSocket客户端已存在[0m
+[1;31mE (648891) esp-tls: [sock=54] select() timeout[0m
+[1;31mE (648891) transport_base: Failed to open a new connection: 32774[0m
+[1;31mE (648891) transport_ws: Error connecting to host 192.168.49.4:8888[0m
+[1;31mE (648896) websocket_client: esp_transport_connect() failed with -1, transport_error=ESP_ERR_ESP_TLS_CONNECTION_TIMEOUT, tls_error_code=0, tls_flags=0, esp_ws_handshake_status_code=101, errno=119[0m
+[0;32mI (648913) WebSocketClient: ❌ WebSocket错误[0m
+[0;32mI (648917) websocket_client: Reconnect after 10000 ms[0m
+[0;32mI (648922) WebSocketClient: 🔌 WebSocket已断开[0m
+[0;32mI (648926) DDL: WS disconnected[0m
+[0;33mW (648929) WebSocketClient: WebSocket客户端已存在[0m
+[1;31mE (668937) esp-tls: [sock=54] select() timeout[0m
+[1;31mE (668937) transport_base: Failed to open a new connection: 32774[0m
+[1;31mE (668937) transport_ws: Error connecting to host 192.168.49.4:8888[0m
+[1;31mE (668942) websocket_client: esp_transport_connect() failed with -1, transport_error=ESP_ERR_ESP_TLS_CONNECTION_TIMEOUT, tls_error_code=0, tls_flags=0, esp_ws_handshake_status_code=101, errno=119[0m
+[0;32mI (668959) WebSocketClient: ❌ WebSocket错误[0m
+[0;32mI (668963) websocket_client: Reconnect after 10000 ms[0m
+[0;32mI (668968) WebSocketClient: 🔌 WebSocket已断开[0m
+[0;32mI (668972) DDL: WS disconnected[0m
+[0;33mW (668975) WebSocketClient: WebSocket客户端已存在[0m
+[1;31mE (688983) esp-tls: [sock=54] select() timeout[0m
+[1;31mE (688983) transport_base: Failed to open a new connection: 32774[0m
+[1;31mE (688983) transport_ws: Error connecting to host 192.168.49.4:8888[0m
+[1;31mE (688988) websocket_client: esp_transport_connect() failed with -1, transport_error=ESP_ERR_ESP_TLS_CONNECTION_TIMEOUT, tls_error_code=0, tls_flags=0, esp_ws_handshake_status_code=101, errno=119[0m
+[0;32mI (689005) WebSocketClient: ❌ WebSocket错误[0m
+[0;32mI (689009) websocket_client: Reconnect after 10000 ms[0m
+[0;32mI (689014) WebSocketClient: 🔌 WebSocket已断开[0m
+[0;32mI (689018) DDL: WS disconnected[0m
+[0;33mW (689021) WebSocketClient: WebSocket客户端已存在[0m
+[1;31mE (709029) esp-tls: [sock=54] select() timeout[0m
+[1;31mE (709029) transport_base: Failed to open a new connection: 32774[0m
+[1;31mE (709029) transport_ws: Error connecting to host 192.168.49.4:8888[0m
+[1;31mE (709034) websocket_client: esp_transport_connect() failed with -1, transport_error=ESP_ERR_ESP_TLS_CONNECTION_TIMEOUT, tls_error_code=0, tls_flags=0, esp_ws_handshake_status_code=101, errno=119[0m
+[0;32mI (709051) WebSocketClient: ❌ WebSocket错误[0m
+[0;32mI (709055) websocket_client: Reconnect after 10000 ms[0m
+[0;32mI (709060) WebSocketClient: 🔌 WebSocket已断开[0m
+[0;32mI (709064) DDL: WS disconnected[0m
+[0;33mW (709067) WebSocketClient: WebSocket客户端已存在[0m
+[1;31mE (729075) esp-tls: [sock=54] select() timeout[0m
+[1;31mE (729075) transport_base: Failed to open a new connection: 32774[0m
+[1;31mE (729075) transport_ws: Error connecting to host 192.168.49.4:8888[0m
+[1;31mE (729080) websocket_client: esp_transport_connect() failed with -1, transport_error=ESP_ERR_ESP_TLS_CONNECTION_TIMEOUT, tls_error_code=0, tls_flags=0, esp_ws_handshake_status_code=101, errno=119[0m
+[0;32mI (729097) WebSocketClient: ❌ WebSocket错误[0m
+[0;32mI (729101) websocket_client: Reconnect after 10000 ms[0m
+[0;32mI (729106) WebSocketClient: 🔌 WebSocket已断开[0m
+[0;32mI (729110) DDL: WS disconnected[0m
+[0;33mW (729113) WebSocketClient: WebSocket客户端已存在[0m
+[1;31mE (749121) esp-tls: [sock=54] select() timeout[0m
+[1;31mE (749121) transport_base: Failed to open a new connection: 32774[0m
+[1;31mE (749121) transport_ws: Error connecting to host 192.168.49.4:8888[0m
+[1;31mE (749126) websocket_client: esp_transport_connect() failed with -1, transport_error=ESP_ERR_ESP_TLS_CONNECTION_TIMEOUT, tls_error_code=0, tls_flags=0, esp_ws_handshake_status_code=101, errno=119[0m
+[0;32mI (749143) WebSocketClient: ❌ WebSocket错误[0m
+[0;32mI (749147) websocket_client: Reconnect after 10000 ms[0m
+[0;32mI (749152) WebSocketClient: 🔌 WebSocket已断开[0m
+[0;32mI (749156) DDL: WS disconnected[0m
+[0;33mW (749159) WebSocketClient: WebSocket客户端已存在[0m
+[1;31mE (769167) esp-tls: [sock=54] select() timeout[0m
+[1;31mE (769167) transport_base: Failed to open a new connection: 32774[0m
+[1;31mE (769167) transport_ws: Error connecting to host 192.168.49.4:8888[0m
+[1;31mE (769172) websocket_client: esp_transport_connect() failed with -1, transport_error=ESP_ERR_ESP_TLS_CONNECTION_TIMEOUT, tls_error_code=0, tls_flags=0, esp_ws_handshake_status_code=101, errno=119[0m
+[0;32mI (769189) WebSocketClient: ❌ WebSocket错误[0m
+[0;32mI (769193) websocket_client: Reconnect after 10000 ms[0m
+[0;32mI (769198) WebSocketClient: 🔌 WebSocket已断开[0m
+[0;32mI (769202) DDL: WS disconnected[0m
+[0;33mW (769205) WebSocketClient: WebSocket客户端已存在[0m
+[1;31mE (789213) esp-tls: [sock=54] select() timeout[0m
+[1;31mE (789213) transport_base: Failed to open a new connection: 32774[0m
+[1;31mE (789213) transport_ws: Error connecting to host 192.168.49.4:8888[0m
+[1;31mE (789218) websocket_client: esp_transport_connect() failed with -1, transport_error=ESP_ERR_ESP_TLS_CONNECTION_TIMEOUT, tls_error_code=0, tls_flags=0, esp_ws_handshake_status_code=101, errno=119[0m
+[0;32mI (789235) WebSocketClient: ❌ WebSocket错误[0m
+[0;32mI (789239) websocket_client: Reconnect after 10000 ms[0m
+[0;32mI (789244) WebSocketClient: 🔌 WebSocket已断开[0m
+[0;32mI (789248) DDL: WS disconnected[0m
+[0;33mW (789251) WebSocketClient: WebSocket客户端已存在[0m
+[1;31mE (809259) esp-tls: [sock=54] select() timeout[0m
+[1;31mE (809259) transport_base: Failed to open a new connection: 32774[0m
+[1;31mE (809259) transport_ws: Error connecting to host 192.168.49.4:8888[0m
+[1;31mE (809264) websocket_client: esp_transport_connect() failed with -1, transport_error=ESP_ERR_ESP_TLS_CONNECTION_TIMEOUT, tls_error_code=0, tls_flags=0, esp_ws_handshake_status_code=101, errno=119[0m
+[0;32mI (809281) WebSocketClient: ❌ WebSocket错误[0m
+[0;32mI (809285) websocket_client: Reconnect after 10000 ms[0m
+[0;32mI (809290) WebSocketClient: 🔌 WebSocket已断开[0m
+[0;32mI (809294) DDL: WS disconnected[0m
+[0;33mW (809297) WebSocketClient: WebSocket客户端已存在[0m
+[1;31mE (829304) esp-tls: [sock=54] select() timeout[0m
+[1;31mE (829304) transport_base: Failed to open a new connection: 32774[0m
+[1;31mE (829304) transport_ws: Error connecting to host 192.168.49.4:8888[0m
+[1;31mE (829309) websocket_client: esp_transport_connect() failed with -1, transport_error=ESP_ERR_ESP_TLS_CONNECTION_TIMEOUT, tls_error_code=0, tls_flags=0, esp_ws_handshake_status_code=101, errno=119[0m
+[0;32mI (829326) WebSocketClient: ❌ WebSocket错误[0m
+[0;32mI (829330) websocket_client: Reconnect after 10000 ms[0m
+[0;32mI (829335) WebSocketClient: 🔌 WebSocket已断开[0m
+[0;32mI (829339) DDL: WS disconnected[0m
+[0;33mW (829342) WebSocketClient: WebSocket客户端已存在[0m
+[1;31mE (849349) esp-tls: [sock=54] select() timeout[0m
+[1;31mE (849349) transport_base: Failed to open a new connection: 32774[0m
+[1;31mE (849349) transport_ws: Error connecting to host 192.168.49.4:8888[0m
+[1;31mE (849354) websocket_client: esp_transport_connect() failed with -1, transport_error=ESP_ERR_ESP_TLS_CONNECTION_TIMEOUT, tls_error_code=0, tls_flags=0, esp_ws_handshake_status_code=101, errno=119[0m
+[0;32mI (849371) WebSocketClient: ❌ WebSocket错误[0m
+[0;32mI (849375) websocket_client: Reconnect after 10000 ms[0m
+[0;32mI (849380) WebSocketClient: 🔌 WebSocket已断开[0m
+[0;32mI (849384) DDL: WS disconnected[0m
+[0;33mW (849387) WebSocketClient: WebSocket客户端已存在[0m
+[1;31mE (869395) esp-tls: [sock=54] select() timeout[0m
+[1;31mE (869395) transport_base: Failed to open a new connection: 32774[0m
+[1;31mE (869395) transport_ws: Error connecting to host 192.168.49.4:8888[0m
+[1;31mE (869400) websocket_client: esp_transport_connect() failed with -1, transport_error=ESP_ERR_ESP_TLS_CONNECTION_TIMEOUT, tls_error_code=0, tls_flags=0, esp_ws_handshake_status_code=101, errno=119[0m
+[0;32mI (869417) WebSocketClient: ❌ WebSocket错误[0m
+[0;32mI (869421) websocket_client: Reconnect after 10000 ms[0m
+[0;32mI (869426) WebSocketClient: 🔌 WebSocket已断开[0m
+[0;32mI (869430) DDL: WS disconnected[0m
+[0;33mW (869433) WebSocketClient: WebSocket客户端已存在[0m
+[1;31mE (889440) esp-tls: [sock=54] select() timeout[0m
+[1;31mE (889440) transport_base: Failed to open a new connection: 32774[0m
+[1;31mE (889440) transport_ws: Error connecting to host 192.168.49.4:8888[0m
+[1;31mE (889445) websocket_client: esp_transport_connect() failed with -1, transport_error=ESP_ERR_ESP_TLS_CONNECTION_TIMEOUT, tls_error_code=0, tls_flags=0, esp_ws_handshake_status_code=101, errno=119[0m
+[0;32mI (889462) WebSocketClient: ❌ WebSocket错误[0m
+[0;32mI (889466) websocket_client: Reconnect after 10000 ms[0m
+[0;32mI (889471) WebSocketClient: 🔌 WebSocket已断开[0m
+[0;32mI (889475) DDL: WS disconnected[0m
+[0;33mW (889478) WebSocketClient: WebSocket客户端已存在[0m
+[1;31mE (909485) esp-tls: [sock=54] select() timeout[0m
+[1;31mE (909485) transport_base: Failed to open a new connection: 32774[0m
+[1;31mE (909485) transport_ws: Error connecting to host 192.168.49.4:8888[0m
+[1;31mE (909490) websocket_client: esp_transport_connect() failed with -1, transport_error=ESP_ERR_ESP_TLS_CONNECTION_TIMEOUT, tls_error_code=0, tls_flags=0, esp_ws_handshake_status_code=101, errno=119[0m
+[0;32mI (909507) WebSocketClient: ❌ WebSocket错误[0m
+[0;32mI (909511) websocket_client: Reconnect after 10000 ms[0m
+[0;32mI (909516) WebSocketClient: 🔌 WebSocket已断开[0m
+[0;32mI (909520) DDL: WS disconnected[0m
+[0;33mW (909523) WebSocketClient: WebSocket客户端已存在[0m
+[1;31mE (929531) esp-tls: [sock=54] select() timeout[0m
+[1;31mE (929531) transport_base: Failed to open a new connection: 32774[0m
+[1;31mE (929531) transport_ws: Error connecting to host 192.168.49.4:8888[0m
+[1;31mE (929536) websocket_client: esp_transport_connect() failed with -1, transport_error=ESP_ERR_ESP_TLS_CONNECTION_TIMEOUT, tls_error_code=0, tls_flags=0, esp_ws_handshake_status_code=101, errno=119[0m
+[0;32mI (929553) WebSocketClient: ❌ WebSocket错误[0m
+[0;32mI (929557) websocket_client: Reconnect after 10000 ms[0m
+[0;32mI (929562) WebSocketClient: 🔌 WebSocket已断开[0m
+[0;32mI (929566) DDL: WS disconnected[0m
+[0;33mW (929569) WebSocketClient: WebSocket客户端已存在[0m
+[1;31mE (949577) esp-tls: [sock=54] select() timeout[0m
+[1;31mE (949577) transport_base: Failed to open a new connection: 32774[0m
+[1;31mE (949577) transport_ws: Error connecting to host 192.168.49.4:8888[0m
+[1;31mE (949582) websocket_client: esp_transport_connect() failed with -1, transport_error=ESP_ERR_ESP_TLS_CONNECTION_TIMEOUT, tls_error_code=0, tls_flags=0, esp_ws_handshake_status_code=101, errno=119[0m
+[0;32mI (949599) WebSocketClient: ❌ WebSocket错误[0m
+[0;32mI (949603) websocket_client: Reconnect after 10000 ms[0m
+[0;32mI (949608) WebSocketClient: 🔌 WebSocket已断开[0m
+[0;32mI (949612) DDL: WS disconnected[0m
+[0;33mW (949615) WebSocketClient: WebSocket客户端已存在[0m
+[1;31mE (969623) esp-tls: [sock=54] select() timeout[0m
+[1;31mE (969623) transport_base: Failed to open a new connection: 32774[0m
+[1;31mE (969623) transport_ws: Error connecting to host 192.168.49.4:8888[0m
+[1;31mE (969628) websocket_client: esp_transport_connect() failed with -1, transport_error=ESP_ERR_ESP_TLS_CONNECTION_TIMEOUT, tls_error_code=0, tls_flags=0, esp_ws_handshake_status_code=101, errno=119[0m
+[0;32mI (969645) WebSocketClient: ❌ WebSocket错误[0m
+[0;32mI (969649) websocket_client: Reconnect after 10000 ms[0m
+[0;32mI (969654) WebSocketClient: 🔌 WebSocket已断开[0m
+[0;32mI (969658) DDL: WS disconnected[0m
+[0;33mW (969662) WebSocketClient: WebSocket客户端已存在[0m
+[1;31mE (989669) esp-tls: [sock=54] select() timeout[0m
+[1;31mE (989669) transport_base: Failed to open a new connection: 32774[0m
+[1;31mE (989669) transport_ws: Error connecting to host 192.168.49.4:8888[0m
+[1;31mE (989674) websocket_client: esp_transport_connect() failed with -1, transport_error=ESP_ERR_ESP_TLS_CONNECTION_TIMEOUT, tls_error_code=0, tls_flags=0, esp_ws_handshake_status_code=101, errno=119[0m
+[0;32mI (989691) WebSocketClient: ❌ WebSocket错误[0m
+[0;32mI (989695) websocket_client: Reconnect after 10000 ms[0m
+[0;32mI (989700) WebSocketClient: 🔌 WebSocket已断开[0m
+[0;32mI (989704) DDL: WS disconnected[0m
+[0;33mW (989707) WebSocketClient: WebSocket客户端已存在[0m
+[1;31mE (1009715) esp-tls: [sock=54] select() timeout[0m
+[1;31mE (1009715) transport_base: Failed to open a new connection: 32774[0m
+[1;31mE (1009715) transport_ws: Error connecting to host 192.168.49.4:8888[0m
+[1;31mE (1009720) websocket_client: esp_transport_connect() failed with -1, transport_error=ESP_ERR_ESP_TLS_CONNECTION_TIMEOUT, tls_error_code=0, tls_flags=0, esp_ws_handshake_status_code=101, errno=119[0m
+[0;32mI (1009737) WebSocketClient: ❌ WebSocket错误[0m
+[0;32mI (1009741) websocket_client: Reconnect after 10000 ms[0m
+[0;32mI (1009746) WebSocketClient: 🔌 WebSocket已断开[0m
+[0;32mI (1009751) DDL: WS disconnected[0m
+[0;33mW (1009754) WebSocketClient: WebSocket客户端已存在[0m
+[1;31mE (1029762) esp-tls: [sock=54] select() timeout[0m
+[1;31mE (1029762) transport_base: Failed to open a new connection: 32774[0m
+[1;31mE (1029762) transport_ws: Error connecting to host 192.168.49.4:8888[0m
+[1;31mE (1029767) websocket_client: esp_transport_connect() failed with -1, transport_error=ESP_ERR_ESP_TLS_CONNECTION_TIMEOUT, tls_error_code=0, tls_flags=0, esp_ws_handshake_status_code=101, errno=119[0m
+[0;32mI (1029784) WebSocketClient: ❌ WebSocket错误[0m
+[0;32mI (1029788) websocket_client: Reconnect after 10000 ms[0m
+[0;32mI (1029793) WebSocketClient: 🔌 WebSocket已断开[0m
+[0;32mI (1029798) DDL: WS disconnected[0m
+[0;33mW (1029801) WebSocketClient: WebSocket客户端已存在[0m
+[1;31mE (1049808) esp-tls: [sock=54] select() timeout[0m
+[1;31mE (1049808) transport_base: Failed to open a new connection: 32774[0m
+[1;31mE (1049808) transport_ws: Error connecting to host 192.168.49.4:8888[0m
+[1;31mE (1049813) websocket_client: esp_transport_connect() failed with -1, transport_error=ESP_ERR_ESP_TLS_CONNECTION_TIMEOUT, tls_error_code=0, tls_flags=0, esp_ws_handshake_status_code=101, errno=119[0m
+[0;32mI (1049830) WebSocketClient: ❌ WebSocket错误[0m
+[0;32mI (1049834) websocket_client: Reconnect after 10000 ms[0m
+[0;32mI (1049839) WebSocketClient: 🔌 WebSocket已断开[0m
+[0;32mI (1049844) DDL: WS disconnected[0m
+[0;33mW (1049847) WebSocketClient: WebSocket客户端已存在[0m
+[1;31mE (1069854) esp-tls: [sock=54] select() timeout[0m
+[1;31mE (1069854) transport_base: Failed to open a new connection: 32774[0m
+[1;31mE (1069854) transport_ws: Error connecting to host 192.168.49.4:8888[0m
+[1;31mE (1069859) websocket_client: esp_transport_connect() failed with -1, transport_error=ESP_ERR_ESP_TLS_CONNECTION_TIMEOUT, tls_error_code=0, tls_flags=0, esp_ws_handshake_status_code=101, errno=119[0m
+[0;32mI (1069876) WebSocketClient: ❌ WebSocket错误[0m
+[0;32mI (1069880) websocket_client: Reconnect after 10000 ms[0m
+[0;32mI (1069885) WebSocketClient: 🔌 WebSocket已断开[0m
+[0;32mI (1069890) DDL: WS disconnected[0m
+[0;33mW (1069893) WebSocketClient: WebSocket客户端已存在[0m
+[1;31mE (1089900) esp-tls: [sock=54] select() timeout[0m
+[1;31mE (1089900) transport_base: Failed to open a new connection: 32774[0m
+[1;31mE (1089900) transport_ws: Error connecting to host 192.168.49.4:8888[0m
+[1;31mE (1089905) websocket_client: esp_transport_connect() failed with -1, transport_error=ESP_ERR_ESP_TLS_CONNECTION_TIMEOUT, tls_error_code=0, tls_flags=0, esp_ws_handshake_status_code=101, errno=119[0m
+[0;32mI (1089922) WebSocketClient: ❌ WebSocket错误[0m
+[0;32mI (1089926) websocket_client: Reconnect after 10000 ms[0m
+[0;32mI (1089931) WebSocketClient: 🔌 WebSocket已断开[0m
+[0;32mI (1089936) DDL: WS disconnected[0m
+[0;33mW (1089939) WebSocketClient: WebSocket客户端已存在[0m
+[1;31mE (1109946) esp-tls: [sock=54] select() timeout[0m
+[1;31mE (1109946) transport_base: Failed to open a new connection: 32774[0m
+[1;31mE (1109946) transport_ws: Error connecting to host 192.168.49.4:8888[0m
+[1;31mE (1109951) websocket_client: esp_transport_connect() failed with -1, transport_error=ESP_ERR_ESP_TLS_CONNECTION_TIMEOUT, tls_error_code=0, tls_flags=0, esp_ws_handshake_status_code=101, errno=119[0m
+[0;32mI (1109968) WebSocketClient: ❌ WebSocket错误[0m
+[0;32mI (1109972) websocket_client: Reconnect after 10000 ms[0m
+[0;32mI (1109977) WebSocketClient: 🔌 WebSocket已断开[0m
+[0;32mI (1109982) DDL: WS disconnected[0m
+[0;33mW (1109985) WebSocketClient: WebSocket客户端已存在[0m
+[1;31mE (1129992) esp-tls: [sock=54] select() timeout[0m
+[1;31mE (1129992) transport_base: Failed to open a new connection: 32774[0m
+[1;31mE (1129992) transport_ws: Error connecting to host 192.168.49.4:8888[0m
+[1;31mE (1129997) websocket_client: esp_transport_connect() failed with -1, transport_error=ESP_ERR_ESP_TLS_CONNECTION_TIMEOUT, tls_error_code=0, tls_flags=0, esp_ws_handshake_status_code=101, errno=119[0m
+[0;32mI (1130014) WebSocketClient: ❌ WebSocket错误[0m
+[0;32mI (1130018) websocket_client: Reconnect after 10000 ms[0m
+[0;32mI (1130023) WebSocketClient: 🔌 WebSocket已断开[0m
+[0;32mI (1130028) DDL: WS disconnected[0m
+[0;33mW (1130031) WebSocketClient: WebSocket客户端已存在[0m
+[1;31mE (1150039) esp-tls: [sock=54] select() timeout[0m
+[1;31mE (1150039) transport_base: Failed to open a new connection: 32774[0m
+[1;31mE (1150039) transport_ws: Error connecting to host 192.168.49.4:8888[0m
+[1;31mE (1150044) websocket_client: esp_transport_connect() failed with -1, transport_error=ESP_ERR_ESP_TLS_CONNECTION_TIMEOUT, tls_error_code=0, tls_flags=0, esp_ws_handshake_status_code=101, errno=119[0m
+[0;32mI (1150061) WebSocketClient: ❌ WebSocket错误[0m
+[0;32mI (1150065) websocket_client: Reconnect after 10000 ms[0m
+[0;32mI (1150070) WebSocketClient: 🔌 WebSocket已断开[0m
+[0;32mI (1150075) DDL: WS disconnected[0m
+[0;33mW (1150078) WebSocketClient: WebSocket客户端已存在[0m
+[1;31mE (1170086) esp-tls: [sock=54] select() timeout[0m
+[1;31mE (1170086) transport_base: Failed to open a new connection: 32774[0m
+[1;31mE (1170086) transport_ws: Error connecting to host 192.168.49.4:8888[0m
+[1;31mE (1170091) websocket_client: esp_transport_connect() failed with -1, transport_error=ESP_ERR_ESP_TLS_CONNECTION_TIMEOUT, tls_error_code=0, tls_flags=0, esp_ws_handshake_status_code=101, errno=119[0m
+[0;32mI (1170108) WebSocketClient: ❌ WebSocket错误[0m
+[0;32mI (1170112) websocket_client: Reconnect after 10000 ms[0m
+[0;32mI (1170117) WebSocketClient: 🔌 WebSocket已断开[0m
+[0;32mI (1170122) DDL: WS disconnected[0m
+[0;33mW (1170125) WebSocketClient: WebSocket客户端已存在[0m
+[1;31mE (1190133) esp-tls: [sock=54] select() timeout[0m
+[1;31mE (1190133) transport_base: Failed to open a new connection: 32774[0m
+[1;31mE (1190133) transport_ws: Error connecting to host 192.168.49.4:8888[0m
+[1;31mE (1190138) websocket_client: esp_transport_connect() failed with -1, transport_error=ESP_ERR_ESP_TLS_CONNECTION_TIMEOUT, tls_error_code=0, tls_flags=0, esp_ws_handshake_status_code=101, errno=119[0m
+[0;32mI (1190155) WebSocketClient: ❌ WebSocket错误[0m
+[0;32mI (1190159) websocket_client: Reconnect after 10000 ms[0m
+[0;32mI (1190164) WebSocketClient: 🔌 WebSocket已断开[0m
+[0;32mI (1190169) DDL: WS disconnected[0m
+[0;33mW (1190172) WebSocketClient: WebSocket客户端已存在[0m
+[1;31mE (1210179) esp-tls: [sock=54] select() timeout[0m
+[1;31mE (1210179) transport_base: Failed to open a new connection: 32774[0m
+[1;31mE (1210179) transport_ws: Error connecting to host 192.168.49.4:8888[0m
+[1;31mE (1210184) websocket_client: esp_transport_connect() failed with -1, transport_error=ESP_ERR_ESP_TLS_CONNECTION_TIMEOUT, tls_error_code=0, tls_flags=0, esp_ws_handshake_status_code=101, errno=119[0m
+[0;32mI (1210201) WebSocketClient: ❌ WebSocket错误[0m
+[0;32mI (1210205) websocket_client: Reconnect after 10000 ms[0m
+[0;32mI (1210210) WebSocketClient: 🔌 WebSocket已断开[0m
+[0;32mI (1210215) DDL: WS disconnected[0m
+[0;33mW (1210218) WebSocketClient: WebSocket客户端已存在[0m
+[1;31mE (1230225) esp-tls: [sock=54] select() timeout[0m
+[1;31mE (1230225) transport_base: Failed to open a new connection: 32774[0m
+[1;31mE (1230225) transport_ws: Error connecting to host 192.168.49.4:8888[0m
+[1;31mE (1230230) websocket_client: esp_transport_connect() failed with -1, transport_error=ESP_ERR_ESP_TLS_CONNECTION_TIMEOUT, tls_error_code=0, tls_flags=0, esp_ws_handshake_status_code=101, errno=119[0m
+[0;32mI (1230247) WebSocketClient: ❌ WebSocket错误[0m
+[0;32mI (1230251) websocket_client: Reconnect after 10000 ms[0m
+[0;32mI (1230256) WebSocketClient: 🔌 WebSocket已断开[0m
+[0;32mI (1230261) DDL: WS disconnected[0m
+[0;33mW (1230264) WebSocketClient: WebSocket客户端已存在[0m
+[1;31mE (1250271) esp-tls: [sock=54] select() timeout[0m
+[1;31mE (1250271) transport_base: Failed to open a new connection: 32774[0m
+[1;31mE (1250271) transport_ws: Error connecting to host 192.168.49.4:8888[0m
+[1;31mE (1250276) websocket_client: esp_transport_connect() failed with -1, transport_error=ESP_ERR_ESP_TLS_CONNECTION_TIMEOUT, tls_error_code=0, tls_flags=0, esp_ws_handshake_status_code=101, errno=119[0m
+[0;32mI (1250293) WebSocketClient: ❌ WebSocket错误[0m
+[0;32mI (1250297) websocket_client: Reconnect after 10000 ms[0m
+[0;32mI (1250302) WebSocketClient: 🔌 WebSocket已断开[0m
+[0;32mI (1250307) DDL: WS disconnected[0m
+[0;33mW (1250310) WebSocketClient: WebSocket客户端已存在[0m
+[1;31mE (1270317) esp-tls: [sock=54] select() timeout[0m
+[1;31mE (1270317) transport_base: Failed to open a new connection: 32774[0m
+[1;31mE (1270317) transport_ws: Error connecting to host 192.168.49.4:8888[0m
+[1;31mE (1270322) websocket_client: esp_transport_connect() failed with -1, transport_error=ESP_ERR_ESP_TLS_CONNECTION_TIMEOUT, tls_error_code=0, tls_flags=0, esp_ws_handshake_status_code=101, errno=119[0m
+[0;32mI (1270339) WebSocketClient: ❌ WebSocket错误[0m
+[0;32mI (1270343) websocket_client: Reconnect after 10000 ms[0m
+[0;32mI (1270348) WebSocketClient: 🔌 WebSocket已断开[0m
+[0;32mI (1270353) DDL: WS disconnected[0m
+[0;33mW (1270356) WebSocketClient: WebSocket客户端已存在[0m
+[1;31mE (1290363) esp-tls: [sock=54] select() timeout[0m
+[1;31mE (1290363) transport_base: Failed to open a new connection: 32774[0m
+[1;31mE (1290363) transport_ws: Error connecting to host 192.168.49.4:8888[0m
+[1;31mE (1290368) websocket_client: esp_transport_connect() failed with -1, transport_error=ESP_ERR_ESP_TLS_CONNECTION_TIMEOUT, tls_error_code=0, tls_flags=0, esp_ws_handshake_status_code=101, errno=119[0m
+[0;32mI (1290385) WebSocketClient: ❌ WebSocket错误[0m
+[0;32mI (1290389) websocket_client: Reconnect after 10000 ms[0m
+[0;32mI (1290394) WebSocketClient: 🔌 WebSocket已断开[0m
+[0;32mI (1290399) DDL: WS disconnected[0m
+[0;33mW (1290402) WebSocketClient: WebSocket客户端已存在[0m
+[1;31mE (1310409) esp-tls: [sock=54] select() timeout[0m
+[1;31mE (1310409) transport_base: Failed to open a new connection: 32774[0m
+[1;31mE (1310409) transport_ws: Error connecting to host 192.168.49.4:8888[0m
+[1;31mE (1310414) websocket_client: esp_transport_connect() failed with -1, transport_error=ESP_ERR_ESP_TLS_CONNECTION_TIMEOUT, tls_error_code=0, tls_flags=0, esp_ws_handshake_status_code=101, errno=119[0m
+[0;32mI (1310431) WebSocketClient: ❌ WebSocket错误[0m
+[0;32mI (1310435) websocket_client: Reconnect after 10000 ms[0m
+[0;32mI (1310440) WebSocketClient: 🔌 WebSocket已断开[0m
+[0;32mI (1310445) DDL: WS disconnected[0m
+[0;33mW (1310448) WebSocketClient: WebSocket客户端已存在[0m
+[1;31mE (1330455) esp-tls: [sock=54] select() timeout[0m
+[1;31mE (1330456) transport_base: Failed to open a new connection: 32774[0m
+[1;31mE (1330456) transport_ws: Error connecting to host 192.168.49.4:8888[0m
+[1;31mE (1330460) websocket_client: esp_transport_connect() failed with -1, transport_error=ESP_ERR_ESP_TLS_CONNECTION_TIMEOUT, tls_error_code=0, tls_flags=0, esp_ws_handshake_status_code=101, errno=119[0m
+[0;32mI (1330477) WebSocketClient: ❌ WebSocket错误[0m
+[0;32mI (1330482) websocket_client: Reconnect after 10000 ms[0m
+[0;32mI (1330487) WebSocketClient: 🔌 WebSocket已断开[0m
+[0;32mI (1330491) DDL: WS disconnected[0m
+[0;33mW (1330495) WebSocketClient: WebSocket客户端已存在[0m
+[1;31mE (1350501) esp-tls: [sock=54] select() timeout[0m
+[1;31mE (1350501) transport_base: Failed to open a new connection: 32774[0m
+[1;31mE (1350501) transport_ws: Error connecting to host 192.168.49.4:8888[0m
+[1;31mE (1350506) websocket_client: esp_transport_connect() failed with -1, transport_error=ESP_ERR_ESP_TLS_CONNECTION_TIMEOUT, tls_error_code=0, tls_flags=0, esp_ws_handshake_status_code=101, errno=119[0m
+[0;32mI (1350523) WebSocketClient: ❌ WebSocket错误[0m
+[0;32mI (1350527) websocket_client: Reconnect after 10000 ms[0m
+[0;32mI (1350532) WebSocketClient: 🔌 WebSocket已断开[0m
+[0;32mI (1350537) DDL: WS disconnected[0m
+[0;33mW (1350540) WebSocketClient: WebSocket客户端已存在[0m
+[1;31mE (1370547) esp-tls: [sock=54] select() timeout[0m
+[1;31mE (1370547) transport_base: Failed to open a new connection: 32774[0m
+[1;31mE (1370547) transport_ws: Error connecting to host 192.168.49.4:8888[0m
+[1;31mE (1370552) websocket_client: esp_transport_connect() failed with -1, transport_error=ESP_ERR_ESP_TLS_CONNECTION_TIMEOUT, tls_error_code=0, tls_flags=0, esp_ws_handshake_status_code=101, errno=119[0m
+[0;32mI (1370569) WebSocketClient: ❌ WebSocket错误[0m
+[0;32mI (1370573) websocket_client: Reconnect after 10000 ms[0m
+[0;32mI (1370578) WebSocketClient: 🔌 WebSocket已断开[0m
+[0;32mI (1370583) DDL: WS disconnected[0m
+[0;33mW (1370586) WebSocketClient: WebSocket客户端已存在[0m
+[1;31mE (1390593) esp-tls: [sock=54] select() timeout[0m
+[1;31mE (1390593) transport_base: Failed to open a new connection: 32774[0m
+[1;31mE (1390593) transport_ws: Error connecting to host 192.168.49.4:8888[0m
+[1;31mE (1390598) websocket_client: esp_transport_connect() failed with -1, transport_error=ESP_ERR_ESP_TLS_CONNECTION_TIMEOUT, tls_error_code=0, tls_flags=0, esp_ws_handshake_status_code=101, errno=119[0m
+[0;32mI (1390615) WebSocketClient: ❌ WebSocket错误[0m
+[0;32mI (1390619) websocket_client: Reconnect after 10000 ms[0m
+[0;32mI (1390624) WebSocketClient: 🔌 WebSocket已断开[0m
+[0;32mI (1390629) DDL: WS disconnected[0m
+[0;33mW (1390632) WebSocketClient: WebSocket客户端已存在[0m
+[1;31mE (1410639) esp-tls: [sock=54] select() timeout[0m
+[1;31mE (1410639) transport_base: Failed to open a new connection: 32774[0m
+[1;31mE (1410639) transport_ws: Error connecting to host 192.168.49.4:8888[0m
+[1;31mE (1410644) websocket_client: esp_transport_connect() failed with -1, transport_error=ESP_ERR_ESP_TLS_CONNECTION_TIMEOUT, tls_error_code=0, tls_flags=0, esp_ws_handshake_status_code=101, errno=119[0m
+[0;32mI (1410661) WebSocketClient: ❌ WebSocket错误[0m
+[0;32mI (1410665) websocket_client: Reconnect after 10000 ms[0m
+[0;32mI (1410670) WebSocketClient: 🔌 WebSocket已断开[0m
+[0;32mI (1410675) DDL: WS disconnected[0m
+[0;33mW (1410678) WebSocketClient: WebSocket客户端已存在[0m
+[1;31mE (1430685) esp-tls: [sock=54] select() timeout[0m
+[1;31mE (1430685) transport_base: Failed to open a new connection: 32774[0m
+[1;31mE (1430685) transport_ws: Error connecting to host 192.168.49.4:8888[0m
+[1;31mE (1430690) websocket_client: esp_transport_connect() failed with -1, transport_error=ESP_ERR_ESP_TLS_CONNECTION_TIMEOUT, tls_error_code=0, tls_flags=0, esp_ws_handshake_status_code=101, errno=119[0m
+[0;32mI (1430707) WebSocketClient: ❌ WebSocket错误[0m
+[0;32mI (1430711) websocket_client: Reconnect after 10000 ms[0m
+[0;32mI (1430716) WebSocketClient: 🔌 WebSocket已断开[0m
+[0;32mI (1430721) DDL: WS disconnected[0m
+[0;33mW (1430724) WebSocketClient: WebSocket客户端已存在[0m
+[1;31mE (1450731) esp-tls: [sock=54] select() timeout[0m
+[1;31mE (1450731) transport_base: Failed to open a new connection: 32774[0m
+[1;31mE (1450731) transport_ws: Error connecting to host 192.168.49.4:8888[0m
+[1;31mE (1450736) websocket_client: esp_transport_connect() failed with -1, transport_error=ESP_ERR_ESP_TLS_CONNECTION_TIMEOUT, tls_error_code=0, tls_flags=0, esp_ws_handshake_status_code=101, errno=119[0m
+[0;32mI (1450753) WebSocketClient: ❌ WebSocket错误[0m
+[0;32mI (1450757) websocket_client: Reconnect after 10000 ms[0m
+[0;32mI (1450762) WebSocketClient: 🔌 WebSocket已断开[0m
+[0;32mI (1450767) DDL: WS disconnected[0m
+[0;33mW (1450770) WebSocketClient: WebSocket客户端已存在[0m
+[0;32mI (1464572) WebSocketClient: 🔗 WebSocket已连接[0m
+[0;32mI (1464572) DDL: WS connected[0m
+[0;32mI (1464658) Protocol: Parsed sync: 5 events[0m
+[1;31mE (2130432) transport_base: tcp_read error, errno=Connection reset by peer[0m
+[1;31mE (2130432) transport_ws: Error read data(-2)[0m
+[1;31mE (2130433) websocket_client: esp_transport_read() failed with -2, transport_error=ESP_OK, tls_error_code=0, tls_flags=0, errno=104[0m
+[0;32mI (2130444) WebSocketClient: ❌ WebSocket错误[0m
+[1;31mE (2130448) websocket_client: Error receive data[0m
+[0;32mI (2130452) websocket_client: Reconnect after 10000 ms[0m
+[0;32mI (2130457) WebSocketClient: 🔌 WebSocket已断开[0m
+[0;32mI (2130462) DDL: WS disconnected[0m
+[0;33mW (2130465) WebSocketClient: WebSocket客户端已存在[0m
+[1;31mE (2150473) esp-tls: [sock=54] select() timeout[0m
+[1;31mE (2150473) transport_base: Failed to open a new connection: 32774[0m
+[1;31mE (2150473) transport_ws: Error connecting to host 192.168.49.4:8888[0m
+[1;31mE (2150478) websocket_client: esp_transport_connect() failed with -1, transport_error=ESP_ERR_ESP_TLS_CONNECTION_TIMEOUT, tls_error_code=0, tls_flags=0, esp_ws_handshake_status_code=101, errno=119[0m
+[0;32mI (2150495) WebSocketClient: ❌ WebSocket错误[0m
+[0;32mI (2150499) websocket_client: Reconnect after 10000 ms[0m
+[0;32mI (2150504) WebSocketClient: 🔌 WebSocket已断开[0m
+[0;32mI (2150509) DDL: WS disconnected[0m
+[0;33mW (2150512) WebSocketClient: WebSocket客户端已存在[0m
+[1;31mE (2170520) esp-tls: [sock=54] select() timeout[0m
+[1;31mE (2170520) transport_base: Failed to open a new connection: 32774[0m
+[1;31mE (2170520) transport_ws: Error connecting to host 192.168.49.4:8888[0m
+[1;31mE (2170525) websocket_client: esp_transport_connect() failed with -1, transport_error=ESP_ERR_ESP_TLS_CONNECTION_TIMEOUT, tls_error_code=0, tls_flags=0, esp_ws_handshake_status_code=101, errno=119[0m
+[0;32mI (2170542) WebSocketClient: ❌ WebSocket错误[0m
+[0;32mI (2170546) websocket_client: Reconnect after 10000 ms[0m
+[0;32mI (2170551) WebSocketClient: 🔌 WebSocket已断开[0m
+[0;32mI (2170556) DDL: WS disconnected[0m
+[0;33mW (2170559) WebSocketClient: WebSocket客户端已存在[0m
+[1;31mE (2190567) esp-tls: [sock=54] select() timeout[0m
+[1;31mE (2190567) transport_base: Failed to open a new connection: 32774[0m
+[1;31mE (2190567) transport_ws: Error connecting to host 192.168.49.4:8888[0m
+[1;31mE (2190572) websocket_client: esp_transport_connect() failed with -1, transport_error=ESP_ERR_ESP_TLS_CONNECTION_TIMEOUT, tls_error_code=0, tls_flags=0, esp_ws_handshake_status_code=101, errno=119[0m
+[0;32mI (2190589) WebSocketClient: ❌ WebSocket错误[0m
+[0;32mI (2190593) websocket_client: Reconnect after 10000 ms[0m
+[0;32mI (2190598) WebSocketClient: 🔌 WebSocket已断开[0m
+[0;32mI (2190603) DDL: WS disconnected[0m
+[0;33mW (2190606) WebSocketClient: WebSocket客户端已存在[0m
+[1;31mE (2210614) esp-tls: [sock=54] select() timeout[0m
+[1;31mE (2210614) transport_base: Failed to open a new connection: 32774[0m
+[1;31mE (2210614) transport_ws: Error connecting to host 192.168.49.4:8888[0m
+[1;31mE (2210619) websocket_client: esp_transport_connect() failed with -1, transport_error=ESP_ERR_ESP_TLS_CONNECTION_TIMEOUT, tls_error_code=0, tls_flags=0, esp_ws_handshake_status_code=101, errno=119[0m
+[0;32mI (2210636) WebSocketClient: ❌ WebSocket错误[0m
+[0;32mI (2210640) websocket_client: Reconnect after 10000 ms[0m
+[0;32mI (2210645) WebSocketClient: 🔌 WebSocket已断开[0m
+[0;32mI (2210650) DDL: WS disconnected[0m
+[0;33mW (2210653) WebSocketClient: WebSocket客户端已存在[0m
+[1;31mE (2230661) esp-tls: [sock=54] select() timeout[0m
+[1;31mE (2230661) transport_base: Failed to open a new connection: 32774[0m
+[1;31mE (2230661) transport_ws: Error connecting to host 192.168.49.4:8888[0m
+[1;31mE (2230666) websocket_client: esp_transport_connect() failed with -1, transport_error=ESP_ERR_ESP_TLS_CONNECTION_TIMEOUT, tls_error_code=0, tls_flags=0, esp_ws_handshake_status_code=101, errno=119[0m
+[0;32mI (2230683) WebSocketClient: ❌ WebSocket错误[0m
+[0;32mI (2230687) websocket_client: Reconnect after 10000 ms[0m
+[0;32mI (2230692) WebSocketClient: 🔌 WebSocket已断开[0m
+[0;32mI (2230697) DDL: WS disconnected[0m
+[0;33mW (2230700) WebSocketClient: WebSocket客户端已存在[0m
+[1;31mE (2250708) esp-tls: [sock=54] select() timeout[0m
+[1;31mE (2250708) transport_base: Failed to open a new connection: 32774[0m
+[1;31mE (2250708) transport_ws: Error connecting to host 192.168.49.4:8888[0m
+[1;31mE (2250713) websocket_client: esp_transport_connect() failed with -1, transport_error=ESP_ERR_ESP_TLS_CONNECTION_TIMEOUT, tls_error_code=0, tls_flags=0, esp_ws_handshake_status_code=101, errno=119[0m
+[0;32mI (2250730) WebSocketClient: ❌ WebSocket错误[0m
+[0;32mI (2250734) websocket_client: Reconnect after 10000 ms[0m
+[0;32mI (2250739) WebSocketClient: 🔌 WebSocket已断开[0m
+[0;32mI (2250744) DDL: WS disconnected[0m
+[0;33mW (2250747) WebSocketClient: WebSocket客户端已存在[0m
+[1;31mE (2270755) esp-tls: [sock=54] select() timeout[0m
+[1;31mE (2270755) transport_base: Failed to open a new connection: 32774[0m
+[1;31mE (2270755) transport_ws: Error connecting to host 192.168.49.4:8888[0m
+[1;31mE (2270760) websocket_client: esp_transport_connect() failed with -1, transport_error=ESP_ERR_ESP_TLS_CONNECTION_TIMEOUT, tls_error_code=0, tls_flags=0, esp_ws_handshake_status_code=101, errno=119[0m
+[0;32mI (2270777) WebSocketClient: ❌ WebSocket错误[0m
+[0;32mI (2270781) websocket_client: Reconnect after 10000 ms[0m
+[0;32mI (2270786) WebSocketClient: 🔌 WebSocket已断开[0m
+[0;32mI (2270791) DDL: WS disconnected[0m
+[0;33mW (2270794) WebSocketClient: WebSocket客户端已存在[0m
+[1;31mE (2290801) esp-tls: [sock=54] select() timeout[0m
+[1;31mE (2290801) transport_base: Failed to open a new connection: 32774[0m
+[1;31mE (2290801) transport_ws: Error connecting to host 192.168.49.4:8888[0m
+[1;31mE (2290806) websocket_client: esp_transport_connect() failed with -1, transport_error=ESP_ERR_ESP_TLS_CONNECTION_TIMEOUT, tls_error_code=0, tls_flags=0, esp_ws_handshake_status_code=101, errno=119[0m
+[0;32mI (2290823) WebSocketClient: ❌ WebSocket错误[0m
+[0;32mI (2290827) websocket_client: Reconnect after 10000 ms[0m
+[0;32mI (2290832) WebSocketClient: 🔌 WebSocket已断开[0m
+[0;32mI (2290837) DDL: WS disconnected[0m
+[0;33mW (2290840) WebSocketClient: WebSocket客户端已存在[0m
+[1;31mE (2310848) esp-tls: [sock=54] select() timeout[0m
+[1;31mE (2310848) transport_base: Failed to open a new connection: 32774[0m
+[1;31mE (2310848) transport_ws: Error connecting to host 192.168.49.4:8888[0m
+[1;31mE (2310853) websocket_client: esp_transport_connect() failed with -1, transport_error=ESP_ERR_ESP_TLS_CONNECTION_TIMEOUT, tls_error_code=0, tls_flags=0, esp_ws_handshake_status_code=101, errno=119[0m
+[0;32mI (2310870) WebSocketClient: ❌ WebSocket错误[0m
+[0;32mI (2310874) websocket_client: Reconnect after 10000 ms[0m
+[0;32mI (2310879) WebSocketClient: 🔌 WebSocket已断开[0m
+[0;32mI (2310884) DDL: WS disconnected[0m
+[0;33mW (2310887) WebSocketClient: WebSocket客户端已存在[0m
+[1;31mE (2330895) esp-tls: [sock=54] select() timeout[0m
+[1;31mE (2330895) transport_base: Failed to open a new connection: 32774[0m
+[1;31mE (2330895) transport_ws: Error connecting to host 192.168.49.4:8888[0m
+[1;31mE (2330900) websocket_client: esp_transport_connect() failed with -1, transport_error=ESP_ERR_ESP_TLS_CONNECTION_TIMEOUT, tls_error_code=0, tls_flags=0, esp_ws_handshake_status_code=101, errno=119[0m
+[0;32mI (2330917) WebSocketClient: ❌ WebSocket错误[0m
+[0;32mI (2330921) websocket_client: Reconnect after 10000 ms[0m
+[0;32mI (2330926) WebSocketClient: 🔌 WebSocket已断开[0m
+[0;32mI (2330931) DDL: WS disconnected[0m
+[0;33mW (2330934) WebSocketClient: WebSocket客户端已存在[0m
+[1;31mE (2350942) esp-tls: [sock=54] select() timeout[0m
+[1;31mE (2350942) transport_base: Failed to open a new connection: 32774[0m
+[1;31mE (2350942) transport_ws: Error connecting to host 192.168.49.4:8888[0m
+[1;31mE (2350947) websocket_client: esp_transport_connect() failed with -1, transport_error=ESP_ERR_ESP_TLS_CONNECTION_TIMEOUT, tls_error_code=0, tls_flags=0, esp_ws_handshake_status_code=101, errno=119[0m
+[0;32mI (2350964) WebSocketClient: ❌ WebSocket错误[0m
+[0;32mI (2350968) websocket_client: Reconnect after 10000 ms[0m
+[0;32mI (2350973) WebSocketClient: 🔌 WebSocket已断开[0m
+[0;32mI (2350978) DDL: WS disconnected[0m
+[0;33mW (2350981) WebSocketClient: WebSocket客户端已存在[0m
+[1;31mE (2370989) esp-tls: [sock=54] select() timeout[0m
+[1;31mE (2370989) transport_base: Failed to open a new connection: 32774[0m
+[1;31mE (2370989) transport_ws: Error connecting to host 192.168.49.4:8888[0m
+[1;31mE (2370994) websocket_client: esp_transport_connect() failed with -1, transport_error=ESP_ERR_ESP_TLS_CONNECTION_TIMEOUT, tls_error_code=0, tls_flags=0, esp_ws_handshake_status_code=101, errno=119[0m
+[0;32mI (2371011) WebSocketClient: ❌ WebSocket错误[0m
+[0;32mI (2371015) websocket_client: Reconnect after 10000 ms[0m
+[0;32mI (2371020) WebSocketClient: 🔌 WebSocket已断开[0m
+[0;32mI (2371025) DDL: WS disconnected[0m
+[0;33mW (2371028) WebSocketClient: WebSocket客户端已存在[0m
+[1;31mE (2391036) esp-tls: [sock=54] select() timeout[0m
+[1;31mE (2391036) transport_base: Failed to open a new connection: 32774[0m
+[1;31mE (2391036) transport_ws: Error connecting to host 192.168.49.4:8888[0m
+[1;31mE (2391041) websocket_client: esp_transport_connect() failed with -1, transport_error=ESP_ERR_ESP_TLS_CONNECTION_TIMEOUT, tls_error_code=0, tls_flags=0, esp_ws_handshake_status_code=101, errno=119[0m
+[0;32mI (2391058) WebSocketClient: ❌ WebSocket错误[0m
+[0;32mI (2391062) websocket_client: Reconnect after 10000 ms[0m
+[0;32mI (2391067) WebSocketClient: 🔌 WebSocket已断开[0m
+[0;32mI (2391072) DDL: WS disconnected[0m
+[0;33mW (2391075) WebSocketClient: WebSocket客户端已存在[0m
+[1;31mE (2411083) esp-tls: [sock=54] select() timeout[0m
+[1;31mE (2411083) transport_base: Failed to open a new connection: 32774[0m
+[1;31mE (2411083) transport_ws: Error connecting to host 192.168.49.4:8888[0m
+[1;31mE (2411088) websocket_client: esp_transport_connect() failed with -1, transport_error=ESP_ERR_ESP_TLS_CONNECTION_TIMEOUT, tls_error_code=0, tls_flags=0, esp_ws_handshake_status_code=101, errno=119[0m
+[0;32mI (2411105) WebSocketClient: ❌ WebSocket错误[0m
+[0;32mI (2411109) websocket_client: Reconnect after 10000 ms[0m
+[0;32mI (2411114) WebSocketClient: 🔌 WebSocket已断开[0m
+[0;32mI (2411119) DDL: WS disconnected[0m
+[0;33mW (2411122) WebSocketClient: WebSocket客户端已存在[0m
+[1;31mE (2431130) esp-tls: [sock=54] select() timeout[0m
+[1;31mE (2431130) transport_base: Failed to open a new connection: 32774[0m
+[1;31mE (2431130) transport_ws: Error connecting to host 192.168.49.4:8888[0m
+[1;31mE (2431135) websocket_client: esp_transport_connect() failed with -1, transport_error=ESP_ERR_ESP_TLS_CONNECTION_TIMEOUT, tls_error_code=0, tls_flags=0, esp_ws_handshake_status_code=101, errno=119[0m
+[0;32mI (2431152) WebSocketClient: ❌ WebSocket错误[0m
+[0;32mI (2431156) websocket_client: Reconnect after 10000 ms[0m
+[0;32mI (2431161) WebSocketClient: 🔌 WebSocket已断开[0m
+[0;32mI (2431166) DDL: WS disconnected[0m
+[0;33mW (2431169) WebSocketClient: WebSocket客户端已存在[0m
+[1;31mE (2451176) esp-tls: [sock=54] select() timeout[0m
+[1;31mE (2451176) transport_base: Failed to open a new connection: 32774[0m
+[1;31mE (2451176) transport_ws: Error connecting to host 192.168.49.4:8888[0m
+[1;31mE (2451181) websocket_client: esp_transport_connect() failed with -1, transport_error=ESP_ERR_ESP_TLS_CONNECTION_TIMEOUT, tls_error_code=0, tls_flags=0, esp_ws_handshake_status_code=101, errno=119[0m
+[0;32mI (2451198) WebSocketClient: ❌ WebSocket错误[0m
+[0;32mI (2451202) websocket_client: Reconnect after 10000 ms[0m
+[0;32mI (2451207) WebSocketClient: 🔌 WebSocket已断开[0m
+[0;32mI (2451212) DDL: WS disconnected[0m
+[0;33mW (2451215) WebSocketClient: WebSocket客户端已存在[0m
+[1;31mE (2471222) esp-tls: [sock=54] select() timeout[0m
+[1;31mE (2471222) transport_base: Failed to open a new connection: 32774[0m
+[1;31mE (2471223) transport_ws: Error connecting to host 192.168.49.4:8888[0m
+[1;31mE (2471227) websocket_client: esp_transport_connect() failed with -1, transport_error=ESP_ERR_ESP_TLS_CONNECTION_TIMEOUT, tls_error_code=0, tls_flags=0, esp_ws_handshake_status_code=101, errno=119[0m
+[0;32mI (2471244) WebSocketClient: ❌ WebSocket错误[0m
+[0;32mI (2471248) websocket_client: Reconnect after 10000 ms[0m
+[0;32mI (2471253) WebSocketClient: 🔌 WebSocket已断开[0m
+[0;32mI (2471258) DDL: WS disconnected[0m
+[0;33mW (2471261) WebSocketClient: WebSocket客户端已存在[0m
+[1;31mE (2491268) esp-tls: [sock=54] select() timeout[0m
+[1;31mE (2491268) transport_base: Failed to open a new connection: 32774[0m
+[1;31mE (2491268) transport_ws: Error connecting to host 192.168.49.4:8888[0m
+[1;31mE (2491273) websocket_client: esp_transport_connect() failed with -1, transport_error=ESP_ERR_ESP_TLS_CONNECTION_TIMEOUT, tls_error_code=0, tls_flags=0, esp_ws_handshake_status_code=101, errno=119[0m
+[0;32mI (2491290) WebSocketClient: ❌ WebSocket错误[0m
+[0;32mI (2491294) websocket_client: Reconnect after 10000 ms[0m
+[0;32mI (2491299) WebSocketClient: 🔌 WebSocket已断开[0m
+[0;32mI (2491304) DDL: WS disconnected[0m
+[0;33mW (2491307) WebSocketClient: WebSocket客户端已存在[0m
+[1;31mE (2511314) esp-tls: [sock=54] select() timeout[0m
+[1;31mE (2511314) transport_base: Failed to open a new connection: 32774[0m
+[1;31mE (2511314) transport_ws: Error connecting to host 192.168.49.4:8888[0m
+[1;31mE (2511319) websocket_client: esp_transport_connect() failed with -1, transport_error=ESP_ERR_ESP_TLS_CONNECTION_TIMEOUT, tls_error_code=0, tls_flags=0, esp_ws_handshake_status_code=101, errno=119[0m
+[0;32mI (2511336) WebSocketClient: ❌ WebSocket错误[0m
+[0;32mI (2511340) websocket_client: Reconnect after 10000 ms[0m
+[0;32mI (2511345) WebSocketClient: 🔌 WebSocket已断开[0m
+[0;32mI (2511350) DDL: WS disconnected[0m
+[0;33mW (2511353) WebSocketClient: WebSocket客户端已存在[0m
+[1;31mE (2531360) esp-tls: [sock=54] select() timeout[0m
+[1;31mE (2531360) transport_base: Failed to open a new connection: 32774[0m
+[1;31mE (2531360) transport_ws: Error connecting to host 192.168.49.4:8888[0m
+[1;31mE (2531365) websocket_client: esp_transport_connect() failed with -1, transport_error=ESP_ERR_ESP_TLS_CONNECTION_TIMEOUT, tls_error_code=0, tls_flags=0, esp_ws_handshake_status_code=101, errno=119[0m
+[0;32mI (2531382) WebSocketClient: ❌ WebSocket错误[0m
+[0;32mI (2531386) websocket_client: Reconnect after 10000 ms[0m
+[0;32mI (2531391) WebSocketClient: 🔌 WebSocket已断开[0m
+[0;32mI (2531396) DDL: WS disconnected[0m
+[0;33mW (2531399) WebSocketClient: WebSocket客户端已存在[0m
+[1;31mE (2551406) esp-tls: [sock=54] select() timeout[0m
+[1;31mE (2551406) transport_base: Failed to open a new connection: 32774[0m
+[1;31mE (2551406) transport_ws: Error connecting to host 192.168.49.4:8888[0m
+[1;31mE (2551411) websocket_client: esp_transport_connect() failed with -1, transport_error=ESP_ERR_ESP_TLS_CONNECTION_TIMEOUT, tls_error_code=0, tls_flags=0, esp_ws_handshake_status_code=101, errno=119[0m
+[0;32mI (2551428) WebSocketClient: ❌ WebSocket错误[0m
+[0;32mI (2551432) websocket_client: Reconnect after 10000 ms[0m
+[0;32mI (2551437) WebSocketClient: 🔌 WebSocket已断开[0m
+[0;32mI (2551442) DDL: WS disconnected[0m
+[0;33mW (2551445) WebSocketClient: WebSocket客户端已存在[0m
+[1;31mE (2571452) esp-tls: [sock=54] select() timeout[0m
+[1;31mE (2571452) transport_base: Failed to open a new connection: 32774[0m
+[1;31mE (2571452) transport_ws: Error connecting to host 192.168.49.4:8888[0m
+[1;31mE (2571457) websocket_client: esp_transport_connect() failed with -1, transport_error=ESP_ERR_ESP_TLS_CONNECTION_TIMEOUT, tls_error_code=0, tls_flags=0, esp_ws_handshake_status_code=101, errno=119[0m
+[0;32mI (2571474) WebSocketClient: ❌ WebSocket错误[0m
+[0;32mI (2571478) websocket_client: Reconnect after 10000 ms[0m
+[0;32mI (2571483) WebSocketClient: 🔌 WebSocket已断开[0m
+[0;32mI (2571488) DDL: WS disconnected[0m
+[0;33mW (2571491) WebSocketClient: WebSocket客户端已存在[0m
+[1;31mE (2591498) esp-tls: [sock=54] select() timeout[0m
+[1;31mE (2591498) transport_base: Failed to open a new connection: 32774[0m
+[1;31mE (2591498) transport_ws: Error connecting to host 192.168.49.4:8888[0m
+[1;31mE (2591503) websocket_client: esp_transport_connect() failed with -1, transport_error=ESP_ERR_ESP_TLS_CONNECTION_TIMEOUT, tls_error_code=0, tls_flags=0, esp_ws_handshake_status_code=101, errno=119[0m
+[0;32mI (2591520) WebSocketClient: ❌ WebSocket错误[0m
+[0;32mI (2591524) websocket_client: Reconnect after 10000 ms[0m
+[0;32mI (2591529) WebSocketClient: 🔌 WebSocket已断开[0m
+[0;32mI (2591534) DDL: WS disconnected[0m
+[0;33mW (2591537) WebSocketClient: WebSocket客户端已存在[0m
+[1;31mE (2611544) esp-tls: [sock=54] select() timeout[0m
+[1;31mE (2611544) transport_base: Failed to open a new connection: 32774[0m
+[1;31mE (2611544) transport_ws: Error connecting to host 192.168.49.4:8888[0m
+[1;31mE (2611549) websocket_client: esp_transport_connect() failed with -1, transport_error=ESP_ERR_ESP_TLS_CONNECTION_TIMEOUT, tls_error_code=0, tls_flags=0, esp_ws_handshake_status_code=101, errno=119[0m
+[0;32mI (2611566) WebSocketClient: ❌ WebSocket错误[0m
+[0;32mI (2611570) websocket_client: Reconnect after 10000 ms[0m
+[0;32mI (2611575) WebSocketClient: 🔌 WebSocket已断开[0m
+[0;32mI (2611580) DDL: WS disconnected[0m
+[0;33mW (2611583) WebSocketClient: WebSocket客户端已存在[0m
+[1;31mE (2631590) esp-tls: [sock=54] select() timeout[0m
+[1;31mE (2631590) transport_base: Failed to open a new connection: 32774[0m
+[1;31mE (2631590) transport_ws: Error connecting to host 192.168.49.4:8888[0m
+[1;31mE (2631595) websocket_client: esp_transport_connect() failed with -1, transport_error=ESP_ERR_ESP_TLS_CONNECTION_TIMEOUT, tls_error_code=0, tls_flags=0, esp_ws_handshake_status_code=101, errno=119[0m
+[0;32mI (2631612) WebSocketClient: ❌ WebSocket错误[0m
+[0;32mI (2631616) websocket_client: Reconnect after 10000 ms[0m
+[0;32mI (2631621) WebSocketClient: 🔌 WebSocket已断开[0m
+[0;32mI (2631626) DDL: WS disconnected[0m
+[0;33mW (2631629) WebSocketClient: WebSocket客户端已存在[0m
+[1;31mE (2651636) esp-tls: [sock=54] select() timeout[0m
+[1;31mE (2651636) transport_base: Failed to open a new connection: 32774[0m
+[1;31mE (2651636) transport_ws: Error connecting to host 192.168.49.4:8888[0m
+[1;31mE (2651641) websocket_client: esp_transport_connect() failed with -1, transport_error=ESP_ERR_ESP_TLS_CONNECTION_TIMEOUT, tls_error_code=0, tls_flags=0, esp_ws_handshake_status_code=101, errno=119[0m
+[0;32mI (2651658) WebSocketClient: ❌ WebSocket错误[0m
+[0;32mI (2651662) websocket_client: Reconnect after 10000 ms[0m
+[0;32mI (2651667) WebSocketClient: 🔌 WebSocket已断开[0m
+[0;32mI (2651672) DDL: WS disconnected[0m
+[0;33mW (2651675) WebSocketClient: WebSocket客户端已存在[0m
+[1;31mE (2671682) esp-tls: [sock=54] select() timeout[0m
+[1;31mE (2671682) transport_base: Failed to open a new connection: 32774[0m
+[1;31mE (2671682) transport_ws: Error connecting to host 192.168.49.4:8888[0m
+[1;31mE (2671687) websocket_client: esp_transport_connect() failed with -1, transport_error=ESP_ERR_ESP_TLS_CONNECTION_TIMEOUT, tls_error_code=0, tls_flags=0, esp_ws_handshake_status_code=101, errno=119[0m
+[0;32mI (2671704) WebSocketClient: ❌ WebSocket错误[0m
+[0;32mI (2671708) websocket_client: Reconnect after 10000 ms[0m
+[0;32mI (2671713) WebSocketClient: 🔌 WebSocket已断开[0m
+[0;32mI (2671718) DDL: WS disconnected[0m
+[0;33mW (2671721) WebSocketClient: WebSocket客户端已存在[0m
+[1;31mE (2691728) esp-tls: [sock=54] select() timeout[0m
+[1;31mE (2691728) transport_base: Failed to open a new connection: 32774[0m
+[1;31mE (2691728) transport_ws: Error connecting to host 192.168.49.4:8888[0m
+[1;31mE (2691733) websocket_client: esp_transport_connect() failed with -1, transport_error=ESP_ERR_ESP_TLS_CONNECTION_TIMEOUT, tls_error_code=0, tls_flags=0, esp_ws_handshake_status_code=101, errno=119[0m
+[0;32mI (2691750) WebSocketClient: ❌ WebSocket错误[0m
+[0;32mI (2691754) websocket_client: Reconnect after 10000 ms[0m
+[0;32mI (2691759) WebSocketClient: 🔌 WebSocket已断开[0m
+[0;32mI (2691764) DDL: WS disconnected[0m
+[0;33mW (2691767) WebSocketClient: WebSocket客户端已存在[0m
+[1;31mE (2711774) esp-tls: [sock=54] select() timeout[0m
+[1;31mE (2711774) transport_base: Failed to open a new connection: 32774[0m
+[1;31mE (2711774) transport_ws: Error connecting to host 192.168.49.4:8888[0m
+[1;31mE (2711779) websocket_client: esp_transport_connect() failed with -1, transport_error=ESP_ERR_ESP_TLS_CONNECTION_TIMEOUT, tls_error_code=0, tls_flags=0, esp_ws_handshake_status_code=101, errno=119[0m
+[0;32mI (2711796) WebSocketClient: ❌ WebSocket错误[0m
+[0;32mI (2711800) websocket_client: Reconnect after 10000 ms[0m
+[0;32mI (2711805) WebSocketClient: 🔌 WebSocket已断开[0m
+[0;32mI (2711810) DDL: WS disconnected[0m
+[0;33mW (2711813) WebSocketClient: WebSocket客户端已存在[0m
+[1;31mE (2731820) esp-tls: [sock=54] select() timeout[0m
+[1;31mE (2731820) transport_base: Failed to open a new connection: 32774[0m
+[1;31mE (2731820) transport_ws: Error connecting to host 192.168.49.4:8888[0m
+[1;31mE (2731825) websocket_client: esp_transport_connect() failed with -1, transport_error=ESP_ERR_ESP_TLS_CONNECTION_TIMEOUT, tls_error_code=0, tls_flags=0, esp_ws_handshake_status_code=101, errno=119[0m
+[0;32mI (2731842) WebSocketClient: ❌ WebSocket错误[0m
+[0;32mI (2731846) websocket_client: Reconnect after 10000 ms[0m
+[0;32mI (2731851) WebSocketClient: 🔌 WebSocket已断开[0m
+[0;32mI (2731856) DDL: WS disconnected[0m
+[0;33mW (2731859) WebSocketClient: WebSocket客户端已存在[0m
+[1;31mE (2751866) esp-tls: [sock=54] select() timeout[0m
+[1;31mE (2751866) transport_base: Failed to open a new connection: 32774[0m
+[1;31mE (2751866) transport_ws: Error connecting to host 192.168.49.4:8888[0m
+[1;31mE (2751871) websocket_client: esp_transport_connect() failed with -1, transport_error=ESP_ERR_ESP_TLS_CONNECTION_TIMEOUT, tls_error_code=0, tls_flags=0, esp_ws_handshake_status_code=101, errno=119[0m
+[0;32mI (2751888) WebSocketClient: ❌ WebSocket错误[0m
+[0;32mI (2751892) websocket_client: Reconnect after 10000 ms[0m
+[0;32mI (2751897) WebSocketClient: 🔌 WebSocket已断开[0m
+[0;32mI (2751902) DDL: WS disconnected[0m
+[0;33mW (2751905) WebSocketClient: WebSocket客户端已存在[0m
+[1;31mE (2771912) esp-tls: [sock=54] select() timeout[0m
+[1;31mE (2771912) transport_base: Failed to open a new connection: 32774[0m
+[1;31mE (2771912) transport_ws: Error connecting to host 192.168.49.4:8888[0m
+[1;31mE (2771917) websocket_client: esp_transport_connect() failed with -1, transport_error=ESP_ERR_ESP_TLS_CONNECTION_TIMEOUT, tls_error_code=0, tls_flags=0, esp_ws_handshake_status_code=101, errno=119[0m
+[0;32mI (2771934) WebSocketClient: ❌ WebSocket错误[0m
+[0;32mI (2771939) websocket_client: Reconnect after 10000 ms[0m
+[0;32mI (2771943) WebSocketClient: 🔌 WebSocket已断开[0m
+[0;32mI (2771948) DDL: WS disconnected[0m
+[0;33mW (2771951) WebSocketClient: WebSocket客户端已存在[0m
+[1;31mE (2791958) esp-tls: [sock=54] select() timeout[0m
+[1;31mE (2791958) transport_base: Failed to open a new connection: 32774[0m
+[1;31mE (2791958) transport_ws: Error connecting to host 192.168.49.4:8888[0m
+[1;31mE (2791963) websocket_client: esp_transport_connect() failed with -1, transport_error=ESP_ERR_ESP_TLS_CONNECTION_TIMEOUT, tls_error_code=0, tls_flags=0, esp_ws_handshake_status_code=101, errno=119[0m
+[0;32mI (2791980) WebSocketClient: ❌ WebSocket错误[0m
+[0;32mI (2791984) websocket_client: Reconnect after 10000 ms[0m
+[0;32mI (2791989) WebSocketClient: 🔌 WebSocket已断开[0m
+[0;32mI (2791994) DDL: WS disconnected[0m
+[0;33mW (2791997) WebSocketClient: WebSocket客户端已存在[0m
+[1;31mE (2812004) esp-tls: [sock=54] select() timeout[0m
+[1;31mE (2812004) transport_base: Failed to open a new connection: 32774[0m
+[1;31mE (2812004) transport_ws: Error connecting to host 192.168.49.4:8888[0m
+[1;31mE (2812009) websocket_client: esp_transport_connect() failed with -1, transport_error=ESP_ERR_ESP_TLS_CONNECTION_TIMEOUT, tls_error_code=0, tls_flags=0, esp_ws_handshake_status_code=101, errno=119[0m
+[0;32mI (2812026) WebSocketClient: ❌ WebSocket错误[0m
+[0;32mI (2812030) websocket_client: Reconnect after 10000 ms[0m
+[0;32mI (2812035) WebSocketClient: 🔌 WebSocket已断开[0m
+[0;32mI (2812040) DDL: WS disconnected[0m
+[0;33mW (2812043) WebSocketClient: WebSocket客户端已存在[0m
+[1;31mE (2832050) esp-tls: [sock=54] select() timeout[0m
+[1;31mE (2832050) transport_base: Failed to open a new connection: 32774[0m
+[1;31mE (2832050) transport_ws: Error connecting to host 192.168.49.4:8888[0m
+[1;31mE (2832055) websocket_client: esp_transport_connect() failed with -1, transport_error=ESP_ERR_ESP_TLS_CONNECTION_TIMEOUT, tls_error_code=0, tls_flags=0, esp_ws_handshake_status_code=101, errno=119[0m
+[0;32mI (2832072) WebSocketClient: ❌ WebSocket错误[0m
+[0;32mI (2832076) websocket_client: Reconnect after 10000 ms[0m
+[0;32mI (2832081) WebSocketClient: 🔌 WebSocket已断开[0m
+[0;32mI (2832086) DDL: WS disconnected[0m
+[0;33mW (2832089) WebSocketClient: WebSocket客户端已存在[0m
+[1;31mE (2852096) esp-tls: [sock=54] select() timeout[0m
+[1;31mE (2852096) transport_base: Failed to open a new connection: 32774[0m
+[1;31mE (2852096) transport_ws: Error connecting to host 192.168.49.4:8888[0m
+[1;31mE (2852101) websocket_client: esp_transport_connect() failed with -1, transport_error=ESP_ERR_ESP_TLS_CONNECTION_TIMEOUT, tls_error_code=0, tls_flags=0, esp_ws_handshake_status_code=101, errno=119[0m
+[0;32mI (2852118) WebSocketClient: ❌ WebSocket错误[0m
+[0;32mI (2852122) websocket_client: Reconnect after 10000 ms[0m
+[0;32mI (2852127) WebSocketClient: 🔌 WebSocket已断开[0m
+[0;32mI (2852132) DDL: WS disconnected[0m
+[0;33mW (2852135) WebSocketClient: WebSocket客户端已存在[0m
+[1;31mE (2872142) esp-tls: [sock=54] select() timeout[0m
+[1;31mE (2872142) transport_base: Failed to open a new connection: 32774[0m
+[1;31mE (2872142) transport_ws: Error connecting to host 192.168.49.4:8888[0m
+[1;31mE (2872147) websocket_client: esp_transport_connect() failed with -1, transport_error=ESP_ERR_ESP_TLS_CONNECTION_TIMEOUT, tls_error_code=0, tls_flags=0, esp_ws_handshake_status_code=101, errno=119[0m
+[0;32mI (2872164) WebSocketClient: ❌ WebSocket错误[0m
+[0;32mI (2872168) websocket_client: Reconnect after 10000 ms[0m
+[0;32mI (2872173) WebSocketClient: 🔌 WebSocket已断开[0m
+[0;32mI (2872178) DDL: WS disconnected[0m
+[0;33mW (2872181) WebSocketClient: WebSocket客户端已存在[0m
+[1;31mE (2892188) esp-tls: [sock=54] select() timeout[0m
+[1;31mE (2892188) transport_base: Failed to open a new connection: 32774[0m
+[1;31mE (2892188) transport_ws: Error connecting to host 192.168.49.4:8888[0m
+[1;31mE (2892193) websocket_client: esp_transport_connect() failed with -1, transport_error=ESP_ERR_ESP_TLS_CONNECTION_TIMEOUT, tls_error_code=0, tls_flags=0, esp_ws_handshake_status_code=101, errno=119[0m
+[0;32mI (2892210) WebSocketClient: ❌ WebSocket错误[0m
+[0;32mI (2892214) websocket_client: Reconnect after 10000 ms[0m
+[0;32mI (2892219) WebSocketClient: 🔌 WebSocket已断开[0m
+[0;32mI (2892224) DDL: WS disconnected[0m
+[0;33mW (2892227) WebSocketClient: WebSocket客户端已存在[0m
+[1;31mE (2912234) esp-tls: [sock=54] select() timeout[0m
+[1;31mE (2912234) transport_base: Failed to open a new connection: 32774[0m
+[1;31mE (2912234) transport_ws: Error connecting to host 192.168.49.4:8888[0m
+[1;31mE (2912239) websocket_client: esp_transport_connect() failed with -1, transport_error=ESP_ERR_ESP_TLS_CONNECTION_TIMEOUT, tls_error_code=0, tls_flags=0, esp_ws_handshake_status_code=101, errno=119[0m
+[0;32mI (2912256) WebSocketClient: ❌ WebSocket错误[0m
+[0;32mI (2912260) websocket_client: Reconnect after 10000 ms[0m
+[0;32mI (2912265) WebSocketClient: 🔌 WebSocket已断开[0m
+[0;32mI (2912270) DDL: WS disconnected[0m
+[0;33mW (2912273) WebSocketClient: WebSocket客户端已存在[0m
+[1;31mE (2932280) esp-tls: [sock=54] select() timeout[0m
+[1;31mE (2932280) transport_base: Failed to open a new connection: 32774[0m
+[1;31mE (2932280) transport_ws: Error connecting to host 192.168.49.4:8888[0m
+[1;31mE (2932285) websocket_client: esp_transport_connect() failed with -1, transport_error=ESP_ERR_ESP_TLS_CONNECTION_TIMEOUT, tls_error_code=0, tls_flags=0, esp_ws_handshake_status_code=101, errno=119[0m
+[0;32mI (2932302) WebSocketClient: ❌ WebSocket错误[0m
+[0;32mI (2932306) websocket_client: Reconnect after 10000 ms[0m
+[0;32mI (2932311) WebSocketClient: 🔌 WebSocket已断开[0m
+[0;32mI (2932316) DDL: WS disconnected[0m
+[0;33mW (2932319) WebSocketClient: WebSocket客户端已存在[0m
+[1;31mE (2952326) esp-tls: [sock=54] select() timeout[0m
+[1;31mE (2952326) transport_base: Failed to open a new connection: 32774[0m
+[1;31mE (2952326) transport_ws: Error connecting to host 192.168.49.4:8888[0m
+[1;31mE (2952331) websocket_client: esp_transport_connect() failed with -1, transport_error=ESP_ERR_ESP_TLS_CONNECTION_TIMEOUT, tls_error_code=0, tls_flags=0, esp_ws_handshake_status_code=101, errno=119[0m
+[0;32mI (2952348) WebSocketClient: ❌ WebSocket错误[0m
+[0;32mI (2952352) websocket_client: Reconnect after 10000 ms[0m
+[0;32mI (2952357) WebSocketClient: 🔌 WebSocket已断开[0m
+[0;32mI (2952362) DDL: WS disconnected[0m
+[0;33mW (2952365) WebSocketClient: WebSocket客户端已存在[0m
+[1;31mE (2972372) esp-tls: [sock=54] select() timeout[0m
+[1;31mE (2972372) transport_base: Failed to open a new connection: 32774[0m
+[1;31mE (2972372) transport_ws: Error connecting to host 192.168.49.4:8888[0m
+[1;31mE (2972377) websocket_client: esp_transport_connect() failed with -1, transport_error=ESP_ERR_ESP_TLS_CONNECTION_TIMEOUT, tls_error_code=0, tls_flags=0, esp_ws_handshake_status_code=101, errno=119[0m
+[0;32mI (2972394) WebSocketClient: ❌ WebSocket错误[0m
+[0;32mI (2972398) websocket_client: Reconnect after 10000 ms[0m
+[0;32mI (2972403) WebSocketClient: 🔌 WebSocket已断开[0m
+[0;32mI (2972408) DDL: WS disconnected[0m
+[0;33mW (2972411) WebSocketClient: WebSocket客户端已存在[0m
+[1;31mE (2992418) esp-tls: [sock=54] select() timeout[0m
+[1;31mE (2992418) transport_base: Failed to open a new connection: 32774[0m
+[1;31mE (2992418) transport_ws: Error connecting to host 192.168.49.4:8888[0m
+[1;31mE (2992423) websocket_client: esp_transport_connect() failed with -1, transport_error=ESP_ERR_ESP_TLS_CONNECTION_TIMEOUT, tls_error_code=0, tls_flags=0, esp_ws_handshake_status_code=101, errno=119[0m
+[0;32mI (2992440) WebSocketClient: ❌ WebSocket错误[0m
+[0;32mI (2992444) websocket_client: Reconnect after 10000 ms[0m
+[0;32mI (2992449) WebSocketClient: 🔌 WebSocket已断开[0m
+[0;32mI (2992454) DDL: WS disconnected[0m
+[0;33mW (2992457) WebSocketClient: WebSocket客户端已存在[0m
+[1;31mE (3012464) esp-tls: [sock=54] select() timeout[0m
+[1;31mE (3012464) transport_base: Failed to open a new connection: 32774[0m
+[1;31mE (3012464) transport_ws: Error connecting to host 192.168.49.4:8888[0m
+[1;31mE (3012469) websocket_client: esp_transport_connect() failed with -1, transport_error=ESP_ERR_ESP_TLS_CONNECTION_TIMEOUT, tls_error_code=0, tls_flags=0, esp_ws_handshake_status_code=101, errno=119[0m
+[0;32mI (3012486) WebSocketClient: ❌ WebSocket错误[0m
+[0;32mI (3012490) websocket_client: Reconnect after 10000 ms[0m
+[0;32mI (3012495) WebSocketClient: 🔌 WebSocket已断开[0m
+[0;32mI (3012500) DDL: WS disconnected[0m
+[0;33mW (3012503) WebSocketClient: WebSocket客户端已存在[0m
+[1;31mE (3032510) esp-tls: [sock=54] select() timeout[0m
+[1;31mE (3032510) transport_base: Failed to open a new connection: 32774[0m
+[1;31mE (3032510) transport_ws: Error connecting to host 192.168.49.4:8888[0m
+[1;31mE (3032515) websocket_client: esp_transport_connect() failed with -1, transport_error=ESP_ERR_ESP_TLS_CONNECTION_TIMEOUT, tls_error_code=0, tls_flags=0, esp_ws_handshake_status_code=101, errno=119[0m
+[0;32mI (3032532) WebSocketClient: ❌ WebSocket错误[0m
+[0;32mI (3032536) websocket_client: Reconnect after 10000 ms[0m
+[0;32mI (3032541) WebSocketClient: 🔌 WebSocket已断开[0m
+[0;32mI (3032546) DDL: WS disconnected[0m
+[0;33mW (3032549) WebSocketClient: WebSocket客户端已存在[0m
+[1;31mE (3052556) esp-tls: [sock=54] select() timeout[0m
+[1;31mE (3052556) transport_base: Failed to open a new connection: 32774[0m
+[1;31mE (3052556) transport_ws: Error connecting to host 192.168.49.4:8888[0m
+[1;31mE (3052561) websocket_client: esp_transport_connect() failed with -1, transport_error=ESP_ERR_ESP_TLS_CONNECTION_TIMEOUT, tls_error_code=0, tls_flags=0, esp_ws_handshake_status_code=101, errno=119[0m
+[0;32mI (3052578) WebSocketClient: ❌ WebSocket错误[0m
+[0;32mI (3052582) websocket_client: Reconnect after 10000 ms[0m
+[0;32mI (3052587) WebSocketClient: 🔌 WebSocket已断开[0m
+[0;32mI (3052592) DDL: WS disconnected[0m
+[0;33mW (3052595) WebSocketClient: WebSocket客户端已存在[0m
+[1;31mE (3072602) esp-tls: [sock=54] select() timeout[0m
+[1;31mE (3072602) transport_base: Failed to open a new connection: 32774[0m
+[1;31mE (3072602) transport_ws: Error connecting to host 192.168.49.4:8888[0m
+[1;31mE (3072607) websocket_client: esp_transport_connect() failed with -1, transport_error=ESP_ERR_ESP_TLS_CONNECTION_TIMEOUT, tls_error_code=0, tls_flags=0, esp_ws_handshake_status_code=101, errno=119[0m
+[0;32mI (3072624) WebSocketClient: ❌ WebSocket错误[0m
+[0;32mI (3072628) websocket_client: Reconnect after 10000 ms[0m
+[0;32mI (3072633) WebSocketClient: 🔌 WebSocket已断开[0m
+[0;32mI (3072638) DDL: WS disconnected[0m
+[0;33mW (3072641) WebSocketClient: WebSocket客户端已存在[0m
+[1;31mE (3092648) esp-tls: [sock=54] select() timeout[0m
+[1;31mE (3092648) transport_base: Failed to open a new connection: 32774[0m
+[1;31mE (3092648) transport_ws: Error connecting to host 192.168.49.4:8888[0m
+[1;31mE (3092653) websocket_client: esp_transport_connect() failed with -1, transport_error=ESP_ERR_ESP_TLS_CONNECTION_TIMEOUT, tls_error_code=0, tls_flags=0, esp_ws_handshake_status_code=101, errno=119[0m
+[0;32mI (3092670) WebSocketClient: ❌ WebSocket错误[0m
+[0;32mI (3092674) websocket_client: Reconnect after 10000 ms[0m
+[0;32mI (3092679) WebSocketClient: 🔌 WebSocket已断开[0m
+[0;32mI (3092684) DDL: WS disconnected[0m
+[0;33mW (3092687) WebSocketClient: WebSocket客户端已存在[0m
+[1;31mE (3112694) esp-tls: [sock=54] select() timeout[0m
+[1;31mE (3112694) transport_base: Failed to open a new connection: 32774[0m
+[1;31mE (3112694) transport_ws: Error connecting to host 192.168.49.4:8888[0m
+[1;31mE (3112699) websocket_client: esp_transport_connect() failed with -1, transport_error=ESP_ERR_ESP_TLS_CONNECTION_TIMEOUT, tls_error_code=0, tls_flags=0, esp_ws_handshake_status_code=101, errno=119[0m
+[0;32mI (3112716) WebSocketClient: ❌ WebSocket错误[0m
+[0;32mI (3112720) websocket_client: Reconnect after 10000 ms[0m
+[0;32mI (3112725) WebSocketClient: 🔌 WebSocket已断开[0m
+[0;32mI (3112730) DDL: WS disconnected[0m
+[0;33mW (3112733) WebSocketClient: WebSocket客户端已存在[0m
+[1;31mE (3132740) esp-tls: [sock=54] select() timeout[0m
+[1;31mE (3132740) transport_base: Failed to open a new connection: 32774[0m
+[1;31mE (3132740) transport_ws: Error connecting to host 192.168.49.4:8888[0m
+[1;31mE (3132745) websocket_client: esp_transport_connect() failed with -1, transport_error=ESP_ERR_ESP_TLS_CONNECTION_TIMEOUT, tls_error_code=0, tls_flags=0, esp_ws_handshake_status_code=101, errno=119[0m
+[0;32mI (3132762) WebSocketClient: ❌ WebSocket错误[0m
+[0;32mI (3132766) websocket_client: Reconnect after 10000 ms[0m
+[0;32mI (3132771) WebSocketClient: 🔌 WebSocket已断开[0m
+[0;32mI (3132776) DDL: WS disconnected[0m
+[0;33mW (3132779) WebSocketClient: WebSocket客户端已存在[0m
+[1;31mE (3152786) esp-tls: [sock=54] select() timeout[0m
+[1;31mE (3152786) transport_base: Failed to open a new connection: 32774[0m
+[1;31mE (3152786) transport_ws: Error connecting to host 192.168.49.4:8888[0m
+[1;31mE (3152791) websocket_client: esp_transport_connect() failed with -1, transport_error=ESP_ERR_ESP_TLS_CONNECTION_TIMEOUT, tls_error_code=0, tls_flags=0, esp_ws_handshake_status_code=101, errno=119[0m
+[0;32mI (3152808) WebSocketClient: ❌ WebSocket错误[0m
+[0;32mI (3152812) websocket_client: Reconnect after 10000 ms[0m
+[0;32mI (3152817) WebSocketClient: 🔌 WebSocket已断开[0m
+[0;32mI (3152822) DDL: WS disconnected[0m
+[0;33mW (3152825) WebSocketClient: WebSocket客户端已存在[0m
+[1;31mE (3172832) esp-tls: [sock=54] select() timeout[0m
+[1;31mE (3172832) transport_base: Failed to open a new connection: 32774[0m
+[1;31mE (3172832) transport_ws: Error connecting to host 192.168.49.4:8888[0m
+[1;31mE (3172837) websocket_client: esp_transport_connect() failed with -1, transport_error=ESP_ERR_ESP_TLS_CONNECTION_TIMEOUT, tls_error_code=0, tls_flags=0, esp_ws_handshake_status_code=101, errno=119[0m
+[0;32mI (3172854) WebSocketClient: ❌ WebSocket错误[0m
+[0;32mI (3172858) websocket_client: Reconnect after 10000 ms[0m
+[0;32mI (3172863) WebSocketClient: 🔌 WebSocket已断开[0m
+[0;32mI (3172868) DDL: WS disconnected[0m
+[0;33mW (3172871) WebSocketClient: WebSocket客户端已存在[0m
+[1;31mE (3192878) esp-tls: [sock=54] select() timeout[0m
+[1;31mE (3192878) transport_base: Failed to open a new connection: 32774[0m
+[1;31mE (3192878) transport_ws: Error connecting to host 192.168.49.4:8888[0m
+[1;31mE (3192883) websocket_client: esp_transport_connect() failed with -1, transport_error=ESP_ERR_ESP_TLS_CONNECTION_TIMEOUT, tls_error_code=0, tls_flags=0, esp_ws_handshake_status_code=101, errno=119[0m
+[0;32mI (3192900) WebSocketClient: ❌ WebSocket错误[0m
+[0;32mI (3192904) websocket_client: Reconnect after 10000 ms[0m
+[0;32mI (3192909) WebSocketClient: 🔌 WebSocket已断开[0m
+[0;32mI (3192914) DDL: WS disconnected[0m
+[0;33mW (3192917) WebSocketClient: WebSocket客户端已存在[0m
+[1;31mE (3212924) esp-tls: [sock=54] select() timeout[0m
+[1;31mE (3212924) transport_base: Failed to open a new connection: 32774[0m
+[1;31mE (3212924) transport_ws: Error connecting to host 192.168.49.4:8888[0m
+[1;31mE (3212929) websocket_client: esp_transport_connect() failed with -1, transport_error=ESP_ERR_ESP_TLS_CONNECTION_TIMEOUT, tls_error_code=0, tls_flags=0, esp_ws_handshake_status_code=101, errno=119[0m
+[0;32mI (3212946) WebSocketClient: ❌ WebSocket错误[0m
+[0;32mI (3212950) websocket_client: Reconnect after 10000 ms[0m
+[0;32mI (3212955) WebSocketClient: 🔌 WebSocket已断开[0m
+[0;32mI (3212960) DDL: WS disconnected[0m
+[0;33mW (3212963) WebSocketClient: WebSocket客户端已存在[0m
+[1;31mE (3232971) esp-tls: [sock=54] select() timeout[0m
+[1;31mE (3232971) transport_base: Failed to open a new connection: 32774[0m
+[1;31mE (3232971) transport_ws: Error connecting to host 192.168.49.4:8888[0m
+[1;31mE (3232976) websocket_client: esp_transport_connect() failed with -1, transport_error=ESP_ERR_ESP_TLS_CONNECTION_TIMEOUT, tls_error_code=0, tls_flags=0, esp_ws_handshake_status_code=101, errno=119[0m
+[0;32mI (3232993) WebSocketClient: ❌ WebSocket错误[0m
+[0;32mI (3232997) websocket_client: Reconnect after 10000 ms[0m
+[0;32mI (3233002) WebSocketClient: 🔌 WebSocket已断开[0m
+[0;32mI (3233007) DDL: WS disconnected[0m
+[0;33mW (3233010) WebSocketClient: WebSocket客户端已存在[0m
+[1;31mE (3253017) esp-tls: [sock=54] select() timeout[0m
+[1;31mE (3253017) transport_base: Failed to open a new connection: 32774[0m
+[1;31mE (3253017) transport_ws: Error connecting to host 192.168.49.4:8888[0m
+[1;31mE (3253022) websocket_client: esp_transport_connect() failed with -1, transport_error=ESP_ERR_ESP_TLS_CONNECTION_TIMEOUT, tls_error_code=0, tls_flags=0, esp_ws_handshake_status_code=101, errno=119[0m
+[0;32mI (3253039) WebSocketClient: ❌ WebSocket错误[0m
+[0;32mI (3253043) websocket_client: Reconnect after 10000 ms[0m
+[0;32mI (3253048) WebSocketClient: 🔌 WebSocket已断开[0m
+[0;32mI (3253053) DDL: WS disconnected[0m
+[0;33mW (3253056) WebSocketClient: WebSocket客户端已存在[0m
+[1;31mE (3273063) esp-tls: [sock=54] select() timeout[0m
+[1;31mE (3273063) transport_base: Failed to open a new connection: 32774[0m
+[1;31mE (3273063) transport_ws: Error connecting to host 192.168.49.4:8888[0m
+[1;31mE (3273068) websocket_client: esp_transport_connect() failed with -1, transport_error=ESP_ERR_ESP_TLS_CONNECTION_TIMEOUT, tls_error_code=0, tls_flags=0, esp_ws_handshake_status_code=101, errno=119[0m
+[0;32mI (3273085) WebSocketClient: ❌ WebSocket错误[0m
+[0;32mI (3273089) websocket_client: Reconnect after 10000 ms[0m
+[0;32mI (3273094) WebSocketClient: 🔌 WebSocket已断开[0m
+[0;32mI (3273099) DDL: WS disconnected[0m
+[0;33mW (3273102) WebSocketClient: WebSocket客户端已存在[0m
+[1;31mE (3293109) esp-tls: [sock=54] select() timeout[0m
+[1;31mE (3293109) transport_base: Failed to open a new connection: 32774[0m
+[1;31mE (3293109) transport_ws: Error connecting to host 192.168.49.4:8888[0m
+[1;31mE (3293114) websocket_client: esp_transport_connect() failed with -1, transport_error=ESP_ERR_ESP_TLS_CONNECTION_TIMEOUT, tls_error_code=0, tls_flags=0, esp_ws_handshake_status_code=101, errno=119[0m
+[0;32mI (3293131) WebSocketClient: ❌ WebSocket错误[0m
+[0;32mI (3293135) websocket_client: Reconnect after 10000 ms[0m
+[0;32mI (3293140) WebSocketClient: 🔌 WebSocket已断开[0m
+[0;32mI (3293145) DDL: WS disconnected[0m
+[0;33mW (3293148) WebSocketClient: WebSocket客户端已存在[0m
+[1;31mE (3313155) esp-tls: [sock=54] select() timeout[0m
+[1;31mE (3313155) transport_base: Failed to open a new connection: 32774[0m
+[1;31mE (3313155) transport_ws: Error connecting to host 192.168.49.4:8888[0m
+[1;31mE (3313160) websocket_client: esp_transport_connect() failed with -1, transport_error=ESP_ERR_ESP_TLS_CONNECTION_TIMEOUT, tls_error_code=0, tls_flags=0, esp_ws_handshake_status_code=101, errno=119[0m
+[0;32mI (3313177) WebSocketClient: ❌ WebSocket错误[0m
+[0;32mI (3313181) websocket_client: Reconnect after 10000 ms[0m
+[0;32mI (3313186) WebSocketClient: 🔌 WebSocket已断开[0m
+[0;32mI (3313191) DDL: WS disconnected[0m
+[0;33mW (3313194) WebSocketClient: WebSocket客户端已存在[0m
+[1;31mE (3333201) esp-tls: [sock=54] select() timeout[0m
+[1;31mE (3333201) transport_base: Failed to open a new connection: 32774[0m
+[1;31mE (3333201) transport_ws: Error connecting to host 192.168.49.4:8888[0m
+[1;31mE (3333206) websocket_client: esp_transport_connect() failed with -1, transport_error=ESP_ERR_ESP_TLS_CONNECTION_TIMEOUT, tls_error_code=0, tls_flags=0, esp_ws_handshake_status_code=101, errno=119[0m
+[0;32mI (3333223) WebSocketClient: ❌ WebSocket错误[0m
+[0;32mI (3333227) websocket_client: Reconnect after 10000 ms[0m
+[0;32mI (3333232) WebSocketClient: 🔌 WebSocket已断开[0m
+[0;32mI (3333237) DDL: WS disconnected[0m
+[0;33mW (3333240) WebSocketClient: WebSocket客户端已存在[0m
+[1;31mE (3353247) esp-tls: [sock=54] select() timeout[0m
+[1;31mE (3353247) transport_base: Failed to open a new connection: 32774[0m
+[1;31mE (3353247) transport_ws: Error connecting to host 192.168.49.4:8888[0m
+[1;31mE (3353252) websocket_client: esp_transport_connect() failed with -1, transport_error=ESP_ERR_ESP_TLS_CONNECTION_TIMEOUT, tls_error_code=0, tls_flags=0, esp_ws_handshake_status_code=101, errno=119[0m
+[0;32mI (3353269) WebSocketClient: ❌ WebSocket错误[0m
+[0;32mI (3353273) websocket_client: Reconnect after 10000 ms[0m
+[0;32mI (3353278) WebSocketClient: 🔌 WebSocket已断开[0m
+[0;32mI (3353283) DDL: WS disconnected[0m
+[0;33mW (3353286) WebSocketClient: WebSocket客户端已存在[0m
+[1;31mE (3373293) esp-tls: [sock=54] select() timeout[0m
+[1;31mE (3373293) transport_base: Failed to open a new connection: 32774[0m
+[1;31mE (3373293) transport_ws: Error connecting to host 192.168.49.4:8888[0m
+[1;31mE (3373298) websocket_client: esp_transport_connect() failed with -1, transport_error=ESP_ERR_ESP_TLS_CONNECTION_TIMEOUT, tls_error_code=0, tls_flags=0, esp_ws_handshake_status_code=101, errno=119[0m
+[0;32mI (3373315) WebSocketClient: ❌ WebSocket错误[0m
+[0;32mI (3373319) websocket_client: Reconnect after 10000 ms[0m
+[0;32mI (3373324) WebSocketClient: 🔌 WebSocket已断开[0m
+[0;32mI (3373329) DDL: WS disconnected[0m
+[0;33mW (3373332) WebSocketClient: WebSocket客户端已存在[0m
+[1;31mE (3393339) esp-tls: [sock=54] select() timeout[0m
+[1;31mE (3393340) transport_base: Failed to open a new connection: 32774[0m
+[1;31mE (3393340) transport_ws: Error connecting to host 192.168.49.4:8888[0m
+[1;31mE (3393345) websocket_client: esp_transport_connect() failed with -1, transport_error=ESP_ERR_ESP_TLS_CONNECTION_TIMEOUT, tls_error_code=0, tls_flags=0, esp_ws_handshake_status_code=101, errno=119[0m
+[0;32mI (3393362) WebSocketClient: ❌ WebSocket错误[0m
+[0;32mI (3393366) websocket_client: Reconnect after 10000 ms[0m
+[0;32mI (3393371) WebSocketClient: 🔌 WebSocket已断开[0m
+[0;32mI (3393376) DDL: WS disconnected[0m
+[0;33mW (3393379) WebSocketClient: WebSocket客户端已存在[0m
+[1;31mE (3413386) esp-tls: [sock=54] select() timeout[0m
+[1;31mE (3413386) transport_base: Failed to open a new connection: 32774[0m
+[1;31mE (3413386) transport_ws: Error connecting to host 192.168.49.4:8888[0m
+[1;31mE (3413391) websocket_client: esp_transport_connect() failed with -1, transport_error=ESP_ERR_ESP_TLS_CONNECTION_TIMEOUT, tls_error_code=0, tls_flags=0, esp_ws_handshake_status_code=101, errno=119[0m
+[0;32mI (3413408) WebSocketClient: ❌ WebSocket错误[0m
+[0;32mI (3413412) websocket_client: Reconnect after 10000 ms[0m
+[0;32mI (3413417) WebSocketClient: 🔌 WebSocket已断开[0m
+[0;32mI (3413422) DDL: WS disconnected[0m
+[0;33mW (3413425) WebSocketClient: WebSocket客户端已存在[0m
+[1;31mE (3433432) esp-tls: [sock=54] select() timeout[0m
+[1;31mE (3433432) transport_base: Failed to open a new connection: 32774[0m
+[1;31mE (3433432) transport_ws: Error connecting to host 192.168.49.4:8888[0m
+[1;31mE (3433437) websocket_client: esp_transport_connect() failed with -1, transport_error=ESP_ERR_ESP_TLS_CONNECTION_TIMEOUT, tls_error_code=0, tls_flags=0, esp_ws_handshake_status_code=101, errno=119[0m
+[0;32mI (3433454) WebSocketClient: ❌ WebSocket错误[0m
+[0;32mI (3433458) websocket_client: Reconnect after 10000 ms[0m
+[0;32mI (3433463) WebSocketClient: 🔌 WebSocket已断开[0m
+[0;32mI (3433468) DDL: WS disconnected[0m
+[0;33mW (3433471) WebSocketClient: WebSocket客户端已存在[0m
+[1;31mE (3453478) esp-tls: [sock=54] select() timeout[0m
+[1;31mE (3453478) transport_base: Failed to open a new connection: 32774[0m
+[1;31mE (3453478) transport_ws: Error connecting to host 192.168.49.4:8888[0m
+[1;31mE (3453483) websocket_client: esp_transport_connect() failed with -1, transport_error=ESP_ERR_ESP_TLS_CONNECTION_TIMEOUT, tls_error_code=0, tls_flags=0, esp_ws_handshake_status_code=101, errno=119[0m
+[0;32mI (3453500) WebSocketClient: ❌ WebSocket错误[0m
+[0;32mI (3453504) websocket_client: Reconnect after 10000 ms[0m
+[0;32mI (3453509) WebSocketClient: 🔌 WebSocket已断开[0m
+[0;32mI (3453514) DDL: WS disconnected[0m
+[0;33mW (3453517) WebSocketClient: WebSocket客户端已存在[0m
+[1;31mE (3473524) esp-tls: [sock=54] select() timeout[0m
+[1;31mE (3473524) transport_base: Failed to open a new connection: 32774[0m
+[1;31mE (3473524) transport_ws: Error connecting to host 192.168.49.4:8888[0m
+[1;31mE (3473529) websocket_client: esp_transport_connect() failed with -1, transport_error=ESP_ERR_ESP_TLS_CONNECTION_TIMEOUT, tls_error_code=0, tls_flags=0, esp_ws_handshake_status_code=101, errno=119[0m
+[0;32mI (3473546) WebSocketClient: ❌ WebSocket错误[0m
+[0;32mI (3473550) websocket_client: Reconnect after 10000 ms[0m
+[0;32mI (3473555) WebSocketClient: 🔌 WebSocket已断开[0m
+[0;32mI (3473560) DDL: WS disconnected[0m
+[0;33mW (3473563) WebSocketClient: WebSocket客户端已存在[0m
+[1;31mE (3493570) esp-tls: [sock=54] select() timeout[0m
+[1;31mE (3493570) transport_base: Failed to open a new connection: 32774[0m
+[1;31mE (3493570) transport_ws: Error connecting to host 192.168.49.4:8888[0m
+[1;31mE (3493575) websocket_client: esp_transport_connect() failed with -1, transport_error=ESP_ERR_ESP_TLS_CONNECTION_TIMEOUT, tls_error_code=0, tls_flags=0, esp_ws_handshake_status_code=101, errno=119[0m
+[0;32mI (3493592) WebSocketClient: ❌ WebSocket错误[0m
+[0;32mI (3493596) websocket_client: Reconnect after 10000 ms[0m
+[0;32mI (3493601) WebSocketClient: 🔌 WebSocket已断开[0m
+[0;32mI (3493606) DDL: WS disconnected[0m
+[0;33mW (3493609) WebSocketClient: WebSocket客户端已存在[0m
+[1;31mE (3513616) esp-tls: [sock=54] select() timeout[0m
+[1;31mE (3513616) transport_base: Failed to open a new connection: 32774[0m
+[1;31mE (3513616) transport_ws: Error connecting to host 192.168.49.4:8888[0m
+[1;31mE (3513621) websocket_client: esp_transport_connect() failed with -1, transport_error=ESP_ERR_ESP_TLS_CONNECTION_TIMEOUT, tls_error_code=0, tls_flags=0, esp_ws_handshake_status_code=101, errno=119[0m
+[0;32mI (3513638) WebSocketClient: ❌ WebSocket错误[0m
+[0;32mI (3513642) websocket_client: Reconnect after 10000 ms[0m
+[0;32mI (3513647) WebSocketClient: 🔌 WebSocket已断开[0m
+[0;32mI (3513652) DDL: WS disconnected[0m
+[0;33mW (3513655) WebSocketClient: WebSocket客户端已存在[0m
+[1;31mE (3533662) esp-tls: [sock=54] select() timeout[0m
+[1;31mE (3533662) transport_base: Failed to open a new connection: 32774[0m
+[1;31mE (3533662) transport_ws: Error connecting to host 192.168.49.4:8888[0m
+[1;31mE (3533667) websocket_client: esp_transport_connect() failed with -1, transport_error=ESP_ERR_ESP_TLS_CONNECTION_TIMEOUT, tls_error_code=0, tls_flags=0, esp_ws_handshake_status_code=101, errno=119[0m
+[0;32mI (3533684) WebSocketClient: ❌ WebSocket错误[0m
+[0;32mI (3533688) websocket_client: Reconnect after 10000 ms[0m
+[0;32mI (3533693) WebSocketClient: 🔌 WebSocket已断开[0m
+[0;32mI (3533698) DDL: WS disconnected[0m
+[0;33mW (3533701) WebSocketClient: WebSocket客户端已存在[0m
+[1;31mE (3553708) esp-tls: [sock=54] select() timeout[0m
+[1;31mE (3553708) transport_base: Failed to open a new connection: 32774[0m
+[1;31mE (3553708) transport_ws: Error connecting to host 192.168.49.4:8888[0m
+[1;31mE (3553713) websocket_client: esp_transport_connect() failed with -1, transport_error=ESP_ERR_ESP_TLS_CONNECTION_TIMEOUT, tls_error_code=0, tls_flags=0, esp_ws_handshake_status_code=101, errno=119[0m
+[0;32mI (3553730) WebSocketClient: ❌ WebSocket错误[0m
+[0;32mI (3553734) websocket_client: Reconnect after 10000 ms[0m
+[0;32mI (3553739) WebSocketClient: 🔌 WebSocket已断开[0m
+[0;32mI (3553744) DDL: WS disconnected[0m
+[0;33mW (3553747) WebSocketClient: WebSocket客户端已存在[0m
+[1;31mE (3573754) esp-tls: [sock=54] select() timeout[0m
+[1;31mE (3573754) transport_base: Failed to open a new connection: 32774[0m
+[1;31mE (3573754) transport_ws: Error connecting to host 192.168.49.4:8888[0m
+[1;31mE (3573759) websocket_client: esp_transport_connect() failed with -1, transport_error=ESP_ERR_ESP_TLS_CONNECTION_TIMEOUT, tls_error_code=0, tls_flags=0, esp_ws_handshake_status_code=101, errno=119[0m
+[0;32mI (3573776) WebSocketClient: ❌ WebSocket错误[0m
+[0;32mI (3573780) websocket_client: Reconnect after 10000 ms[0m
+[0;32mI (3573785) WebSocketClient: 🔌 WebSocket已断开[0m
+[0;32mI (3573790) DDL: WS disconnected[0m
+[0;33mW (3573793) WebSocketClient: WebSocket客户端已存在[0m
+[1;31mE (3593800) esp-tls: [sock=54] select() timeout[0m
+[1;31mE (3593800) transport_base: Failed to open a new connection: 32774[0m
+[1;31mE (3593800) transport_ws: Error connecting to host 192.168.49.4:8888[0m
+[1;31mE (3593805) websocket_client: esp_transport_connect() failed with -1, transport_error=ESP_ERR_ESP_TLS_CONNECTION_TIMEOUT, tls_error_code=0, tls_flags=0, esp_ws_handshake_status_code=101, errno=119[0m
+[0;32mI (3593822) WebSocketClient: ❌ WebSocket错误[0m
+[0;32mI (3593826) websocket_client: Reconnect after 10000 ms[0m
+[0;32mI (3593831) WebSocketClient: 🔌 WebSocket已断开[0m
+[0;32mI (3593836) DDL: WS disconnected[0m
+[0;33mW (3593839) WebSocketClient: WebSocket客户端已存在[0m
+[1;31mE (3613846) esp-tls: [sock=54] select() timeout[0m
+[1;31mE (3613846) transport_base: Failed to open a new connection: 32774[0m
+[1;31mE (3613846) transport_ws: Error connecting to host 192.168.49.4:8888[0m
+[1;31mE (3613851) websocket_client: esp_transport_connect() failed with -1, transport_error=ESP_ERR_ESP_TLS_CONNECTION_TIMEOUT, tls_error_code=0, tls_flags=0, esp_ws_handshake_status_code=101, errno=119[0m
+[0;32mI (3613868) WebSocketClient: ❌ WebSocket错误[0m
+[0;32mI (3613872) websocket_client: Reconnect after 10000 ms[0m
+[0;32mI (3613877) WebSocketClient: 🔌 WebSocket已断开[0m
+[0;32mI (3613882) DDL: WS disconnected[0m
+[0;33mW (3613885) WebSocketClient: WebSocket客户端已存在[0m
+[1;31mE (3633892) esp-tls: [sock=54] select() timeout[0m
+[1;31mE (3633892) transport_base: Failed to open a new connection: 32774[0m
+[1;31mE (3633892) transport_ws: Error connecting to host 192.168.49.4:8888[0m
+[1;31mE (3633897) websocket_client: esp_transport_connect() failed with -1, transport_error=ESP_ERR_ESP_TLS_CONNECTION_TIMEOUT, tls_error_code=0, tls_flags=0, esp_ws_handshake_status_code=101, errno=119[0m
+[0;32mI (3633914) WebSocketClient: ❌ WebSocket错误[0m
+[0;32mI (3633918) websocket_client: Reconnect after 10000 ms[0m
+[0;32mI (3633923) WebSocketClient: 🔌 WebSocket已断开[0m
+[0;32mI (3633928) DDL: WS disconnected[0m
+[0;33mW (3633931) WebSocketClient: WebSocket客户端已存在[0m
+[1;31mE (3653938) esp-tls: [sock=54] select() timeout[0m
+[1;31mE (3653938) transport_base: Failed to open a new connection: 32774[0m
+[1;31mE (3653938) transport_ws: Error connecting to host 192.168.49.4:8888[0m
+[1;31mE (3653943) websocket_client: esp_transport_connect() failed with -1, transport_error=ESP_ERR_ESP_TLS_CONNECTION_TIMEOUT, tls_error_code=0, tls_flags=0, esp_ws_handshake_status_code=101, errno=119[0m
+[0;32mI (3653960) WebSocketClient: ❌ WebSocket错误[0m
+[0;32mI (3653964) websocket_client: Reconnect after 10000 ms[0m
+[0;32mI (3653969) WebSocketClient: 🔌 WebSocket已断开[0m
+[0;32mI (3653974) DDL: WS disconnected[0m
+[0;33mW (3653977) WebSocketClient: WebSocket客户端已存在[0m
+[1;31mE (3673984) esp-tls: [sock=54] select() timeout[0m
+[1;31mE (3673984) transport_base: Failed to open a new connection: 32774[0m
+[1;31mE (3673984) transport_ws: Error connecting to host 192.168.49.4:8888[0m
+[1;31mE (3673989) websocket_client: esp_transport_connect() failed with -1, transport_error=ESP_ERR_ESP_TLS_CONNECTION_TIMEOUT, tls_error_code=0, tls_flags=0, esp_ws_handshake_status_code=101, errno=119[0m
+[0;32mI (3674006) WebSocketClient: ❌ WebSocket错误[0m
+[0;32mI (3674010) websocket_client: Reconnect after 10000 ms[0m
+[0;32mI (3674015) WebSocketClient: 🔌 WebSocket已断开[0m
+[0;32mI (3674020) DDL: WS disconnected[0m
+[0;33mW (3674023) WebSocketClient: WebSocket客户端已存在[0m
+[1;31mE (3694030) esp-tls: [sock=54] select() timeout[0m
+[1;31mE (3694030) transport_base: Failed to open a new connection: 32774[0m
+[1;31mE (3694030) transport_ws: Error connecting to host 192.168.49.4:8888[0m
+[1;31mE (3694035) websocket_client: esp_transport_connect() failed with -1, transport_error=ESP_ERR_ESP_TLS_CONNECTION_TIMEOUT, tls_error_code=0, tls_flags=0, esp_ws_handshake_status_code=101, errno=119[0m
+[0;32mI (3694052) WebSocketClient: ❌ WebSocket错误[0m
+[0;32mI (3694056) websocket_client: Reconnect after 10000 ms[0m
+[0;32mI (3694061) WebSocketClient: 🔌 WebSocket已断开[0m
+[0;32mI (3694066) DDL: WS disconnected[0m
+[0;33mW (3694069) WebSocketClient: WebSocket客户端已存在[0m
+[1;31mE (3714076) esp-tls: [sock=54] select() timeout[0m
+[1;31mE (3714076) transport_base: Failed to open a new connection: 32774[0m
+[1;31mE (3714076) transport_ws: Error connecting to host 192.168.49.4:8888[0m
+[1;31mE (3714081) websocket_client: esp_transport_connect() failed with -1, transport_error=ESP_ERR_ESP_TLS_CONNECTION_TIMEOUT, tls_error_code=0, tls_flags=0, esp_ws_handshake_status_code=101, errno=119[0m
+[0;32mI (3714098) WebSocketClient: ❌ WebSocket错误[0m
+[0;32mI (3714102) websocket_client: Reconnect after 10000 ms[0m
+[0;32mI (3714107) WebSocketClient: 🔌 WebSocket已断开[0m
+[0;32mI (3714112) DDL: WS disconnected[0m
+[0;33mW (3714115) WebSocketClient: WebSocket客户端已存在[0m
+[1;31mE (3734122) esp-tls: [sock=54] select() timeout[0m
+[1;31mE (3734122) transport_base: Failed to open a new connection: 32774[0m
+[1;31mE (3734122) transport_ws: Error connecting to host 192.168.49.4:8888[0m
+[1;31mE (3734127) websocket_client: esp_transport_connect() failed with -1, transport_error=ESP_ERR_ESP_TLS_CONNECTION_TIMEOUT, tls_error_code=0, tls_flags=0, esp_ws_handshake_status_code=101, errno=119[0m
+[0;32mI (3734144) WebSocketClient: ❌ WebSocket错误[0m
+[0;32mI (3734148) websocket_client: Reconnect after 10000 ms[0m
+[0;32mI (3734153) WebSocketClient: 🔌 WebSocket已断开[0m
+[0;32mI (3734158) DDL: WS disconnected[0m
+[0;33mW (3734161) WebSocketClient: WebSocket客户端已存在[0m
+[1;31mE (3754168) esp-tls: [sock=54] select() timeout[0m
+[1;31mE (3754168) transport_base: Failed to open a new connection: 32774[0m
+[1;31mE (3754168) transport_ws: Error connecting to host 192.168.49.4:8888[0m
+[1;31mE (3754173) websocket_client: esp_transport_connect() failed with -1, transport_error=ESP_ERR_ESP_TLS_CONNECTION_TIMEOUT, tls_error_code=0, tls_flags=0, esp_ws_handshake_status_code=101, errno=119[0m
+[0;32mI (3754190) WebSocketClient: ❌ WebSocket错误[0m
+[0;32mI (3754194) websocket_client: Reconnect after 10000 ms[0m
+[0;32mI (3754199) WebSocketClient: 🔌 WebSocket已断开[0m
+[0;32mI (3754204) DDL: WS disconnected[0m
+[0;33mW (3754207) WebSocketClient: WebSocket客户端已存在[0m
+[1;31mE (3774214) esp-tls: [sock=54] select() timeout[0m
+[1;31mE (3774214) transport_base: Failed to open a new connection: 32774[0m
+[1;31mE (3774214) transport_ws: Error connecting to host 192.168.49.4:8888[0m
+[1;31mE (3774219) websocket_client: esp_transport_connect() failed with -1, transport_error=ESP_ERR_ESP_TLS_CONNECTION_TIMEOUT, tls_error_code=0, tls_flags=0, esp_ws_handshake_status_code=101, errno=119[0m
+[0;32mI (3774236) WebSocketClient: ❌ WebSocket错误[0m
+[0;32mI (3774240) websocket_client: Reconnect after 10000 ms[0m
+[0;32mI (3774245) WebSocketClient: 🔌 WebSocket已断开[0m
+[0;32mI (3774250) DDL: WS disconnected[0m
+[0;33mW (3774253) WebSocketClient: WebSocket客户端已存在[0m
+[1;31mE (3794260) esp-tls: [sock=54] select() timeout[0m
+[1;31mE (3794260) transport_base: Failed to open a new connection: 32774[0m
+[1;31mE (3794260) transport_ws: Error connecting to host 192.168.49.4:8888[0m
+[1;31mE (3794265) websocket_client: esp_transport_connect() failed with -1, transport_error=ESP_ERR_ESP_TLS_CONNECTION_TIMEOUT, tls_error_code=0, tls_flags=0, esp_ws_handshake_status_code=101, errno=119[0m
+[0;32mI (3794282) WebSocketClient: ❌ WebSocket错误[0m
+[0;32mI (3794286) websocket_client: Reconnect after 10000 ms[0m
+[0;32mI (3794291) WebSocketClient: 🔌 WebSocket已断开[0m
+[0;32mI (3794296) DDL: WS disconnected[0m
+[0;33mW (3794299) WebSocketClient: WebSocket客户端已存在[0m
+[1;31mE (3814306) esp-tls: [sock=54] select() timeout[0m
+[1;31mE (3814306) transport_base: Failed to open a new connection: 32774[0m
+[1;31mE (3814306) transport_ws: Error connecting to host 192.168.49.4:8888[0m
+[1;31mE (3814311) websocket_client: esp_transport_connect() failed with -1, transport_error=ESP_ERR_ESP_TLS_CONNECTION_TIMEOUT, tls_error_code=0, tls_flags=0, esp_ws_handshake_status_code=101, errno=119[0m
+[0;32mI (3814328) WebSocketClient: ❌ WebSocket错误[0m
+[0;32mI (3814332) websocket_client: Reconnect after 10000 ms[0m
+[0;32mI (3814337) WebSocketClient: 🔌 WebSocket已断开[0m
+[0;32mI (3814342) DDL: WS disconnected[0m
+[0;33mW (3814345) WebSocketClient: WebSocket客户端已存在[0m
+[1;31mE (3834352) esp-tls: [sock=54] select() timeout[0m
+[1;31mE (3834352) transport_base: Failed to open a new connection: 32774[0m
+[1;31mE (3834352) transport_ws: Error connecting to host 192.168.49.4:8888[0m
+[1;31mE (3834357) websocket_client: esp_transport_connect() failed with -1, transport_error=ESP_ERR_ESP_TLS_CONNECTION_TIMEOUT, tls_error_code=0, tls_flags=0, esp_ws_handshake_status_code=101, errno=119[0m
+[0;32mI (3834374) WebSocketClient: ❌ WebSocket错误[0m
+[0;32mI (3834378) websocket_client: Reconnect after 10000 ms[0m
+[0;32mI (3834383) WebSocketClient: 🔌 WebSocket已断开[0m
+[0;32mI (3834388) DDL: WS disconnected[0m
+[0;33mW (3834391) WebSocketClient: WebSocket客户端已存在[0m
+[1;31mE (3854398) esp-tls: [sock=54] select() timeout[0m
+[1;31mE (3854398) transport_base: Failed to open a new connection: 32774[0m
+[1;31mE (3854398) transport_ws: Error connecting to host 192.168.49.4:8888[0m
+[1;31mE (3854403) websocket_client: esp_transport_connect() failed with -1, transport_error=ESP_ERR_ESP_TLS_CONNECTION_TIMEOUT, tls_error_code=0, tls_flags=0, esp_ws_handshake_status_code=101, errno=119[0m
+[0;32mI (3854420) WebSocketClient: ❌ WebSocket错误[0m
+[0;32mI (3854424) websocket_client: Reconnect after 10000 ms[0m
+[0;32mI (3854429) WebSocketClient: 🔌 WebSocket已断开[0m
+[0;32mI (3854434) DDL: WS disconnected[0m
+[0;33mW (3854437) WebSocketClient: WebSocket客户端已存在[0m
+[1;31mE (3874444) esp-tls: [sock=54] select() timeout[0m
+[1;31mE (3874444) transport_base: Failed to open a new connection: 32774[0m
+[1;31mE (3874444) transport_ws: Error connecting to host 192.168.49.4:8888[0m
+[1;31mE (3874449) websocket_client: esp_transport_connect() failed with -1, transport_error=ESP_ERR_ESP_TLS_CONNECTION_TIMEOUT, tls_error_code=0, tls_flags=0, esp_ws_handshake_status_code=101, errno=119[0m
+[0;32mI (3874466) WebSocketClient: ❌ WebSocket错误[0m
+[0;32mI (3874470) websocket_client: Reconnect after 10000 ms[0m
+[0;32mI (3874475) WebSocketClient: 🔌 WebSocket已断开[0m
+[0;32mI (3874480) DDL: WS disconnected[0m
+[0;33mW (3874483) WebSocketClient: WebSocket客户端已存在[0m
+[1;31mE (3894490) esp-tls: [sock=54] select() timeout[0m
+[1;31mE (3894490) transport_base: Failed to open a new connection: 32774[0m
+[1;31mE (3894490) transport_ws: Error connecting to host 192.168.49.4:8888[0m
+[1;31mE (3894495) websocket_client: esp_transport_connect() failed with -1, transport_error=ESP_ERR_ESP_TLS_CONNECTION_TIMEOUT, tls_error_code=0, tls_flags=0, esp_ws_handshake_status_code=101, errno=119[0m
+[0;32mI (3894512) WebSocketClient: ❌ WebSocket错误[0m
+[0;32mI (3894516) websocket_client: Reconnect after 10000 ms[0m
+[0;32mI (3894521) WebSocketClient: 🔌 WebSocket已断开[0m
+[0;32mI (3894526) DDL: WS disconnected[0m
+[0;33mW (3894529) WebSocketClient: WebSocket客户端已存在[0m
+[1;31mE (3914536) esp-tls: [sock=54] select() timeout[0m
+[1;31mE (3914536) transport_base: Failed to open a new connection: 32774[0m
+[1;31mE (3914536) transport_ws: Error connecting to host 192.168.49.4:8888[0m
+[1;31mE (3914541) websocket_client: esp_transport_connect() failed with -1, transport_error=ESP_ERR_ESP_TLS_CONNECTION_TIMEOUT, tls_error_code=0, tls_flags=0, esp_ws_handshake_status_code=101, errno=119[0m
+[0;32mI (3914558) WebSocketClient: ❌ WebSocket错误[0m
+[0;32mI (3914562) websocket_client: Reconnect after 10000 ms[0m
+[0;32mI (3914567) WebSocketClient: 🔌 WebSocket已断开[0m
+[0;32mI (3914572) DDL: WS disconnected[0m
+[0;33mW (3914575) WebSocketClient: WebSocket客户端已存在[0m
+[1;31mE (3934582) esp-tls: [sock=54] select() timeout[0m
+[1;31mE (3934582) transport_base: Failed to open a new connection: 32774[0m
+[1;31mE (3934582) transport_ws: Error connecting to host 192.168.49.4:8888[0m
+[1;31mE (3934587) websocket_client: esp_transport_connect() failed with -1, transport_error=ESP_ERR_ESP_TLS_CONNECTION_TIMEOUT, tls_error_code=0, tls_flags=0, esp_ws_handshake_status_code=101, errno=119[0m
+[0;32mI (3934604) WebSocketClient: ❌ WebSocket错误[0m
+[0;32mI (3934608) websocket_client: Reconnect after 10000 ms[0m
+[0;32mI (3934613) WebSocketClient: 🔌 WebSocket已断开[0m
+[0;32mI (3934618) DDL: WS disconnected[0m
+[0;33mW (3934621) WebSocketClient: WebSocket客户端已存在[0m
+[1;31mE (3954628) esp-tls: [sock=54] select() timeout[0m
+[1;31mE (3954628) transport_base: Failed to open a new connection: 32774[0m
+[1;31mE (3954628) transport_ws: Error connecting to host 192.168.49.4:8888[0m
+[1;31mE (3954633) websocket_client: esp_transport_connect() failed with -1, transport_error=ESP_ERR_ESP_TLS_CONNECTION_TIMEOUT, tls_error_code=0, tls_flags=0, esp_ws_handshake_status_code=101, errno=119[0m
+[0;32mI (3954650) WebSocketClient: ❌ WebSocket错误[0m
+[0;32mI (3954654) websocket_client: Reconnect after 10000 ms[0m
+[0;32mI (3954659) WebSocketClient: 🔌 WebSocket已断开[0m
+[0;32mI (3954664) DDL: WS disconnected[0m
+[0;33mW (3954667) WebSocketClient: WebSocket客户端已存在[0m
+[1;31mE (3974674) esp-tls: [sock=54] select() timeout[0m
+[1;31mE (3974674) transport_base: Failed to open a new connection: 32774[0m
+[1;31mE (3974674) transport_ws: Error connecting to host 192.168.49.4:8888[0m
+[1;31mE (3974679) websocket_client: esp_transport_connect() failed with -1, transport_error=ESP_ERR_ESP_TLS_CONNECTION_TIMEOUT, tls_error_code=0, tls_flags=0, esp_ws_handshake_status_code=101, errno=119[0m
+[0;32mI (3974696) WebSocketClient: ❌ WebSocket错误[0m
+[0;32mI (3974700) websocket_client: Reconnect after 10000 ms[0m
+[0;32mI (3974705) WebSocketClient: 🔌 WebSocket已断开[0m
+[0;32mI (3974710) DDL: WS disconnected[0m
+[0;33mW (3974713) WebSocketClient: WebSocket客户端已存在[0m
+[1;31mE (3994720) esp-tls: [sock=54] select() timeout[0m
+[1;31mE (3994720) transport_base: Failed to open a new connection: 32774[0m
+[1;31mE (3994720) transport_ws: Error connecting to host 192.168.49.4:8888[0m
+[1;31mE (3994725) websocket_client: esp_transport_connect() failed with -1, transport_error=ESP_ERR_ESP_TLS_CONNECTION_TIMEOUT, tls_error_code=0, tls_flags=0, esp_ws_handshake_status_code=101, errno=119[0m
+[0;32mI (3994742) WebSocketClient: ❌ WebSocket错误[0m
+[0;32mI (3994746) websocket_client: Reconnect after 10000 ms[0m
+[0;32mI (3994751) WebSocketClient: 🔌 WebSocket已断开[0m
+[0;32mI (3994756) DDL: WS disconnected[0m
+[0;33mW (3994759) WebSocketClient: WebSocket客户端已存在[0m
+[1;31mE (4014766) esp-tls: [sock=54] select() timeout[0m
+[1;31mE (4014766) transport_base: Failed to open a new connection: 32774[0m
+[1;31mE (4014766) transport_ws: Error connecting to host 192.168.49.4:8888[0m
+[1;31mE (4014771) websocket_client: esp_transport_connect() failed with -1, transport_error=ESP_ERR_ESP_TLS_CONNECTION_TIMEOUT, tls_error_code=0, tls_flags=0, esp_ws_handshake_status_code=101, errno=119[0m
+[0;32mI (4014788) WebSocketClient: ❌ WebSocket错误[0m
+[0;32mI (4014792) websocket_client: Reconnect after 10000 ms[0m
+[0;32mI (4014797) WebSocketClient: 🔌 WebSocket已断开[0m
+[0;32mI (4014802) DDL: WS disconnected[0m
+[0;33mW (4014805) WebSocketClient: WebSocket客户端已存在[0m
+[1;31mE (4034812) esp-tls: [sock=54] select() timeout[0m
+[1;31mE (4034812) transport_base: Failed to open a new connection: 32774[0m
+[1;31mE (4034812) transport_ws: Error connecting to host 192.168.49.4:8888[0m
+[1;31mE (4034817) websocket_client: esp_transport_connect() failed with -1, transport_error=ESP_ERR_ESP_TLS_CONNECTION_TIMEOUT, tls_error_code=0, tls_flags=0, esp_ws_handshake_status_code=101, errno=119[0m
+[0;32mI (4034834) WebSocketClient: ❌ WebSocket错误[0m
+[0;32mI (4034838) websocket_client: Reconnect after 10000 ms[0m
+[0;32mI (4034843) WebSocketClient: 🔌 WebSocket已断开[0m
+[0;32mI (4034848) DDL: WS disconnected[0m
+[0;33mW (4034851) WebSocketClient: WebSocket客户端已存在[0m
+[1;31mE (4054858) esp-tls: [sock=54] select() timeout[0m
+[1;31mE (4054858) transport_base: Failed to open a new connection: 32774[0m
+[1;31mE (4054858) transport_ws: Error connecting to host 192.168.49.4:8888[0m
+[1;31mE (4054863) websocket_client: esp_transport_connect() failed with -1, transport_error=ESP_ERR_ESP_TLS_CONNECTION_TIMEOUT, tls_error_code=0, tls_flags=0, esp_ws_handshake_status_code=101, errno=119[0m
+[0;32mI (4054880) WebSocketClient: ❌ WebSocket错误[0m
+[0;32mI (4054884) websocket_client: Reconnect after 10000 ms[0m
+[0;32mI (4054889) WebSocketClient: 🔌 WebSocket已断开[0m
+[0;32mI (4054894) DDL: WS disconnected[0m
+[0;33mW (4054897) WebSocketClient: WebSocket客户端已存在[0m
+[1;31mE (4074904) esp-tls: [sock=54] select() timeout[0m
+[1;31mE (4074904) transport_base: Failed to open a new connection: 32774[0m
+[1;31mE (4074904) transport_ws: Error connecting to host 192.168.49.4:8888[0m
+[1;31mE (4074909) websocket_client: esp_transport_connect() failed with -1, transport_error=ESP_ERR_ESP_TLS_CONNECTION_TIMEOUT, tls_error_code=0, tls_flags=0, esp_ws_handshake_status_code=101, errno=119[0m
+[0;32mI (4074926) WebSocketClient: ❌ WebSocket错误[0m
+[0;32mI (4074931) websocket_client: Reconnect after 10000 ms[0m
+[0;32mI (4074935) WebSocketClient: 🔌 WebSocket已断开[0m
+[0;32mI (4074940) DDL: WS disconnected[0m
+[0;33mW (4074943) WebSocketClient: WebSocket客户端已存在[0m
+[1;31mE (4094950) esp-tls: [sock=54] select() timeout[0m
+[1;31mE (4094950) transport_base: Failed to open a new connection: 32774[0m
+[1;31mE (4094950) transport_ws: Error connecting to host 192.168.49.4:8888[0m
+[1;31mE (4094955) websocket_client: esp_transport_connect() failed with -1, transport_error=ESP_ERR_ESP_TLS_CONNECTION_TIMEOUT, tls_error_code=0, tls_flags=0, esp_ws_handshake_status_code=101, errno=119[0m
+[0;32mI (4094972) WebSocketClient: ❌ WebSocket错误[0m
+[0;32mI (4094976) websocket_client: Reconnect after 10000 ms[0m
+[0;32mI (4094981) WebSocketClient: 🔌 WebSocket已断开[0m
+[0;32mI (4094986) DDL: WS disconnected[0m
+[0;33mW (4094989) WebSocketClient: WebSocket客户端已存在[0m
+[1;31mE (4114996) esp-tls: [sock=54] select() timeout[0m
+[1;31mE (4114996) transport_base: Failed to open a new connection: 32774[0m
+[1;31mE (4114996) transport_ws: Error connecting to host 192.168.49.4:8888[0m
+[1;31mE (4115001) websocket_client: esp_transport_connect() failed with -1, transport_error=ESP_ERR_ESP_TLS_CONNECTION_TIMEOUT, tls_error_code=0, tls_flags=0, esp_ws_handshake_status_code=101, errno=119[0m
+[0;32mI (4115018) WebSocketClient: ❌ WebSocket错误[0m
+[0;32mI (4115023) websocket_client: Reconnect after 10000 ms[0m
+[0;32mI (4115027) WebSocketClient: 🔌 WebSocket已断开[0m
+[0;32mI (4115032) DDL: WS disconnected[0m
+[0;33mW (4115035) WebSocketClient: WebSocket客户端已存在[0m
+[1;31mE (4135042) esp-tls: [sock=54] select() timeout[0m
+[1;31mE (4135042) transport_base: Failed to open a new connection: 32774[0m
+[1;31mE (4135042) transport_ws: Error connecting to host 192.168.49.4:8888[0m
+[1;31mE (4135047) websocket_client: esp_transport_connect() failed with -1, transport_error=ESP_ERR_ESP_TLS_CONNECTION_TIMEOUT, tls_error_code=0, tls_flags=0, esp_ws_handshake_status_code=101, errno=119[0m
+[0;32mI (4135064) WebSocketClient: ❌ WebSocket错误[0m
+[0;32mI (4135068) websocket_client: Reconnect after 10000 ms[0m
+[0;32mI (4135073) WebSocketClient: 🔌 WebSocket已断开[0m
+[0;32mI (4135078) DDL: WS disconnected[0m
+[0;33mW (4135081) WebSocketClient: WebSocket客户端已存在[0m
+[1;31mE (4155088) esp-tls: [sock=54] select() timeout[0m
+[1;31mE (4155088) transport_base: Failed to open a new connection: 32774[0m
+[1;31mE (4155088) transport_ws: Error connecting to host 192.168.49.4:8888[0m
+[1;31mE (4155093) websocket_client: esp_transport_connect() failed with -1, transport_error=ESP_ERR_ESP_TLS_CONNECTION_TIMEOUT, tls_error_code=0, tls_flags=0, esp_ws_handshake_status_code=101, errno=119[0m
+[0;32mI (4155110) WebSocketClient: ❌ WebSocket错误[0m
+[0;32mI (4155114) websocket_client: Reconnect after 10000 ms[0m
+[0;32mI (4155119) WebSocketClient: 🔌 WebSocket已断开[0m
+[0;32mI (4155124) DDL: WS disconnected[0m
+[0;33mW (4155127) WebSocketClient: WebSocket客户端已存在[0m
+[1;31mE (4175134) esp-tls: [sock=54] select() timeout[0m
+[1;31mE (4175134) transport_base: Failed to open a new connection: 32774[0m
+[1;31mE (4175134) transport_ws: Error connecting to host 192.168.49.4:8888[0m
+[1;31mE (4175139) websocket_client: esp_transport_connect() failed with -1, transport_error=ESP_ERR_ESP_TLS_CONNECTION_TIMEOUT, tls_error_code=0, tls_flags=0, esp_ws_handshake_status_code=101, errno=119[0m
+[0;32mI (4175156) WebSocketClient: ❌ WebSocket错误[0m
+[0;32mI (4175160) websocket_client: Reconnect after 10000 ms[0m
+[0;32mI (4175165) WebSocketClient: 🔌 WebSocket已断开[0m
+[0;32mI (4175170) DDL: WS disconnected[0m
+[0;33mW (4175173) WebSocketClient: WebSocket客户端已存在[0m
+[1;31mE (4195180) esp-tls: [sock=54] select() timeout[0m
+[1;31mE (4195180) transport_base: Failed to open a new connection: 32774[0m
+[1;31mE (4195180) transport_ws: Error connecting to host 192.168.49.4:8888[0m
+[1;31mE (4195185) websocket_client: esp_transport_connect() failed with -1, transport_error=ESP_ERR_ESP_TLS_CONNECTION_TIMEOUT, tls_error_code=0, tls_flags=0, esp_ws_handshake_status_code=101, errno=119[0m
+[0;32mI (4195202) WebSocketClient: ❌ WebSocket错误[0m
+[0;32mI (4195206) websocket_client: Reconnect after 10000 ms[0m
+[0;32mI (4195211) WebSocketClient: 🔌 WebSocket已断开[0m
+[0;32mI (4195216) DDL: WS disconnected[0m
+[0;33mW (4195219) WebSocketClient: WebSocket客户端已存在[0m
+[1;31mE (4215226) esp-tls: [sock=54] select() timeout[0m
+[1;31mE (4215226) transport_base: Failed to open a new connection: 32774[0m
+[1;31mE (4215226) transport_ws: Error connecting to host 192.168.49.4:8888[0m
+[1;31mE (4215231) websocket_client: esp_transport_connect() failed with -1, transport_error=ESP_ERR_ESP_TLS_CONNECTION_TIMEOUT, tls_error_code=0, tls_flags=0, esp_ws_handshake_status_code=101, errno=119[0m
+[0;32mI (4215248) WebSocketClient: ❌ WebSocket错误[0m
+[0;32mI (4215252) websocket_client: Reconnect after 10000 ms[0m
+[0;32mI (4215257) WebSocketClient: 🔌 WebSocket已断开[0m
+[0;32mI (4215262) DDL: WS disconnected[0m
+[0;33mW (4215265) WebSocketClient: WebSocket客户端已存在[0m
+[1;31mE (4235272) esp-tls: [sock=54] select() timeout[0m
+[1;31mE (4235272) transport_base: Failed to open a new connection: 32774[0m
+[1;31mE (4235272) transport_ws: Error connecting to host 192.168.49.4:8888[0m
+[1;31mE (4235277) websocket_client: esp_transport_connect() failed with -1, transport_error=ESP_ERR_ESP_TLS_CONNECTION_TIMEOUT, tls_error_code=0, tls_flags=0, esp_ws_handshake_status_code=101, errno=119[0m
+[0;32mI (4235294) WebSocketClient: ❌ WebSocket错误[0m
+[0;32mI (4235298) websocket_client: Reconnect after 10000 ms[0m
+[0;32mI (4235303) WebSocketClient: 🔌 WebSocket已断开[0m
+[0;32mI (4235308) DDL: WS disconnected[0m
+[0;33mW (4235311) WebSocketClient: WebSocket客户端已存在[0m
+[1;31mE (4255318) esp-tls: [sock=54] select() timeout[0m
+[1;31mE (4255318) transport_base: Failed to open a new connection: 32774[0m
+[1;31mE (4255318) transport_ws: Error connecting to host 192.168.49.4:8888[0m
+[1;31mE (4255323) websocket_client: esp_transport_connect() failed with -1, transport_error=ESP_ERR_ESP_TLS_CONNECTION_TIMEOUT, tls_error_code=0, tls_flags=0, esp_ws_handshake_status_code=101, errno=119[0m
+[0;32mI (4255340) WebSocketClient: ❌ WebSocket错误[0m
+[0;32mI (4255344) websocket_client: Reconnect after 10000 ms[0m
+[0;32mI (4255349) WebSocketClient: 🔌 WebSocket已断开[0m
+[0;32mI (4255354) DDL: WS disconnected[0m
+[0;33mW (4255357) WebSocketClient: WebSocket客户端已存在[0m
+[1;31mE (4275365) esp-tls: [sock=54] select() timeout[0m
+[1;31mE (4275365) transport_base: Failed to open a new connection: 32774[0m
+[1;31mE (4275365) transport_ws: Error connecting to host 192.168.49.4:8888[0m
+[1;31mE (4275370) websocket_client: esp_transport_connect() failed with -1, transport_error=ESP_ERR_ESP_TLS_CONNECTION_TIMEOUT, tls_error_code=0, tls_flags=0, esp_ws_handshake_status_code=101, errno=119[0m
+[0;32mI (4275387) WebSocketClient: ❌ WebSocket错误[0m
+[0;32mI (4275391) websocket_client: Reconnect after 10000 ms[0m
+[0;32mI (4275396) WebSocketClient: 🔌 WebSocket已断开[0m
+[0;32mI (4275401) DDL: WS disconnected[0m
+[0;33mW (4275404) WebSocketClient: WebSocket客户端已存在[0m
+[1;31mE (4295412) esp-tls: [sock=54] select() timeout[0m
+[1;31mE (4295412) transport_base: Failed to open a new connection: 32774[0m
+[1;31mE (4295412) transport_ws: Error connecting to host 192.168.49.4:8888[0m
+[1;31mE (4295417) websocket_client: esp_transport_connect() failed with -1, transport_error=ESP_ERR_ESP_TLS_CONNECTION_TIMEOUT, tls_error_code=0, tls_flags=0, esp_ws_handshake_status_code=101, errno=119[0m
+[0;32mI (4295434) WebSocketClient: ❌ WebSocket错误[0m
+[0;32mI (4295438) websocket_client: Reconnect after 10000 ms[0m
+[0;32mI (4295443) WebSocketClient: 🔌 WebSocket已断开[0m
+[0;32mI (4295448) DDL: WS disconnected[0m
+[0;33mW (4295451) WebSocketClient: WebSocket客户端已存在[0m
+[1;31mE (4315459) esp-tls: [sock=54] select() timeout[0m
+[1;31mE (4315459) transport_base: Failed to open a new connection: 32774[0m
+[1;31mE (4315459) transport_ws: Error connecting to host 192.168.49.4:8888[0m
+[1;31mE (4315464) websocket_client: esp_transport_connect() failed with -1, transport_error=ESP_ERR_ESP_TLS_CONNECTION_TIMEOUT, tls_error_code=0, tls_flags=0, esp_ws_handshake_status_code=101, errno=119[0m
+[0;32mI (4315481) WebSocketClient: ❌ WebSocket错误[0m
+[0;32mI (4315485) websocket_client: Reconnect after 10000 ms[0m
+[0;32mI (4315490) WebSocketClient: 🔌 WebSocket已断开[0m
+[0;32mI (4315495) DDL: WS disconnected[0m
+[0;33mW (4315498) WebSocketClient: WebSocket客户端已存在[0m
+[1;31mE (4335506) esp-tls: [sock=54] select() timeout[0m
+[1;31mE (4335506) transport_base: Failed to open a new connection: 32774[0m
+[1;31mE (4335506) transport_ws: Error connecting to host 192.168.49.4:8888[0m
+[1;31mE (4335511) websocket_client: esp_transport_connect() failed with -1, transport_error=ESP_ERR_ESP_TLS_CONNECTION_TIMEOUT, tls_error_code=0, tls_flags=0, esp_ws_handshake_status_code=101, errno=119[0m
+[0;32mI (4335528) WebSocketClient: ❌ WebSocket错误[0m
+[0;32mI (4335532) websocket_client: Reconnect after 10000 ms[0m
+[0;32mI (4335537) WebSocketClient: 🔌 WebSocket已断开[0m
+[0;32mI (4335542) DDL: WS disconnected[0m
+[0;33mW (4335545) WebSocketClient: WebSocket客户端已存在[0m
+[1;31mE (4355553) esp-tls: [sock=54] select() timeout[0m
+[1;31mE (4355553) transport_base: Failed to open a new connection: 32774[0m
+[1;31mE (4355553) transport_ws: Error connecting to host 192.168.49.4:8888[0m
+[1;31mE (4355558) websocket_client: esp_transport_connect() failed with -1, transport_error=ESP_ERR_ESP_TLS_CONNECTION_TIMEOUT, tls_error_code=0, tls_flags=0, esp_ws_handshake_status_code=101, errno=119[0m
+[0;32mI (4355575) WebSocketClient: ❌ WebSocket错误[0m
+[0;32mI (4355579) websocket_client: Reconnect after 10000 ms[0m
+[0;32mI (4355584) WebSocketClient: 🔌 WebSocket已断开[0m
+[0;32mI (4355589) DDL: WS disconnected[0m
+[0;33mW (4355592) WebSocketClient: WebSocket客户端已存在[0m
+[1;31mE (4375600) esp-tls: [sock=54] select() timeout[0m
+[1;31mE (4375600) transport_base: Failed to open a new connection: 32774[0m
+[1;31mE (4375600) transport_ws: Error connecting to host 192.168.49.4:8888[0m
+[1;31mE (4375605) websocket_client: esp_transport_connect() failed with -1, transport_error=ESP_ERR_ESP_TLS_CONNECTION_TIMEOUT, tls_error_code=0, tls_flags=0, esp_ws_handshake_status_code=101, errno=119[0m
+[0;32mI (4375622) WebSocketClient: ❌ WebSocket错误[0m
+[0;32mI (4375626) websocket_client: Reconnect after 10000 ms[0m
+[0;32mI (4375631) WebSocketClient: 🔌 WebSocket已断开[0m
+[0;32mI (4375636) DDL: WS disconnected[0m
+[0;33mW (4375639) WebSocketClient: WebSocket客户端已存在[0m
+[1;31mE (4395647) esp-tls: [sock=54] select() timeout[0m
+[1;31mE (4395647) transport_base: Failed to open a new connection: 32774[0m
+[1;31mE (4395647) transport_ws: Error connecting to host 192.168.49.4:8888[0m
+[1;31mE (4395652) websocket_client: esp_transport_connect() failed with -1, transport_error=ESP_ERR_ESP_TLS_CONNECTION_TIMEOUT, tls_error_code=0, tls_flags=0, esp_ws_handshake_status_code=101, errno=119[0m
+[0;32mI (4395669) WebSocketClient: ❌ WebSocket错误[0m
+[0;32mI (4395673) websocket_client: Reconnect after 10000 ms[0m
+[0;32mI (4395678) WebSocketClient: 🔌 WebSocket已断开[0m
+[0;32mI (4395683) DDL: WS disconnected[0m
+[0;33mW (4395686) WebSocketClient: WebSocket客户端已存在[0m
+[1;31mE (4415694) esp-tls: [sock=54] select() timeout[0m
+[1;31mE (4415694) transport_base: Failed to open a new connection: 32774[0m
+[1;31mE (4415694) transport_ws: Error connecting to host 192.168.49.4:8888[0m
+[1;31mE (4415699) websocket_client: esp_transport_connect() failed with -1, transport_error=ESP_ERR_ESP_TLS_CONNECTION_TIMEOUT, tls_error_code=0, tls_flags=0, esp_ws_handshake_status_code=101, errno=119[0m
+[0;32mI (4415716) WebSocketClient: ❌ WebSocket错误[0m
+[0;32mI (4415720) websocket_client: Reconnect after 10000 ms[0m
+[0;32mI (4415725) WebSocketClient: 🔌 WebSocket已断开[0m
+[0;32mI (4415730) DDL: WS disconnected[0m
+[0;33mW (4415733) WebSocketClient: WebSocket客户端已存在[0m
+[1;31mE (4435740) esp-tls: [sock=54] select() timeout[0m
+[1;31mE (4435740) transport_base: Failed to open a new connection: 32774[0m
+[1;31mE (4435740) transport_ws: Error connecting to host 192.168.49.4:8888[0m
+[1;31mE (4435745) websocket_client: esp_transport_connect() failed with -1, transport_error=ESP_ERR_ESP_TLS_CONNECTION_TIMEOUT, tls_error_code=0, tls_flags=0, esp_ws_handshake_status_code=101, errno=119[0m
+[0;32mI (4435762) WebSocketClient: ❌ WebSocket错误[0m
+[0;32mI (4435766) websocket_client: Reconnect after 10000 ms[0m
+[0;32mI (4435771) WebSocketClient: 🔌 WebSocket已断开[0m
+[0;32mI (4435776) DDL: WS disconnected[0m
+[0;33mW (4435779) WebSocketClient: WebSocket客户端已存在[0m
+[1;31mE (4455786) esp-tls: [sock=54] select() timeout[0m
+[1;31mE (4455786) transport_base: Failed to open a new connection: 32774[0m
+[1;31mE (4455786) transport_ws: Error connecting to host 192.168.49.4:8888[0m
+[1;31mE (4455791) websocket_client: esp_transport_connect() failed with -1, transport_error=ESP_ERR_ESP_TLS_CONNECTION_TIMEOUT, tls_error_code=0, tls_flags=0, esp_ws_handshake_status_code=101, errno=119[0m
+[0;32mI (4455808) WebSocketClient: ❌ WebSocket错误[0m
+[0;32mI (4455812) websocket_client: Reconnect after 10000 ms[0m
+[0;32mI (4455817) WebSocketClient: 🔌 WebSocket已断开[0m
+[0;32mI (4455822) DDL: WS disconnected[0m
+[0;33mW (4455825) WebSocketClient: WebSocket客户端已存在[0m
+[1;31mE (4475832) esp-tls: [sock=54] select() timeout[0m
+[1;31mE (4475832) transport_base: Failed to open a new connection: 32774[0m
+[1;31mE (4475832) transport_ws: Error connecting to host 192.168.49.4:8888[0m
+[1;31mE (4475837) websocket_client: esp_transport_connect() failed with -1, transport_error=ESP_ERR_ESP_TLS_CONNECTION_TIMEOUT, tls_error_code=0, tls_flags=0, esp_ws_handshake_status_code=101, errno=119[0m
+[0;32mI (4475854) WebSocketClient: ❌ WebSocket错误[0m
+[0;32mI (4475858) websocket_client: Reconnect after 10000 ms[0m
+[0;32mI (4475863) WebSocketClient: 🔌 WebSocket已断开[0m
+[0;32mI (4475868) DDL: WS disconnected[0m
+[0;33mW (4475871) WebSocketClient: WebSocket客户端已存在[0m
+[1;31mE (4495878) esp-tls: [sock=54] select() timeout[0m
+[1;31mE (4495878) transport_base: Failed to open a new connection: 32774[0m
+[1;31mE (4495878) transport_ws: Error connecting to host 192.168.49.4:8888[0m
+[1;31mE (4495883) websocket_client: esp_transport_connect() failed with -1, transport_error=ESP_ERR_ESP_TLS_CONNECTION_TIMEOUT, tls_error_code=0, tls_flags=0, esp_ws_handshake_status_code=101, errno=119[0m
+[0;32mI (4495900) WebSocketClient: ❌ WebSocket错误[0m
+[0;32mI (4495904) websocket_client: Reconnect after 10000 ms[0m
+[0;32mI (4495909) WebSocketClient: 🔌 WebSocket已断开[0m
+[0;32mI (4495914) DDL: WS disconnected[0m
+[0;33mW (4495917) WebSocketClient: WebSocket客户端已存在[0m
+[1;31mE (4515925) esp-tls: [sock=54] select() timeout[0m
+[1;31mE (4515925) transport_base: Failed to open a new connection: 32774[0m
+[1;31mE (4515925) transport_ws: Error connecting to host 192.168.49.4:8888[0m
+[1;31mE (4515930) websocket_client: esp_transport_connect() failed with -1, transport_error=ESP_ERR_ESP_TLS_CONNECTION_TIMEOUT, tls_error_code=0, tls_flags=0, esp_ws_handshake_status_code=101, errno=119[0m
+[0;32mI (4515947) WebSocketClient: ❌ WebSocket错误[0m
+[0;32mI (4515951) websocket_client: Reconnect after 10000 ms[0m
+[0;32mI (4515956) WebSocketClient: 🔌 WebSocket已断开[0m
+[0;32mI (4515961) DDL: WS disconnected[0m
+[0;33mW (4515964) WebSocketClient: WebSocket客户端已存在[0m
+[1;31mE (4535972) esp-tls: [sock=54] select() timeout[0m
+[1;31mE (4535972) transport_base: Failed to open a new connection: 32774[0m
+[1;31mE (4535972) transport_ws: Error connecting to host 192.168.49.4:8888[0m
+[1;31mE (4535977) websocket_client: esp_transport_connect() failed with -1, transport_error=ESP_ERR_ESP_TLS_CONNECTION_TIMEOUT, tls_error_code=0, tls_flags=0, esp_ws_handshake_status_code=101, errno=119[0m
+[0;32mI (4535994) WebSocketClient: ❌ WebSocket错误[0m
+[0;32mI (4535998) websocket_client: Reconnect after 10000 ms[0m
+[0;32mI (4536003) WebSocketClient: 🔌 WebSocket已断开[0m
+[0;32mI (4536008) DDL: WS disconnected[0m
+[0;33mW (4536011) WebSocketClient: WebSocket客户端已存在[0m
+[1;31mE (4556019) esp-tls: [sock=54] select() timeout[0m
+[1;31mE (4556019) transport_base: Failed to open a new connection: 32774[0m
+[1;31mE (4556019) transport_ws: Error connecting to host 192.168.49.4:8888[0m
+[1;31mE (4556024) websocket_client: esp_transport_connect() failed with -1, transport_error=ESP_ERR_ESP_TLS_CONNECTION_TIMEOUT, tls_error_code=0, tls_flags=0, esp_ws_handshake_status_code=101, errno=119[0m
+[0;32mI (4556041) WebSocketClient: ❌ WebSocket错误[0m
+[0;32mI (4556045) websocket_client: Reconnect after 10000 ms[0m
+[0;32mI (4556050) WebSocketClient: 🔌 WebSocket已断开[0m
+[0;32mI (4556055) DDL: WS disconnected[0m
+[0;33mW (4556058) WebSocketClient: WebSocket客户端已存在[0m
+[1;31mE (4576065) esp-tls: [sock=54] select() timeout[0m
+[1;31mE (4576065) transport_base: Failed to open a new connection: 32774[0m
+[1;31mE (4576065) transport_ws: Error connecting to host 192.168.49.4:8888[0m
+[1;31mE (4576070) websocket_client: esp_transport_connect() failed with -1, transport_error=ESP_ERR_ESP_TLS_CONNECTION_TIMEOUT, tls_error_code=0, tls_flags=0, esp_ws_handshake_status_code=101, errno=119[0m
+[0;32mI (4576087) WebSocketClient: ❌ WebSocket错误[0m
+[0;32mI (4576091) websocket_client: Reconnect after 10000 ms[0m
+[0;32mI (4576096) WebSocketClient: 🔌 WebSocket已断开[0m
+[0;32mI (4576101) DDL: WS disconnected[0m
+[0;33mW (4576104) WebSocketClient: WebSocket客户端已存在[0m
+[1;31mE (4596111) esp-tls: [sock=54] select() timeout[0m
+[1;31mE (4596111) transport_base: Failed to open a new connection: 32774[0m
+[1;31mE (4596111) transport_ws: Error connecting to host 192.168.49.4:8888[0m
+[1;31mE (4596116) websocket_client: esp_transport_connect() failed with -1, transport_error=ESP_ERR_ESP_TLS_CONNECTION_TIMEOUT, tls_error_code=0, tls_flags=0, esp_ws_handshake_status_code=101, errno=119[0m
+[0;32mI (4596133) WebSocketClient: ❌ WebSocket错误[0m
+[0;32mI (4596137) websocket_client: Reconnect after 10000 ms[0m
+[0;32mI (4596142) WebSocketClient: 🔌 WebSocket已断开[0m
+[0;32mI (4596147) DDL: WS disconnected[0m
+[0;33mW (4596150) WebSocketClient: WebSocket客户端已存在[0m
+[1;31mE (4616157) esp-tls: [sock=54] select() timeout[0m
+[1;31mE (4616157) transport_base: Failed to open a new connection: 32774[0m
+[1;31mE (4616157) transport_ws: Error connecting to host 192.168.49.4:8888[0m
+[1;31mE (4616162) websocket_client: esp_transport_connect() failed with -1, transport_error=ESP_ERR_ESP_TLS_CONNECTION_TIMEOUT, tls_error_code=0, tls_flags=0, esp_ws_handshake_status_code=101, errno=119[0m
+[0;32mI (4616179) WebSocketClient: ❌ WebSocket错误[0m
+[0;32mI (4616183) websocket_client: Reconnect after 10000 ms[0m
+[0;32mI (4616188) WebSocketClient: 🔌 WebSocket已断开[0m
+[0;32mI (4616193) DDL: WS disconnected[0m
+[0;33mW (4616196) WebSocketClient: WebSocket客户端已存在[0m
+[1;31mE (4636203) esp-tls: [sock=54] select() timeout[0m
+[1;31mE (4636203) transport_base: Failed to open a new connection: 32774[0m
+[1;31mE (4636203) transport_ws: Error connecting to host 192.168.49.4:8888[0m
+[1;31mE (4636208) websocket_client: esp_transport_connect() failed with -1, transport_error=ESP_ERR_ESP_TLS_CONNECTION_TIMEOUT, tls_error_code=0, tls_flags=0, esp_ws_handshake_status_code=101, errno=119[0m
+[0;32mI (4636225) WebSocketClient: ❌ WebSocket错误[0m
+[0;32mI (4636229) websocket_client: Reconnect after 10000 ms[0m
+[0;32mI (4636234) WebSocketClient: 🔌 WebSocket已断开[0m
+[0;32mI (4636239) DDL: WS disconnected[0m
+[0;33mW (4636242) WebSocketClient: WebSocket客户端已存在[0m
+[1;31mE (4656249) esp-tls: [sock=54] select() timeout[0m
+[1;31mE (4656249) transport_base: Failed to open a new connection: 32774[0m
+[1;31mE (4656249) transport_ws: Error connecting to host 192.168.49.4:8888[0m
+[1;31mE (4656254) websocket_client: esp_transport_connect() failed with -1, transport_error=ESP_ERR_ESP_TLS_CONNECTION_TIMEOUT, tls_error_code=0, tls_flags=0, esp_ws_handshake_status_code=101, errno=119[0m
+[0;32mI (4656271) WebSocketClient: ❌ WebSocket错误[0m
+[0;32mI (4656275) websocket_client: Reconnect after 10000 ms[0m
+[0;32mI (4656280) WebSocketClient: 🔌 WebSocket已断开[0m
+[0;32mI (4656285) DDL: WS disconnected[0m
+[0;33mW (4656288) WebSocketClient: WebSocket客户端已存在[0m
+[1;31mE (4676295) esp-tls: [sock=54] select() timeout[0m
+[1;31mE (4676295) transport_base: Failed to open a new connection: 32774[0m
+[1;31mE (4676295) transport_ws: Error connecting to host 192.168.49.4:8888[0m
+[1;31mE (4676300) websocket_client: esp_transport_connect() failed with -1, transport_error=ESP_ERR_ESP_TLS_CONNECTION_TIMEOUT, tls_error_code=0, tls_flags=0, esp_ws_handshake_status_code=101, errno=119[0m
+[0;32mI (4676317) WebSocketClient: ❌ WebSocket错误[0m
+[0;32mI (4676321) websocket_client: Reconnect after 10000 ms[0m
+[0;32mI (4676326) WebSocketClient: 🔌 WebSocket已断开[0m
+[0;32mI (4676331) DDL: WS disconnected[0m
+[0;33mW (4676334) WebSocketClient: WebSocket客户端已存在[0m
+[1;31mE (4696342) esp-tls: [sock=54] select() timeout[0m
+[1;31mE (4696342) transport_base: Failed to open a new connection: 32774[0m
+[1;31mE (4696342) transport_ws: Error connecting to host 192.168.49.4:8888[0m
+[1;31mE (4696347) websocket_client: esp_transport_connect() failed with -1, transport_error=ESP_ERR_ESP_TLS_CONNECTION_TIMEOUT, tls_error_code=0, tls_flags=0, esp_ws_handshake_status_code=101, errno=119[0m
+[0;32mI (4696364) WebSocketClient: ❌ WebSocket错误[0m
+[0;32mI (4696368) websocket_client: Reconnect after 10000 ms[0m
+[0;32mI (4696373) WebSocketClient: 🔌 WebSocket已断开[0m
+[0;32mI (4696378) DDL: WS disconnected[0m
+[0;33mW (4696381) WebSocketClient: WebSocket客户端已存在[0m
+[1;31mE (4716388) esp-tls: [sock=54] select() timeout[0m
+[1;31mE (4716388) transport_base: Failed to open a new connection: 32774[0m
+[1;31mE (4716388) transport_ws: Error connecting to host 192.168.49.4:8888[0m
+[1;31mE (4716393) websocket_client: esp_transport_connect() failed with -1, transport_error=ESP_ERR_ESP_TLS_CONNECTION_TIMEOUT, tls_error_code=0, tls_flags=0, esp_ws_handshake_status_code=101, errno=119[0m
+[0;32mI (4716410) WebSocketClient: ❌ WebSocket错误[0m
+[0;32mI (4716414) websocket_client: Reconnect after 10000 ms[0m
+[0;32mI (4716419) WebSocketClient: 🔌 WebSocket已断开[0m
+[0;32mI (4716424) DDL: WS disconnected[0m
+[0;33mW (4716427) WebSocketClient: WebSocket客户端已存在[0m
+[1;31mE (4736435) esp-tls: [sock=54] select() timeout[0m
+[1;31mE (4736435) transport_base: Failed to open a new connection: 32774[0m
+[1;31mE (4736435) transport_ws: Error connecting to host 192.168.49.4:8888[0m
+[1;31mE (4736440) websocket_client: esp_transport_connect() failed with -1, transport_error=ESP_ERR_ESP_TLS_CONNECTION_TIMEOUT, tls_error_code=0, tls_flags=0, esp_ws_handshake_status_code=101, errno=119[0m
+[0;32mI (4736457) WebSocketClient: ❌ WebSocket错误[0m
+[0;32mI (4736461) websocket_client: Reconnect after 10000 ms[0m
+[0;32mI (4736466) WebSocketClient: 🔌 WebSocket已断开[0m
+[0;32mI (4736471) DDL: WS disconnected[0m
+[0;33mW (4736474) WebSocketClient: WebSocket客户端已存在[0m
+[1;31mE (4756482) esp-tls: [sock=54] select() timeout[0m
+[1;31mE (4756482) transport_base: Failed to open a new connection: 32774[0m
+[1;31mE (4756482) transport_ws: Error connecting to host 192.168.49.4:8888[0m
+[1;31mE (4756487) websocket_client: esp_transport_connect() failed with -1, transport_error=ESP_ERR_ESP_TLS_CONNECTION_TIMEOUT, tls_error_code=0, tls_flags=0, esp_ws_handshake_status_code=101, errno=119[0m
+[0;32mI (4756504) WebSocketClient: ❌ WebSocket错误[0m
+[0;32mI (4756508) websocket_client: Reconnect after 10000 ms[0m
+[0;32mI (4756513) WebSocketClient: 🔌 WebSocket已断开[0m
+[0;32mI (4756518) DDL: WS disconnected[0m
+[0;33mW (4756521) WebSocketClient: WebSocket客户端已存在[0m
+[1;31mE (4776529) esp-tls: [sock=54] select() timeout[0m
+[1;31mE (4776529) transport_base: Failed to open a new connection: 32774[0m
+[1;31mE (4776529) transport_ws: Error connecting to host 192.168.49.4:8888[0m
+[1;31mE (4776534) websocket_client: esp_transport_connect() failed with -1, transport_error=ESP_ERR_ESP_TLS_CONNECTION_TIMEOUT, tls_error_code=0, tls_flags=0, esp_ws_handshake_status_code=101, errno=119[0m
+[0;32mI (4776551) WebSocketClient: ❌ WebSocket错误[0m
+[0;32mI (4776555) websocket_client: Reconnect after 10000 ms[0m
+[0;32mI (4776560) WebSocketClient: 🔌 WebSocket已断开[0m
+[0;32mI (4776565) DDL: WS disconnected[0m
+[0;33mW (4776568) WebSocketClient: WebSocket客户端已存在[0m
+[1;31mE (4796576) esp-tls: [sock=54] select() timeout[0m
+[1;31mE (4796576) transport_base: Failed to open a new connection: 32774[0m
+[1;31mE (4796576) transport_ws: Error connecting to host 192.168.49.4:8888[0m
+[1;31mE (4796581) websocket_client: esp_transport_connect() failed with -1, transport_error=ESP_ERR_ESP_TLS_CONNECTION_TIMEOUT, tls_error_code=0, tls_flags=0, esp_ws_handshake_status_code=101, errno=119[0m
+[0;32mI (4796598) WebSocketClient: ❌ WebSocket错误[0m
+[0;32mI (4796602) websocket_client: Reconnect after 10000 ms[0m
+[0;32mI (4796607) WebSocketClient: 🔌 WebSocket已断开[0m
+[0;32mI (4796612) DDL: WS disconnected[0m
+[0;33mW (4796615) WebSocketClient: WebSocket客户端已存在[0m
+[1;31mE (4816623) esp-tls: [sock=54] select() timeout[0m
+[1;31mE (4816623) transport_base: Failed to open a new connection: 32774[0m
+[1;31mE (4816623) transport_ws: Error connecting to host 192.168.49.4:8888[0m
+[1;31mE (4816628) websocket_client: esp_transport_connect() failed with -1, transport_error=ESP_ERR_ESP_TLS_CONNECTION_TIMEOUT, tls_error_code=0, tls_flags=0, esp_ws_handshake_status_code=101, errno=119[0m
+[0;32mI (4816645) WebSocketClient: ❌ WebSocket错误[0m
+[0;32mI (4816649) websocket_client: Reconnect after 10000 ms[0m
+[0;32mI (4816654) WebSocketClient: 🔌 WebSocket已断开[0m
+[0;32mI (4816659) DDL: WS disconnected[0m
+[0;33mW (4816662) WebSocketClient: WebSocket客户端已存在[0m
+[1;31mE (4836670) esp-tls: [sock=54] select() timeout[0m
+[1;31mE (4836670) transport_base: Failed to open a new connection: 32774[0m
+[1;31mE (4836670) transport_ws: Error connecting to host 192.168.49.4:8888[0m
+[1;31mE (4836675) websocket_client: esp_transport_connect() failed with -1, transport_error=ESP_ERR_ESP_TLS_CONNECTION_TIMEOUT, tls_error_code=0, tls_flags=0, esp_ws_handshake_status_code=101, errno=119[0m
+[0;32mI (4836692) WebSocketClient: ❌ WebSocket错误[0m
+[0;32mI (4836696) websocket_client: Reconnect after 10000 ms[0m
+[0;32mI (4836701) WebSocketClient: 🔌 WebSocket已断开[0m
+[0;32mI (4836706) DDL: WS disconnected[0m
+[0;33mW (4836709) WebSocketClient: WebSocket客户端已存在[0m
+[1;31mE (4856717) esp-tls: [sock=54] select() timeout[0m
+[1;31mE (4856717) transport_base: Failed to open a new connection: 32774[0m
+[1;31mE (4856717) transport_ws: Error connecting to host 192.168.49.4:8888[0m
+[1;31mE (4856722) websocket_client: esp_transport_connect() failed with -1, transport_error=ESP_ERR_ESP_TLS_CONNECTION_TIMEOUT, tls_error_code=0, tls_flags=0, esp_ws_handshake_status_code=101, errno=119[0m
+[0;32mI (4856739) WebSocketClient: ❌ WebSocket错误[0m
+[0;32mI (4856743) websocket_client: Reconnect after 10000 ms[0m
+[0;32mI (4856748) WebSocketClient: 🔌 WebSocket已断开[0m
+[0;32mI (4856753) DDL: WS disconnected[0m
+[0;33mW (4856756) WebSocketClient: WebSocket客户端已存在[0m
+[1;31mE (4876763) esp-tls: [sock=54] select() timeout[0m
+[1;31mE (4876763) transport_base: Failed to open a new connection: 32774[0m
+[1;31mE (4876763) transport_ws: Error connecting to host 192.168.49.4:8888[0m
+[1;31mE (4876768) websocket_client: esp_transport_connect() failed with -1, transport_error=ESP_ERR_ESP_TLS_CONNECTION_TIMEOUT, tls_error_code=0, tls_flags=0, esp_ws_handshake_status_code=101, errno=119[0m
+[0;32mI (4876785) WebSocketClient: ❌ WebSocket错误[0m
+[0;32mI (4876789) websocket_client: Reconnect after 10000 ms[0m
+[0;32mI (4876794) WebSocketClient: 🔌 WebSocket已断开[0m
+[0;32mI (4876799) DDL: WS disconnected[0m
+[0;33mW (4876802) WebSocketClient: WebSocket客户端已存在[0m
+[1;31mE (4896809) esp-tls: [sock=54] select() timeout[0m
+[1;31mE (4896809) transport_base: Failed to open a new connection: 32774[0m
+[1;31mE (4896809) transport_ws: Error connecting to host 192.168.49.4:8888[0m
+[1;31mE (4896814) websocket_client: esp_transport_connect() failed with -1, transport_error=ESP_ERR_ESP_TLS_CONNECTION_TIMEOUT, tls_error_code=0, tls_flags=0, esp_ws_handshake_status_code=101, errno=119[0m
+[0;32mI (4896831) WebSocketClient: ❌ WebSocket错误[0m
+[0;32mI (4896835) websocket_client: Reconnect after 10000 ms[0m
+[0;32mI (4896840) WebSocketClient: 🔌 WebSocket已断开[0m
+[0;32mI (4896845) DDL: WS disconnected[0m
+[0;33mW (4896848) WebSocketClient: WebSocket客户端已存在[0m
+[1;31mE (4916855) esp-tls: [sock=54] select() timeout[0m
+[1;31mE (4916855) transport_base: Failed to open a new connection: 32774[0m
+[1;31mE (4916855) transport_ws: Error connecting to host 192.168.49.4:8888[0m
+[1;31mE (4916860) websocket_client: esp_transport_connect() failed with -1, transport_error=ESP_ERR_ESP_TLS_CONNECTION_TIMEOUT, tls_error_code=0, tls_flags=0, esp_ws_handshake_status_code=101, errno=119[0m
+[0;32mI (4916877) WebSocketClient: ❌ WebSocket错误[0m
+[0;32mI (4916881) websocket_client: Reconnect after 10000 ms[0m
+[0;32mI (4916886) WebSocketClient: 🔌 WebSocket已断开[0m
+[0;32mI (4916891) DDL: WS disconnected[0m
+[0;33mW (4916894) WebSocketClient: WebSocket客户端已存在[0m
+[0;32mI (4926926) WebSocketClient: 🔗 WebSocket已连接[0m
+[0;32mI (4926926) DDL: WS connected[0m
+[0;32mI (4926942) Protocol: Parsed sync: 5 events[0m
+[0;32mI (4927032) Protocol: Parsed sync: 5 events[0m
+[0;32mI (5170389) AudioManager: 开始录音...[0m
+[0;32mI (5173864) AudioManager: 停止录音，当前长度: 53120 样本 (3.32 秒)[0m
+[0;32mI (5180200) AudioManager: 开始流式音频播放[0m
+[0;32mI (5189617) AudioManager: 结束流式音频播放[0m
+[0;32mI (5189870) bsp_board: ✅ I2S音频输出已停止[0m
+[0;32mI (5189870) bsp_board: 音频播放完成，播放了 2304 字节[0m
+[0;32mI (5189870) AudioManager: ✅ 播放剩余音频: 2304 字节[0m
+[0;32mI (5189880) AudioManager: 开始流式音频播放[0m
+[0;32mI (5199297) AudioManager: 结束流式音频播放[0m
+[0;32mI (5199505) bsp_board: ✅ I2S音频输出已停止[0m
+[0;32mI (5199505) bsp_board: 音频播放完成，播放了 512 字节[0m
+[0;32mI (5199505) AudioManager: ✅ 播放剩余音频: 512 字节[0m
+[0;32mI (5207244) AudioManager: 开始录音...[0m
+[0;32mI (5211760) AudioManager: 停止录音，当前长度: 70400 样本 (4.40 秒)[0m
+[0;32mI (5216837) AudioManager: 开始流式音频播放[0m
+[0;32mI (5225254) AudioManager: 结束流式音频播放[0m
+[0;32mI (5225532) bsp_board: ✅ I2S音频输出已停止[0m
+[0;32mI (5225532) bsp_board: 音频播放完成，播放了 3072 字节[0m
+[0;32mI (5225532) AudioManager: ✅ 播放剩余音频: 3072 字节[0m
+[0;32mI (5228575) AudioManager: 开始录音...[0m
+[0;32mI (5228635) AudioManager: 停止录音，当前长度: 320 样本 (0.02 秒)[0m
+[0;32mI (5252307) AudioManager: 开始录音...[0m
+[0;32mI (5257220) AudioManager: 停止录音，当前长度: 75840 样本 (4.74 秒)[0m
+[0;32mI (5272976) AudioManager: 开始流式音频播放[0m
+[0;32mI (5289597) AudioManager: 结束流式音频播放[0m
+[0;32mI (5289816) bsp_board: ✅ I2S音频输出已停止[0m
+[0;32mI (5289816) bsp_board: 音频播放完成，播放了 1280 字节[0m
+[0;32mI (5289816) AudioManager: ✅ 播放剩余音频: 1280 字节[0m
+[0;32mI (5289826) AudioManager: 开始流式音频播放[0m
+[0;32mI (5309551) AudioManager: 结束流式音频播放[0m
+[0;32mI (5309741) bsp_board: ✅ I2S音频输出已停止[0m
+[0;32mI (5309741) bsp_board: 音频播放完成，播放了 384 字节[0m
+[0;32mI (5309741) AudioManager: ✅ 播放剩余音频: 384 字节[0m
+[0;32mI (5309751) AudioManager: 开始流式音频播放[0m
+[0;32mI (5329265) AudioManager: 结束流式音频播放[0m
+[0;32mI (5329547) bsp_board: ✅ I2S音频输出已停止[0m
+[0;32mI (5329547) bsp_board: 音频播放完成，播放了 2688 字节[0m
+[0;32mI (5329547) AudioManager: ✅ 播放剩余音频: 2688 字节[0m
+[0;32mI (5329557) AudioManager: 开始流式音频播放[0m
+[0;32mI (5336274) AudioManager: 结束流式音频播放[0m
+[0;32mI (5336467) bsp_board: ✅ I2S音频输出已停止[0m
+[0;32mI (5336467) bsp_board: 音频播放完成，播放了 128 字节[0m
+[0;32mI (5336467) AudioManager: ✅ 播放剩余音频: 128 字节[0m
+[0;32mI (5365139) AudioManager: 开始录音...[0m
+[0;32mI (5368885) AudioManager: 停止录音，当前长度: 59200 样本 (3.70 秒)[0m
+[0;32mI (5375884) AudioManager: 开始流式音频播放[0m
+[0;32mI (5386396) AudioManager: 结束流式音频播放[0m
+[0;32mI (5386679) bsp_board: ✅ I2S音频输出已停止[0m
+[0;32mI (5386679) bsp_board: 音频播放完成，播放了 2688 字节[0m
+[0;32mI (5386679) AudioManager: ✅ 播放剩余音频: 2688 字节[0m
+[0;32mI (5402019) AudioManager: 开始录音...[0m
+[0;32mI (5406113) AudioManager: 停止录音，当前长度: 64000 样本 (4.00 秒)[0m
+[0;32mI (5415111) AudioManager: 开始流式音频播放[0m
+[0;32mI (5424124) AudioManager: 结束流式音频播放[0m
+[0;32mI (5424362) bsp_board: ✅ I2S音频输出已停止[0m
+[0;32mI (5424362) bsp_board: 音频播放完成，播放了 1536 字节[0m
+[0;32mI (5424362) AudioManager: ✅ 播放剩余音频: 1536 字节[0m
+[0;32mI (5922642) AudioManager: 开始录音...[0m
+[0;32mI (5931794) AudioManager: 停止录音，当前长度: 141440 样本 (8.84 秒)[0m
+[0;32mI (5941052) AudioManager: 开始流式音频播放[0m
+[0;32mI (5950469) AudioManager: 结束流式音频播放[0m
+[0;32mI (5950722) bsp_board: ✅ I2S音频输出已停止[0m
+[0;32mI (5950722) bsp_board: 音频播放完成，播放了 2304 字节[0m
+[0;32mI (5950722) AudioManager: ✅ 播放剩余音频: 2304 字节[0m
+[0;32mI (5950732) AudioManager: 开始流式音频播放[0m
+[0;32mI (5951553) AudioManager: 结束流式音频播放[0m
+[0;32mI (5951761) bsp_board: ✅ I2S音频输出已停止[0m
+[0;32mI (5951761) bsp_board: 音频播放完成，播放了 768 字节[0m
+[0;32mI (5951761) AudioManager: ✅ 播放剩余音频: 768 字节[0m

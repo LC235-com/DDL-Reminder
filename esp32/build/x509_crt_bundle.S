@@ -1,4 +1,4 @@
-/* * Data converted from D:/code/DDL-reminder/esp32/build/esp-idf/mbedtls/x509_crt_bundle
+/* * Data converted from D:/code/DDL-reminder/DDL-reminder/esp32/build/esp-idf/mbedtls/x509_crt_bundle
  */
 .data
 #if !defined (__APPLE__) && !defined (__linux__)

@@ -1,0 +1,58 @@
+Command: C:\Espressif\tools\python\v6.0.2\venv\Scripts\python.exe C:\esp\v6.0.2\esp-idf\tools/idf_monitor.py -p COM4 -b 115200 --toolchain-prefix xtensa-esp32s3-elf- --target esp32s3 --revision 0 D:\code\DDL-reminder\DDL-reminder\esp32\build\ddl_reminder.elf D:\code\DDL-reminder\DDL-reminder\esp32\build\bootloader\bootloader.elf --force-color -m 'C:\Espressif\tools\python\v6.0.2\venv\Scripts\python.exe' 'C:\esp\v6.0.2\esp-idf\tools\idf.py'
+[0;33m--- Warning: GDB cannot open serial ports accessed as COMx[0m
+[0;33m--- Using \\.\COM4 instead...[0m
+[0;33m--- esp-idf-monitor 1.9.0 on \\.\COM4 115200[0m
+[0;33m--- Quit: Ctrl+] | Menu: Ctrl+T | Help: Ctrl+T followed by Ctrl+H[0m
+[0m--- 0x403c8700: [0;33m_stext[0m[0m at [0;32m??[0m[0m:[1;31m?[0m
+[0m--- 0x403c8930: [0;33mcall_start_cpu0[0m[0m at [0;32mC:/esp/v6.0.2/esp-idf/components/bootloader/subproject/main/bootloader_start.c[0m[0m:[1;31m27[0m
+[0m--- 0x403743c0: [0;33m_DoubleExceptionVector[0m[0m at [0;32mC:/esp/v6.0.2/esp-idf/components/xtensa/xtensa_vectors.S[0m[0m:[1;31m589[0m
+[0m--- 0x40056f5c: [0;33mmemcpy[0m[0m in [0;32mROM[0m
+[0m--- 0x40056f72: [0;33mmemcpy[0m[0m in [0;32mROM[0m
+[0m--- 0x403743bd: [0;33m_UserExceptionVector[0m[0m at [0;32m??[0m[0m:[1;31m?[0m
+[0m--- 0x4037e4e6: [0;33mesp_cpu_wait_for_intr[0m[0m at [0;32mC:/esp/v6.0.2/esp-idf/components/esp_hw_support/cpu.c[0m[0m:[1;31m64[0m
+[0m--- 0x4037e4e3: [0;33mxt_utils_wait_for_intr[0m[0m at [0;32mC:/esp/v6.0.2/esp-idf/components/xtensa/include/xt_utils.h[0m[0m:[1;31m82[0m
+[0m--- (inlined by) [0;33mesp_cpu_wait_for_intr[0m[0m at [0;32mC:/esp/v6.0.2/esp-idf/components/esp_hw_support/cpu.c[0m[0m:[1;31m55[0m
+[0m--- 0x420c9aa7: [0;33mesp_vApplicationIdleHook[0m[0m at [0;32mC:/esp/v6.0.2/esp-idf/components/esp_system/freertos_hooks.c[0m[0m:[1;31m58[0m
+[0m--- 0x420cb313: [0;33mprvIdleTask[0m[0m at [0;32mC:/esp/v6.0.2/esp-idf/components/freertos/FreeRTOS-Kernel/tasks.c[0m[0m:[1;31m4350[0m
+[0m--- 0x40381a56: [0;33mesp_restart_noos[0m[0m at [0;32mC:/esp/v6.0.2/esp-idf/components/esp_system/port/soc/esp32s3/system_internal.c[0m[0m:[1;31m165[0m
+[0m--- 0x403c8700: [0;33m_stext[0m[0m at [0;32m??[0m[0m:[1;31m?[0m
+[0m--- 0x403c8930: [0;33mcall_start_cpu0[0m[0m at [0;32mC:/esp/v6.0.2/esp-idf/components/bootloader/subproject/main/bootloader_start.c[0m[0m:[1;31m27[0m
+[0m--- 0x42017a8e: [0;33m_lv_event_mark_deleted[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/core/lv_event.c[0m[0m:[1;31m152[0m
+[0m--- 0x42023419: [0;33mlv_style_get_prop_inlined[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/misc/lv_style.h[0m[0m:[1;31m474[0m
+[0m--- (inlined by) [0;33mlv_style_get_prop[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/misc/lv_style.c[0m[0m:[1;31m295[0m
+[0m--- 0x4202343c: [0;33mlv_style_get_prop_inlined[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/misc/lv_style.h[0m[0m:[1;31m473[0m
+[0m--- (inlined by) [0;33mlv_style_get_prop[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/misc/lv_style.c[0m[0m:[1;31m295[0m
+[0m--- 0x42017a8b: [0;33m_lv_event_mark_deleted[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/core/lv_event.c[0m[0m:[1;31m151[0m
+[0m--- 0x42019f5a: [0;33mlv_obj_destructor[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/core/lv_obj.c[0m[0m:[1;31m454[0m
+[0m--- 0x420bf557: [0;33m_lv_obj_destruct[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/core/lv_obj_class.c[0m[0m:[1;31m136[0m
+[0m--- 0x4201e212: [0;33mobj_del_core[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/core/lv_obj_tree.c[0m[0m:[1;31m385[0m
+[0m--- (inlined by) [0;33mobj_del_core[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/core/lv_obj_tree.c[0m[0m:[1;31m351[0m
+[0m--- 0x4201e242: [0;33mobj_del_core[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/core/lv_obj_tree.c[0m[0m:[1;31m362[0m
+[0m--- (inlined by) [0;33mobj_del_core[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/core/lv_obj_tree.c[0m[0m:[1;31m351[0m
+[0m--- 0x4201e357: [0;33mlv_obj_clean[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/core/lv_obj_tree.c[0m[0m:[1;31m89[0m
+[0m--- 0x420128e7: [0;33mUIManager::update_ddl_list(std::vector<DDLEvent, std::allocator<DDLEvent> > const&)[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/main/ui/ui_manager.cpp[0m[0m:[1;31m210[0m
+[0m--- 0x4200f69f: [0;33mws_cb(WebSocketClient::EventData const&)[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/main/main.cpp[0m[0m:[1;31m83[0m
+[0m--- (inlined by) [0;33mws_cb[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/main/main.cpp[0m[0m:[1;31m72[0m
+[0m--- 0x420bf1b3: [0;33mvoid std::__invoke_impl<void, void (*&)(WebSocketClient::EventData const&), WebSocketClient::EventData const&>(std::__invoke_other, void (*&)(WebSocketClient::EventData const&), WebSocketClient::EventData const&)[0m[0m at [0;32mC:/Espressif/tools/xtensa-esp-elf/esp-15.2.0_20251204/xtensa-esp-elf/xtensa-esp-elf/include/c++/15.2.0/bits/invoke.h[0m[0m:[1;31m63[0m
+[0m--- (inlined by) [0;33mstd::enable_if<is_invocable_r_v<void, void (*&)(WebSocketClient::EventData const&), WebSocketClient::EventData const&>, void>::type std::__invoke_r<void, void (*&)(WebSocketClient::EventData const&), WebSocketClient::EventData const&>(void (*&)(WebSocketClient::EventData const&), WebSocketClient::EventData const&)[0m[0m at [0;32mC:/Espressif/tools/xtensa-esp-elf/esp-15.2.0_20251204/xtensa-esp-elf/xtensa-esp-elf/include/c++/15.2.0/bits/invoke.h[0m[0m:[1;31m113[0m
+[0m--- (inlined by) [0;33mstd::_Function_handler<void (WebSocketClient::EventData const&), void (*)(WebSocketClient::EventData const&)>::_M_invoke(std::_Any_data const&, WebSocketClient::EventData const&)[0m[0m at [0;32mC:/Espressif/tools/xtensa-esp-elf/esp-15.2.0_20251204/xtensa-esp-elf/xtensa-esp-elf/include/c++/15.2.0/bits/std_function.h[0m[0m:[1;31m292[0m
+[0m--- 0x420104aa: [0;33mstd::function<void (WebSocketClient::EventData const&)>::operator()(WebSocketClient::EventData const&) const[0m[0m at [0;32mC:/Espressif/tools/xtensa-esp-elf/esp-15.2.0_20251204/xtensa-esp-elf/xtensa-esp-elf/include/c++/15.2.0/bits/std_function.h[0m[0m:[1;31m593[0m
+[0m--- (inlined by) [0;33mWebSocketClient::websocket_event_handler(void*, char const*, long, void*)[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/main/websocket_client.cpp[0m[0m:[1;31m92[0m
+[0m--- 0x420c804d: [0;33mhandler_execute[0m[0m at [0;32mC:/esp/v6.0.2/esp-idf/components/esp_event/esp_event.c[0m[0m:[1;31m136[0m
+[0m--- (inlined by) [0;33mesp_event_loop_run[0m[0m at [0;32mC:/esp/v6.0.2/esp-idf/components/esp_event/esp_event.c[0m[0m:[1;31m686[0m
+[0m--- 0x4201477d: [0;33mesp_websocket_client_dispatch_event[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/espressif__esp_websocket_client/esp_websocket_client.c[0m[0m:[1;31m243[0m
+[0m--- 0x42014995: [0;33mesp_websocket_client_recv[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/espressif__esp_websocket_client/esp_websocket_client.c[0m[0m:[1;31m1098[0m
+[0m--- 0x4201565d: [0;33mesp_websocket_client_task[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/espressif__esp_websocket_client/esp_websocket_client.c[0m[0m:[1;31m1367[0m
+[0m--- 0x42021b32: [0;33mget_glyph_dsc_id[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/font/lv_font_fmt_txt.c[0m[0m:[1;31m223[0m
+[0m--- 0x403c8700: [0;33m_stext[0m[0m at [0;32m??[0m[0m:[1;31m?[0m
+[0m--- 0x403c8930: [0;33mcall_start_cpu0[0m[0m at [0;32mC:/esp/v6.0.2/esp-idf/components/bootloader/subproject/main/bootloader_start.c[0m[0m:[1;31m27[0m
+[0m--- 0x420220d4: [0;33manim_timer[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/misc/lv_anim.c[0m[0m:[1;31m350[0m
+[0m--- 0x40056f5c: [0;33mmemcpy[0m[0m in [0;32mROM[0m
+[0m--- 0x40056f72: [0;33mmemcpy[0m[0m in [0;32mROM[0m
+[0m--- 0x42023756: [0;33mlv_timer_exec[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/misc/lv_timer.c[0m[0m:[1;31m313[0m
+[0m--- (inlined by) [0;33mlv_timer_handler[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/misc/lv_timer.c[0m[0m:[1;31m109[0m
+[0m--- 0x420162f5: [0;33mlvgl_port_task[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/espressif__esp_lvgl_port/esp_lvgl_port.c[0m[0m:[1;31m691[0m
+[0m--- 0x40381a56: [0;33mesp_restart_noos[0m[0m at [0;32mC:/esp/v6.0.2/esp-idf/components/esp_system/port/soc/esp32s3/system_internal.c[0m[0m:[1;31m165[0m
+[0m--- 0x403c8700: [0;33m_stext[0m[0m at [0;32m??[0m[0m:[1;31m?[0m
+[0m--- 0x403c8930: [0;33mcall_start_cpu0[0m[0m at [0;32mC:/esp/v6.0.2/esp-idf/components/bootloader/subproject/main/bootloader_start.c[0m[0m:[1;31m27[0m
+[0m

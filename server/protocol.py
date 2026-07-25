@@ -96,3 +96,8 @@ def get_query_text(msg: dict) -> str:
 def get_event_action(msg: dict) -> tuple[str, str]:
     """Returns (event_id, action)."""
     return msg.get("id", ""), msg.get("action", "")
+
+
+def msg_asr_result(text: str, is_final: bool = False) -> dict:
+    """Send ASR transcription result to ESP32 for LCD display."""
+    return {"cmd": "asr_result", "text": text, "final": is_final}

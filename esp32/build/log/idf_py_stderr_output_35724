@@ -1,0 +1,205 @@
+Command: C:\Espressif\tools\python\v6.0.2\venv\Scripts\python.exe C:\esp\v6.0.2\esp-idf\tools/idf_monitor.py -p COM4 -b 115200 --toolchain-prefix xtensa-esp32s3-elf- --target esp32s3 --revision 0 D:\code\DDL-reminder\DDL-reminder\esp32\build\ddl_reminder.elf D:\code\DDL-reminder\DDL-reminder\esp32\build\bootloader\bootloader.elf --force-color -m 'C:\Espressif\tools\python\v6.0.2\venv\Scripts\python.exe' 'C:\esp\v6.0.2\esp-idf\tools\idf.py'
+[0;33m--- Warning: GDB cannot open serial ports accessed as COMx[0m
+[0;33m--- Using \\.\COM4 instead...[0m
+[0;33m--- esp-idf-monitor 1.9.0 on \\.\COM4 115200[0m
+[0;33m--- Quit: Ctrl+] | Menu: Ctrl+T | Help: Ctrl+T followed by Ctrl+H[0m
+[0m--- 0x403c8700: [0;33m_stext[0m[0m at [0;32m??[0m[0m:[1;31m?[0m
+[0m--- 0x403c8930: [0;33mcall_start_cpu0[0m[0m at [0;32mC:/esp/v6.0.2/esp-idf/components/bootloader/subproject/main/bootloader_start.c[0m[0m:[1;31m27[0m
+[0m--- 0x403818e5: [0;33mpanic_abort[0m[0m at [0;32mC:/esp/v6.0.2/esp-idf/components/esp_system/panic.c[0m[0m:[1;31m464[0m
+[0m--- 0x403818b1: [0;33mesp_system_abort[0m[0m at [0;32mC:/esp/v6.0.2/esp-idf/components/esp_system/port/esp_system_chip.c[0m[0m:[1;31m87[0m
+[0m--- 0x4037ff05: [0;33m__assert_func[0m[0m at [0;32mC:/esp/v6.0.2/esp-idf/components/esp_libc/src/assert.c[0m[0m:[1;31m81[0m
+[0m--- 0x42044930: [0;33mtcpip_send_msg_wait_sem[0m[0m at [0;32mC:/esp/v6.0.2/esp-idf/components/lwip/lwip/src/api/tcpip.c[0m[0m:[1;31m454[0m
+[0m--- 0x42052d77: [0;33mnetconn_apimsg[0m[0m at [0;32mC:/esp/v6.0.2/esp-idf/components/lwip/lwip/src/api/api_lib.c[0m[0m:[1;31m134[0m
+[0m--- 0x42052dc7: [0;33mnetconn_new_with_proto_and_callback[0m[0m at [0;32mC:/esp/v6.0.2/esp-idf/components/lwip/lwip/src/api/api_lib.c[0m[0m:[1;31m164[0m
+[0m--- 0x4204406b: [0;33mlwip_socket[0m[0m at [0;32mC:/esp/v6.0.2/esp-idf/components/lwip/lwip/src/api/sockets.c[0m[0m:[1;31m1759[0m
+[0m--- 0x420129e5: [0;33mRemoteDisplay::init(_lv_disp_t*)[0m[0m at [0;32mC:/esp/v6.0.2/esp-idf/components/lwip/include/lwip/sockets.h[0m[0m:[1;31m70[0m
+[0m--- (inlined by) [0;33mRemoteDisplay::init(_lv_disp_t*)[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/main/remote_display.cpp[0m[0m:[1;31m42[0m
+[0m--- 0x4200ef74: [0;33mapp_main[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/main/main.cpp[0m[0m:[1;31m210[0m
+[0m--- (inlined by) [0;33mapp_main[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/main/main.cpp[0m[0m:[1;31m241[0m
+[0m--- 0x420073f4: [0;33mmain_task[0m[0m at [0;32mC:/esp/v6.0.2/esp-idf/components/freertos/app_startup.c[0m[0m:[1;31m206[0m
+[0m--- 0x40381a56: [0;33mesp_restart_noos[0m[0m at [0;32mC:/esp/v6.0.2/esp-idf/components/esp_system/port/soc/esp32s3/system_internal.c[0m[0m:[1;31m165[0m
+[0m--- 0x403c8700: [0;33m_stext[0m[0m at [0;32m??[0m[0m:[1;31m?[0m
+[0m--- 0x403c8930: [0;33mcall_start_cpu0[0m[0m at [0;32mC:/esp/v6.0.2/esp-idf/components/bootloader/subproject/main/bootloader_start.c[0m[0m:[1;31m27[0m
+[0m--- 0x403818e5: [0;33mpanic_abort[0m[0m at [0;32mC:/esp/v6.0.2/esp-idf/components/esp_system/panic.c[0m[0m:[1;31m464[0m
+[0m--- 0x403818b1: [0;33mesp_system_abort[0m[0m at [0;32mC:/esp/v6.0.2/esp-idf/components/esp_system/port/esp_system_chip.c[0m[0m:[1;31m87[0m
+[0m--- 0x4037ff05: [0;33m__assert_func[0m[0m at [0;32mC:/esp/v6.0.2/esp-idf/components/esp_libc/src/assert.c[0m[0m:[1;31m81[0m
+[0m--- 0x42044930: [0;33mtcpip_send_msg_wait_sem[0m[0m at [0;32mC:/esp/v6.0.2/esp-idf/components/lwip/lwip/src/api/tcpip.c[0m[0m:[1;31m454[0m
+[0m--- 0x42052d77: [0;33mnetconn_apimsg[0m[0m at [0;32mC:/esp/v6.0.2/esp-idf/components/lwip/lwip/src/api/api_lib.c[0m[0m:[1;31m134[0m
+[0m--- 0x42052dc7: [0;33mnetconn_new_with_proto_and_callback[0m[0m at [0;32mC:/esp/v6.0.2/esp-idf/components/lwip/lwip/src/api/api_lib.c[0m[0m:[1;31m164[0m
+[0m--- 0x4204406b: [0;33mlwip_socket[0m[0m at [0;32mC:/esp/v6.0.2/esp-idf/components/lwip/lwip/src/api/sockets.c[0m[0m:[1;31m1759[0m
+[0m--- 0x420129e5: [0;33mRemoteDisplay::init(_lv_disp_t*)[0m[0m at [0;32mC:/esp/v6.0.2/esp-idf/components/lwip/include/lwip/sockets.h[0m[0m:[1;31m70[0m
+[0m--- (inlined by) [0;33mRemoteDisplay::init(_lv_disp_t*)[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/main/remote_display.cpp[0m[0m:[1;31m42[0m
+[0m--- 0x4200ef74: [0;33mapp_main[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/main/main.cpp[0m[0m:[1;31m210[0m
+[0m--- (inlined by) [0;33mapp_main[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/main/main.cpp[0m[0m:[1;31m241[0m
+[0m--- 0x420073f4: [0;33mmain_task[0m[0m at [0;32mC:/esp/v6.0.2/esp-idf/components/freertos/app_startup.c[0m[0m:[1;31m206[0m
+[0m--- 0x40381a56: [0;33mesp_restart_noos[0m[0m at [0;32mC:/esp/v6.0.2/esp-idf/components/esp_system/port/soc/esp32s3/system_internal.c[0m[0m:[1;31m165[0m
+[0m--- 0x403c8700: [0;33m_stext[0m[0m at [0;32m??[0m[0m:[1;31m?[0m
+[0m--- 0x403c8930: [0;33mcall_start_cpu0[0m[0m at [0;32mC:/esp/v6.0.2/esp-idf/components/bootloader/subproject/main/bootloader_start.c[0m[0m:[1;31m27[0m
+[0m--- 0x403818e5: [0;33mpanic_abort[0m[0m at [0;32mC:/esp/v6.0.2/esp-idf/components/esp_system/panic.c[0m[0m:[1;31m464[0m
+[0m--- 0x403818b1: [0;33mesp_system_abort[0m[0m at [0;32mC:/esp/v6.0.2/esp-idf/components/esp_system/port/esp_system_chip.c[0m[0m:[1;31m87[0m
+[0m--- 0x4037ff05: [0;33m__assert_func[0m[0m at [0;32mC:/esp/v6.0.2/esp-idf/components/esp_libc/src/assert.c[0m[0m:[1;31m81[0m
+[0m--- 0x42044930: [0;33mtcpip_send_msg_wait_sem[0m[0m at [0;32mC:/esp/v6.0.2/esp-idf/components/lwip/lwip/src/api/tcpip.c[0m[0m:[1;31m454[0m
+[0m--- 0x42052d77: [0;33mnetconn_apimsg[0m[0m at [0;32mC:/esp/v6.0.2/esp-idf/components/lwip/lwip/src/api/api_lib.c[0m[0m:[1;31m134[0m
+[0m--- 0x42052dc7: [0;33mnetconn_new_with_proto_and_callback[0m[0m at [0;32mC:/esp/v6.0.2/esp-idf/components/lwip/lwip/src/api/api_lib.c[0m[0m:[1;31m164[0m
+[0m--- 0x4204406b: [0;33mlwip_socket[0m[0m at [0;32mC:/esp/v6.0.2/esp-idf/components/lwip/lwip/src/api/sockets.c[0m[0m:[1;31m1759[0m
+[0m--- 0x420129e5: [0;33mRemoteDisplay::init(_lv_disp_t*)[0m[0m at [0;32mC:/esp/v6.0.2/esp-idf/components/lwip/include/lwip/sockets.h[0m[0m:[1;31m70[0m
+[0m--- (inlined by) [0;33mRemoteDisplay::init(_lv_disp_t*)[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/main/remote_display.cpp[0m[0m:[1;31m42[0m
+[0m--- 0x4200ef74: [0;33mapp_main[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/main/main.cpp[0m[0m:[1;31m210[0m
+[0m--- (inlined by) [0;33mapp_main[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/main/main.cpp[0m[0m:[1;31m241[0m
+[0m--- 0x420073f4: [0;33mmain_task[0m[0m at [0;32mC:/esp/v6.0.2/esp-idf/components/freertos/app_startup.c[0m[0m:[1;31m206[0m
+[0m--- 0x40381a56: [0;33mesp_restart_noos[0m[0m at [0;32mC:/esp/v6.0.2/esp-idf/components/esp_system/port/soc/esp32s3/system_internal.c[0m[0m:[1;31m165[0m
+[0m--- 0x403c8700: [0;33m_stext[0m[0m at [0;32m??[0m[0m:[1;31m?[0m
+[0m--- 0x403c8930: [0;33mcall_start_cpu0[0m[0m at [0;32mC:/esp/v6.0.2/esp-idf/components/bootloader/subproject/main/bootloader_start.c[0m[0m:[1;31m27[0m
+[0m--- 0x403818e5: [0;33mpanic_abort[0m[0m at [0;32mC:/esp/v6.0.2/esp-idf/components/esp_system/panic.c[0m[0m:[1;31m464[0m
+[0m--- 0x403818b1: [0;33mesp_system_abort[0m[0m at [0;32mC:/esp/v6.0.2/esp-idf/components/esp_system/port/esp_system_chip.c[0m[0m:[1;31m87[0m
+[0m--- 0x4037ff05: [0;33m__assert_func[0m[0m at [0;32mC:/esp/v6.0.2/esp-idf/components/esp_libc/src/assert.c[0m[0m:[1;31m81[0m
+[0m--- 0x42044930: [0;33mtcpip_send_msg_wait_sem[0m[0m at [0;32mC:/esp/v6.0.2/esp-idf/components/lwip/lwip/src/api/tcpip.c[0m[0m:[1;31m454[0m
+[0m--- 0x42052d77: [0;33mnetconn_apimsg[0m[0m at [0;32mC:/esp/v6.0.2/esp-idf/components/lwip/lwip/src/api/api_lib.c[0m[0m:[1;31m134[0m
+[0m--- 0x42052dc7: [0;33mnetconn_new_with_proto_and_callback[0m[0m at [0;32mC:/esp/v6.0.2/esp-idf/components/lwip/lwip/src/api/api_lib.c[0m[0m:[1;31m164[0m
+[0m--- 0x4204406b: [0;33mlwip_socket[0m[0m at [0;32mC:/esp/v6.0.2/esp-idf/components/lwip/lwip/src/api/sockets.c[0m[0m:[1;31m1759[0m
+[0m--- 0x420129e5: [0;33mRemoteDisplay::init(_lv_disp_t*)[0m[0m at [0;32mC:/esp/v6.0.2/esp-idf/components/lwip/include/lwip/sockets.h[0m[0m:[1;31m70[0m
+[0m--- (inlined by) [0;33mRemoteDisplay::init(_lv_disp_t*)[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/main/remote_display.cpp[0m[0m:[1;31m42[0m
+[0m--- 0x4200ef74: [0;33mapp_main[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/main/main.cpp[0m[0m:[1;31m210[0m
+[0m--- (inlined by) [0;33mapp_main[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/main/main.cpp[0m[0m:[1;31m241[0m
+[0m--- 0x420073f4: [0;33mmain_task[0m[0m at [0;32mC:/esp/v6.0.2/esp-idf/components/freertos/app_startup.c[0m[0m:[1;31m206[0m
+[0m--- 0x40381a56: [0;33mesp_restart_noos[0m[0m at [0;32mC:/esp/v6.0.2/esp-idf/components/esp_system/port/soc/esp32s3/system_internal.c[0m[0m:[1;31m165[0m
+[0m--- 0x403c8700: [0;33m_stext[0m[0m at [0;32m??[0m[0m:[1;31m?[0m
+[0m--- 0x403c8930: [0;33mcall_start_cpu0[0m[0m at [0;32mC:/esp/v6.0.2/esp-idf/components/bootloader/subproject/main/bootloader_start.c[0m[0m:[1;31m27[0m
+[0m--- 0x403818e5: [0;33mpanic_abort[0m[0m at [0;32mC:/esp/v6.0.2/esp-idf/components/esp_system/panic.c[0m[0m:[1;31m464[0m
+[0m--- 0x403818b1: [0;33mesp_system_abort[0m[0m at [0;32mC:/esp/v6.0.2/esp-idf/components/esp_system/port/esp_system_chip.c[0m[0m:[1;31m87[0m
+[0m--- 0x4037ff05: [0;33m__assert_func[0m[0m at [0;32mC:/esp/v6.0.2/esp-idf/components/esp_libc/src/assert.c[0m[0m:[1;31m81[0m
+[0m--- 0x42044930: [0;33mtcpip_send_msg_wait_sem[0m[0m at [0;32mC:/esp/v6.0.2/esp-idf/components/lwip/lwip/src/api/tcpip.c[0m[0m:[1;31m454[0m
+[0m--- 0x42052d77: [0;33mnetconn_apimsg[0m[0m at [0;32mC:/esp/v6.0.2/esp-idf/components/lwip/lwip/src/api/api_lib.c[0m[0m:[1;31m134[0m
+[0m--- 0x42052dc7: [0;33mnetconn_new_with_proto_and_callback[0m[0m at [0;32mC:/esp/v6.0.2/esp-idf/components/lwip/lwip/src/api/api_lib.c[0m[0m:[1;31m164[0m
+[0m--- 0x4204406b: [0;33mlwip_socket[0m[0m at [0;32mC:/esp/v6.0.2/esp-idf/components/lwip/lwip/src/api/sockets.c[0m[0m:[1;31m1759[0m
+[0m--- 0x420129e5: [0;33mRemoteDisplay::init(_lv_disp_t*)[0m[0m at [0;32mC:/esp/v6.0.2/esp-idf/components/lwip/include/lwip/sockets.h[0m[0m:[1;31m70[0m
+[0m--- (inlined by) [0;33mRemoteDisplay::init(_lv_disp_t*)[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/main/remote_display.cpp[0m[0m:[1;31m42[0m
+[0m--- 0x4200ef74: [0;33mapp_main[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/main/main.cpp[0m[0m:[1;31m210[0m
+[0m--- (inlined by) [0;33mapp_main[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/main/main.cpp[0m[0m:[1;31m241[0m
+[0m--- 0x420073f4: [0;33mmain_task[0m[0m at [0;32mC:/esp/v6.0.2/esp-idf/components/freertos/app_startup.c[0m[0m:[1;31m206[0m
+[0m--- 0x40381a56: [0;33mesp_restart_noos[0m[0m at [0;32mC:/esp/v6.0.2/esp-idf/components/esp_system/port/soc/esp32s3/system_internal.c[0m[0m:[1;31m165[0m
+[0m--- 0x403c8700: [0;33m_stext[0m[0m at [0;32m??[0m[0m:[1;31m?[0m
+[0m--- 0x403c8930: [0;33mcall_start_cpu0[0m[0m at [0;32mC:/esp/v6.0.2/esp-idf/components/bootloader/subproject/main/bootloader_start.c[0m[0m:[1;31m27[0m
+[0m--- 0x403818e5: [0;33mpanic_abort[0m[0m at [0;32mC:/esp/v6.0.2/esp-idf/components/esp_system/panic.c[0m[0m:[1;31m464[0m
+[0m--- 0x403818b1: [0;33mesp_system_abort[0m[0m at [0;32mC:/esp/v6.0.2/esp-idf/components/esp_system/port/esp_system_chip.c[0m[0m:[1;31m87[0m
+[0m--- 0x4037ff05: [0;33m__assert_func[0m[0m at [0;32mC:/esp/v6.0.2/esp-idf/components/esp_libc/src/assert.c[0m[0m:[1;31m81[0m
+[0m--- 0x42044930: [0;33mtcpip_send_msg_wait_sem[0m[0m at [0;32mC:/esp/v6.0.2/esp-idf/components/lwip/lwip/src/api/tcpip.c[0m[0m:[1;31m454[0m
+[0m--- 0x42052d77: [0;33mnetconn_apimsg[0m[0m at [0;32mC:/esp/v6.0.2/esp-idf/components/lwip/lwip/src/api/api_lib.c[0m[0m:[1;31m134[0m
+[0m--- 0x42052dc7: [0;33mnetconn_new_with_proto_and_callback[0m[0m at [0;32mC:/esp/v6.0.2/esp-idf/components/lwip/lwip/src/api/api_lib.c[0m[0m:[1;31m164[0m
+[0m--- 0x4204406b: [0;33mlwip_socket[0m[0m at [0;32mC:/esp/v6.0.2/esp-idf/components/lwip/lwip/src/api/sockets.c[0m[0m:[1;31m1759[0m
+[0m--- 0x420129e5: [0;33mRemoteDisplay::init(_lv_disp_t*)[0m[0m at [0;32mC:/esp/v6.0.2/esp-idf/components/lwip/include/lwip/sockets.h[0m[0m:[1;31m70[0m
+[0m--- (inlined by) [0;33mRemoteDisplay::init(_lv_disp_t*)[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/main/remote_display.cpp[0m[0m:[1;31m42[0m
+[0m--- 0x4200ef74: [0;33mapp_main[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/main/main.cpp[0m[0m:[1;31m210[0m
+[0m--- (inlined by) [0;33mapp_main[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/main/main.cpp[0m[0m:[1;31m241[0m
+[0m--- 0x420073f4: [0;33mmain_task[0m[0m at [0;32mC:/esp/v6.0.2/esp-idf/components/freertos/app_startup.c[0m[0m:[1;31m206[0m
+[0m--- 0x40381a56: [0;33mesp_restart_noos[0m[0m at [0;32mC:/esp/v6.0.2/esp-idf/components/esp_system/port/soc/esp32s3/system_internal.c[0m[0m:[1;31m165[0m
+[0m--- 0x403c8700: [0;33m_stext[0m[0m at [0;32m??[0m[0m:[1;31m?[0m
+[0m--- 0x403c8930: [0;33mcall_start_cpu0[0m[0m at [0;32mC:/esp/v6.0.2/esp-idf/components/bootloader/subproject/main/bootloader_start.c[0m[0m:[1;31m27[0m
+[0m--- 0x403818e5: [0;33mpanic_abort[0m[0m at [0;32mC:/esp/v6.0.2/esp-idf/components/esp_system/panic.c[0m[0m:[1;31m464[0m
+[0m--- 0x403818b1: [0;33mesp_system_abort[0m[0m at [0;32mC:/esp/v6.0.2/esp-idf/components/esp_system/port/esp_system_chip.c[0m[0m:[1;31m87[0m
+[0m--- 0x4037ff05: [0;33m__assert_func[0m[0m at [0;32mC:/esp/v6.0.2/esp-idf/components/esp_libc/src/assert.c[0m[0m:[1;31m81[0m
+[0m--- 0x42044930: [0;33mtcpip_send_msg_wait_sem[0m[0m at [0;32mC:/esp/v6.0.2/esp-idf/components/lwip/lwip/src/api/tcpip.c[0m[0m:[1;31m454[0m
+[0m--- 0x42052d77: [0;33mnetconn_apimsg[0m[0m at [0;32mC:/esp/v6.0.2/esp-idf/components/lwip/lwip/src/api/api_lib.c[0m[0m:[1;31m134[0m
+[0m--- 0x42052dc7: [0;33mnetconn_new_with_proto_and_callback[0m[0m at [0;32mC:/esp/v6.0.2/esp-idf/components/lwip/lwip/src/api/api_lib.c[0m[0m:[1;31m164[0m
+[0m--- 0x4204406b: [0;33mlwip_socket[0m[0m at [0;32mC:/esp/v6.0.2/esp-idf/components/lwip/lwip/src/api/sockets.c[0m[0m:[1;31m1759[0m
+[0m--- 0x420129e5: [0;33mRemoteDisplay::init(_lv_disp_t*)[0m[0m at [0;32mC:/esp/v6.0.2/esp-idf/components/lwip/include/lwip/sockets.h[0m[0m:[1;31m70[0m
+[0m--- (inlined by) [0;33mRemoteDisplay::init(_lv_disp_t*)[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/main/remote_display.cpp[0m[0m:[1;31m42[0m
+[0m--- 0x4200ef74: [0;33mapp_main[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/main/main.cpp[0m[0m:[1;31m210[0m
+[0m--- (inlined by) [0;33mapp_main[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/main/main.cpp[0m[0m:[1;31m241[0m
+[0m--- 0x420073f4: [0;33mmain_task[0m[0m at [0;32mC:/esp/v6.0.2/esp-idf/components/freertos/app_startup.c[0m[0m:[1;31m206[0m
+[0m--- 0x40381a56: [0;33mesp_restart_noos[0m[0m at [0;32mC:/esp/v6.0.2/esp-idf/components/esp_system/port/soc/esp32s3/system_internal.c[0m[0m:[1;31m165[0m
+[0m--- 0x403c8700: [0;33m_stext[0m[0m at [0;32m??[0m[0m:[1;31m?[0m
+[0m--- 0x403c8930: [0;33mcall_start_cpu0[0m[0m at [0;32mC:/esp/v6.0.2/esp-idf/components/bootloader/subproject/main/bootloader_start.c[0m[0m:[1;31m27[0m
+[0m--- 0x403818e5: [0;33mpanic_abort[0m[0m at [0;32mC:/esp/v6.0.2/esp-idf/components/esp_system/panic.c[0m[0m:[1;31m464[0m
+[0m--- 0x403818b1: [0;33mesp_system_abort[0m[0m at [0;32mC:/esp/v6.0.2/esp-idf/components/esp_system/port/esp_system_chip.c[0m[0m:[1;31m87[0m
+[0m--- 0x4037ff05: [0;33m__assert_func[0m[0m at [0;32mC:/esp/v6.0.2/esp-idf/components/esp_libc/src/assert.c[0m[0m:[1;31m81[0m
+[0m--- 0x42044930: [0;33mtcpip_send_msg_wait_sem[0m[0m at [0;32mC:/esp/v6.0.2/esp-idf/components/lwip/lwip/src/api/tcpip.c[0m[0m:[1;31m454[0m
+[0m--- 0x42052d77: [0;33mnetconn_apimsg[0m[0m at [0;32mC:/esp/v6.0.2/esp-idf/components/lwip/lwip/src/api/api_lib.c[0m[0m:[1;31m134[0m
+[0m--- 0x42052dc7: [0;33mnetconn_new_with_proto_and_callback[0m[0m at [0;32mC:/esp/v6.0.2/esp-idf/components/lwip/lwip/src/api/api_lib.c[0m[0m:[1;31m164[0m
+[0m--- 0x4204406b: [0;33mlwip_socket[0m[0m at [0;32mC:/esp/v6.0.2/esp-idf/components/lwip/lwip/src/api/sockets.c[0m[0m:[1;31m1759[0m
+[0m--- 0x420129e5: [0;33mRemoteDisplay::init(_lv_disp_t*)[0m[0m at [0;32mC:/esp/v6.0.2/esp-idf/components/lwip/include/lwip/sockets.h[0m[0m:[1;31m70[0m
+[0m--- (inlined by) [0;33mRemoteDisplay::init(_lv_disp_t*)[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/main/remote_display.cpp[0m[0m:[1;31m42[0m
+[0m--- 0x4200ef74: [0;33mapp_main[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/main/main.cpp[0m[0m:[1;31m210[0m
+[0m--- (inlined by) [0;33mapp_main[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/main/main.cpp[0m[0m:[1;31m241[0m
+[0m--- 0x420073f4: [0;33mmain_task[0m[0m at [0;32mC:/esp/v6.0.2/esp-idf/components/freertos/app_startup.c[0m[0m:[1;31m206[0m
+[0m--- 0x40381a56: [0;33mesp_restart_noos[0m[0m at [0;32mC:/esp/v6.0.2/esp-idf/components/esp_system/port/soc/esp32s3/system_internal.c[0m[0m:[1;31m165[0m
+[0m--- 0x403c8700: [0;33m_stext[0m[0m at [0;32m??[0m[0m:[1;31m?[0m
+[0m--- 0x403c8930: [0;33mcall_start_cpu0[0m[0m at [0;32mC:/esp/v6.0.2/esp-idf/components/bootloader/subproject/main/bootloader_start.c[0m[0m:[1;31m27[0m
+[0m--- 0x403818e5: [0;33mpanic_abort[0m[0m at [0;32mC:/esp/v6.0.2/esp-idf/components/esp_system/panic.c[0m[0m:[1;31m464[0m
+[0m--- 0x403818b1: [0;33mesp_system_abort[0m[0m at [0;32mC:/esp/v6.0.2/esp-idf/components/esp_system/port/esp_system_chip.c[0m[0m:[1;31m87[0m
+[0m--- 0x4037ff05: [0;33m__assert_func[0m[0m at [0;32mC:/esp/v6.0.2/esp-idf/components/esp_libc/src/assert.c[0m[0m:[1;31m81[0m
+[0m--- 0x42044930: [0;33mtcpip_send_msg_wait_sem[0m[0m at [0;32mC:/esp/v6.0.2/esp-idf/components/lwip/lwip/src/api/tcpip.c[0m[0m:[1;31m454[0m
+[0m--- 0x42052d77: [0;33mnetconn_apimsg[0m[0m at [0;32mC:/esp/v6.0.2/esp-idf/components/lwip/lwip/src/api/api_lib.c[0m[0m:[1;31m134[0m
+[0m--- 0x42052dc7: [0;33mnetconn_new_with_proto_and_callback[0m[0m at [0;32mC:/esp/v6.0.2/esp-idf/components/lwip/lwip/src/api/api_lib.c[0m[0m:[1;31m164[0m
+[0m--- 0x4204406b: [0;33mlwip_socket[0m[0m at [0;32mC:/esp/v6.0.2/esp-idf/components/lwip/lwip/src/api/sockets.c[0m[0m:[1;31m1759[0m
+[0m--- 0x420129e5: [0;33mRemoteDisplay::init(_lv_disp_t*)[0m[0m at [0;32mC:/esp/v6.0.2/esp-idf/components/lwip/include/lwip/sockets.h[0m[0m:[1;31m70[0m
+[0m--- (inlined by) [0;33mRemoteDisplay::init(_lv_disp_t*)[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/main/remote_display.cpp[0m[0m:[1;31m42[0m
+[0m--- 0x4200ef74: [0;33mapp_main[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/main/main.cpp[0m[0m:[1;31m210[0m
+[0m--- (inlined by) [0;33mapp_main[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/main/main.cpp[0m[0m:[1;31m241[0m
+[0m--- 0x420073f4: [0;33mmain_task[0m[0m at [0;32mC:/esp/v6.0.2/esp-idf/components/freertos/app_startup.c[0m[0m:[1;31m206[0m
+[0m--- 0x40381a56: [0;33mesp_restart_noos[0m[0m at [0;32mC:/esp/v6.0.2/esp-idf/components/esp_system/port/soc/esp32s3/system_internal.c[0m[0m:[1;31m165[0m
+[0m--- 0x403c8700: [0;33m_stext[0m[0m at [0;32m??[0m[0m:[1;31m?[0m
+[0m--- 0x403c8930: [0;33mcall_start_cpu0[0m[0m at [0;32mC:/esp/v6.0.2/esp-idf/components/bootloader/subproject/main/bootloader_start.c[0m[0m:[1;31m27[0m
+[0m--- 0x403818e5: [0;33mpanic_abort[0m[0m at [0;32mC:/esp/v6.0.2/esp-idf/components/esp_system/panic.c[0m[0m:[1;31m464[0m
+[0m--- 0x403818b1: [0;33mesp_system_abort[0m[0m at [0;32mC:/esp/v6.0.2/esp-idf/components/esp_system/port/esp_system_chip.c[0m[0m:[1;31m87[0m
+[0m--- 0x4037ff05: [0;33m__assert_func[0m[0m at [0;32mC:/esp/v6.0.2/esp-idf/components/esp_libc/src/assert.c[0m[0m:[1;31m81[0m
+[0m--- 0x42044930: [0;33mtcpip_send_msg_wait_sem[0m[0m at [0;32mC:/esp/v6.0.2/esp-idf/components/lwip/lwip/src/api/tcpip.c[0m[0m:[1;31m454[0m
+[0m--- 0x42052d77: [0;33mnetconn_apimsg[0m[0m at [0;32mC:/esp/v6.0.2/esp-idf/components/lwip/lwip/src/api/api_lib.c[0m[0m:[1;31m134[0m
+[0m--- 0x42052dc7: [0;33mnetconn_new_with_proto_and_callback[0m[0m at [0;32mC:/esp/v6.0.2/esp-idf/components/lwip/lwip/src/api/api_lib.c[0m[0m:[1;31m164[0m
+[0m--- 0x4204406b: [0;33mlwip_socket[0m[0m at [0;32mC:/esp/v6.0.2/esp-idf/components/lwip/lwip/src/api/sockets.c[0m[0m:[1;31m1759[0m
+[0m--- 0x420129e5: [0;33mRemoteDisplay::init(_lv_disp_t*)[0m[0m at [0;32mC:/esp/v6.0.2/esp-idf/components/lwip/include/lwip/sockets.h[0m[0m:[1;31m70[0m
+[0m--- (inlined by) [0;33mRemoteDisplay::init(_lv_disp_t*)[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/main/remote_display.cpp[0m[0m:[1;31m42[0m
+[0m--- 0x4200ef74: [0;33mapp_main[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/main/main.cpp[0m[0m:[1;31m210[0m
+[0m--- (inlined by) [0;33mapp_main[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/main/main.cpp[0m[0m:[1;31m241[0m
+[0m--- 0x420073f4: [0;33mmain_task[0m[0m at [0;32mC:/esp/v6.0.2/esp-idf/components/freertos/app_startup.c[0m[0m:[1;31m206[0m
+[0m--- 0x40381a56: [0;33mesp_restart_noos[0m[0m at [0;32mC:/esp/v6.0.2/esp-idf/components/esp_system/port/soc/esp32s3/system_internal.c[0m[0m:[1;31m165[0m
+[0m--- 0x403c8700: [0;33m_stext[0m[0m at [0;32m??[0m[0m:[1;31m?[0m
+[0m--- 0x403c8930: [0;33mcall_start_cpu0[0m[0m at [0;32mC:/esp/v6.0.2/esp-idf/components/bootloader/subproject/main/bootloader_start.c[0m[0m:[1;31m27[0m
+[0m--- 0x403818e5: [0;33mpanic_abort[0m[0m at [0;32mC:/esp/v6.0.2/esp-idf/components/esp_system/panic.c[0m[0m:[1;31m464[0m
+[0m--- 0x403818b1: [0;33mesp_system_abort[0m[0m at [0;32mC:/esp/v6.0.2/esp-idf/components/esp_system/port/esp_system_chip.c[0m[0m:[1;31m87[0m
+[0m--- 0x4037ff05: [0;33m__assert_func[0m[0m at [0;32mC:/esp/v6.0.2/esp-idf/components/esp_libc/src/assert.c[0m[0m:[1;31m81[0m
+[0m--- 0x42044930: [0;33mtcpip_send_msg_wait_sem[0m[0m at [0;32mC:/esp/v6.0.2/esp-idf/components/lwip/lwip/src/api/tcpip.c[0m[0m:[1;31m454[0m
+[0m--- 0x42052d77: [0;33mnetconn_apimsg[0m[0m at [0;32mC:/esp/v6.0.2/esp-idf/components/lwip/lwip/src/api/api_lib.c[0m[0m:[1;31m134[0m
+[0m--- 0x42052dc7: [0;33mnetconn_new_with_proto_and_callback[0m[0m at [0;32mC:/esp/v6.0.2/esp-idf/components/lwip/lwip/src/api/api_lib.c[0m[0m:[1;31m164[0m
+[0m--- 0x4204406b: [0;33mlwip_socket[0m[0m at [0;32mC:/esp/v6.0.2/esp-idf/components/lwip/lwip/src/api/sockets.c[0m[0m:[1;31m1759[0m
+[0m--- 0x420129e5: [0;33mRemoteDisplay::init(_lv_disp_t*)[0m[0m at [0;32mC:/esp/v6.0.2/esp-idf/components/lwip/include/lwip/sockets.h[0m[0m:[1;31m70[0m
+[0m--- (inlined by) [0;33mRemoteDisplay::init(_lv_disp_t*)[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/main/remote_display.cpp[0m[0m:[1;31m42[0m
+[0m--- 0x4200ef74: [0;33mapp_main[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/main/main.cpp[0m[0m:[1;31m210[0m
+[0m--- (inlined by) [0;33mapp_main[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/main/main.cpp[0m[0m:[1;31m241[0m
+[0m--- 0x420073f4: [0;33mmain_task[0m[0m at [0;32mC:/esp/v6.0.2/esp-idf/components/freertos/app_startup.c[0m[0m:[1;31m206[0m
+[0m--- 0x40381a56: [0;33mesp_restart_noos[0m[0m at [0;32mC:/esp/v6.0.2/esp-idf/components/esp_system/port/soc/esp32s3/system_internal.c[0m[0m:[1;31m165[0m
+[0m--- 0x403c8700: [0;33m_stext[0m[0m at [0;32m??[0m[0m:[1;31m?[0m
+[0m--- 0x403c8930: [0;33mcall_start_cpu0[0m[0m at [0;32mC:/esp/v6.0.2/esp-idf/components/bootloader/subproject/main/bootloader_start.c[0m[0m:[1;31m27[0m
+[0;33m--- To exit from IDF monitor please use "Ctrl+]". Alternatively, you can use Ctrl+T Ctrl+X to exit.[0m
+[0m--- 0x403818e5: [0;33mpanic_abort[0m[0m at [0;32mC:/esp/v6.0.2/esp-idf/components/esp_system/panic.c[0m[0m:[1;31m464[0m
+[0m--- 0x403818b1: [0;33mesp_system_abort[0m[0m at [0;32mC:/esp/v6.0.2/esp-idf/components/esp_system/port/esp_system_chip.c[0m[0m:[1;31m87[0m
+[0m--- 0x4037ff05: [0;33m__assert_func[0m[0m at [0;32mC:/esp/v6.0.2/esp-idf/components/esp_libc/src/assert.c[0m[0m:[1;31m81[0m
+[0m--- 0x42044930: [0;33mtcpip_send_msg_wait_sem[0m[0m at [0;32mC:/esp/v6.0.2/esp-idf/components/lwip/lwip/src/api/tcpip.c[0m[0m:[1;31m454[0m
+[0m--- 0x42052d77: [0;33mnetconn_apimsg[0m[0m at [0;32mC:/esp/v6.0.2/esp-idf/components/lwip/lwip/src/api/api_lib.c[0m[0m:[1;31m134[0m
+[0m--- 0x42052dc7: [0;33mnetconn_new_with_proto_and_callback[0m[0m at [0;32mC:/esp/v6.0.2/esp-idf/components/lwip/lwip/src/api/api_lib.c[0m[0m:[1;31m164[0m
+[0m--- 0x4204406b: [0;33mlwip_socket[0m[0m at [0;32mC:/esp/v6.0.2/esp-idf/components/lwip/lwip/src/api/sockets.c[0m[0m:[1;31m1759[0m
+[0m--- 0x420129e5: [0;33mRemoteDisplay::init(_lv_disp_t*)[0m[0m at [0;32mC:/esp/v6.0.2/esp-idf/components/lwip/include/lwip/sockets.h[0m[0m:[1;31m70[0m
+[0m--- (inlined by) [0;33mRemoteDisplay::init(_lv_disp_t*)[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/main/remote_display.cpp[0m[0m:[1;31m42[0m
+[0m--- 0x4200ef74: [0;33mapp_main[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/main/main.cpp[0m[0m:[1;31m210[0m
+[0m--- (inlined by) [0;33mapp_main[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/main/main.cpp[0m[0m:[1;31m241[0m
+[0m--- 0x420073f4: [0;33mmain_task[0m[0m at [0;32mC:/esp/v6.0.2/esp-idf/components/freertos/app_startup.c[0m[0m:[1;31m206[0m
+[0m--- 0x40381a56: [0;33mesp_restart_noos[0m[0m at [0;32mC:/esp/v6.0.2/esp-idf/components/esp_system/port/soc/esp32s3/system_internal.c[0m[0m:[1;31m165[0m
+[0m--- 0x403c8700: [0;33m_stext[0m[0m at [0;32m??[0m[0m:[1;31m?[0m
+[0m--- 0x403c8930: [0;33mcall_start_cpu0[0m[0m at [0;32mC:/esp/v6.0.2/esp-idf/components/bootloader/subproject/main/bootloader_start.c[0m[0m:[1;31m27[0m
+[0m
+Traceback (most recent call last):
+  File "C:\esp\v6.0.2\esp-idf\tools/idf_monitor.py", line 11, in <module>
+    sys.exit(subprocess.run([sys.executable, '-m', 'esp_idf_monitor'] + sys.argv[1:]).returncode)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Espressif\tools\python\Lib\subprocess.py", line 550, in run
+    stdout, stderr = process.communicate(input, timeout=timeout)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Espressif\tools\python\Lib\subprocess.py", line 1201, in communicate
+    self.wait()
+  File "C:\Espressif\tools\python\Lib\subprocess.py", line 1264, in wait
+    return self._wait(timeout=timeout)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Espressif\tools\python\Lib\subprocess.py", line 1590, in _wait
+    result = _winapi.WaitForSingleObject(self._handle,
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+KeyboardInterrupt

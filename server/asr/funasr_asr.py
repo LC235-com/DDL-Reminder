@@ -102,7 +102,11 @@ class FunASR(BaseASR):
 
             if result and len(result) > 0:
                 text = result[0].get("text", "")
-                logger.info(f"FunASR result: '{text}'")
+                logger.info(f"FunASR raw: '{text}'")
+                # Strip SenseVoice format tokens: <|lang|><|emotion|><|type|><|itn|>
+                import re
+                text = re.sub(r'<\|[^|]*\|>', '', text).strip()
+                logger.info(f"FunASR clean: '{text}'")
                 return text
             return ""
 

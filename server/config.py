@@ -66,7 +66,9 @@ BIT_DEPTH = 16       # 16-bit PCM
 DDL_STORE_PATH = os.path.join(os.path.dirname(__file__), "data", "ddl_store.json")
 REMINDER_CHECK_INTERVAL = 30   # seconds between reminder checks
 CRAWL_INTERVAL = 1800          # seconds (30 minutes) between crawls
+CLEANUP_INTERVAL = 259200      # seconds (3 days) between data cleanups
 DEFAULT_ADVANCE_MINUTES = 1440 # 24 hours default advance reminder
+EXPIRED_CLEANUP_DAYS = 3       # days after which expired/done DDLs are cleaned
 
 # ── Crawlers ──────────────────────────────────────────────────
 ZJU_ENABLED = bool(os.environ.get("ZJU_USER", ""))

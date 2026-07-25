@@ -117,6 +117,18 @@ class EventStore:
                 return True
         return False
 
+    async def update_event(self, event_id: str, updates: dict) -> bool:
+        """Update individual fields of an event by id."""
+        async with self._lock:
+            if event_id not in self._events:
+                return False
+            e = self._events[event_id]
+            for key, value in updates.items():
+                if hasattr(e, key):
+                    setattr(e, key, value)
+            await self._save()
+            return True
+
     # ── Queries ───────────────────────────────────────────────
 
     async def get(self, event_id: str) -> DDLItem | None:
@@ -143,15 +155,103 @@ class EventStore:
             results = [e for e in self._events.values() if e.status != "done"]
             if keyword:
                 kw = keyword.lower()
-                results = [e for e in results if kw in e.title.lower() or kw in e.course.lower()]
+                results = [e for e in results if (e.title and kw in e.title.lower()) or (e.course and kw in e.course.lower())]
             if days > 0:
                 from datetime import datetime, timezone, timedelta
                 now = datetime.now(timezone.utc)
                 cutoff = now + timedelta(days=days)
-                results = [e for e in results if e.deadline.replace(tzinfo=timezone.utc) <= cutoff] if not isinstance(e.deadline, str) else [e for e in results]
+                results = [e for e in results if isinstance(e.deadline, str) or e.deadline.replace(tzinfo=timezone.utc) <= cutoff]
             results.sort(key=lambda e: e.deadline_iso())
             return results
 
     async def count(self) -> int:
         async with self._lock:
             return len(self._events)
+
+    async def cleanup_old(self, expired_days: int = 3, done_days: int = 3) -> int:
+        """
+        Remove old DDLs:
+        - Events marked 'done' older than done_days
+        - Events whose deadline passed more than expired_days ago
+        - Events marked 'deleted'
+
+        Returns number of events removed.
+        """
+        from datetime import datetime, timezone, timedelta
+        now = datetime.now(timezone.utc)
+        expired_cutoff = now - timedelta(days=expired_days)
+        done_cutoff = now - timedelta(days=done_days)
+
+        removed = []
+        async with self._lock:
+            for eid, e in list(self._events.items()):
+                # Remove explicitly deleted
+                if e.status == "deleted":
+                    removed.append(eid)
+                    continue
+
+                # Parse deadline
+                if isinstance(e.deadline, str):
+                    try:
+                        dl = datetime.fromisoformat(e.deadline)
+                    except (ValueError, TypeError):
+                        continue
+                else:
+                    dl = e.deadline
+                if dl.tzinfo is None:
+                    dl = dl.replace(tzinfo=timezone.utc)
+
+                # Remove done events older than cutoff
+                if e.status == "done":
+                    # Use deadline as reference for cleanup
+                    if dl < done_cutoff:
+                        removed.append(eid)
+                    continue
+
+                # Remove expired events (overdue by more than expired_days)
+                if dl < expired_cutoff and e.status in ("pending", "snoozed"):
+                    removed.append(eid)
+
+            for eid in removed:
+                del self._events[eid]
+
+            if removed:
+                await self._save()
+        return len(removed)
+
+    async def get_missed_reminders(self) -> list:
+        """
+        Find DDLs whose reminder time passed while device was offline.
+        Returns events that:
+        - Are still pending/snoozed
+        - Have reminder_sent = False
+        - Have deadline - advance_minutes < now (reminder time passed)
+        """
+        from datetime import datetime, timezone, timedelta
+        now = datetime.now(timezone.utc)
+        missed = []
+
+        async with self._lock:
+            for e in self._events.values():
+                if e.status not in ("pending", "snoozed"):
+                    continue
+                if e.reminder_sent:
+                    continue
+
+                if isinstance(e.deadline, str):
+                    try:
+                        dl = datetime.fromisoformat(e.deadline)
+                    except (ValueError, TypeError):
+                        continue
+                else:
+                    dl = e.deadline
+                if dl.tzinfo is None:
+                    dl = dl.replace(tzinfo=timezone.utc)
+
+                reminder_time = dl - timedelta(minutes=e.advance_minutes)
+                if now >= reminder_time and now < dl:
+                    missed.append(e)
+
+            # Sort by most urgent first
+            missed.sort(key=lambda e: e.deadline_iso())
+        return missed

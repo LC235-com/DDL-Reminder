@@ -1,0 +1,35 @@
+Command: C:\Espressif\tools\python\v6.0.2\venv\Scripts\python.exe C:\esp\v6.0.2\esp-idf\tools/idf_monitor.py -p COM4 -b 115200 --toolchain-prefix xtensa-esp32s3-elf- --target esp32s3 --revision 0 D:\code\DDL-reminder\DDL-reminder\esp32\build\ddl_reminder.elf D:\code\DDL-reminder\DDL-reminder\esp32\build\bootloader\bootloader.elf --force-color -m 'C:\Espressif\tools\python\v6.0.2\venv\Scripts\python.exe' 'C:\esp\v6.0.2\esp-idf\tools\idf.py'
+[0;33m--- Warning: GDB cannot open serial ports accessed as COMx[0m
+[0;33m--- Using \\.\COM4 instead...[0m
+[0;33m--- esp-idf-monitor 1.9.0 on \\.\COM4 115200[0m
+[0;33m--- Quit: Ctrl+] | Menu: Ctrl+T | Help: Ctrl+T followed by Ctrl+H[0m
+[0m--- 0x403c8700: [0;33m_stext[0m[0m at [0;32m??[0m[0m:[1;31m?[0m
+[0m--- 0x403c8930: [0;33mcall_start_cpu0[0m[0m at [0;32mC:/esp/v6.0.2/esp-idf/components/bootloader/subproject/main/bootloader_start.c[0m[0m:[1;31m27[0m
+[0m--- 0x40374340: [0;33m_UserExceptionVector[0m[0m at [0;32mC:/esp/v6.0.2/esp-idf/components/xtensa/xtensa_vectors.S[0m[0m:[1;31m646[0m
+[0m--- 0x42023c08: [0;33mlv_async_timer_cb[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/misc/lv_async.c[0m[0m:[1;31m100[0m
+[0m--- 0x40056f5c: [0;33mmemcpy[0m[0m in [0;32mROM[0m
+[0m--- 0x40056f72: [0;33mmemcpy[0m[0m in [0;32mROM[0m
+[0m--- 0x4037433d: [0;33m_KernelExceptionVector[0m[0m at [0;32m??[0m[0m:[1;31m?[0m
+[0m--- 0x42024ad2: [0;33mlv_timer_exec[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/misc/lv_timer.c[0m[0m:[1;31m313[0m
+[0m--- (inlined by) [0;33mlv_timer_handler[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/misc/lv_timer.c[0m[0m:[1;31m109[0m
+[0m--- 0x42017601: [0;33mlvgl_port_task[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/espressif__esp_lvgl_port/esp_lvgl_port.c[0m[0m:[1;31m691[0m
+[0m--- 0x4037e4e6: [0;33mesp_cpu_wait_for_intr[0m[0m at [0;32mC:/esp/v6.0.2/esp-idf/components/esp_hw_support/cpu.c[0m[0m:[1;31m64[0m
+[0m--- 0x4037e4e3: [0;33mxt_utils_wait_for_intr[0m[0m at [0;32mC:/esp/v6.0.2/esp-idf/components/xtensa/include/xt_utils.h[0m[0m:[1;31m82[0m
+[0m--- (inlined by) [0;33mesp_cpu_wait_for_intr[0m[0m at [0;32mC:/esp/v6.0.2/esp-idf/components/esp_hw_support/cpu.c[0m[0m:[1;31m55[0m
+[0m--- 0x420cb643: [0;33mesp_vApplicationIdleHook[0m[0m at [0;32mC:/esp/v6.0.2/esp-idf/components/esp_system/freertos_hooks.c[0m[0m:[1;31m58[0m
+[0m--- 0x420cceaf: [0;33mprvIdleTask[0m[0m at [0;32mC:/esp/v6.0.2/esp-idf/components/freertos/FreeRTOS-Kernel/tasks.c[0m[0m:[1;31m4350[0m
+[0m--- 0x40381a56: [0;33mesp_restart_noos[0m[0m at [0;32mC:/esp/v6.0.2/esp-idf/components/esp_system/port/soc/esp32s3/system_internal.c[0m[0m:[1;31m165[0m
+[0m--- 0x403c8700: [0;33m_stext[0m[0m at [0;32m??[0m[0m:[1;31m?[0m
+[0m--- 0x403c8930: [0;33mcall_start_cpu0[0m[0m at [0;32mC:/esp/v6.0.2/esp-idf/components/bootloader/subproject/main/bootloader_start.c[0m[0m:[1;31m27[0m
+[0m--- 0x42018e23: [0;33mindev_proc_reset_query_handler[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/core/lv_indev.c[0m[0m:[1;31m1026[0m
+[0m--- 0x40056f5c: [0;33mmemcpy[0m[0m in [0;32mROM[0m
+[0m--- 0x40056f72: [0;33mmemcpy[0m[0m in [0;32mROM[0m
+[0m--- 0x42018e20: [0;33mindev_proc_reset_query_handler[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/core/lv_indev.c[0m[0m:[1;31m1025[0m
+[0m--- 0x4201943a: [0;33mlv_indev_read_timer_cb[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/core/lv_indev.c[0m[0m:[1;31m87[0m
+[0m--- 0x42024ad2: [0;33mlv_timer_exec[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/misc/lv_timer.c[0m[0m:[1;31m313[0m
+[0m--- (inlined by) [0;33mlv_timer_handler[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/misc/lv_timer.c[0m[0m:[1;31m109[0m
+[0m--- 0x42017601: [0;33mlvgl_port_task[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/espressif__esp_lvgl_port/esp_lvgl_port.c[0m[0m:[1;31m691[0m
+[0m--- 0x40381a56: [0;33mesp_restart_noos[0m[0m at [0;32mC:/esp/v6.0.2/esp-idf/components/esp_system/port/soc/esp32s3/system_internal.c[0m[0m:[1;31m165[0m
+[0m--- 0x403c8700: [0;33m_stext[0m[0m at [0;32m??[0m[0m:[1;31m?[0m
+[0m--- 0x403c8930: [0;33mcall_start_cpu0[0m[0m at [0;32mC:/esp/v6.0.2/esp-idf/components/bootloader/subproject/main/bootloader_start.c[0m[0m:[1;31m27[0m
+[0m

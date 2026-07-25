@@ -68,6 +68,23 @@ DDL_TOOLS = [
     {
         "type": "function",
         "function": {
+            "name": "modify_reminder",
+            "description": "修改现有DDL的截止时间或标题。找到匹配的DDL后更新它，而不是创建新的。",
+            "parameters": {
+                "type": "object",
+                "properties": {
+                    "title_keyword": {"type": "string", "description": "要修改的DDL标题关键词（用于查找）"},
+                    "new_title": {"type": "string", "description": "新标题（可选，不修改则留空）"},
+                    "new_time": {"type": "string", "description": "新的截止时间 YYYY-MM-DD HH:MM（可选）"},
+                    "new_course": {"type": "string", "description": "新课程名（可选）"},
+                },
+                "required": ["title_keyword"],
+            },
+        },
+    },
+    {
+        "type": "function",
+        "function": {
             "name": "mark_done",
             "description": "标记某个DDL为已完成。",
             "parameters": {

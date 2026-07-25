@@ -1,17 +1,37 @@
-# 强制所有文本文件在检出时转换为 CRLF，提交时统一为 LF
+# 默认所有文本文件使用 LF（推荐）
 * text=auto
 
-# 明确指定某些特殊文件不转换（例如二进制文件）
+# ----- 明确标记文本文件，并指定 LF 换行符 -----
+*.c text eol=lf
+*.cpp text eol=lf
+*.h text eol=lf
+*.hpp text eol=lf
+*.py text eol=lf
+*.json text eol=lf
+*.md text eol=lf
+*.yml text eol=lf
+*.yaml text eol=lf
+*.txt text eol=lf
+*.cmake text eol=lf
+CMakeLists.txt text eol=lf
+*.sh text eol=lf
+*.html text eol=lf
+*.css text eol=lf
+*.js text eol=lf
+
+# ----- 强制将二进制文件/构建产物标记为 binary -----
+*.bin binary
 *.png binary
 *.jpg binary
 *.gif binary
 *.ico binary
 *.pdf binary
-*.zip binary
 *.mp3 binary
 *.wav binary
 
-# 针对 shell 脚本、Makefile 等特定文件，强制使用 LF（即使在 Windows 上）
-*.sh text eol=lf
-Makefile text eol=lf
-*.mk text eol=lf
+# ESP-IDF 构建产物目录（强制整目录为二进制）
+esp32/build/** binary
+esp32/managed_components/** binary
+
+# IDE/工具配置文件（可按需保留 LF）
+*.vscode/** text eol=lf

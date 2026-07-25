@@ -17,4 +17,4 @@ set confirm off
 set confirm on
 
 # Load application symbols
-file D:/code/DDL-reminder/esp32/build/bootloader/bootloader.elf
+file D:/code/DDL-reminder/DDL-reminder/esp32/build/bootloader/bootloader.elf

@@ -1,0 +1,812 @@
+Command: C:\Espressif\tools\python\v6.0.2\venv\Scripts\python.exe C:\esp\v6.0.2\esp-idf\tools/idf_monitor.py -p COM4 -b 115200 --toolchain-prefix xtensa-esp32s3-elf- --target esp32s3 --revision 0 D:\code\DDL-reminder\DDL-reminder\esp32\build\ddl_reminder.elf D:\code\DDL-reminder\DDL-reminder\esp32\build\bootloader\bootloader.elf --force-color -m 'C:\Espressif\tools\python\v6.0.2\venv\Scripts\python.exe' 'C:\esp\v6.0.2\esp-idf\tools\idf.py'
+[0;33m--- Warning: GDB cannot open serial ports accessed as COMx[0m
+[0;33m--- Using \\.\COM4 instead...[0m
+[0;33m--- esp-idf-monitor 1.9.0 on \\.\COM4 115200[0m
+[0;33m--- Quit: Ctrl+] | Menu: Ctrl+T | Help: Ctrl+T followed by Ctrl+H[0m
+[0m--- 0x403c8700: [0;33m_stext[0m[0m at [0;32m??[0m[0m:[1;31m?[0m
+[0m--- 0x403c8930: [0;33mcall_start_cpu0[0m[0m at [0;32mC:/esp/v6.0.2/esp-idf/components/bootloader/subproject/main/bootloader_start.c[0m[0m:[1;31m27[0m
+[0m--- 0x420c24b7: [0;33mlv_memset_00[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/misc/lv_mem.c[0m[0m:[1;31m494[0m
+[0m--- 0x42024f6d: [0;33mlv_style_get_prop_inlined[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/misc/lv_style.h[0m[0m:[1;31m474[0m
+[0m--- (inlined by) [0;33mlv_style_get_prop[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/misc/lv_style.c[0m[0m:[1;31m295[0m
+[0m--- 0x42024f90: [0;33mlv_style_get_prop_inlined[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/misc/lv_style.h[0m[0m:[1;31m473[0m
+[0m--- (inlined by) [0;33mlv_style_get_prop[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/misc/lv_style.c[0m[0m:[1;31m295[0m
+[0m--- 0x420c24b4: [0;33mlv_memset_00[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/misc/lv_mem.c[0m[0m:[1;31m490[0m
+[0m--- 0x42024ce2: [0;33mlv_style_init[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/misc/lv_style.c[0m[0m:[1;31m159[0m
+[0m--- 0x4201eca9: [0;33mget_local_style[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/core/lv_obj_style.c[0m[0m:[1;31m563[0m
+[0m--- 0x4201f5e0: [0;33mlv_obj_set_local_style_prop[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/core/lv_obj_style.c[0m[0m:[1;31m273[0m
+[0m--- 0x4201fbee: [0;33mlv_obj_set_style_text_font[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/core/lv_obj_style_gen.c[0m[0m:[1;31m544[0m
+[0m--- 0x420124dc: [0;33mUIManager::mk_keyboard()[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/main/ui/ui_manager.cpp[0m[0m:[1;31m367[0m
+[0m--- 0x420131f4: [0;33mUIManager::show_keyboard(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&)[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/main/ui/ui_manager.cpp[0m[0m:[1;31m410[0m
+[0m--- 0x42013287: [0;33mUIManager::cb_detail_edit(_lv_event_t*)[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/main/ui/ui_manager.cpp[0m[0m:[1;31m556[0m
+[0m--- 0x4201950c: [0;33mevent_send_core[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/core/lv_event.c[0m[0m:[1;31m461[0m
+[0m--- 0x42019556: [0;33mlv_event_send[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/core/lv_event.c[0m[0m:[1;31m74[0m
+[0m--- 0x420196a1: [0;33mindev_proc_release[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/core/lv_indev.c[0m[0m:[1;31m979[0m
+[0m--- 0x42019cca: [0;33mindev_pointer_proc[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/core/lv_indev.c[0m[0m:[1;31m383[0m
+[0m--- (inlined by) [0;33mlv_indev_read_timer_cb[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/core/lv_indev.c[0m[0m:[1;31m101[0m
+[0m--- 0x420252aa: [0;33mlv_timer_exec[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/misc/lv_timer.c[0m[0m:[1;31m313[0m
+[0m--- (inlined by) [0;33mlv_timer_handler[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/misc/lv_timer.c[0m[0m:[1;31m109[0m
+[0m--- 0x42017dd9: [0;33mlvgl_port_task[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/espressif__esp_lvgl_port/esp_lvgl_port.c[0m[0m:[1;31m691[0m
+[0m--- 0x40381a56: [0;33mesp_restart_noos[0m[0m at [0;32mC:/esp/v6.0.2/esp-idf/components/esp_system/port/soc/esp32s3/system_internal.c[0m[0m:[1;31m165[0m
+[0m--- 0x403c8700: [0;33m_stext[0m[0m at [0;32m??[0m[0m:[1;31m?[0m
+[0m--- 0x403c8930: [0;33mcall_start_cpu0[0m[0m at [0;32mC:/esp/v6.0.2/esp-idf/components/bootloader/subproject/main/bootloader_start.c[0m[0m:[1;31m27[0m
+[0m--- 0x42043a74: [0;33mtask_wdt_timeout_handling[0m[0m at [0;32mC:/esp/v6.0.2/esp-idf/components/esp_system/task_wdt/task_wdt.c[0m[0m:[1;31m436[0m
+[0m--- (inlined by) [0;33mtask_wdt_isr[0m[0m at [0;32mC:/esp/v6.0.2/esp-idf/components/esp_system/task_wdt/task_wdt.c[0m[0m:[1;31m509[0m
+[0m--- 0x40378c2b: [0;33m_xt_lowint1[0m[0m at [0;32mC:/esp/v6.0.2/esp-idf/components/xtensa/xtensa_vectors.S[0m[0m:[1;31m1264[0m
+[0m--- 0x4201ec53: [0;33mget_local_style[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/core/lv_obj_style.c[0m[0m:[1;31m551[0m
+[0m--- 0x4201f5e0: [0;33mlv_obj_set_local_style_prop[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/core/lv_obj_style.c[0m[0m:[1;31m273[0m
+[0m--- 0x4201faab: [0;33mlv_obj_set_style_width[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/core/lv_obj_style_gen.c[0m[0m:[1;31m8[0m
+[0m--- 0x4201c616: [0;33mlv_obj_set_width[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/core/lv_obj_pos.c[0m[0m:[1;31m232[0m
+[0m--- (inlined by) [0;33mlv_obj_set_width[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/core/lv_obj_pos.c[0m[0m:[1;31m223[0m
+[0m--- 0x4201c655: [0;33mlv_obj_set_size[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/core/lv_obj_pos.c[0m[0m:[1;31m219[0m
+[0m--- 0x42012385: [0;33mUIManager::mk_keyboard()[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/main/ui/ui_manager.cpp[0m[0m:[1;31m325[0m
+[0m--- 0x420131f4: [0;33mUIManager::show_keyboard(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&)[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/main/ui/ui_manager.cpp[0m[0m:[1;31m410[0m
+[0m--- 0x42013287: [0;33mUIManager::cb_detail_edit(_lv_event_t*)[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/main/ui/ui_manager.cpp[0m[0m:[1;31m556[0m
+[0m--- 0x4201950c: [0;33mevent_send_core[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/core/lv_event.c[0m[0m:[1;31m461[0m
+[0m--- 0x42019556: [0;33mlv_event_send[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/core/lv_event.c[0m[0m:[1;31m74[0m
+[0m--- 0x420196a1: [0;33mindev_proc_release[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/core/lv_indev.c[0m[0m:[1;31m979[0m
+[0m--- 0x42019cca: [0;33mindev_pointer_proc[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/core/lv_indev.c[0m[0m:[1;31m383[0m
+[0m--- (inlined by) [0;33mlv_indev_read_timer_cb[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/core/lv_indev.c[0m[0m:[1;31m101[0m
+[0m--- 0x420252aa: [0;33mlv_timer_exec[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/misc/lv_timer.c[0m[0m:[1;31m313[0m
+[0m--- (inlined by) [0;33mlv_timer_handler[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/misc/lv_timer.c[0m[0m:[1;31m109[0m
+[0m--- 0x42017dd9: [0;33mlvgl_port_task[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/espressif__esp_lvgl_port/esp_lvgl_port.c[0m[0m:[1;31m691[0m
+[0m--- 0x42043a74: [0;33mtask_wdt_timeout_handling[0m[0m at [0;32mC:/esp/v6.0.2/esp-idf/components/esp_system/task_wdt/task_wdt.c[0m[0m:[1;31m436[0m
+[0m--- (inlined by) [0;33mtask_wdt_isr[0m[0m at [0;32mC:/esp/v6.0.2/esp-idf/components/esp_system/task_wdt/task_wdt.c[0m[0m:[1;31m509[0m
+[0m--- 0x40378c2b: [0;33m_xt_lowint1[0m[0m at [0;32mC:/esp/v6.0.2/esp-idf/components/xtensa/xtensa_vectors.S[0m[0m:[1;31m1264[0m
+[0m--- 0x4201ec53: [0;33mget_local_style[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/core/lv_obj_style.c[0m[0m:[1;31m551[0m
+[0m--- 0x4201f5e0: [0;33mlv_obj_set_local_style_prop[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/core/lv_obj_style.c[0m[0m:[1;31m273[0m
+[0m--- 0x4201faab: [0;33mlv_obj_set_style_width[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/core/lv_obj_style_gen.c[0m[0m:[1;31m8[0m
+[0m--- 0x4201c616: [0;33mlv_obj_set_width[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/core/lv_obj_pos.c[0m[0m:[1;31m232[0m
+[0m--- (inlined by) [0;33mlv_obj_set_width[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/core/lv_obj_pos.c[0m[0m:[1;31m223[0m
+[0m--- 0x4201c655: [0;33mlv_obj_set_size[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/core/lv_obj_pos.c[0m[0m:[1;31m219[0m
+[0m--- 0x42012385: [0;33mUIManager::mk_keyboard()[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/main/ui/ui_manager.cpp[0m[0m:[1;31m325[0m
+[0m--- 0x420131f4: [0;33mUIManager::show_keyboard(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&)[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/main/ui/ui_manager.cpp[0m[0m:[1;31m410[0m
+[0m--- 0x42013287: [0;33mUIManager::cb_detail_edit(_lv_event_t*)[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/main/ui/ui_manager.cpp[0m[0m:[1;31m556[0m
+[0m--- 0x4201950c: [0;33mevent_send_core[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/core/lv_event.c[0m[0m:[1;31m461[0m
+[0m--- 0x42019556: [0;33mlv_event_send[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/core/lv_event.c[0m[0m:[1;31m74[0m
+[0m--- 0x420196a1: [0;33mindev_proc_release[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/core/lv_indev.c[0m[0m:[1;31m979[0m
+[0m--- 0x42019cca: [0;33mindev_pointer_proc[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/core/lv_indev.c[0m[0m:[1;31m383[0m
+[0m--- (inlined by) [0;33mlv_indev_read_timer_cb[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/core/lv_indev.c[0m[0m:[1;31m101[0m
+[0m--- 0x420252aa: [0;33mlv_timer_exec[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/misc/lv_timer.c[0m[0m:[1;31m313[0m
+[0m--- (inlined by) [0;33mlv_timer_handler[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/misc/lv_timer.c[0m[0m:[1;31m109[0m
+[0m--- 0x42017dd9: [0;33mlvgl_port_task[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/espressif__esp_lvgl_port/esp_lvgl_port.c[0m[0m:[1;31m691[0m
+[0m--- 0x42043a74: [0;33mtask_wdt_timeout_handling[0m[0m at [0;32mC:/esp/v6.0.2/esp-idf/components/esp_system/task_wdt/task_wdt.c[0m[0m:[1;31m436[0m
+[0m--- (inlined by) [0;33mtask_wdt_isr[0m[0m at [0;32mC:/esp/v6.0.2/esp-idf/components/esp_system/task_wdt/task_wdt.c[0m[0m:[1;31m509[0m
+[0m--- 0x40378c2b: [0;33m_xt_lowint1[0m[0m at [0;32mC:/esp/v6.0.2/esp-idf/components/xtensa/xtensa_vectors.S[0m[0m:[1;31m1264[0m
+[0m--- 0x4201ec53: [0;33mget_local_style[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/core/lv_obj_style.c[0m[0m:[1;31m551[0m
+[0m--- 0x4201f5e0: [0;33mlv_obj_set_local_style_prop[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/core/lv_obj_style.c[0m[0m:[1;31m273[0m
+[0m--- 0x4201faab: [0;33mlv_obj_set_style_width[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/core/lv_obj_style_gen.c[0m[0m:[1;31m8[0m
+[0m--- 0x4201c616: [0;33mlv_obj_set_width[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/core/lv_obj_pos.c[0m[0m:[1;31m232[0m
+[0m--- (inlined by) [0;33mlv_obj_set_width[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/core/lv_obj_pos.c[0m[0m:[1;31m223[0m
+[0m--- 0x4201c655: [0;33mlv_obj_set_size[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/core/lv_obj_pos.c[0m[0m:[1;31m219[0m
+[0m--- 0x42012385: [0;33mUIManager::mk_keyboard()[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/main/ui/ui_manager.cpp[0m[0m:[1;31m325[0m
+[0m--- 0x420131f4: [0;33mUIManager::show_keyboard(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&)[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/main/ui/ui_manager.cpp[0m[0m:[1;31m410[0m
+[0m--- 0x42013287: [0;33mUIManager::cb_detail_edit(_lv_event_t*)[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/main/ui/ui_manager.cpp[0m[0m:[1;31m556[0m
+[0m--- 0x4201950c: [0;33mevent_send_core[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/core/lv_event.c[0m[0m:[1;31m461[0m
+[0m--- 0x42019556: [0;33mlv_event_send[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/core/lv_event.c[0m[0m:[1;31m74[0m
+[0m--- 0x420196a1: [0;33mindev_proc_release[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/core/lv_indev.c[0m[0m:[1;31m979[0m
+[0m--- 0x42019cca: [0;33mindev_pointer_proc[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/core/lv_indev.c[0m[0m:[1;31m383[0m
+[0m--- (inlined by) [0;33mlv_indev_read_timer_cb[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/core/lv_indev.c[0m[0m:[1;31m101[0m
+[0m--- 0x420252aa: [0;33mlv_timer_exec[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/misc/lv_timer.c[0m[0m:[1;31m313[0m
+[0m--- (inlined by) [0;33mlv_timer_handler[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/misc/lv_timer.c[0m[0m:[1;31m109[0m
+[0m--- 0x42017dd9: [0;33mlvgl_port_task[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/espressif__esp_lvgl_port/esp_lvgl_port.c[0m[0m:[1;31m691[0m
+[0m--- 0x42043a74: [0;33mtask_wdt_timeout_handling[0m[0m at [0;32mC:/esp/v6.0.2/esp-idf/components/esp_system/task_wdt/task_wdt.c[0m[0m:[1;31m436[0m
+[0m--- (inlined by) [0;33mtask_wdt_isr[0m[0m at [0;32mC:/esp/v6.0.2/esp-idf/components/esp_system/task_wdt/task_wdt.c[0m[0m:[1;31m509[0m
+[0m--- 0x40378c2b: [0;33m_xt_lowint1[0m[0m at [0;32mC:/esp/v6.0.2/esp-idf/components/xtensa/xtensa_vectors.S[0m[0m:[1;31m1264[0m
+[0m--- 0x4201ec53: [0;33mget_local_style[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/core/lv_obj_style.c[0m[0m:[1;31m551[0m
+[0m--- 0x4201f5e0: [0;33mlv_obj_set_local_style_prop[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/core/lv_obj_style.c[0m[0m:[1;31m273[0m
+[0m--- 0x4201faab: [0;33mlv_obj_set_style_width[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/core/lv_obj_style_gen.c[0m[0m:[1;31m8[0m
+[0m--- 0x4201c616: [0;33mlv_obj_set_width[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/core/lv_obj_pos.c[0m[0m:[1;31m232[0m
+[0m--- (inlined by) [0;33mlv_obj_set_width[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/core/lv_obj_pos.c[0m[0m:[1;31m223[0m
+[0m--- 0x4201c655: [0;33mlv_obj_set_size[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/core/lv_obj_pos.c[0m[0m:[1;31m219[0m
+[0m--- 0x42012385: [0;33mUIManager::mk_keyboard()[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/main/ui/ui_manager.cpp[0m[0m:[1;31m325[0m
+[0m--- 0x420131f4: [0;33mUIManager::show_keyboard(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&)[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/main/ui/ui_manager.cpp[0m[0m:[1;31m410[0m
+[0m--- 0x42013287: [0;33mUIManager::cb_detail_edit(_lv_event_t*)[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/main/ui/ui_manager.cpp[0m[0m:[1;31m556[0m
+[0m--- 0x4201950c: [0;33mevent_send_core[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/core/lv_event.c[0m[0m:[1;31m461[0m
+[0m--- 0x42019556: [0;33mlv_event_send[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/core/lv_event.c[0m[0m:[1;31m74[0m
+[0m--- 0x420196a1: [0;33mindev_proc_release[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/core/lv_indev.c[0m[0m:[1;31m979[0m
+[0m--- 0x42019cca: [0;33mindev_pointer_proc[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/core/lv_indev.c[0m[0m:[1;31m383[0m
+[0m--- (inlined by) [0;33mlv_indev_read_timer_cb[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/core/lv_indev.c[0m[0m:[1;31m101[0m
+[0m--- 0x420252aa: [0;33mlv_timer_exec[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/misc/lv_timer.c[0m[0m:[1;31m313[0m
+[0m--- (inlined by) [0;33mlv_timer_handler[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/misc/lv_timer.c[0m[0m:[1;31m109[0m
+[0m--- 0x42017dd9: [0;33mlvgl_port_task[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/espressif__esp_lvgl_port/esp_lvgl_port.c[0m[0m:[1;31m691[0m
+[0m--- 0x42043a74: [0;33mtask_wdt_timeout_handling[0m[0m at [0;32mC:/esp/v6.0.2/esp-idf/components/esp_system/task_wdt/task_wdt.c[0m[0m:[1;31m436[0m
+[0m--- (inlined by) [0;33mtask_wdt_isr[0m[0m at [0;32mC:/esp/v6.0.2/esp-idf/components/esp_system/task_wdt/task_wdt.c[0m[0m:[1;31m509[0m
+[0m--- 0x40378c2b: [0;33m_xt_lowint1[0m[0m at [0;32mC:/esp/v6.0.2/esp-idf/components/xtensa/xtensa_vectors.S[0m[0m:[1;31m1264[0m
+[0m--- 0x4201ec53: [0;33mget_local_style[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/core/lv_obj_style.c[0m[0m:[1;31m551[0m
+[0m--- 0x4201f5e0: [0;33mlv_obj_set_local_style_prop[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/core/lv_obj_style.c[0m[0m:[1;31m273[0m
+[0m--- 0x4201faab: [0;33mlv_obj_set_style_width[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/core/lv_obj_style_gen.c[0m[0m:[1;31m8[0m
+[0m--- 0x4201c616: [0;33mlv_obj_set_width[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/core/lv_obj_pos.c[0m[0m:[1;31m232[0m
+[0m--- (inlined by) [0;33mlv_obj_set_width[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/core/lv_obj_pos.c[0m[0m:[1;31m223[0m
+[0m--- 0x4201c655: [0;33mlv_obj_set_size[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/core/lv_obj_pos.c[0m[0m:[1;31m219[0m
+[0m--- 0x42012385: [0;33mUIManager::mk_keyboard()[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/main/ui/ui_manager.cpp[0m[0m:[1;31m325[0m
+[0m--- 0x420131f4: [0;33mUIManager::show_keyboard(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&)[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/main/ui/ui_manager.cpp[0m[0m:[1;31m410[0m
+[0m--- 0x42013287: [0;33mUIManager::cb_detail_edit(_lv_event_t*)[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/main/ui/ui_manager.cpp[0m[0m:[1;31m556[0m
+[0m--- 0x4201950c: [0;33mevent_send_core[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/core/lv_event.c[0m[0m:[1;31m461[0m
+[0m--- 0x42019556: [0;33mlv_event_send[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/core/lv_event.c[0m[0m:[1;31m74[0m
+[0m--- 0x420196a1: [0;33mindev_proc_release[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/core/lv_indev.c[0m[0m:[1;31m979[0m
+[0m--- 0x42019cca: [0;33mindev_pointer_proc[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/core/lv_indev.c[0m[0m:[1;31m383[0m
+[0m--- (inlined by) [0;33mlv_indev_read_timer_cb[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/core/lv_indev.c[0m[0m:[1;31m101[0m
+[0m--- 0x420252aa: [0;33mlv_timer_exec[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/misc/lv_timer.c[0m[0m:[1;31m313[0m
+[0m--- (inlined by) [0;33mlv_timer_handler[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/misc/lv_timer.c[0m[0m:[1;31m109[0m
+[0m--- 0x42017dd9: [0;33mlvgl_port_task[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/espressif__esp_lvgl_port/esp_lvgl_port.c[0m[0m:[1;31m691[0m
+[0m--- 0x42043a74: [0;33mtask_wdt_timeout_handling[0m[0m at [0;32mC:/esp/v6.0.2/esp-idf/components/esp_system/task_wdt/task_wdt.c[0m[0m:[1;31m436[0m
+[0m--- (inlined by) [0;33mtask_wdt_isr[0m[0m at [0;32mC:/esp/v6.0.2/esp-idf/components/esp_system/task_wdt/task_wdt.c[0m[0m:[1;31m509[0m
+[0m--- 0x40378c2b: [0;33m_xt_lowint1[0m[0m at [0;32mC:/esp/v6.0.2/esp-idf/components/xtensa/xtensa_vectors.S[0m[0m:[1;31m1264[0m
+[0m--- 0x400559dd: [0;33m_xtos_set_intlevel[0m[0m in [0;32mROM[0m
+[0m--- 0x40381c3b: [0;33mvPortClearInterruptMaskFromISR[0m[0m at [0;32mC:/esp/v6.0.2/esp-idf/components/freertos/FreeRTOS-Kernel/portable/xtensa/include/freertos/portmacro.h[0m[0m:[1;31m547[0m
+[0m--- (inlined by) [0;33mvPortExitCritical[0m[0m at [0;32mC:/esp/v6.0.2/esp-idf/components/freertos/FreeRTOS-Kernel/portable/xtensa/port.c[0m[0m:[1;31m528[0m
+[0m--- 0x4037f119: [0;33mvPortExitCriticalSafe[0m[0m at [0;32mC:/esp/v6.0.2/esp-idf/components/freertos/FreeRTOS-Kernel/portable/xtensa/include/freertos/portmacro.h[0m[0m:[1;31m581[0m
+[0m--- (inlined by) [0;33mregi2c_ctrl_write_reg[0m[0m at [0;32mC:/esp/v6.0.2/esp-idf/components/esp_hw_support/regi2c_ctrl.c[0m[0m:[1;31m47[0m
+[0m--- (inlined by) [0;33mregi2c_exit_critical[0m[0m at [0;32mC:/esp/v6.0.2/esp-idf/components/esp_hw_support/regi2c_ctrl.c[0m[0m:[1;31m42[0m
+[0m--- 0x40377163: [0;33mphy_i2c_exit_critical[0m[0m at [0;32mC:/esp/v6.0.2/esp-idf/components/esp_phy/src/phy_override.c[0m[0m:[1;31m58[0m
+[0m--- 0x4037aa9d: [0;33mram_phy_i2c_init1[0m[0m at [0;32m??[0m[0m:[1;31m?[0m
+[0m--- 0x4037a4d5: [0;33mram_phy_wakeup_init[0m[0m at [0;32m??[0m[0m:[1;31m?[0m
+[0m--- 0x4037abe3: [0;33mphy_wakeup_init[0m[0m at [0;32m??[0m[0m:[1;31m?[0m
+[0m--- 0x420abfbd: [0;33mesp_phy_enable[0m[0m at [0;32mC:/esp/v6.0.2/esp-idf/components/esp_phy/src/phy_init.c[0m[0m:[1;31m369[0m
+[0m--- 0x420cc32e: [0;33mesp_phy_enable_wrapper[0m[0m at [0;32mC:/esp/v6.0.2/esp-idf/components/esp_wifi/esp32s3/esp_adapter.c[0m[0m:[1;31m625[0m
+[0m--- 0x4003ad27: [0;33mwifi_rf_phy_enable[0m[0m in [0;32mROM[0m
+[0m--- 0x403877d5: [0;33mpm_dream[0m[0m at [0;32m??[0m[0m:[1;31m?[0m
+[0m--- 0x4038835e: [0;33mpm_tbtt_process[0m[0m at [0;32m??[0m[0m:[1;31m?[0m
+[0m--- 0x4003d021: [0;33mpm_on_tbtt[0m[0m in [0;32mROM[0m
+[0m--- 0x4038629d: [0;33mppTask[0m[0m at [0;32m??[0m[0m:[1;31m?[0m
+[0m--- 0x42043a74: [0;33mtask_wdt_timeout_handling[0m[0m at [0;32mC:/esp/v6.0.2/esp-idf/components/esp_system/task_wdt/task_wdt.c[0m[0m:[1;31m436[0m
+[0m--- (inlined by) [0;33mtask_wdt_isr[0m[0m at [0;32mC:/esp/v6.0.2/esp-idf/components/esp_system/task_wdt/task_wdt.c[0m[0m:[1;31m509[0m
+[0m--- 0x40378c2b: [0;33m_xt_lowint1[0m[0m at [0;32mC:/esp/v6.0.2/esp-idf/components/xtensa/xtensa_vectors.S[0m[0m:[1;31m1264[0m
+[0m--- 0x4201ec53: [0;33mget_local_style[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/core/lv_obj_style.c[0m[0m:[1;31m551[0m
+[0m--- 0x4201f5e0: [0;33mlv_obj_set_local_style_prop[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/core/lv_obj_style.c[0m[0m:[1;31m273[0m
+[0m--- 0x4201faab: [0;33mlv_obj_set_style_width[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/core/lv_obj_style_gen.c[0m[0m:[1;31m8[0m
+[0m--- 0x4201c616: [0;33mlv_obj_set_width[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/core/lv_obj_pos.c[0m[0m:[1;31m232[0m
+[0m--- (inlined by) [0;33mlv_obj_set_width[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/core/lv_obj_pos.c[0m[0m:[1;31m223[0m
+[0m--- 0x4201c655: [0;33mlv_obj_set_size[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/core/lv_obj_pos.c[0m[0m:[1;31m219[0m
+[0m--- 0x42012385: [0;33mUIManager::mk_keyboard()[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/main/ui/ui_manager.cpp[0m[0m:[1;31m325[0m
+[0m--- 0x420131f4: [0;33mUIManager::show_keyboard(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&)[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/main/ui/ui_manager.cpp[0m[0m:[1;31m410[0m
+[0m--- 0x42013287: [0;33mUIManager::cb_detail_edit(_lv_event_t*)[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/main/ui/ui_manager.cpp[0m[0m:[1;31m556[0m
+[0m--- 0x4201950c: [0;33mevent_send_core[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/core/lv_event.c[0m[0m:[1;31m461[0m
+[0m--- 0x42019556: [0;33mlv_event_send[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/core/lv_event.c[0m[0m:[1;31m74[0m
+[0m--- 0x420196a1: [0;33mindev_proc_release[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/core/lv_indev.c[0m[0m:[1;31m979[0m
+[0m--- 0x42019cca: [0;33mindev_pointer_proc[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/core/lv_indev.c[0m[0m:[1;31m383[0m
+[0m--- (inlined by) [0;33mlv_indev_read_timer_cb[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/core/lv_indev.c[0m[0m:[1;31m101[0m
+[0m--- 0x420252aa: [0;33mlv_timer_exec[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/misc/lv_timer.c[0m[0m:[1;31m313[0m
+[0m--- (inlined by) [0;33mlv_timer_handler[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/misc/lv_timer.c[0m[0m:[1;31m109[0m
+[0m--- 0x42017dd9: [0;33mlvgl_port_task[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/espressif__esp_lvgl_port/esp_lvgl_port.c[0m[0m:[1;31m691[0m
+[0m--- 0x42043a74: [0;33mtask_wdt_timeout_handling[0m[0m at [0;32mC:/esp/v6.0.2/esp-idf/components/esp_system/task_wdt/task_wdt.c[0m[0m:[1;31m436[0m
+[0m--- (inlined by) [0;33mtask_wdt_isr[0m[0m at [0;32mC:/esp/v6.0.2/esp-idf/components/esp_system/task_wdt/task_wdt.c[0m[0m:[1;31m509[0m
+[0m--- 0x40378c2b: [0;33m_xt_lowint1[0m[0m at [0;32mC:/esp/v6.0.2/esp-idf/components/xtensa/xtensa_vectors.S[0m[0m:[1;31m1264[0m
+[0m--- 0x4201ec53: [0;33mget_local_style[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/core/lv_obj_style.c[0m[0m:[1;31m551[0m
+[0m--- 0x4201f5e0: [0;33mlv_obj_set_local_style_prop[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/core/lv_obj_style.c[0m[0m:[1;31m273[0m
+[0m--- 0x4201faab: [0;33mlv_obj_set_style_width[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/core/lv_obj_style_gen.c[0m[0m:[1;31m8[0m
+[0m--- 0x4201c616: [0;33mlv_obj_set_width[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/core/lv_obj_pos.c[0m[0m:[1;31m232[0m
+[0m--- (inlined by) [0;33mlv_obj_set_width[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/core/lv_obj_pos.c[0m[0m:[1;31m223[0m
+[0m--- 0x4201c655: [0;33mlv_obj_set_size[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/core/lv_obj_pos.c[0m[0m:[1;31m219[0m
+[0m--- 0x42012385: [0;33mUIManager::mk_keyboard()[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/main/ui/ui_manager.cpp[0m[0m:[1;31m325[0m
+[0m--- 0x420131f4: [0;33mUIManager::show_keyboard(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&)[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/main/ui/ui_manager.cpp[0m[0m:[1;31m410[0m
+[0m--- 0x42013287: [0;33mUIManager::cb_detail_edit(_lv_event_t*)[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/main/ui/ui_manager.cpp[0m[0m:[1;31m556[0m
+[0m--- 0x4201950c: [0;33mevent_send_core[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/core/lv_event.c[0m[0m:[1;31m461[0m
+[0m--- 0x42019556: [0;33mlv_event_send[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/core/lv_event.c[0m[0m:[1;31m74[0m
+[0m--- 0x420196a1: [0;33mindev_proc_release[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/core/lv_indev.c[0m[0m:[1;31m979[0m
+[0m--- 0x42019cca: [0;33mindev_pointer_proc[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/core/lv_indev.c[0m[0m:[1;31m383[0m
+[0m--- (inlined by) [0;33mlv_indev_read_timer_cb[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/core/lv_indev.c[0m[0m:[1;31m101[0m
+[0m--- 0x420252aa: [0;33mlv_timer_exec[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/misc/lv_timer.c[0m[0m:[1;31m313[0m
+[0m--- (inlined by) [0;33mlv_timer_handler[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/misc/lv_timer.c[0m[0m:[1;31m109[0m
+[0m--- 0x42017dd9: [0;33mlvgl_port_task[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/espressif__esp_lvgl_port/esp_lvgl_port.c[0m[0m:[1;31m691[0m
+[0m--- 0x42043a74: [0;33mtask_wdt_timeout_handling[0m[0m at [0;32mC:/esp/v6.0.2/esp-idf/components/esp_system/task_wdt/task_wdt.c[0m[0m:[1;31m436[0m
+[0m--- (inlined by) [0;33mtask_wdt_isr[0m[0m at [0;32mC:/esp/v6.0.2/esp-idf/components/esp_system/task_wdt/task_wdt.c[0m[0m:[1;31m509[0m
+[0m--- 0x40378c2b: [0;33m_xt_lowint1[0m[0m at [0;32mC:/esp/v6.0.2/esp-idf/components/xtensa/xtensa_vectors.S[0m[0m:[1;31m1264[0m
+[0m--- 0x4201ec53: [0;33mget_local_style[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/core/lv_obj_style.c[0m[0m:[1;31m551[0m
+[0m--- 0x4201f5e0: [0;33mlv_obj_set_local_style_prop[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/core/lv_obj_style.c[0m[0m:[1;31m273[0m
+[0m--- 0x4201faab: [0;33mlv_obj_set_style_width[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/core/lv_obj_style_gen.c[0m[0m:[1;31m8[0m
+[0m--- 0x4201c616: [0;33mlv_obj_set_width[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/core/lv_obj_pos.c[0m[0m:[1;31m232[0m
+[0m--- (inlined by) [0;33mlv_obj_set_width[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/core/lv_obj_pos.c[0m[0m:[1;31m223[0m
+[0m--- 0x4201c655: [0;33mlv_obj_set_size[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/core/lv_obj_pos.c[0m[0m:[1;31m219[0m
+[0m--- 0x42012385: [0;33mUIManager::mk_keyboard()[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/main/ui/ui_manager.cpp[0m[0m:[1;31m325[0m
+[0m--- 0x420131f4: [0;33mUIManager::show_keyboard(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&)[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/main/ui/ui_manager.cpp[0m[0m:[1;31m410[0m
+[0m--- 0x42013287: [0;33mUIManager::cb_detail_edit(_lv_event_t*)[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/main/ui/ui_manager.cpp[0m[0m:[1;31m556[0m
+[0m--- 0x4201950c: [0;33mevent_send_core[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/core/lv_event.c[0m[0m:[1;31m461[0m
+[0m--- 0x42019556: [0;33mlv_event_send[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/core/lv_event.c[0m[0m:[1;31m74[0m
+[0m--- 0x420196a1: [0;33mindev_proc_release[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/core/lv_indev.c[0m[0m:[1;31m979[0m
+[0m--- 0x42019cca: [0;33mindev_pointer_proc[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/core/lv_indev.c[0m[0m:[1;31m383[0m
+[0m--- (inlined by) [0;33mlv_indev_read_timer_cb[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/core/lv_indev.c[0m[0m:[1;31m101[0m
+[0m--- 0x420252aa: [0;33mlv_timer_exec[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/misc/lv_timer.c[0m[0m:[1;31m313[0m
+[0m--- (inlined by) [0;33mlv_timer_handler[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/misc/lv_timer.c[0m[0m:[1;31m109[0m
+[0m--- 0x42017dd9: [0;33mlvgl_port_task[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/espressif__esp_lvgl_port/esp_lvgl_port.c[0m[0m:[1;31m691[0m
+[0m--- 0x42043a74: [0;33mtask_wdt_timeout_handling[0m[0m at [0;32mC:/esp/v6.0.2/esp-idf/components/esp_system/task_wdt/task_wdt.c[0m[0m:[1;31m436[0m
+[0m--- (inlined by) [0;33mtask_wdt_isr[0m[0m at [0;32mC:/esp/v6.0.2/esp-idf/components/esp_system/task_wdt/task_wdt.c[0m[0m:[1;31m509[0m
+[0m--- 0x40378c2b: [0;33m_xt_lowint1[0m[0m at [0;32mC:/esp/v6.0.2/esp-idf/components/xtensa/xtensa_vectors.S[0m[0m:[1;31m1264[0m
+[0m--- 0x4201ec53: [0;33mget_local_style[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/core/lv_obj_style.c[0m[0m:[1;31m551[0m
+[0m--- 0x4201f5e0: [0;33mlv_obj_set_local_style_prop[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/core/lv_obj_style.c[0m[0m:[1;31m273[0m
+[0m--- 0x4201faab: [0;33mlv_obj_set_style_width[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/core/lv_obj_style_gen.c[0m[0m:[1;31m8[0m
+[0m--- 0x4201c616: [0;33mlv_obj_set_width[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/core/lv_obj_pos.c[0m[0m:[1;31m232[0m
+[0m--- (inlined by) [0;33mlv_obj_set_width[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/core/lv_obj_pos.c[0m[0m:[1;31m223[0m
+[0m--- 0x4201c655: [0;33mlv_obj_set_size[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/core/lv_obj_pos.c[0m[0m:[1;31m219[0m
+[0m--- 0x42012385: [0;33mUIManager::mk_keyboard()[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/main/ui/ui_manager.cpp[0m[0m:[1;31m325[0m
+[0m--- 0x420131f4: [0;33mUIManager::show_keyboard(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&)[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/main/ui/ui_manager.cpp[0m[0m:[1;31m410[0m
+[0m--- 0x42013287: [0;33mUIManager::cb_detail_edit(_lv_event_t*)[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/main/ui/ui_manager.cpp[0m[0m:[1;31m556[0m
+[0m--- 0x4201950c: [0;33mevent_send_core[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/core/lv_event.c[0m[0m:[1;31m461[0m
+[0m--- 0x42019556: [0;33mlv_event_send[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/core/lv_event.c[0m[0m:[1;31m74[0m
+[0m--- 0x420196a1: [0;33mindev_proc_release[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/core/lv_indev.c[0m[0m:[1;31m979[0m
+[0m--- 0x42019cca: [0;33mindev_pointer_proc[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/core/lv_indev.c[0m[0m:[1;31m383[0m
+[0m--- (inlined by) [0;33mlv_indev_read_timer_cb[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/core/lv_indev.c[0m[0m:[1;31m101[0m
+[0m--- 0x420252aa: [0;33mlv_timer_exec[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/misc/lv_timer.c[0m[0m:[1;31m313[0m
+[0m--- (inlined by) [0;33mlv_timer_handler[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/misc/lv_timer.c[0m[0m:[1;31m109[0m
+[0m--- 0x42017dd9: [0;33mlvgl_port_task[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/espressif__esp_lvgl_port/esp_lvgl_port.c[0m[0m:[1;31m691[0m
+[0m--- 0x42043a74: [0;33mtask_wdt_timeout_handling[0m[0m at [0;32mC:/esp/v6.0.2/esp-idf/components/esp_system/task_wdt/task_wdt.c[0m[0m:[1;31m436[0m
+[0m--- (inlined by) [0;33mtask_wdt_isr[0m[0m at [0;32mC:/esp/v6.0.2/esp-idf/components/esp_system/task_wdt/task_wdt.c[0m[0m:[1;31m509[0m
+[0m--- 0x40378c2b: [0;33m_xt_lowint1[0m[0m at [0;32mC:/esp/v6.0.2/esp-idf/components/xtensa/xtensa_vectors.S[0m[0m:[1;31m1264[0m
+[0m--- 0x4201ec53: [0;33mget_local_style[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/core/lv_obj_style.c[0m[0m:[1;31m551[0m
+[0m--- 0x4201f5e0: [0;33mlv_obj_set_local_style_prop[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/core/lv_obj_style.c[0m[0m:[1;31m273[0m
+[0m--- 0x4201faab: [0;33mlv_obj_set_style_width[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/core/lv_obj_style_gen.c[0m[0m:[1;31m8[0m
+[0m--- 0x4201c616: [0;33mlv_obj_set_width[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/core/lv_obj_pos.c[0m[0m:[1;31m232[0m
+[0m--- (inlined by) [0;33mlv_obj_set_width[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/core/lv_obj_pos.c[0m[0m:[1;31m223[0m
+[0m--- 0x4201c655: [0;33mlv_obj_set_size[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/core/lv_obj_pos.c[0m[0m:[1;31m219[0m
+[0m--- 0x42012385: [0;33mUIManager::mk_keyboard()[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/main/ui/ui_manager.cpp[0m[0m:[1;31m325[0m
+[0m--- 0x420131f4: [0;33mUIManager::show_keyboard(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&)[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/main/ui/ui_manager.cpp[0m[0m:[1;31m410[0m
+[0m--- 0x42013287: [0;33mUIManager::cb_detail_edit(_lv_event_t*)[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/main/ui/ui_manager.cpp[0m[0m:[1;31m556[0m
+[0m--- 0x4201950c: [0;33mevent_send_core[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/core/lv_event.c[0m[0m:[1;31m461[0m
+[0m--- 0x42019556: [0;33mlv_event_send[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/core/lv_event.c[0m[0m:[1;31m74[0m
+[0m--- 0x420196a1: [0;33mindev_proc_release[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/core/lv_indev.c[0m[0m:[1;31m979[0m
+[0m--- 0x42019cca: [0;33mindev_pointer_proc[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/core/lv_indev.c[0m[0m:[1;31m383[0m
+[0m--- (inlined by) [0;33mlv_indev_read_timer_cb[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/core/lv_indev.c[0m[0m:[1;31m101[0m
+[0m--- 0x420252aa: [0;33mlv_timer_exec[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/misc/lv_timer.c[0m[0m:[1;31m313[0m
+[0m--- (inlined by) [0;33mlv_timer_handler[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/misc/lv_timer.c[0m[0m:[1;31m109[0m
+[0m--- 0x42017dd9: [0;33mlvgl_port_task[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/espressif__esp_lvgl_port/esp_lvgl_port.c[0m[0m:[1;31m691[0m
+[0m--- 0x42043a74: [0;33mtask_wdt_timeout_handling[0m[0m at [0;32mC:/esp/v6.0.2/esp-idf/components/esp_system/task_wdt/task_wdt.c[0m[0m:[1;31m436[0m
+[0m--- (inlined by) [0;33mtask_wdt_isr[0m[0m at [0;32mC:/esp/v6.0.2/esp-idf/components/esp_system/task_wdt/task_wdt.c[0m[0m:[1;31m509[0m
+[0m--- 0x40378c2b: [0;33m_xt_lowint1[0m[0m at [0;32mC:/esp/v6.0.2/esp-idf/components/xtensa/xtensa_vectors.S[0m[0m:[1;31m1264[0m
+[0m--- 0x4201ec53: [0;33mget_local_style[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/core/lv_obj_style.c[0m[0m:[1;31m551[0m
+[0m--- 0x4201f5e0: [0;33mlv_obj_set_local_style_prop[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/core/lv_obj_style.c[0m[0m:[1;31m273[0m
+[0m--- 0x4201faab: [0;33mlv_obj_set_style_width[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/core/lv_obj_style_gen.c[0m[0m:[1;31m8[0m
+[0m--- 0x4201c616: [0;33mlv_obj_set_width[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/core/lv_obj_pos.c[0m[0m:[1;31m232[0m
+[0m--- (inlined by) [0;33mlv_obj_set_width[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/core/lv_obj_pos.c[0m[0m:[1;31m223[0m
+[0m--- 0x4201c655: [0;33mlv_obj_set_size[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/core/lv_obj_pos.c[0m[0m:[1;31m219[0m
+[0m--- 0x42012385: [0;33mUIManager::mk_keyboard()[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/main/ui/ui_manager.cpp[0m[0m:[1;31m325[0m
+[0m--- 0x420131f4: [0;33mUIManager::show_keyboard(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&)[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/main/ui/ui_manager.cpp[0m[0m:[1;31m410[0m
+[0m--- 0x42013287: [0;33mUIManager::cb_detail_edit(_lv_event_t*)[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/main/ui/ui_manager.cpp[0m[0m:[1;31m556[0m
+[0m--- 0x4201950c: [0;33mevent_send_core[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/core/lv_event.c[0m[0m:[1;31m461[0m
+[0m--- 0x42019556: [0;33mlv_event_send[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/core/lv_event.c[0m[0m:[1;31m74[0m
+[0m--- 0x420196a1: [0;33mindev_proc_release[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/core/lv_indev.c[0m[0m:[1;31m979[0m
+[0m--- 0x42019cca: [0;33mindev_pointer_proc[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/core/lv_indev.c[0m[0m:[1;31m383[0m
+[0m--- (inlined by) [0;33mlv_indev_read_timer_cb[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/core/lv_indev.c[0m[0m:[1;31m101[0m
+[0m--- 0x420252aa: [0;33mlv_timer_exec[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/misc/lv_timer.c[0m[0m:[1;31m313[0m
+[0m--- (inlined by) [0;33mlv_timer_handler[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/misc/lv_timer.c[0m[0m:[1;31m109[0m
+[0m--- 0x42017dd9: [0;33mlvgl_port_task[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/espressif__esp_lvgl_port/esp_lvgl_port.c[0m[0m:[1;31m691[0m
+[0m--- 0x42043a74: [0;33mtask_wdt_timeout_handling[0m[0m at [0;32mC:/esp/v6.0.2/esp-idf/components/esp_system/task_wdt/task_wdt.c[0m[0m:[1;31m436[0m
+[0m--- (inlined by) [0;33mtask_wdt_isr[0m[0m at [0;32mC:/esp/v6.0.2/esp-idf/components/esp_system/task_wdt/task_wdt.c[0m[0m:[1;31m509[0m
+[0m--- 0x40378c2b: [0;33m_xt_lowint1[0m[0m at [0;32mC:/esp/v6.0.2/esp-idf/components/xtensa/xtensa_vectors.S[0m[0m:[1;31m1264[0m
+[0m--- 0x4201ec53: [0;33mget_local_style[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/core/lv_obj_style.c[0m[0m:[1;31m551[0m
+[0m--- 0x4201f5e0: [0;33mlv_obj_set_local_style_prop[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/core/lv_obj_style.c[0m[0m:[1;31m273[0m
+[0m--- 0x4201faab: [0;33mlv_obj_set_style_width[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/core/lv_obj_style_gen.c[0m[0m:[1;31m8[0m
+[0m--- 0x4201c616: [0;33mlv_obj_set_width[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/core/lv_obj_pos.c[0m[0m:[1;31m232[0m
+[0m--- (inlined by) [0;33mlv_obj_set_width[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/core/lv_obj_pos.c[0m[0m:[1;31m223[0m
+[0m--- 0x4201c655: [0;33mlv_obj_set_size[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/core/lv_obj_pos.c[0m[0m:[1;31m219[0m
+[0m--- 0x42012385: [0;33mUIManager::mk_keyboard()[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/main/ui/ui_manager.cpp[0m[0m:[1;31m325[0m
+[0m--- 0x420131f4: [0;33mUIManager::show_keyboard(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&)[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/main/ui/ui_manager.cpp[0m[0m:[1;31m410[0m
+[0m--- 0x42013287: [0;33mUIManager::cb_detail_edit(_lv_event_t*)[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/main/ui/ui_manager.cpp[0m[0m:[1;31m556[0m
+[0m--- 0x4201950c: [0;33mevent_send_core[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/core/lv_event.c[0m[0m:[1;31m461[0m
+[0m--- 0x42019556: [0;33mlv_event_send[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/core/lv_event.c[0m[0m:[1;31m74[0m
+[0m--- 0x420196a1: [0;33mindev_proc_release[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/core/lv_indev.c[0m[0m:[1;31m979[0m
+[0m--- 0x42019cca: [0;33mindev_pointer_proc[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/core/lv_indev.c[0m[0m:[1;31m383[0m
+[0m--- (inlined by) [0;33mlv_indev_read_timer_cb[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/core/lv_indev.c[0m[0m:[1;31m101[0m
+[0m--- 0x420252aa: [0;33mlv_timer_exec[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/misc/lv_timer.c[0m[0m:[1;31m313[0m
+[0m--- (inlined by) [0;33mlv_timer_handler[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/misc/lv_timer.c[0m[0m:[1;31m109[0m
+[0m--- 0x42017dd9: [0;33mlvgl_port_task[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/espressif__esp_lvgl_port/esp_lvgl_port.c[0m[0m:[1;31m691[0m
+[0m--- 0x42043a74: [0;33mtask_wdt_timeout_handling[0m[0m at [0;32mC:/esp/v6.0.2/esp-idf/components/esp_system/task_wdt/task_wdt.c[0m[0m:[1;31m436[0m
+[0m--- (inlined by) [0;33mtask_wdt_isr[0m[0m at [0;32mC:/esp/v6.0.2/esp-idf/components/esp_system/task_wdt/task_wdt.c[0m[0m:[1;31m509[0m
+[0m--- 0x40378c2b: [0;33m_xt_lowint1[0m[0m at [0;32mC:/esp/v6.0.2/esp-idf/components/xtensa/xtensa_vectors.S[0m[0m:[1;31m1264[0m
+[0m--- 0x4201ec53: [0;33mget_local_style[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/core/lv_obj_style.c[0m[0m:[1;31m551[0m
+[0m--- 0x4201f5e0: [0;33mlv_obj_set_local_style_prop[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/core/lv_obj_style.c[0m[0m:[1;31m273[0m
+[0m--- 0x4201faab: [0;33mlv_obj_set_style_width[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/core/lv_obj_style_gen.c[0m[0m:[1;31m8[0m
+[0m--- 0x4201c616: [0;33mlv_obj_set_width[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/core/lv_obj_pos.c[0m[0m:[1;31m232[0m
+[0m--- (inlined by) [0;33mlv_obj_set_width[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/core/lv_obj_pos.c[0m[0m:[1;31m223[0m
+[0m--- 0x4201c655: [0;33mlv_obj_set_size[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/core/lv_obj_pos.c[0m[0m:[1;31m219[0m
+[0m--- 0x42012385: [0;33mUIManager::mk_keyboard()[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/main/ui/ui_manager.cpp[0m[0m:[1;31m325[0m
+[0m--- 0x420131f4: [0;33mUIManager::show_keyboard(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&)[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/main/ui/ui_manager.cpp[0m[0m:[1;31m410[0m
+[0m--- 0x42013287: [0;33mUIManager::cb_detail_edit(_lv_event_t*)[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/main/ui/ui_manager.cpp[0m[0m:[1;31m556[0m
+[0m--- 0x4201950c: [0;33mevent_send_core[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/core/lv_event.c[0m[0m:[1;31m461[0m
+[0m--- 0x42019556: [0;33mlv_event_send[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/core/lv_event.c[0m[0m:[1;31m74[0m
+[0m--- 0x420196a1: [0;33mindev_proc_release[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/core/lv_indev.c[0m[0m:[1;31m979[0m
+[0m--- 0x42019cca: [0;33mindev_pointer_proc[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/core/lv_indev.c[0m[0m:[1;31m383[0m
+[0m--- (inlined by) [0;33mlv_indev_read_timer_cb[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/core/lv_indev.c[0m[0m:[1;31m101[0m
+[0m--- 0x420252aa: [0;33mlv_timer_exec[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/misc/lv_timer.c[0m[0m:[1;31m313[0m
+[0m--- (inlined by) [0;33mlv_timer_handler[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/misc/lv_timer.c[0m[0m:[1;31m109[0m
+[0m--- 0x42017dd9: [0;33mlvgl_port_task[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/espressif__esp_lvgl_port/esp_lvgl_port.c[0m[0m:[1;31m691[0m
+[0m--- 0x42043a74: [0;33mtask_wdt_timeout_handling[0m[0m at [0;32mC:/esp/v6.0.2/esp-idf/components/esp_system/task_wdt/task_wdt.c[0m[0m:[1;31m436[0m
+[0m--- (inlined by) [0;33mtask_wdt_isr[0m[0m at [0;32mC:/esp/v6.0.2/esp-idf/components/esp_system/task_wdt/task_wdt.c[0m[0m:[1;31m509[0m
+[0m--- 0x40378c2b: [0;33m_xt_lowint1[0m[0m at [0;32mC:/esp/v6.0.2/esp-idf/components/xtensa/xtensa_vectors.S[0m[0m:[1;31m1264[0m
+[0m--- 0x4201ec53: [0;33mget_local_style[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/core/lv_obj_style.c[0m[0m:[1;31m551[0m
+[0m--- 0x4201f5e0: [0;33mlv_obj_set_local_style_prop[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/core/lv_obj_style.c[0m[0m:[1;31m273[0m
+[0m--- 0x4201faab: [0;33mlv_obj_set_style_width[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/core/lv_obj_style_gen.c[0m[0m:[1;31m8[0m
+[0m--- 0x4201c616: [0;33mlv_obj_set_width[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/core/lv_obj_pos.c[0m[0m:[1;31m232[0m
+[0m--- (inlined by) [0;33mlv_obj_set_width[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/core/lv_obj_pos.c[0m[0m:[1;31m223[0m
+[0m--- 0x4201c655: [0;33mlv_obj_set_size[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/core/lv_obj_pos.c[0m[0m:[1;31m219[0m
+[0m--- 0x42012385: [0;33mUIManager::mk_keyboard()[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/main/ui/ui_manager.cpp[0m[0m:[1;31m325[0m
+[0m--- 0x420131f4: [0;33mUIManager::show_keyboard(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&)[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/main/ui/ui_manager.cpp[0m[0m:[1;31m410[0m
+[0m--- 0x42013287: [0;33mUIManager::cb_detail_edit(_lv_event_t*)[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/main/ui/ui_manager.cpp[0m[0m:[1;31m556[0m
+[0m--- 0x4201950c: [0;33mevent_send_core[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/core/lv_event.c[0m[0m:[1;31m461[0m
+[0m--- 0x42019556: [0;33mlv_event_send[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/core/lv_event.c[0m[0m:[1;31m74[0m
+[0m--- 0x420196a1: [0;33mindev_proc_release[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/core/lv_indev.c[0m[0m:[1;31m979[0m
+[0m--- 0x42019cca: [0;33mindev_pointer_proc[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/core/lv_indev.c[0m[0m:[1;31m383[0m
+[0m--- (inlined by) [0;33mlv_indev_read_timer_cb[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/core/lv_indev.c[0m[0m:[1;31m101[0m
+[0m--- 0x420252aa: [0;33mlv_timer_exec[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/misc/lv_timer.c[0m[0m:[1;31m313[0m
+[0m--- (inlined by) [0;33mlv_timer_handler[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/misc/lv_timer.c[0m[0m:[1;31m109[0m
+[0m--- 0x42017dd9: [0;33mlvgl_port_task[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/espressif__esp_lvgl_port/esp_lvgl_port.c[0m[0m:[1;31m691[0m
+[0m--- 0x42043a74: [0;33mtask_wdt_timeout_handling[0m[0m at [0;32mC:/esp/v6.0.2/esp-idf/components/esp_system/task_wdt/task_wdt.c[0m[0m:[1;31m436[0m
+[0m--- (inlined by) [0;33mtask_wdt_isr[0m[0m at [0;32mC:/esp/v6.0.2/esp-idf/components/esp_system/task_wdt/task_wdt.c[0m[0m:[1;31m509[0m
+[0m--- 0x40378c2b: [0;33m_xt_lowint1[0m[0m at [0;32mC:/esp/v6.0.2/esp-idf/components/xtensa/xtensa_vectors.S[0m[0m:[1;31m1264[0m
+[0m--- 0x4201ec53: [0;33mget_local_style[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/core/lv_obj_style.c[0m[0m:[1;31m551[0m
+[0m--- 0x4201f5e0: [0;33mlv_obj_set_local_style_prop[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/core/lv_obj_style.c[0m[0m:[1;31m273[0m
+[0m--- 0x4201faab: [0;33mlv_obj_set_style_width[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/core/lv_obj_style_gen.c[0m[0m:[1;31m8[0m
+[0m--- 0x4201c616: [0;33mlv_obj_set_width[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/core/lv_obj_pos.c[0m[0m:[1;31m232[0m
+[0m--- (inlined by) [0;33mlv_obj_set_width[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/core/lv_obj_pos.c[0m[0m:[1;31m223[0m
+[0m--- 0x4201c655: [0;33mlv_obj_set_size[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/core/lv_obj_pos.c[0m[0m:[1;31m219[0m
+[0m--- 0x42012385: [0;33mUIManager::mk_keyboard()[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/main/ui/ui_manager.cpp[0m[0m:[1;31m325[0m
+[0m--- 0x420131f4: [0;33mUIManager::show_keyboard(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&)[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/main/ui/ui_manager.cpp[0m[0m:[1;31m410[0m
+[0m--- 0x42013287: [0;33mUIManager::cb_detail_edit(_lv_event_t*)[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/main/ui/ui_manager.cpp[0m[0m:[1;31m556[0m
+[0m--- 0x4201950c: [0;33mevent_send_core[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/core/lv_event.c[0m[0m:[1;31m461[0m
+[0m--- 0x42019556: [0;33mlv_event_send[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/core/lv_event.c[0m[0m:[1;31m74[0m
+[0m--- 0x420196a1: [0;33mindev_proc_release[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/core/lv_indev.c[0m[0m:[1;31m979[0m
+[0m--- 0x42019cca: [0;33mindev_pointer_proc[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/core/lv_indev.c[0m[0m:[1;31m383[0m
+[0m--- (inlined by) [0;33mlv_indev_read_timer_cb[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/core/lv_indev.c[0m[0m:[1;31m101[0m
+[0m--- 0x420252aa: [0;33mlv_timer_exec[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/misc/lv_timer.c[0m[0m:[1;31m313[0m
+[0m--- (inlined by) [0;33mlv_timer_handler[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/misc/lv_timer.c[0m[0m:[1;31m109[0m
+[0m--- 0x42017dd9: [0;33mlvgl_port_task[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/espressif__esp_lvgl_port/esp_lvgl_port.c[0m[0m:[1;31m691[0m
+[0m--- 0x42043a74: [0;33mtask_wdt_timeout_handling[0m[0m at [0;32mC:/esp/v6.0.2/esp-idf/components/esp_system/task_wdt/task_wdt.c[0m[0m:[1;31m436[0m
+[0m--- (inlined by) [0;33mtask_wdt_isr[0m[0m at [0;32mC:/esp/v6.0.2/esp-idf/components/esp_system/task_wdt/task_wdt.c[0m[0m:[1;31m509[0m
+[0m--- 0x40378c2b: [0;33m_xt_lowint1[0m[0m at [0;32mC:/esp/v6.0.2/esp-idf/components/xtensa/xtensa_vectors.S[0m[0m:[1;31m1264[0m
+[0m--- 0x4201ec53: [0;33mget_local_style[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/core/lv_obj_style.c[0m[0m:[1;31m551[0m
+[0m--- 0x4201f5e0: [0;33mlv_obj_set_local_style_prop[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/core/lv_obj_style.c[0m[0m:[1;31m273[0m
+[0m--- 0x4201faab: [0;33mlv_obj_set_style_width[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/core/lv_obj_style_gen.c[0m[0m:[1;31m8[0m
+[0m--- 0x4201c616: [0;33mlv_obj_set_width[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/core/lv_obj_pos.c[0m[0m:[1;31m232[0m
+[0m--- (inlined by) [0;33mlv_obj_set_width[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/core/lv_obj_pos.c[0m[0m:[1;31m223[0m
+[0m--- 0x4201c655: [0;33mlv_obj_set_size[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/core/lv_obj_pos.c[0m[0m:[1;31m219[0m
+[0m--- 0x42012385: [0;33mUIManager::mk_keyboard()[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/main/ui/ui_manager.cpp[0m[0m:[1;31m325[0m
+[0m--- 0x420131f4: [0;33mUIManager::show_keyboard(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&)[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/main/ui/ui_manager.cpp[0m[0m:[1;31m410[0m
+[0m--- 0x42013287: [0;33mUIManager::cb_detail_edit(_lv_event_t*)[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/main/ui/ui_manager.cpp[0m[0m:[1;31m556[0m
+[0m--- 0x4201950c: [0;33mevent_send_core[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/core/lv_event.c[0m[0m:[1;31m461[0m
+[0m--- 0x42019556: [0;33mlv_event_send[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/core/lv_event.c[0m[0m:[1;31m74[0m
+[0m--- 0x420196a1: [0;33mindev_proc_release[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/core/lv_indev.c[0m[0m:[1;31m979[0m
+[0m--- 0x42019cca: [0;33mindev_pointer_proc[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/core/lv_indev.c[0m[0m:[1;31m383[0m
+[0m--- (inlined by) [0;33mlv_indev_read_timer_cb[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/core/lv_indev.c[0m[0m:[1;31m101[0m
+[0m--- 0x420252aa: [0;33mlv_timer_exec[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/misc/lv_timer.c[0m[0m:[1;31m313[0m
+[0m--- (inlined by) [0;33mlv_timer_handler[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/misc/lv_timer.c[0m[0m:[1;31m109[0m
+[0m--- 0x42017dd9: [0;33mlvgl_port_task[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/espressif__esp_lvgl_port/esp_lvgl_port.c[0m[0m:[1;31m691[0m
+[0m--- 0x42043a74: [0;33mtask_wdt_timeout_handling[0m[0m at [0;32mC:/esp/v6.0.2/esp-idf/components/esp_system/task_wdt/task_wdt.c[0m[0m:[1;31m436[0m
+[0m--- (inlined by) [0;33mtask_wdt_isr[0m[0m at [0;32mC:/esp/v6.0.2/esp-idf/components/esp_system/task_wdt/task_wdt.c[0m[0m:[1;31m509[0m
+[0m--- 0x40378c2b: [0;33m_xt_lowint1[0m[0m at [0;32mC:/esp/v6.0.2/esp-idf/components/xtensa/xtensa_vectors.S[0m[0m:[1;31m1264[0m
+[0m--- 0x4201ec53: [0;33mget_local_style[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/core/lv_obj_style.c[0m[0m:[1;31m551[0m
+[0m--- 0x4201f5e0: [0;33mlv_obj_set_local_style_prop[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/core/lv_obj_style.c[0m[0m:[1;31m273[0m
+[0m--- 0x4201faab: [0;33mlv_obj_set_style_width[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/core/lv_obj_style_gen.c[0m[0m:[1;31m8[0m
+[0m--- 0x4201c616: [0;33mlv_obj_set_width[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/core/lv_obj_pos.c[0m[0m:[1;31m232[0m
+[0m--- (inlined by) [0;33mlv_obj_set_width[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/core/lv_obj_pos.c[0m[0m:[1;31m223[0m
+[0m--- 0x4201c655: [0;33mlv_obj_set_size[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/core/lv_obj_pos.c[0m[0m:[1;31m219[0m
+[0m--- 0x42012385: [0;33mUIManager::mk_keyboard()[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/main/ui/ui_manager.cpp[0m[0m:[1;31m325[0m
+[0m--- 0x420131f4: [0;33mUIManager::show_keyboard(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&)[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/main/ui/ui_manager.cpp[0m[0m:[1;31m410[0m
+[0m--- 0x42013287: [0;33mUIManager::cb_detail_edit(_lv_event_t*)[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/main/ui/ui_manager.cpp[0m[0m:[1;31m556[0m
+[0m--- 0x4201950c: [0;33mevent_send_core[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/core/lv_event.c[0m[0m:[1;31m461[0m
+[0m--- 0x42019556: [0;33mlv_event_send[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/core/lv_event.c[0m[0m:[1;31m74[0m
+[0m--- 0x420196a1: [0;33mindev_proc_release[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/core/lv_indev.c[0m[0m:[1;31m979[0m
+[0m--- 0x42019cca: [0;33mindev_pointer_proc[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/core/lv_indev.c[0m[0m:[1;31m383[0m
+[0m--- (inlined by) [0;33mlv_indev_read_timer_cb[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/core/lv_indev.c[0m[0m:[1;31m101[0m
+[0m--- 0x420252aa: [0;33mlv_timer_exec[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/misc/lv_timer.c[0m[0m:[1;31m313[0m
+[0m--- (inlined by) [0;33mlv_timer_handler[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/misc/lv_timer.c[0m[0m:[1;31m109[0m
+[0m--- 0x42017dd9: [0;33mlvgl_port_task[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/espressif__esp_lvgl_port/esp_lvgl_port.c[0m[0m:[1;31m691[0m
+[0m--- 0x42043a74: [0;33mtask_wdt_timeout_handling[0m[0m at [0;32mC:/esp/v6.0.2/esp-idf/components/esp_system/task_wdt/task_wdt.c[0m[0m:[1;31m436[0m
+[0m--- (inlined by) [0;33mtask_wdt_isr[0m[0m at [0;32mC:/esp/v6.0.2/esp-idf/components/esp_system/task_wdt/task_wdt.c[0m[0m:[1;31m509[0m
+[0m--- 0x40378c2b: [0;33m_xt_lowint1[0m[0m at [0;32mC:/esp/v6.0.2/esp-idf/components/xtensa/xtensa_vectors.S[0m[0m:[1;31m1264[0m
+[0m--- 0x4201ec53: [0;33mget_local_style[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/core/lv_obj_style.c[0m[0m:[1;31m551[0m
+[0m--- 0x4201f5e0: [0;33mlv_obj_set_local_style_prop[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/core/lv_obj_style.c[0m[0m:[1;31m273[0m
+[0m--- 0x4201faab: [0;33mlv_obj_set_style_width[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/core/lv_obj_style_gen.c[0m[0m:[1;31m8[0m
+[0m--- 0x4201c616: [0;33mlv_obj_set_width[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/core/lv_obj_pos.c[0m[0m:[1;31m232[0m
+[0m--- (inlined by) [0;33mlv_obj_set_width[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/core/lv_obj_pos.c[0m[0m:[1;31m223[0m
+[0m--- 0x4201c655: [0;33mlv_obj_set_size[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/core/lv_obj_pos.c[0m[0m:[1;31m219[0m
+[0m--- 0x42012385: [0;33mUIManager::mk_keyboard()[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/main/ui/ui_manager.cpp[0m[0m:[1;31m325[0m
+[0m--- 0x420131f4: [0;33mUIManager::show_keyboard(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&)[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/main/ui/ui_manager.cpp[0m[0m:[1;31m410[0m
+[0m--- 0x42013287: [0;33mUIManager::cb_detail_edit(_lv_event_t*)[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/main/ui/ui_manager.cpp[0m[0m:[1;31m556[0m
+[0m--- 0x4201950c: [0;33mevent_send_core[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/core/lv_event.c[0m[0m:[1;31m461[0m
+[0m--- 0x42019556: [0;33mlv_event_send[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/core/lv_event.c[0m[0m:[1;31m74[0m
+[0m--- 0x420196a1: [0;33mindev_proc_release[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/core/lv_indev.c[0m[0m:[1;31m979[0m
+[0m--- 0x42019cca: [0;33mindev_pointer_proc[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/core/lv_indev.c[0m[0m:[1;31m383[0m
+[0m--- (inlined by) [0;33mlv_indev_read_timer_cb[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/core/lv_indev.c[0m[0m:[1;31m101[0m
+[0m--- 0x420252aa: [0;33mlv_timer_exec[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/misc/lv_timer.c[0m[0m:[1;31m313[0m
+[0m--- (inlined by) [0;33mlv_timer_handler[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/misc/lv_timer.c[0m[0m:[1;31m109[0m
+[0m--- 0x42017dd9: [0;33mlvgl_port_task[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/espressif__esp_lvgl_port/esp_lvgl_port.c[0m[0m:[1;31m691[0m
+[0m--- 0x42043a74: [0;33mtask_wdt_timeout_handling[0m[0m at [0;32mC:/esp/v6.0.2/esp-idf/components/esp_system/task_wdt/task_wdt.c[0m[0m:[1;31m436[0m
+[0m--- (inlined by) [0;33mtask_wdt_isr[0m[0m at [0;32mC:/esp/v6.0.2/esp-idf/components/esp_system/task_wdt/task_wdt.c[0m[0m:[1;31m509[0m
+[0m--- 0x40378c2b: [0;33m_xt_lowint1[0m[0m at [0;32mC:/esp/v6.0.2/esp-idf/components/xtensa/xtensa_vectors.S[0m[0m:[1;31m1264[0m
+[0m--- 0x4201ec53: [0;33mget_local_style[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/core/lv_obj_style.c[0m[0m:[1;31m551[0m
+[0m--- 0x4201f5e0: [0;33mlv_obj_set_local_style_prop[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/core/lv_obj_style.c[0m[0m:[1;31m273[0m
+[0m--- 0x4201faab: [0;33mlv_obj_set_style_width[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/core/lv_obj_style_gen.c[0m[0m:[1;31m8[0m
+[0m--- 0x4201c616: [0;33mlv_obj_set_width[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/core/lv_obj_pos.c[0m[0m:[1;31m232[0m
+[0m--- (inlined by) [0;33mlv_obj_set_width[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/core/lv_obj_pos.c[0m[0m:[1;31m223[0m
+[0m--- 0x4201c655: [0;33mlv_obj_set_size[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/core/lv_obj_pos.c[0m[0m:[1;31m219[0m
+[0m--- 0x42012385: [0;33mUIManager::mk_keyboard()[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/main/ui/ui_manager.cpp[0m[0m:[1;31m325[0m
+[0m--- 0x420131f4: [0;33mUIManager::show_keyboard(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&)[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/main/ui/ui_manager.cpp[0m[0m:[1;31m410[0m
+[0m--- 0x42013287: [0;33mUIManager::cb_detail_edit(_lv_event_t*)[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/main/ui/ui_manager.cpp[0m[0m:[1;31m556[0m
+[0m--- 0x4201950c: [0;33mevent_send_core[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/core/lv_event.c[0m[0m:[1;31m461[0m
+[0m--- 0x42019556: [0;33mlv_event_send[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/core/lv_event.c[0m[0m:[1;31m74[0m
+[0m--- 0x420196a1: [0;33mindev_proc_release[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/core/lv_indev.c[0m[0m:[1;31m979[0m
+[0m--- 0x42019cca: [0;33mindev_pointer_proc[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/core/lv_indev.c[0m[0m:[1;31m383[0m
+[0m--- (inlined by) [0;33mlv_indev_read_timer_cb[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/core/lv_indev.c[0m[0m:[1;31m101[0m
+[0m--- 0x420252aa: [0;33mlv_timer_exec[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/misc/lv_timer.c[0m[0m:[1;31m313[0m
+[0m--- (inlined by) [0;33mlv_timer_handler[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/misc/lv_timer.c[0m[0m:[1;31m109[0m
+[0m--- 0x42017dd9: [0;33mlvgl_port_task[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/espressif__esp_lvgl_port/esp_lvgl_port.c[0m[0m:[1;31m691[0m
+[0m--- 0x42043a74: [0;33mtask_wdt_timeout_handling[0m[0m at [0;32mC:/esp/v6.0.2/esp-idf/components/esp_system/task_wdt/task_wdt.c[0m[0m:[1;31m436[0m
+[0m--- (inlined by) [0;33mtask_wdt_isr[0m[0m at [0;32mC:/esp/v6.0.2/esp-idf/components/esp_system/task_wdt/task_wdt.c[0m[0m:[1;31m509[0m
+[0m--- 0x40378c2b: [0;33m_xt_lowint1[0m[0m at [0;32mC:/esp/v6.0.2/esp-idf/components/xtensa/xtensa_vectors.S[0m[0m:[1;31m1264[0m
+[0m--- 0x4201ec53: [0;33mget_local_style[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/core/lv_obj_style.c[0m[0m:[1;31m551[0m
+[0m--- 0x4201f5e0: [0;33mlv_obj_set_local_style_prop[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/core/lv_obj_style.c[0m[0m:[1;31m273[0m
+[0m--- 0x4201faab: [0;33mlv_obj_set_style_width[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/core/lv_obj_style_gen.c[0m[0m:[1;31m8[0m
+[0m--- 0x4201c616: [0;33mlv_obj_set_width[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/core/lv_obj_pos.c[0m[0m:[1;31m232[0m
+[0m--- (inlined by) [0;33mlv_obj_set_width[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/core/lv_obj_pos.c[0m[0m:[1;31m223[0m
+[0m--- 0x4201c655: [0;33mlv_obj_set_size[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/core/lv_obj_pos.c[0m[0m:[1;31m219[0m
+[0m--- 0x42012385: [0;33mUIManager::mk_keyboard()[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/main/ui/ui_manager.cpp[0m[0m:[1;31m325[0m
+[0m--- 0x420131f4: [0;33mUIManager::show_keyboard(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&)[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/main/ui/ui_manager.cpp[0m[0m:[1;31m410[0m
+[0m--- 0x42013287: [0;33mUIManager::cb_detail_edit(_lv_event_t*)[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/main/ui/ui_manager.cpp[0m[0m:[1;31m556[0m
+[0m--- 0x4201950c: [0;33mevent_send_core[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/core/lv_event.c[0m[0m:[1;31m461[0m
+[0m--- 0x42019556: [0;33mlv_event_send[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/core/lv_event.c[0m[0m:[1;31m74[0m
+[0m--- 0x420196a1: [0;33mindev_proc_release[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/core/lv_indev.c[0m[0m:[1;31m979[0m
+[0m--- 0x42019cca: [0;33mindev_pointer_proc[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/core/lv_indev.c[0m[0m:[1;31m383[0m
+[0m--- (inlined by) [0;33mlv_indev_read_timer_cb[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/core/lv_indev.c[0m[0m:[1;31m101[0m
+[0m--- 0x420252aa: [0;33mlv_timer_exec[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/misc/lv_timer.c[0m[0m:[1;31m313[0m
+[0m--- (inlined by) [0;33mlv_timer_handler[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/misc/lv_timer.c[0m[0m:[1;31m109[0m
+[0m--- 0x42017dd9: [0;33mlvgl_port_task[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/espressif__esp_lvgl_port/esp_lvgl_port.c[0m[0m:[1;31m691[0m
+[0m--- 0x42043a74: [0;33mtask_wdt_timeout_handling[0m[0m at [0;32mC:/esp/v6.0.2/esp-idf/components/esp_system/task_wdt/task_wdt.c[0m[0m:[1;31m436[0m
+[0m--- (inlined by) [0;33mtask_wdt_isr[0m[0m at [0;32mC:/esp/v6.0.2/esp-idf/components/esp_system/task_wdt/task_wdt.c[0m[0m:[1;31m509[0m
+[0m--- 0x40378c2b: [0;33m_xt_lowint1[0m[0m at [0;32mC:/esp/v6.0.2/esp-idf/components/xtensa/xtensa_vectors.S[0m[0m:[1;31m1264[0m
+[0m--- 0x4201ec53: [0;33mget_local_style[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/core/lv_obj_style.c[0m[0m:[1;31m551[0m
+[0m--- 0x4201f5e0: [0;33mlv_obj_set_local_style_prop[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/core/lv_obj_style.c[0m[0m:[1;31m273[0m
+[0m--- 0x4201faab: [0;33mlv_obj_set_style_width[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/core/lv_obj_style_gen.c[0m[0m:[1;31m8[0m
+[0m--- 0x4201c616: [0;33mlv_obj_set_width[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/core/lv_obj_pos.c[0m[0m:[1;31m232[0m
+[0m--- (inlined by) [0;33mlv_obj_set_width[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/core/lv_obj_pos.c[0m[0m:[1;31m223[0m
+[0m--- 0x4201c655: [0;33mlv_obj_set_size[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/core/lv_obj_pos.c[0m[0m:[1;31m219[0m
+[0m--- 0x42012385: [0;33mUIManager::mk_keyboard()[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/main/ui/ui_manager.cpp[0m[0m:[1;31m325[0m
+[0m--- 0x420131f4: [0;33mUIManager::show_keyboard(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&)[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/main/ui/ui_manager.cpp[0m[0m:[1;31m410[0m
+[0m--- 0x42013287: [0;33mUIManager::cb_detail_edit(_lv_event_t*)[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/main/ui/ui_manager.cpp[0m[0m:[1;31m556[0m
+[0m--- 0x4201950c: [0;33mevent_send_core[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/core/lv_event.c[0m[0m:[1;31m461[0m
+[0m--- 0x42019556: [0;33mlv_event_send[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/core/lv_event.c[0m[0m:[1;31m74[0m
+[0m--- 0x420196a1: [0;33mindev_proc_release[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/core/lv_indev.c[0m[0m:[1;31m979[0m
+[0m--- 0x42019cca: [0;33mindev_pointer_proc[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/core/lv_indev.c[0m[0m:[1;31m383[0m
+[0m--- (inlined by) [0;33mlv_indev_read_timer_cb[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/core/lv_indev.c[0m[0m:[1;31m101[0m
+[0m--- 0x420252aa: [0;33mlv_timer_exec[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/misc/lv_timer.c[0m[0m:[1;31m313[0m
+[0m--- (inlined by) [0;33mlv_timer_handler[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/misc/lv_timer.c[0m[0m:[1;31m109[0m
+[0m--- 0x42017dd9: [0;33mlvgl_port_task[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/espressif__esp_lvgl_port/esp_lvgl_port.c[0m[0m:[1;31m691[0m
+[0m--- 0x42043a74: [0;33mtask_wdt_timeout_handling[0m[0m at [0;32mC:/esp/v6.0.2/esp-idf/components/esp_system/task_wdt/task_wdt.c[0m[0m:[1;31m436[0m
+[0m--- (inlined by) [0;33mtask_wdt_isr[0m[0m at [0;32mC:/esp/v6.0.2/esp-idf/components/esp_system/task_wdt/task_wdt.c[0m[0m:[1;31m509[0m
+[0m--- 0x40378c2b: [0;33m_xt_lowint1[0m[0m at [0;32mC:/esp/v6.0.2/esp-idf/components/xtensa/xtensa_vectors.S[0m[0m:[1;31m1264[0m
+[0m--- 0x4201ec53: [0;33mget_local_style[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/core/lv_obj_style.c[0m[0m:[1;31m551[0m
+[0m--- 0x4201f5e0: [0;33mlv_obj_set_local_style_prop[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/core/lv_obj_style.c[0m[0m:[1;31m273[0m
+[0m--- 0x4201faab: [0;33mlv_obj_set_style_width[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/core/lv_obj_style_gen.c[0m[0m:[1;31m8[0m
+[0m--- 0x4201c616: [0;33mlv_obj_set_width[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/core/lv_obj_pos.c[0m[0m:[1;31m232[0m
+[0m--- (inlined by) [0;33mlv_obj_set_width[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/core/lv_obj_pos.c[0m[0m:[1;31m223[0m
+[0m--- 0x4201c655: [0;33mlv_obj_set_size[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/core/lv_obj_pos.c[0m[0m:[1;31m219[0m
+[0m--- 0x42012385: [0;33mUIManager::mk_keyboard()[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/main/ui/ui_manager.cpp[0m[0m:[1;31m325[0m
+[0m--- 0x420131f4: [0;33mUIManager::show_keyboard(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&)[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/main/ui/ui_manager.cpp[0m[0m:[1;31m410[0m
+[0m--- 0x42013287: [0;33mUIManager::cb_detail_edit(_lv_event_t*)[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/main/ui/ui_manager.cpp[0m[0m:[1;31m556[0m
+[0m--- 0x4201950c: [0;33mevent_send_core[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/core/lv_event.c[0m[0m:[1;31m461[0m
+[0m--- 0x42019556: [0;33mlv_event_send[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/core/lv_event.c[0m[0m:[1;31m74[0m
+[0m--- 0x420196a1: [0;33mindev_proc_release[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/core/lv_indev.c[0m[0m:[1;31m979[0m
+[0m--- 0x42019cca: [0;33mindev_pointer_proc[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/core/lv_indev.c[0m[0m:[1;31m383[0m
+[0m--- (inlined by) [0;33mlv_indev_read_timer_cb[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/core/lv_indev.c[0m[0m:[1;31m101[0m
+[0m--- 0x420252aa: [0;33mlv_timer_exec[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/misc/lv_timer.c[0m[0m:[1;31m313[0m
+[0m--- (inlined by) [0;33mlv_timer_handler[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/misc/lv_timer.c[0m[0m:[1;31m109[0m
+[0m--- 0x42017dd9: [0;33mlvgl_port_task[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/espressif__esp_lvgl_port/esp_lvgl_port.c[0m[0m:[1;31m691[0m
+[0m--- 0x42043a74: [0;33mtask_wdt_timeout_handling[0m[0m at [0;32mC:/esp/v6.0.2/esp-idf/components/esp_system/task_wdt/task_wdt.c[0m[0m:[1;31m436[0m
+[0m--- (inlined by) [0;33mtask_wdt_isr[0m[0m at [0;32mC:/esp/v6.0.2/esp-idf/components/esp_system/task_wdt/task_wdt.c[0m[0m:[1;31m509[0m
+[0m--- 0x40378c2b: [0;33m_xt_lowint1[0m[0m at [0;32mC:/esp/v6.0.2/esp-idf/components/xtensa/xtensa_vectors.S[0m[0m:[1;31m1264[0m
+[0m--- 0x4201ec53: [0;33mget_local_style[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/core/lv_obj_style.c[0m[0m:[1;31m551[0m
+[0m--- 0x4201f5e0: [0;33mlv_obj_set_local_style_prop[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/core/lv_obj_style.c[0m[0m:[1;31m273[0m
+[0m--- 0x4201faab: [0;33mlv_obj_set_style_width[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/core/lv_obj_style_gen.c[0m[0m:[1;31m8[0m
+[0m--- 0x4201c616: [0;33mlv_obj_set_width[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/core/lv_obj_pos.c[0m[0m:[1;31m232[0m
+[0m--- (inlined by) [0;33mlv_obj_set_width[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/core/lv_obj_pos.c[0m[0m:[1;31m223[0m
+[0m--- 0x4201c655: [0;33mlv_obj_set_size[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/core/lv_obj_pos.c[0m[0m:[1;31m219[0m
+[0m--- 0x42012385: [0;33mUIManager::mk_keyboard()[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/main/ui/ui_manager.cpp[0m[0m:[1;31m325[0m
+[0m--- 0x420131f4: [0;33mUIManager::show_keyboard(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&)[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/main/ui/ui_manager.cpp[0m[0m:[1;31m410[0m
+[0m--- 0x42013287: [0;33mUIManager::cb_detail_edit(_lv_event_t*)[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/main/ui/ui_manager.cpp[0m[0m:[1;31m556[0m
+[0m--- 0x4201950c: [0;33mevent_send_core[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/core/lv_event.c[0m[0m:[1;31m461[0m
+[0m--- 0x42019556: [0;33mlv_event_send[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/core/lv_event.c[0m[0m:[1;31m74[0m
+[0m--- 0x420196a1: [0;33mindev_proc_release[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/core/lv_indev.c[0m[0m:[1;31m979[0m
+[0m--- 0x42019cca: [0;33mindev_pointer_proc[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/core/lv_indev.c[0m[0m:[1;31m383[0m
+[0m--- (inlined by) [0;33mlv_indev_read_timer_cb[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/core/lv_indev.c[0m[0m:[1;31m101[0m
+[0m--- 0x420252aa: [0;33mlv_timer_exec[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/misc/lv_timer.c[0m[0m:[1;31m313[0m
+[0m--- (inlined by) [0;33mlv_timer_handler[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/misc/lv_timer.c[0m[0m:[1;31m109[0m
+[0m--- 0x42017dd9: [0;33mlvgl_port_task[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/espressif__esp_lvgl_port/esp_lvgl_port.c[0m[0m:[1;31m691[0m
+[0m--- 0x42043a74: [0;33mtask_wdt_timeout_handling[0m[0m at [0;32mC:/esp/v6.0.2/esp-idf/components/esp_system/task_wdt/task_wdt.c[0m[0m:[1;31m436[0m
+[0m--- (inlined by) [0;33mtask_wdt_isr[0m[0m at [0;32mC:/esp/v6.0.2/esp-idf/components/esp_system/task_wdt/task_wdt.c[0m[0m:[1;31m509[0m
+[0m--- 0x40378c2b: [0;33m_xt_lowint1[0m[0m at [0;32mC:/esp/v6.0.2/esp-idf/components/xtensa/xtensa_vectors.S[0m[0m:[1;31m1264[0m
+[0m--- 0x4201ec53: [0;33mget_local_style[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/core/lv_obj_style.c[0m[0m:[1;31m551[0m
+[0m--- 0x4201f5e0: [0;33mlv_obj_set_local_style_prop[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/core/lv_obj_style.c[0m[0m:[1;31m273[0m
+[0m--- 0x4201faab: [0;33mlv_obj_set_style_width[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/core/lv_obj_style_gen.c[0m[0m:[1;31m8[0m
+[0m--- 0x4201c616: [0;33mlv_obj_set_width[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/core/lv_obj_pos.c[0m[0m:[1;31m232[0m
+[0m--- (inlined by) [0;33mlv_obj_set_width[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/core/lv_obj_pos.c[0m[0m:[1;31m223[0m
+[0m--- 0x4201c655: [0;33mlv_obj_set_size[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/core/lv_obj_pos.c[0m[0m:[1;31m219[0m
+[0m--- 0x42012385: [0;33mUIManager::mk_keyboard()[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/main/ui/ui_manager.cpp[0m[0m:[1;31m325[0m
+[0m--- 0x420131f4: [0;33mUIManager::show_keyboard(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&)[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/main/ui/ui_manager.cpp[0m[0m:[1;31m410[0m
+[0m--- 0x42013287: [0;33mUIManager::cb_detail_edit(_lv_event_t*)[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/main/ui/ui_manager.cpp[0m[0m:[1;31m556[0m
+[0m--- 0x4201950c: [0;33mevent_send_core[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/core/lv_event.c[0m[0m:[1;31m461[0m
+[0m--- 0x42019556: [0;33mlv_event_send[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/core/lv_event.c[0m[0m:[1;31m74[0m
+[0m--- 0x420196a1: [0;33mindev_proc_release[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/core/lv_indev.c[0m[0m:[1;31m979[0m
+[0m--- 0x42019cca: [0;33mindev_pointer_proc[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/core/lv_indev.c[0m[0m:[1;31m383[0m
+[0m--- (inlined by) [0;33mlv_indev_read_timer_cb[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/core/lv_indev.c[0m[0m:[1;31m101[0m
+[0m--- 0x420252aa: [0;33mlv_timer_exec[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/misc/lv_timer.c[0m[0m:[1;31m313[0m
+[0m--- (inlined by) [0;33mlv_timer_handler[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/misc/lv_timer.c[0m[0m:[1;31m109[0m
+[0m--- 0x42017dd9: [0;33mlvgl_port_task[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/espressif__esp_lvgl_port/esp_lvgl_port.c[0m[0m:[1;31m691[0m
+[0m--- 0x42043a74: [0;33mtask_wdt_timeout_handling[0m[0m at [0;32mC:/esp/v6.0.2/esp-idf/components/esp_system/task_wdt/task_wdt.c[0m[0m:[1;31m436[0m
+[0m--- (inlined by) [0;33mtask_wdt_isr[0m[0m at [0;32mC:/esp/v6.0.2/esp-idf/components/esp_system/task_wdt/task_wdt.c[0m[0m:[1;31m509[0m
+[0m--- 0x40378c2b: [0;33m_xt_lowint1[0m[0m at [0;32mC:/esp/v6.0.2/esp-idf/components/xtensa/xtensa_vectors.S[0m[0m:[1;31m1264[0m
+[0m--- 0x4201ec53: [0;33mget_local_style[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/core/lv_obj_style.c[0m[0m:[1;31m551[0m
+[0m--- 0x4201f5e0: [0;33mlv_obj_set_local_style_prop[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/core/lv_obj_style.c[0m[0m:[1;31m273[0m
+[0m--- 0x4201faab: [0;33mlv_obj_set_style_width[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/core/lv_obj_style_gen.c[0m[0m:[1;31m8[0m
+[0m--- 0x4201c616: [0;33mlv_obj_set_width[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/core/lv_obj_pos.c[0m[0m:[1;31m232[0m
+[0m--- (inlined by) [0;33mlv_obj_set_width[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/core/lv_obj_pos.c[0m[0m:[1;31m223[0m
+[0m--- 0x4201c655: [0;33mlv_obj_set_size[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/core/lv_obj_pos.c[0m[0m:[1;31m219[0m
+[0m--- 0x42012385: [0;33mUIManager::mk_keyboard()[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/main/ui/ui_manager.cpp[0m[0m:[1;31m325[0m
+[0m--- 0x420131f4: [0;33mUIManager::show_keyboard(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&)[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/main/ui/ui_manager.cpp[0m[0m:[1;31m410[0m
+[0m--- 0x42013287: [0;33mUIManager::cb_detail_edit(_lv_event_t*)[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/main/ui/ui_manager.cpp[0m[0m:[1;31m556[0m
+[0m--- 0x4201950c: [0;33mevent_send_core[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/core/lv_event.c[0m[0m:[1;31m461[0m
+[0m--- 0x42019556: [0;33mlv_event_send[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/core/lv_event.c[0m[0m:[1;31m74[0m
+[0m--- 0x420196a1: [0;33mindev_proc_release[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/core/lv_indev.c[0m[0m:[1;31m979[0m
+[0m--- 0x42019cca: [0;33mindev_pointer_proc[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/core/lv_indev.c[0m[0m:[1;31m383[0m
+[0m--- (inlined by) [0;33mlv_indev_read_timer_cb[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/core/lv_indev.c[0m[0m:[1;31m101[0m
+[0m--- 0x420252aa: [0;33mlv_timer_exec[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/misc/lv_timer.c[0m[0m:[1;31m313[0m
+[0m--- (inlined by) [0;33mlv_timer_handler[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/misc/lv_timer.c[0m[0m:[1;31m109[0m
+[0m--- 0x42017dd9: [0;33mlvgl_port_task[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/espressif__esp_lvgl_port/esp_lvgl_port.c[0m[0m:[1;31m691[0m
+[0m--- 0x42043a74: [0;33mtask_wdt_timeout_handling[0m[0m at [0;32mC:/esp/v6.0.2/esp-idf/components/esp_system/task_wdt/task_wdt.c[0m[0m:[1;31m436[0m
+[0m--- (inlined by) [0;33mtask_wdt_isr[0m[0m at [0;32mC:/esp/v6.0.2/esp-idf/components/esp_system/task_wdt/task_wdt.c[0m[0m:[1;31m509[0m
+[0m--- 0x40378c2b: [0;33m_xt_lowint1[0m[0m at [0;32mC:/esp/v6.0.2/esp-idf/components/xtensa/xtensa_vectors.S[0m[0m:[1;31m1264[0m
+[0m--- 0x4201ec53: [0;33mget_local_style[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/core/lv_obj_style.c[0m[0m:[1;31m551[0m
+[0m--- 0x4201f5e0: [0;33mlv_obj_set_local_style_prop[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/core/lv_obj_style.c[0m[0m:[1;31m273[0m
+[0m--- 0x4201faab: [0;33mlv_obj_set_style_width[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/core/lv_obj_style_gen.c[0m[0m:[1;31m8[0m
+[0m--- 0x4201c616: [0;33mlv_obj_set_width[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/core/lv_obj_pos.c[0m[0m:[1;31m232[0m
+[0m--- (inlined by) [0;33mlv_obj_set_width[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/core/lv_obj_pos.c[0m[0m:[1;31m223[0m
+[0m--- 0x4201c655: [0;33mlv_obj_set_size[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/core/lv_obj_pos.c[0m[0m:[1;31m219[0m
+[0m--- 0x42012385: [0;33mUIManager::mk_keyboard()[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/main/ui/ui_manager.cpp[0m[0m:[1;31m325[0m
+[0m--- 0x420131f4: [0;33mUIManager::show_keyboard(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&)[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/main/ui/ui_manager.cpp[0m[0m:[1;31m410[0m
+[0m--- 0x42013287: [0;33mUIManager::cb_detail_edit(_lv_event_t*)[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/main/ui/ui_manager.cpp[0m[0m:[1;31m556[0m
+[0m--- 0x4201950c: [0;33mevent_send_core[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/core/lv_event.c[0m[0m:[1;31m461[0m
+[0m--- 0x42019556: [0;33mlv_event_send[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/core/lv_event.c[0m[0m:[1;31m74[0m
+[0m--- 0x420196a1: [0;33mindev_proc_release[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/core/lv_indev.c[0m[0m:[1;31m979[0m
+[0m--- 0x42019cca: [0;33mindev_pointer_proc[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/core/lv_indev.c[0m[0m:[1;31m383[0m
+[0m--- (inlined by) [0;33mlv_indev_read_timer_cb[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/core/lv_indev.c[0m[0m:[1;31m101[0m
+[0m--- 0x420252aa: [0;33mlv_timer_exec[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/misc/lv_timer.c[0m[0m:[1;31m313[0m
+[0m--- (inlined by) [0;33mlv_timer_handler[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/misc/lv_timer.c[0m[0m:[1;31m109[0m
+[0m--- 0x42017dd9: [0;33mlvgl_port_task[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/espressif__esp_lvgl_port/esp_lvgl_port.c[0m[0m:[1;31m691[0m
+[0m--- 0x42043a74: [0;33mtask_wdt_timeout_handling[0m[0m at [0;32mC:/esp/v6.0.2/esp-idf/components/esp_system/task_wdt/task_wdt.c[0m[0m:[1;31m436[0m
+[0m--- (inlined by) [0;33mtask_wdt_isr[0m[0m at [0;32mC:/esp/v6.0.2/esp-idf/components/esp_system/task_wdt/task_wdt.c[0m[0m:[1;31m509[0m
+[0m--- 0x40378c2b: [0;33m_xt_lowint1[0m[0m at [0;32mC:/esp/v6.0.2/esp-idf/components/xtensa/xtensa_vectors.S[0m[0m:[1;31m1264[0m
+[0m--- 0x4201ec53: [0;33mget_local_style[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/core/lv_obj_style.c[0m[0m:[1;31m551[0m
+[0m--- 0x4201f5e0: [0;33mlv_obj_set_local_style_prop[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/core/lv_obj_style.c[0m[0m:[1;31m273[0m
+[0m--- 0x4201faab: [0;33mlv_obj_set_style_width[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/core/lv_obj_style_gen.c[0m[0m:[1;31m8[0m
+[0m--- 0x4201c616: [0;33mlv_obj_set_width[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/core/lv_obj_pos.c[0m[0m:[1;31m232[0m
+[0m--- (inlined by) [0;33mlv_obj_set_width[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/core/lv_obj_pos.c[0m[0m:[1;31m223[0m
+[0m--- 0x4201c655: [0;33mlv_obj_set_size[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/core/lv_obj_pos.c[0m[0m:[1;31m219[0m
+[0m--- 0x42012385: [0;33mUIManager::mk_keyboard()[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/main/ui/ui_manager.cpp[0m[0m:[1;31m325[0m
+[0m--- 0x420131f4: [0;33mUIManager::show_keyboard(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&)[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/main/ui/ui_manager.cpp[0m[0m:[1;31m410[0m
+[0m--- 0x42013287: [0;33mUIManager::cb_detail_edit(_lv_event_t*)[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/main/ui/ui_manager.cpp[0m[0m:[1;31m556[0m
+[0m--- 0x4201950c: [0;33mevent_send_core[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/core/lv_event.c[0m[0m:[1;31m461[0m
+[0m--- 0x42019556: [0;33mlv_event_send[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/core/lv_event.c[0m[0m:[1;31m74[0m
+[0m--- 0x420196a1: [0;33mindev_proc_release[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/core/lv_indev.c[0m[0m:[1;31m979[0m
+[0m--- 0x42019cca: [0;33mindev_pointer_proc[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/core/lv_indev.c[0m[0m:[1;31m383[0m
+[0m--- (inlined by) [0;33mlv_indev_read_timer_cb[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/core/lv_indev.c[0m[0m:[1;31m101[0m
+[0m--- 0x420252aa: [0;33mlv_timer_exec[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/misc/lv_timer.c[0m[0m:[1;31m313[0m
+[0m--- (inlined by) [0;33mlv_timer_handler[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/misc/lv_timer.c[0m[0m:[1;31m109[0m
+[0m--- 0x42017dd9: [0;33mlvgl_port_task[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/espressif__esp_lvgl_port/esp_lvgl_port.c[0m[0m:[1;31m691[0m
+[0m--- 0x42043a74: [0;33mtask_wdt_timeout_handling[0m[0m at [0;32mC:/esp/v6.0.2/esp-idf/components/esp_system/task_wdt/task_wdt.c[0m[0m:[1;31m436[0m
+[0m--- (inlined by) [0;33mtask_wdt_isr[0m[0m at [0;32mC:/esp/v6.0.2/esp-idf/components/esp_system/task_wdt/task_wdt.c[0m[0m:[1;31m509[0m
+[0m--- 0x40378c2b: [0;33m_xt_lowint1[0m[0m at [0;32mC:/esp/v6.0.2/esp-idf/components/xtensa/xtensa_vectors.S[0m[0m:[1;31m1264[0m
+[0m--- 0x4201ec53: [0;33mget_local_style[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/core/lv_obj_style.c[0m[0m:[1;31m551[0m
+[0m--- 0x4201f5e0: [0;33mlv_obj_set_local_style_prop[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/core/lv_obj_style.c[0m[0m:[1;31m273[0m
+[0m--- 0x4201faab: [0;33mlv_obj_set_style_width[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/core/lv_obj_style_gen.c[0m[0m:[1;31m8[0m
+[0m--- 0x4201c616: [0;33mlv_obj_set_width[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/core/lv_obj_pos.c[0m[0m:[1;31m232[0m
+[0m--- (inlined by) [0;33mlv_obj_set_width[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/core/lv_obj_pos.c[0m[0m:[1;31m223[0m
+[0m--- 0x4201c655: [0;33mlv_obj_set_size[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/core/lv_obj_pos.c[0m[0m:[1;31m219[0m
+[0m--- 0x42012385: [0;33mUIManager::mk_keyboard()[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/main/ui/ui_manager.cpp[0m[0m:[1;31m325[0m
+[0m--- 0x420131f4: [0;33mUIManager::show_keyboard(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&)[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/main/ui/ui_manager.cpp[0m[0m:[1;31m410[0m
+[0m--- 0x42013287: [0;33mUIManager::cb_detail_edit(_lv_event_t*)[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/main/ui/ui_manager.cpp[0m[0m:[1;31m556[0m
+[0m--- 0x4201950c: [0;33mevent_send_core[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/core/lv_event.c[0m[0m:[1;31m461[0m
+[0m--- 0x42019556: [0;33mlv_event_send[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/core/lv_event.c[0m[0m:[1;31m74[0m
+[0m--- 0x420196a1: [0;33mindev_proc_release[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/core/lv_indev.c[0m[0m:[1;31m979[0m
+[0m--- 0x42019cca: [0;33mindev_pointer_proc[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/core/lv_indev.c[0m[0m:[1;31m383[0m
+[0m--- (inlined by) [0;33mlv_indev_read_timer_cb[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/core/lv_indev.c[0m[0m:[1;31m101[0m
+[0m--- 0x420252aa: [0;33mlv_timer_exec[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/misc/lv_timer.c[0m[0m:[1;31m313[0m
+[0m--- (inlined by) [0;33mlv_timer_handler[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/misc/lv_timer.c[0m[0m:[1;31m109[0m
+[0m--- 0x42017dd9: [0;33mlvgl_port_task[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/espressif__esp_lvgl_port/esp_lvgl_port.c[0m[0m:[1;31m691[0m
+[0m--- 0x42043a74: [0;33mtask_wdt_timeout_handling[0m[0m at [0;32mC:/esp/v6.0.2/esp-idf/components/esp_system/task_wdt/task_wdt.c[0m[0m:[1;31m436[0m
+[0m--- (inlined by) [0;33mtask_wdt_isr[0m[0m at [0;32mC:/esp/v6.0.2/esp-idf/components/esp_system/task_wdt/task_wdt.c[0m[0m:[1;31m509[0m
+[0m--- 0x40378c2b: [0;33m_xt_lowint1[0m[0m at [0;32mC:/esp/v6.0.2/esp-idf/components/xtensa/xtensa_vectors.S[0m[0m:[1;31m1264[0m
+[0m--- 0x4201ec53: [0;33mget_local_style[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/core/lv_obj_style.c[0m[0m:[1;31m551[0m
+[0m--- 0x4201f5e0: [0;33mlv_obj_set_local_style_prop[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/core/lv_obj_style.c[0m[0m:[1;31m273[0m
+[0m--- 0x4201faab: [0;33mlv_obj_set_style_width[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/core/lv_obj_style_gen.c[0m[0m:[1;31m8[0m
+[0m--- 0x4201c616: [0;33mlv_obj_set_width[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/core/lv_obj_pos.c[0m[0m:[1;31m232[0m
+[0m--- (inlined by) [0;33mlv_obj_set_width[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/core/lv_obj_pos.c[0m[0m:[1;31m223[0m
+[0m--- 0x4201c655: [0;33mlv_obj_set_size[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/core/lv_obj_pos.c[0m[0m:[1;31m219[0m
+[0m--- 0x42012385: [0;33mUIManager::mk_keyboard()[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/main/ui/ui_manager.cpp[0m[0m:[1;31m325[0m
+[0m--- 0x420131f4: [0;33mUIManager::show_keyboard(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&)[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/main/ui/ui_manager.cpp[0m[0m:[1;31m410[0m
+[0m--- 0x42013287: [0;33mUIManager::cb_detail_edit(_lv_event_t*)[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/main/ui/ui_manager.cpp[0m[0m:[1;31m556[0m
+[0m--- 0x4201950c: [0;33mevent_send_core[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/core/lv_event.c[0m[0m:[1;31m461[0m
+[0m--- 0x42019556: [0;33mlv_event_send[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/core/lv_event.c[0m[0m:[1;31m74[0m
+[0m--- 0x420196a1: [0;33mindev_proc_release[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/core/lv_indev.c[0m[0m:[1;31m979[0m
+[0m--- 0x42019cca: [0;33mindev_pointer_proc[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/core/lv_indev.c[0m[0m:[1;31m383[0m
+[0m--- (inlined by) [0;33mlv_indev_read_timer_cb[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/core/lv_indev.c[0m[0m:[1;31m101[0m
+[0m--- 0x420252aa: [0;33mlv_timer_exec[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/misc/lv_timer.c[0m[0m:[1;31m313[0m
+[0m--- (inlined by) [0;33mlv_timer_handler[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/misc/lv_timer.c[0m[0m:[1;31m109[0m
+[0m--- 0x42017dd9: [0;33mlvgl_port_task[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/espressif__esp_lvgl_port/esp_lvgl_port.c[0m[0m:[1;31m691[0m
+[0m--- 0x42043a74: [0;33mtask_wdt_timeout_handling[0m[0m at [0;32mC:/esp/v6.0.2/esp-idf/components/esp_system/task_wdt/task_wdt.c[0m[0m:[1;31m436[0m
+[0m--- (inlined by) [0;33mtask_wdt_isr[0m[0m at [0;32mC:/esp/v6.0.2/esp-idf/components/esp_system/task_wdt/task_wdt.c[0m[0m:[1;31m509[0m
+[0m--- 0x40378c2b: [0;33m_xt_lowint1[0m[0m at [0;32mC:/esp/v6.0.2/esp-idf/components/xtensa/xtensa_vectors.S[0m[0m:[1;31m1264[0m
+[0m--- 0x4201ec53: [0;33mget_local_style[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/core/lv_obj_style.c[0m[0m:[1;31m551[0m
+[0m--- 0x4201f5e0: [0;33mlv_obj_set_local_style_prop[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/core/lv_obj_style.c[0m[0m:[1;31m273[0m
+[0m--- 0x4201faab: [0;33mlv_obj_set_style_width[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/core/lv_obj_style_gen.c[0m[0m:[1;31m8[0m
+[0m--- 0x4201c616: [0;33mlv_obj_set_width[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/core/lv_obj_pos.c[0m[0m:[1;31m232[0m
+[0m--- (inlined by) [0;33mlv_obj_set_width[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/core/lv_obj_pos.c[0m[0m:[1;31m223[0m
+[0m--- 0x4201c655: [0;33mlv_obj_set_size[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/core/lv_obj_pos.c[0m[0m:[1;31m219[0m
+[0m--- 0x42012385: [0;33mUIManager::mk_keyboard()[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/main/ui/ui_manager.cpp[0m[0m:[1;31m325[0m
+[0m--- 0x420131f4: [0;33mUIManager::show_keyboard(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&)[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/main/ui/ui_manager.cpp[0m[0m:[1;31m410[0m
+[0m--- 0x42013287: [0;33mUIManager::cb_detail_edit(_lv_event_t*)[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/main/ui/ui_manager.cpp[0m[0m:[1;31m556[0m
+[0m--- 0x4201950c: [0;33mevent_send_core[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/core/lv_event.c[0m[0m:[1;31m461[0m
+[0m--- 0x42019556: [0;33mlv_event_send[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/core/lv_event.c[0m[0m:[1;31m74[0m
+[0m--- 0x420196a1: [0;33mindev_proc_release[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/core/lv_indev.c[0m[0m:[1;31m979[0m
+[0m--- 0x42019cca: [0;33mindev_pointer_proc[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/core/lv_indev.c[0m[0m:[1;31m383[0m
+[0m--- (inlined by) [0;33mlv_indev_read_timer_cb[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/core/lv_indev.c[0m[0m:[1;31m101[0m
+[0m--- 0x420252aa: [0;33mlv_timer_exec[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/misc/lv_timer.c[0m[0m:[1;31m313[0m
+[0m--- (inlined by) [0;33mlv_timer_handler[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/misc/lv_timer.c[0m[0m:[1;31m109[0m
+[0m--- 0x42017dd9: [0;33mlvgl_port_task[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/espressif__esp_lvgl_port/esp_lvgl_port.c[0m[0m:[1;31m691[0m
+[0m--- 0x42043a74: [0;33mtask_wdt_timeout_handling[0m[0m at [0;32mC:/esp/v6.0.2/esp-idf/components/esp_system/task_wdt/task_wdt.c[0m[0m:[1;31m436[0m
+[0m--- (inlined by) [0;33mtask_wdt_isr[0m[0m at [0;32mC:/esp/v6.0.2/esp-idf/components/esp_system/task_wdt/task_wdt.c[0m[0m:[1;31m509[0m
+[0m--- 0x40378c2b: [0;33m_xt_lowint1[0m[0m at [0;32mC:/esp/v6.0.2/esp-idf/components/xtensa/xtensa_vectors.S[0m[0m:[1;31m1264[0m
+[0m--- 0x4201ec53: [0;33mget_local_style[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/core/lv_obj_style.c[0m[0m:[1;31m551[0m
+[0m--- 0x4201f5e0: [0;33mlv_obj_set_local_style_prop[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/core/lv_obj_style.c[0m[0m:[1;31m273[0m
+[0m--- 0x4201faab: [0;33mlv_obj_set_style_width[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/core/lv_obj_style_gen.c[0m[0m:[1;31m8[0m
+[0m--- 0x4201c616: [0;33mlv_obj_set_width[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/core/lv_obj_pos.c[0m[0m:[1;31m232[0m
+[0m--- (inlined by) [0;33mlv_obj_set_width[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/core/lv_obj_pos.c[0m[0m:[1;31m223[0m
+[0m--- 0x4201c655: [0;33mlv_obj_set_size[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/core/lv_obj_pos.c[0m[0m:[1;31m219[0m
+[0m--- 0x42012385: [0;33mUIManager::mk_keyboard()[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/main/ui/ui_manager.cpp[0m[0m:[1;31m325[0m
+[0m--- 0x420131f4: [0;33mUIManager::show_keyboard(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&)[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/main/ui/ui_manager.cpp[0m[0m:[1;31m410[0m
+[0m--- 0x42013287: [0;33mUIManager::cb_detail_edit(_lv_event_t*)[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/main/ui/ui_manager.cpp[0m[0m:[1;31m556[0m
+[0m--- 0x4201950c: [0;33mevent_send_core[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/core/lv_event.c[0m[0m:[1;31m461[0m
+[0m--- 0x42019556: [0;33mlv_event_send[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/core/lv_event.c[0m[0m:[1;31m74[0m
+[0m--- 0x420196a1: [0;33mindev_proc_release[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/core/lv_indev.c[0m[0m:[1;31m979[0m
+[0m--- 0x42019cca: [0;33mindev_pointer_proc[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/core/lv_indev.c[0m[0m:[1;31m383[0m
+[0m--- (inlined by) [0;33mlv_indev_read_timer_cb[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/core/lv_indev.c[0m[0m:[1;31m101[0m
+[0m--- 0x420252aa: [0;33mlv_timer_exec[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/misc/lv_timer.c[0m[0m:[1;31m313[0m
+[0m--- (inlined by) [0;33mlv_timer_handler[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/misc/lv_timer.c[0m[0m:[1;31m109[0m
+[0m--- 0x42017dd9: [0;33mlvgl_port_task[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/espressif__esp_lvgl_port/esp_lvgl_port.c[0m[0m:[1;31m691[0m
+[0m--- 0x42043a74: [0;33mtask_wdt_timeout_handling[0m[0m at [0;32mC:/esp/v6.0.2/esp-idf/components/esp_system/task_wdt/task_wdt.c[0m[0m:[1;31m436[0m
+[0m--- (inlined by) [0;33mtask_wdt_isr[0m[0m at [0;32mC:/esp/v6.0.2/esp-idf/components/esp_system/task_wdt/task_wdt.c[0m[0m:[1;31m509[0m
+[0m--- 0x40378c2b: [0;33m_xt_lowint1[0m[0m at [0;32mC:/esp/v6.0.2/esp-idf/components/xtensa/xtensa_vectors.S[0m[0m:[1;31m1264[0m
+[0m--- 0x4201ec53: [0;33mget_local_style[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/core/lv_obj_style.c[0m[0m:[1;31m551[0m
+[0m--- 0x4201f5e0: [0;33mlv_obj_set_local_style_prop[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/core/lv_obj_style.c[0m[0m:[1;31m273[0m
+[0m--- 0x4201faab: [0;33mlv_obj_set_style_width[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/core/lv_obj_style_gen.c[0m[0m:[1;31m8[0m
+[0m--- 0x4201c616: [0;33mlv_obj_set_width[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/core/lv_obj_pos.c[0m[0m:[1;31m232[0m
+[0m--- (inlined by) [0;33mlv_obj_set_width[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/core/lv_obj_pos.c[0m[0m:[1;31m223[0m
+[0m--- 0x4201c655: [0;33mlv_obj_set_size[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/core/lv_obj_pos.c[0m[0m:[1;31m219[0m
+[0m--- 0x42012385: [0;33mUIManager::mk_keyboard()[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/main/ui/ui_manager.cpp[0m[0m:[1;31m325[0m
+[0m--- 0x420131f4: [0;33mUIManager::show_keyboard(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&)[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/main/ui/ui_manager.cpp[0m[0m:[1;31m410[0m
+[0m--- 0x42013287: [0;33mUIManager::cb_detail_edit(_lv_event_t*)[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/main/ui/ui_manager.cpp[0m[0m:[1;31m556[0m
+[0m--- 0x4201950c: [0;33mevent_send_core[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/core/lv_event.c[0m[0m:[1;31m461[0m
+[0m--- 0x42019556: [0;33mlv_event_send[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/core/lv_event.c[0m[0m:[1;31m74[0m
+[0m--- 0x420196a1: [0;33mindev_proc_release[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/core/lv_indev.c[0m[0m:[1;31m979[0m
+[0m--- 0x42019cca: [0;33mindev_pointer_proc[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/core/lv_indev.c[0m[0m:[1;31m383[0m
+[0m--- (inlined by) [0;33mlv_indev_read_timer_cb[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/core/lv_indev.c[0m[0m:[1;31m101[0m
+[0m--- 0x420252aa: [0;33mlv_timer_exec[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/misc/lv_timer.c[0m[0m:[1;31m313[0m
+[0m--- (inlined by) [0;33mlv_timer_handler[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/misc/lv_timer.c[0m[0m:[1;31m109[0m
+[0m--- 0x42017dd9: [0;33mlvgl_port_task[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/espressif__esp_lvgl_port/esp_lvgl_port.c[0m[0m:[1;31m691[0m
+[0m--- 0x42043a74: [0;33mtask_wdt_timeout_handling[0m[0m at [0;32mC:/esp/v6.0.2/esp-idf/components/esp_system/task_wdt/task_wdt.c[0m[0m:[1;31m436[0m
+[0m--- (inlined by) [0;33mtask_wdt_isr[0m[0m at [0;32mC:/esp/v6.0.2/esp-idf/components/esp_system/task_wdt/task_wdt.c[0m[0m:[1;31m509[0m
+[0m--- 0x40378c2b: [0;33m_xt_lowint1[0m[0m at [0;32mC:/esp/v6.0.2/esp-idf/components/xtensa/xtensa_vectors.S[0m[0m:[1;31m1264[0m
+[0m--- 0x4201ec53: [0;33mget_local_style[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/core/lv_obj_style.c[0m[0m:[1;31m551[0m
+[0m--- 0x4201f5e0: [0;33mlv_obj_set_local_style_prop[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/core/lv_obj_style.c[0m[0m:[1;31m273[0m
+[0m--- 0x4201faab: [0;33mlv_obj_set_style_width[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/core/lv_obj_style_gen.c[0m[0m:[1;31m8[0m
+[0m--- 0x4201c616: [0;33mlv_obj_set_width[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/core/lv_obj_pos.c[0m[0m:[1;31m232[0m
+[0m--- (inlined by) [0;33mlv_obj_set_width[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/core/lv_obj_pos.c[0m[0m:[1;31m223[0m
+[0m--- 0x4201c655: [0;33mlv_obj_set_size[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/core/lv_obj_pos.c[0m[0m:[1;31m219[0m
+[0m--- 0x42012385: [0;33mUIManager::mk_keyboard()[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/main/ui/ui_manager.cpp[0m[0m:[1;31m325[0m
+[0m--- 0x420131f4: [0;33mUIManager::show_keyboard(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&)[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/main/ui/ui_manager.cpp[0m[0m:[1;31m410[0m
+[0m--- 0x42013287: [0;33mUIManager::cb_detail_edit(_lv_event_t*)[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/main/ui/ui_manager.cpp[0m[0m:[1;31m556[0m
+[0m--- 0x4201950c: [0;33mevent_send_core[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/core/lv_event.c[0m[0m:[1;31m461[0m
+[0m--- 0x42019556: [0;33mlv_event_send[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/core/lv_event.c[0m[0m:[1;31m74[0m
+[0m--- 0x420196a1: [0;33mindev_proc_release[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/core/lv_indev.c[0m[0m:[1;31m979[0m
+[0m--- 0x42019cca: [0;33mindev_pointer_proc[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/core/lv_indev.c[0m[0m:[1;31m383[0m
+[0m--- (inlined by) [0;33mlv_indev_read_timer_cb[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/core/lv_indev.c[0m[0m:[1;31m101[0m
+[0m--- 0x420252aa: [0;33mlv_timer_exec[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/misc/lv_timer.c[0m[0m:[1;31m313[0m
+[0m--- (inlined by) [0;33mlv_timer_handler[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/misc/lv_timer.c[0m[0m:[1;31m109[0m
+[0m--- 0x42017dd9: [0;33mlvgl_port_task[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/espressif__esp_lvgl_port/esp_lvgl_port.c[0m[0m:[1;31m691[0m
+[0m--- 0x42043a74: [0;33mtask_wdt_timeout_handling[0m[0m at [0;32mC:/esp/v6.0.2/esp-idf/components/esp_system/task_wdt/task_wdt.c[0m[0m:[1;31m436[0m
+[0m--- (inlined by) [0;33mtask_wdt_isr[0m[0m at [0;32mC:/esp/v6.0.2/esp-idf/components/esp_system/task_wdt/task_wdt.c[0m[0m:[1;31m509[0m
+[0m--- 0x40378c2b: [0;33m_xt_lowint1[0m[0m at [0;32mC:/esp/v6.0.2/esp-idf/components/xtensa/xtensa_vectors.S[0m[0m:[1;31m1264[0m
+[0m--- 0x4201ec53: [0;33mget_local_style[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/core/lv_obj_style.c[0m[0m:[1;31m551[0m
+[0m--- 0x4201f5e0: [0;33mlv_obj_set_local_style_prop[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/core/lv_obj_style.c[0m[0m:[1;31m273[0m
+[0m--- 0x4201faab: [0;33mlv_obj_set_style_width[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/core/lv_obj_style_gen.c[0m[0m:[1;31m8[0m
+[0m--- 0x4201c616: [0;33mlv_obj_set_width[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/core/lv_obj_pos.c[0m[0m:[1;31m232[0m
+[0m--- (inlined by) [0;33mlv_obj_set_width[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/core/lv_obj_pos.c[0m[0m:[1;31m223[0m
+[0m--- 0x4201c655: [0;33mlv_obj_set_size[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/core/lv_obj_pos.c[0m[0m:[1;31m219[0m
+[0m--- 0x42012385: [0;33mUIManager::mk_keyboard()[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/main/ui/ui_manager.cpp[0m[0m:[1;31m325[0m
+[0m--- 0x420131f4: [0;33mUIManager::show_keyboard(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&)[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/main/ui/ui_manager.cpp[0m[0m:[1;31m410[0m
+[0m--- 0x42013287: [0;33mUIManager::cb_detail_edit(_lv_event_t*)[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/main/ui/ui_manager.cpp[0m[0m:[1;31m556[0m
+[0m--- 0x4201950c: [0;33mevent_send_core[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/core/lv_event.c[0m[0m:[1;31m461[0m
+[0m--- 0x42019556: [0;33mlv_event_send[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/core/lv_event.c[0m[0m:[1;31m74[0m
+[0m--- 0x420196a1: [0;33mindev_proc_release[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/core/lv_indev.c[0m[0m:[1;31m979[0m
+[0m--- 0x42019cca: [0;33mindev_pointer_proc[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/core/lv_indev.c[0m[0m:[1;31m383[0m
+[0m--- (inlined by) [0;33mlv_indev_read_timer_cb[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/core/lv_indev.c[0m[0m:[1;31m101[0m
+[0m--- 0x420252aa: [0;33mlv_timer_exec[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/misc/lv_timer.c[0m[0m:[1;31m313[0m
+[0m--- (inlined by) [0;33mlv_timer_handler[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/misc/lv_timer.c[0m[0m:[1;31m109[0m
+[0m--- 0x42017dd9: [0;33mlvgl_port_task[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/espressif__esp_lvgl_port/esp_lvgl_port.c[0m[0m:[1;31m691[0m
+[0m--- 0x42043a74: [0;33mtask_wdt_timeout_handling[0m[0m at [0;32mC:/esp/v6.0.2/esp-idf/components/esp_system/task_wdt/task_wdt.c[0m[0m:[1;31m436[0m
+[0m--- (inlined by) [0;33mtask_wdt_isr[0m[0m at [0;32mC:/esp/v6.0.2/esp-idf/components/esp_system/task_wdt/task_wdt.c[0m[0m:[1;31m509[0m
+[0m--- 0x40378c2b: [0;33m_xt_lowint1[0m[0m at [0;32mC:/esp/v6.0.2/esp-idf/components/xtensa/xtensa_vectors.S[0m[0m:[1;31m1264[0m
+[0m--- 0x4201ec53: [0;33mget_local_style[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/core/lv_obj_style.c[0m[0m:[1;31m551[0m
+[0m--- 0x4201f5e0: [0;33mlv_obj_set_local_style_prop[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/core/lv_obj_style.c[0m[0m:[1;31m273[0m
+[0m--- 0x4201faab: [0;33mlv_obj_set_style_width[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/core/lv_obj_style_gen.c[0m[0m:[1;31m8[0m
+[0m--- 0x4201c616: [0;33mlv_obj_set_width[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/core/lv_obj_pos.c[0m[0m:[1;31m232[0m
+[0m--- (inlined by) [0;33mlv_obj_set_width[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/core/lv_obj_pos.c[0m[0m:[1;31m223[0m
+[0m--- 0x4201c655: [0;33mlv_obj_set_size[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/core/lv_obj_pos.c[0m[0m:[1;31m219[0m
+[0m--- 0x42012385: [0;33mUIManager::mk_keyboard()[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/main/ui/ui_manager.cpp[0m[0m:[1;31m325[0m
+[0m--- 0x420131f4: [0;33mUIManager::show_keyboard(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&)[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/main/ui/ui_manager.cpp[0m[0m:[1;31m410[0m
+[0m--- 0x42013287: [0;33mUIManager::cb_detail_edit(_lv_event_t*)[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/main/ui/ui_manager.cpp[0m[0m:[1;31m556[0m
+[0m--- 0x4201950c: [0;33mevent_send_core[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/core/lv_event.c[0m[0m:[1;31m461[0m
+[0m--- 0x42019556: [0;33mlv_event_send[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/core/lv_event.c[0m[0m:[1;31m74[0m
+[0m--- 0x420196a1: [0;33mindev_proc_release[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/core/lv_indev.c[0m[0m:[1;31m979[0m
+[0m--- 0x42019cca: [0;33mindev_pointer_proc[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/core/lv_indev.c[0m[0m:[1;31m383[0m
+[0m--- (inlined by) [0;33mlv_indev_read_timer_cb[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/core/lv_indev.c[0m[0m:[1;31m101[0m
+[0m--- 0x420252aa: [0;33mlv_timer_exec[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/misc/lv_timer.c[0m[0m:[1;31m313[0m
+[0m--- (inlined by) [0;33mlv_timer_handler[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/misc/lv_timer.c[0m[0m:[1;31m109[0m
+[0m--- 0x42017dd9: [0;33mlvgl_port_task[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/espressif__esp_lvgl_port/esp_lvgl_port.c[0m[0m:[1;31m691[0m
+[0m--- 0x42043a74: [0;33mtask_wdt_timeout_handling[0m[0m at [0;32mC:/esp/v6.0.2/esp-idf/components/esp_system/task_wdt/task_wdt.c[0m[0m:[1;31m436[0m
+[0m--- (inlined by) [0;33mtask_wdt_isr[0m[0m at [0;32mC:/esp/v6.0.2/esp-idf/components/esp_system/task_wdt/task_wdt.c[0m[0m:[1;31m509[0m
+[0m--- 0x40378c2b: [0;33m_xt_lowint1[0m[0m at [0;32mC:/esp/v6.0.2/esp-idf/components/xtensa/xtensa_vectors.S[0m[0m:[1;31m1264[0m
+[0m--- 0x4201ec53: [0;33mget_local_style[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/core/lv_obj_style.c[0m[0m:[1;31m551[0m
+[0m--- 0x4201f5e0: [0;33mlv_obj_set_local_style_prop[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/core/lv_obj_style.c[0m[0m:[1;31m273[0m
+[0m--- 0x4201faab: [0;33mlv_obj_set_style_width[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/core/lv_obj_style_gen.c[0m[0m:[1;31m8[0m
+[0m--- 0x4201c616: [0;33mlv_obj_set_width[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/core/lv_obj_pos.c[0m[0m:[1;31m232[0m
+[0m--- (inlined by) [0;33mlv_obj_set_width[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/core/lv_obj_pos.c[0m[0m:[1;31m223[0m
+[0m--- 0x4201c655: [0;33mlv_obj_set_size[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/core/lv_obj_pos.c[0m[0m:[1;31m219[0m
+[0m--- 0x42012385: [0;33mUIManager::mk_keyboard()[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/main/ui/ui_manager.cpp[0m[0m:[1;31m325[0m
+[0m--- 0x420131f4: [0;33mUIManager::show_keyboard(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&)[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/main/ui/ui_manager.cpp[0m[0m:[1;31m410[0m
+[0m--- 0x42013287: [0;33mUIManager::cb_detail_edit(_lv_event_t*)[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/main/ui/ui_manager.cpp[0m[0m:[1;31m556[0m
+[0m--- 0x4201950c: [0;33mevent_send_core[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/core/lv_event.c[0m[0m:[1;31m461[0m
+[0m--- 0x42019556: [0;33mlv_event_send[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/core/lv_event.c[0m[0m:[1;31m74[0m
+[0m--- 0x420196a1: [0;33mindev_proc_release[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/core/lv_indev.c[0m[0m:[1;31m979[0m
+[0m--- 0x42019cca: [0;33mindev_pointer_proc[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/core/lv_indev.c[0m[0m:[1;31m383[0m
+[0m--- (inlined by) [0;33mlv_indev_read_timer_cb[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/core/lv_indev.c[0m[0m:[1;31m101[0m
+[0m--- 0x420252aa: [0;33mlv_timer_exec[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/misc/lv_timer.c[0m[0m:[1;31m313[0m
+[0m--- (inlined by) [0;33mlv_timer_handler[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/misc/lv_timer.c[0m[0m:[1;31m109[0m
+[0m--- 0x42017dd9: [0;33mlvgl_port_task[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/espressif__esp_lvgl_port/esp_lvgl_port.c[0m[0m:[1;31m691[0m
+[0m--- 0x42043a74: [0;33mtask_wdt_timeout_handling[0m[0m at [0;32mC:/esp/v6.0.2/esp-idf/components/esp_system/task_wdt/task_wdt.c[0m[0m:[1;31m436[0m
+[0m--- (inlined by) [0;33mtask_wdt_isr[0m[0m at [0;32mC:/esp/v6.0.2/esp-idf/components/esp_system/task_wdt/task_wdt.c[0m[0m:[1;31m509[0m
+[0m--- 0x40378c2b: [0;33m_xt_lowint1[0m[0m at [0;32mC:/esp/v6.0.2/esp-idf/components/xtensa/xtensa_vectors.S[0m[0m:[1;31m1264[0m
+[0m--- 0x4201ec53: [0;33mget_local_style[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/core/lv_obj_style.c[0m[0m:[1;31m551[0m
+[0m--- 0x4201f5e0: [0;33mlv_obj_set_local_style_prop[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/core/lv_obj_style.c[0m[0m:[1;31m273[0m
+[0m--- 0x4201faab: [0;33mlv_obj_set_style_width[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/core/lv_obj_style_gen.c[0m[0m:[1;31m8[0m
+[0m--- 0x4201c616: [0;33mlv_obj_set_width[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/core/lv_obj_pos.c[0m[0m:[1;31m232[0m
+[0m--- (inlined by) [0;33mlv_obj_set_width[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/core/lv_obj_pos.c[0m[0m:[1;31m223[0m
+[0m--- 0x4201c655: [0;33mlv_obj_set_size[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/core/lv_obj_pos.c[0m[0m:[1;31m219[0m
+[0m--- 0x42012385: [0;33mUIManager::mk_keyboard()[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/main/ui/ui_manager.cpp[0m[0m:[1;31m325[0m
+[0m--- 0x420131f4: [0;33mUIManager::show_keyboard(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&)[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/main/ui/ui_manager.cpp[0m[0m:[1;31m410[0m
+[0m--- 0x42013287: [0;33mUIManager::cb_detail_edit(_lv_event_t*)[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/main/ui/ui_manager.cpp[0m[0m:[1;31m556[0m
+[0m--- 0x4201950c: [0;33mevent_send_core[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/core/lv_event.c[0m[0m:[1;31m461[0m
+[0m--- 0x42019556: [0;33mlv_event_send[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/core/lv_event.c[0m[0m:[1;31m74[0m
+[0m--- 0x420196a1: [0;33mindev_proc_release[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/core/lv_indev.c[0m[0m:[1;31m979[0m
+[0m--- 0x42019cca: [0;33mindev_pointer_proc[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/core/lv_indev.c[0m[0m:[1;31m383[0m
+[0m--- (inlined by) [0;33mlv_indev_read_timer_cb[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/core/lv_indev.c[0m[0m:[1;31m101[0m
+[0m--- 0x420252aa: [0;33mlv_timer_exec[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/misc/lv_timer.c[0m[0m:[1;31m313[0m
+[0m--- (inlined by) [0;33mlv_timer_handler[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/misc/lv_timer.c[0m[0m:[1;31m109[0m
+[0m--- 0x42017dd9: [0;33mlvgl_port_task[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/espressif__esp_lvgl_port/esp_lvgl_port.c[0m[0m:[1;31m691[0m
+[0m--- 0x42043a74: [0;33mtask_wdt_timeout_handling[0m[0m at [0;32mC:/esp/v6.0.2/esp-idf/components/esp_system/task_wdt/task_wdt.c[0m[0m:[1;31m436[0m
+[0m--- (inlined by) [0;33mtask_wdt_isr[0m[0m at [0;32mC:/esp/v6.0.2/esp-idf/components/esp_system/task_wdt/task_wdt.c[0m[0m:[1;31m509[0m
+[0m--- 0x40378c2b: [0;33m_xt_lowint1[0m[0m at [0;32mC:/esp/v6.0.2/esp-idf/components/xtensa/xtensa_vectors.S[0m[0m:[1;31m1264[0m
+[0m--- 0x4201ec53: [0;33mget_local_style[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/core/lv_obj_style.c[0m[0m:[1;31m551[0m
+[0m--- 0x4201f5e0: [0;33mlv_obj_set_local_style_prop[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/core/lv_obj_style.c[0m[0m:[1;31m273[0m
+[0m--- 0x4201faab: [0;33mlv_obj_set_style_width[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/core/lv_obj_style_gen.c[0m[0m:[1;31m8[0m
+[0m--- 0x4201c616: [0;33mlv_obj_set_width[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/core/lv_obj_pos.c[0m[0m:[1;31m232[0m
+[0m--- (inlined by) [0;33mlv_obj_set_width[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/core/lv_obj_pos.c[0m[0m:[1;31m223[0m
+[0m--- 0x4201c655: [0;33mlv_obj_set_size[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/core/lv_obj_pos.c[0m[0m:[1;31m219[0m
+[0m--- 0x42012385: [0;33mUIManager::mk_keyboard()[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/main/ui/ui_manager.cpp[0m[0m:[1;31m325[0m
+[0m--- 0x420131f4: [0;33mUIManager::show_keyboard(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&)[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/main/ui/ui_manager.cpp[0m[0m:[1;31m410[0m
+[0m--- 0x42013287: [0;33mUIManager::cb_detail_edit(_lv_event_t*)[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/main/ui/ui_manager.cpp[0m[0m:[1;31m556[0m
+[0m--- 0x4201950c: [0;33mevent_send_core[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/core/lv_event.c[0m[0m:[1;31m461[0m
+[0m--- 0x42019556: [0;33mlv_event_send[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/core/lv_event.c[0m[0m:[1;31m74[0m
+[0m--- 0x420196a1: [0;33mindev_proc_release[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/core/lv_indev.c[0m[0m:[1;31m979[0m
+[0m--- 0x42019cca: [0;33mindev_pointer_proc[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/core/lv_indev.c[0m[0m:[1;31m383[0m
+[0m--- (inlined by) [0;33mlv_indev_read_timer_cb[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/core/lv_indev.c[0m[0m:[1;31m101[0m
+[0m--- 0x420252aa: [0;33mlv_timer_exec[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/misc/lv_timer.c[0m[0m:[1;31m313[0m
+[0m--- (inlined by) [0;33mlv_timer_handler[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/lvgl__lvgl/src/misc/lv_timer.c[0m[0m:[1;31m109[0m
+[0m--- 0x42017dd9: [0;33mlvgl_port_task[0m[0m at [0;32mD:/code/DDL-reminder/DDL-reminder/esp32/managed_components/espressif__esp_lvgl_port/esp_lvgl_port.c[0m[0m:[1;31m691[0m
+[0m
