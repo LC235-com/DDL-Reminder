@@ -26,6 +26,18 @@ logger = logging.getLogger(__name__)
 CST = timezone(timedelta(hours=8))
 
 
+def _parse_deadline(value: str) -> datetime:
+    """Accept both tool-friendly `YYYY-MM-DD HH:MM` and ISO-8601 input."""
+    normalized = value.strip().replace("Z", "+00:00")
+    try:
+        deadline = datetime.fromisoformat(normalized)
+    except ValueError:
+        deadline = datetime.strptime(normalized, "%Y-%m-%d %H:%M")
+    if deadline.tzinfo is None:
+        return deadline.replace(tzinfo=CST)
+    return deadline.astimezone(CST)
+
+
 class IntentParser:
     """Parse LLM tool calls and execute them against the event store."""
 
@@ -42,7 +54,13 @@ class IntentParser:
         Returns:
             Text summary to feed back to LLM as function result
         """
+        text, _ = await self.execute_detailed(tool_calls)
+        return text
+
+    async def execute_detailed(self, tool_calls: list[dict]) -> tuple[str, list[dict]]:
+        """Execute calls and return both LLM text and verifiable per-call reports."""
         results = []
+        reports = []
 
         for call in tool_calls:
             func = call.get("function", {})
@@ -54,25 +72,39 @@ class IntentParser:
             except json.JSONDecodeError:
                 args = {}
 
-            if name == "query_ddls":
-                text = await self._query_ddls(args)
-                results.append(text)
-            elif name == "add_reminder":
-                text = await self._add_reminder(args)
-                results.append(text)
-            elif name == "mark_done":
-                text = await self._mark_done(args)
-                results.append(text)
-            elif name == "modify_reminder":
-                text = await self._modify_reminder(args)
-                results.append(text)
-            elif name == "get_courses":
-                text = await self._get_courses()
-                results.append(text)
-            else:
-                logger.warning(f"Unknown tool call: {name}")
+            try:
+                if name == "query_ddls":
+                    text = await self._query_ddls(args)
+                elif name == "add_reminder":
+                    text = await self._add_reminder(args)
+                elif name == "mark_done":
+                    text = await self._mark_done(args)
+                elif name == "modify_reminder":
+                    text = await self._modify_reminder(args)
+                elif name == "delete_reminder":
+                    text = await self._mark_done(args)
+                elif name == "get_courses":
+                    text = await self._get_courses()
+                else:
+                    text = f"操作失败：未知工具 {name or '(空)'}。"
+                    logger.warning("Unknown tool call: %s", name)
+            except Exception as exc:
+                logger.exception("Tool %s execution failed", name)
+                text = f"操作失败：{exc}"
 
-        return "\n".join(results)
+            success = not text.startswith(("操作失败", "添加提醒需要", "请指定", "无法解析", "没有找到"))
+            results.append(text)
+            report = {
+                "tool_call_id": call.get("id", ""),
+                "tool": name,
+                "success": success,
+                "message": text,
+            }
+            reports.append(report)
+            logger.info("Tool result: %s success=%s args=%s result=%s",
+                        name, success, args, text)
+
+        return "\n".join(results), reports
 
     async def _query_ddls(self, args: dict) -> str:
         keyword = args.get("keyword", "")
@@ -101,8 +133,7 @@ class IntentParser:
             return "添加提醒需要标题和时间。"
 
         try:
-            deadline = datetime.strptime(time_str, "%Y-%m-%d %H:%M")
-            deadline = deadline.replace(tzinfo=CST)
+            deadline = _parse_deadline(time_str)
         except ValueError:
             return f"无法解析时间 '{time_str}'，请使用 YYYY-MM-DD HH:MM 格式。"
 
@@ -114,7 +145,18 @@ class IntentParser:
             deadline=deadline,
             advance_minutes=1440,
         )
-        await self.store.add(event)
+        existing = await self.store.search(keyword=title)
+        exact = next((item for item in existing if item.title.strip().lower() == title.strip().lower()), None)
+        if exact:
+            updated = await self.store.update_event(
+                exact.id, {"deadline": deadline, "course": course or exact.course}
+            )
+            if not updated:
+                return f"操作失败：无法更新已有DDL“{title}”。"
+            return f"✅ 已存在同名DDL，已更新截止时间：{title}，{time_str}"
+        saved = await self.store.add(event)
+        if not saved:
+            return f"操作失败：无法添加DDL“{title}”。"
         return f"✅ 已添加提醒：{title}，截止时间 {time_str}"
 
     async def _mark_done(self, args: dict) -> str:
@@ -127,7 +169,8 @@ class IntentParser:
             return f"没有找到包含 '{keyword}' 的DDL。"
 
         event = events[0]
-        await self.store.update_status(event.id, "done")
+        if not await self.store.update_status(event.id, "done"):
+            return f"操作失败：无法更新DDL“{event.title}”。"
         return f"✅ 已标记完成：{event.title}"
 
     async def _modify_reminder(self, args: dict) -> str:
@@ -141,7 +184,27 @@ class IntentParser:
 
         events = await self.store.search(keyword=keyword)
         if not events:
-            return f"没有找到包含 '{keyword}' 的DDL。请用 add_reminder 创建新DDL。"
+            # Voice users often say "把 X 改到明天" even when X has not been
+            # synced yet. With a concrete new time this should create X instead
+            # of silently doing nothing.
+            if not new_time:
+                return f"没有找到包含 '{keyword}' 的DDL，而且没有提供可用于新建的截止时间。"
+            try:
+                deadline = _parse_deadline(new_time)
+            except ValueError:
+                return f"无法解析时间 '{new_time}'，请使用 YYYY-MM-DD HH:MM 格式。"
+            title = new_title or keyword
+            event = DDLItem(
+                title=title,
+                course=new_course,
+                type="自定义",
+                source="voice",
+                deadline=deadline,
+            )
+            saved = await self.store.add(event)
+            if not saved:
+                return f"操作失败：无法新建DDL“{title}”。"
+            return f"✅ 未找到原DDL，已新建：{title}，截止时间 {new_time}"
 
         # Update the first matching event
         event = events[0]
@@ -150,8 +213,7 @@ class IntentParser:
             updates["title"] = new_title
         if new_time:
             try:
-                dl = datetime.strptime(new_time, "%Y-%m-%d %H:%M")
-                updates["deadline"] = dl.replace(tzinfo=CST)
+                updates["deadline"] = _parse_deadline(new_time)
             except ValueError:
                 return f"无法解析时间 '{new_time}'，请使用 YYYY-MM-DD HH:MM 格式。"
         if new_course:
@@ -160,7 +222,8 @@ class IntentParser:
         if not updates:
             return f"请指定要修改的内容（新标题、新时间或新课程）。"
 
-        await self.store.update_event(event.id, updates)
+        if not await self.store.update_event(event.id, updates):
+            return f"操作失败：无法修改DDL“{event.title}”。"
         return f"✅ 已修改DDL：{event.title}" + (
             f" → {new_title}" if new_title else ""
         ) + (

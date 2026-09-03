@@ -13,6 +13,7 @@ Configurable via LLM_CONFIGS in config.py.
 import logging
 import os
 import re
+from typing import Any
 
 import httpx
 
@@ -46,8 +47,25 @@ DDL_TOOLS = [
     {
         "type": "function",
         "function": {
+            "name": "delete_reminder",
+            "description": "删除/取消/移除某个DDL。用户说删除、删掉、取消、不需要了时必须调用；条目会从待办列表消失。不要用add_reminder代替。",
+            "parameters": {
+                "type": "object",
+                "properties": {
+                    "title_keyword": {
+                        "type": "string",
+                        "description": "要删除或完成的DDL标题关键词",
+                    },
+                },
+                "required": ["title_keyword"],
+            },
+        },
+    },
+    {
+        "type": "function",
+        "function": {
             "name": "add_reminder",
-            "description": "为用户添加一条手动提醒事项。",
+            "description": "仅在用户要求添加、新建、创建一个原本不存在的DDL时调用。用户说修改、改到、改成时不要调用此工具。",
             "parameters": {
                 "type": "object",
                 "properties": {
@@ -69,7 +87,7 @@ DDL_TOOLS = [
         "type": "function",
         "function": {
             "name": "modify_reminder",
-            "description": "修改现有DDL的截止时间或标题。找到匹配的DDL后更新它，而不是创建新的。",
+            "description": "修改现有DDL的截止时间、标题或课程。用户说修改、更改、改到、改成、调整、推迟、延后时必须调用。找不到时由服务器自动新建，不要改调add_reminder。",
             "parameters": {
                 "type": "object",
                 "properties": {
@@ -86,7 +104,7 @@ DDL_TOOLS = [
         "type": "function",
         "function": {
             "name": "mark_done",
-            "description": "标记某个DDL为已完成。",
+            "description": "用户明确说某个DDL已经完成、做完或已提交时调用，使其从待办列表消失。",
             "parameters": {
                 "type": "object",
                 "properties": {
@@ -142,6 +160,7 @@ class OpenAICompatibleLLM(BaseLLM):
         self,
         messages: list[dict],
         tools: list[dict] | None = None,
+        tool_choice=None,
     ) -> dict:
         """
         Send chat request. Returns {"response": str, "tool_calls": list, "emotion": str}.
@@ -165,7 +184,7 @@ class OpenAICompatibleLLM(BaseLLM):
         # Add tools if supported
         if tools is not None:
             payload["tools"] = tools
-            payload["tool_choice"] = "auto"
+            payload["tool_choice"] = tool_choice if tool_choice is not None else "auto"
 
         async with httpx.AsyncClient(timeout=60) as client:
             try:

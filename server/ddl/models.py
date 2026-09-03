@@ -13,6 +13,9 @@ from datetime import datetime, timezone, timedelta
 from uuid import uuid4
 
 CST = timezone(timedelta(hours=8))
+DEFAULT_REMINDER_MINUTES = [1440, 180, 60, 30, 10]
+MAX_REMINDERS = 6
+MAX_ADVANCE_MINUTES = 30 * 1440 + 23 * 60 + 59
 
 
 @dataclass
@@ -24,6 +27,9 @@ class DDLItem:
     source: str = "manual"     # "zju", "pta", "manual"
     deadline: datetime = field(default_factory=lambda: datetime.now(CST))
     advance_minutes: int = 1440  # notify N minutes before deadline
+    reminder_minutes: list[int] = field(default_factory=lambda: DEFAULT_REMINDER_MINUTES.copy())
+    remind_at_day_start: bool = True  # 08:00 CST on the due date
+    sent_reminders: list[str] = field(default_factory=list)
     url: str = ""
     rate: int | None = None    # submission rate (ZJU)
     id: str = field(default_factory=lambda: str(uuid4()))
@@ -105,6 +111,46 @@ class DDLItem:
         else:
             return f"Remind: {adv}m before"
 
+    def reminder_schedule(self) -> list[tuple[str, datetime]]:
+        """Return the de-duplicated effective schedule, sorted chronologically.
+
+        The legacy "08:00 on due day" option is converted to an equivalent
+        advance-minute value. This makes it editable by the same day/hour/minute
+        UI as every other reminder and naturally merges overlapping times.
+        """
+        deadline = datetime.fromisoformat(self.deadline) if isinstance(self.deadline, str) else self.deadline
+        if deadline.tzinfo is None:
+            deadline = deadline.replace(tzinfo=CST)
+        minutes_set = {
+            min(MAX_ADVANCE_MINUTES, max(0, int(minutes)))
+            for minutes in self.reminder_minutes
+        }
+        morning = deadline.astimezone(CST).replace(hour=8, minute=0, second=0, microsecond=0)
+        if self.remind_at_day_start and morning < deadline:
+            morning_minutes = int((deadline - morning).total_seconds() // 60)
+            minutes_set.add(min(MAX_ADVANCE_MINUTES, morning_minutes))
+        # Keep the six earliest configured notifications (largest advance values).
+        effective_minutes = sorted(minutes_set, reverse=True)[:MAX_REMINDERS]
+        schedule = [
+            (f"before:{minutes}", deadline - timedelta(minutes=minutes))
+            for minutes in effective_minutes
+        ]
+        return sorted(schedule, key=lambda item: item[1])
+
+    def effective_reminder_minutes(self) -> list[int]:
+        """Reminder offsets after converting/merging the legacy morning entry."""
+        deadline = datetime.fromisoformat(self.deadline) if isinstance(self.deadline, str) else self.deadline
+        if deadline.tzinfo is None:
+            deadline = deadline.replace(tzinfo=CST)
+        values = {
+            min(MAX_ADVANCE_MINUTES, max(0, int(value)))
+            for value in self.reminder_minutes
+        }
+        morning = deadline.astimezone(CST).replace(hour=8, minute=0, second=0, microsecond=0)
+        if self.remind_at_day_start and morning < deadline:
+            values.add(min(MAX_ADVANCE_MINUTES, int((deadline - morning).total_seconds() // 60)))
+        return sorted(values, reverse=True)[:MAX_REMINDERS]
+
     def tag(self) -> str:
         """Urgency tag emoji."""
         mins = self.minutes_remaining()
@@ -128,6 +174,10 @@ class DDLItem:
             "source": self.source,
             "deadline": self.deadline_iso(),
             "advance_minutes": self.advance_minutes,
+            "reminder_minutes": self.effective_reminder_minutes(),
+            # The old special case has now been normalized into reminder_minutes.
+            "remind_at_day_start": False,
+            "sent_reminders": self.sent_reminders,
             "url": self.url,
             "rate": self.rate,
             "status": self.status,
@@ -145,6 +195,8 @@ class DDLItem:
                 deadline = datetime.fromisoformat(deadline)
             except (ValueError, TypeError):
                 deadline = datetime.now(CST)
+        else:
+            deadline = datetime.now(CST)
 
         created = d.get("created_at", "")
         if created:
@@ -152,6 +204,18 @@ class DDLItem:
                 created = datetime.fromisoformat(created)
             except (ValueError, TypeError):
                 created = datetime.now(CST)
+        else:
+            created = datetime.now(CST)
+
+        legacy_advance = int(d.get("advance_minutes", 1440))
+        reminder_minutes = d.get("reminder_minutes")
+        if reminder_minutes is None:
+            # Preserve the behaviour of existing records; newly constructed items
+            # receive the new multi-reminder defaults from the dataclass factory.
+            reminder_minutes = [legacy_advance]
+        reminder_minutes = sorted({
+            min(MAX_ADVANCE_MINUTES, max(0, int(v))) for v in reminder_minutes
+        }, reverse=True)[:MAX_REMINDERS]
 
         return cls(
             id=d.get("id", str(uuid4())),
@@ -160,7 +224,10 @@ class DDLItem:
             type=d.get("type", "自定义"),
             source=d.get("source", "manual"),
             deadline=deadline,
-            advance_minutes=d.get("advance_minutes", 1440),
+            advance_minutes=legacy_advance,
+            reminder_minutes=reminder_minutes,
+            remind_at_day_start=d.get("remind_at_day_start", True),
+            sent_reminders=list(d.get("sent_reminders", [])),
             url=d.get("url", ""),
             rate=d.get("rate"),
             status=d.get("status", "pending"),

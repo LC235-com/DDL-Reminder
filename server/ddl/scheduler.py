@@ -7,7 +7,7 @@ notifies all connected WebSocket clients.
 
 import asyncio
 import logging
-from datetime import datetime, timezone, timedelta
+from datetime import datetime, timezone
 
 from .models import DDLItem
 from .store import EventStore
@@ -19,8 +19,8 @@ class ReminderScheduler:
     """
     Background task that checks for due reminders.
 
-    For each pending event, checks if:
-        now >= deadline - advance_minutes
+    For each pending event, checks every configured relative reminder plus the
+    optional 08:00 reminder on the due date.
 
     When triggered, calls the on_remind callback with the event.
     """
@@ -68,8 +68,6 @@ class ReminderScheduler:
         now = datetime.now(timezone.utc)
 
         for event in pending:
-            if event.reminder_sent:
-                continue
             if isinstance(event.deadline, str):
                 deadline = datetime.fromisoformat(event.deadline)
             else:
@@ -77,8 +75,11 @@ class ReminderScheduler:
             if deadline.tzinfo is None:
                 deadline = deadline.replace(tzinfo=timezone.utc)
 
-            reminder_time = deadline - timedelta(minutes=event.advance_minutes)
-            if now >= reminder_time:
+            has_due_occurrence = any(
+                reminder_time <= now and key not in event.sent_reminders
+                for key, reminder_time in event.reminder_schedule()
+            )
+            if has_due_occurrence and now < deadline:
                 due.append(event)
 
         return due
@@ -91,12 +92,24 @@ class ReminderScheduler:
                 if due:
                     logger.info(f"Found {len(due)} event(s) needing reminder")
                     for event in due:
-                        await self.store.mark_reminded(event.id)
+                        now = datetime.now(timezone.utc)
+                        due_keys = [
+                            key for key, reminder_time in event.reminder_schedule()
+                            if reminder_time <= now and key not in event.sent_reminders
+                        ]
+                        delivered = False
                         for cb in self._callbacks:
                             try:
-                                await cb(event)
+                                result = await cb(event)
+                                delivered = delivered or result is not False
                             except Exception as e:
                                 logger.error(f"Reminder callback error: {e}")
+                        # If several occurrences elapsed while offline, emit one
+                        # notification now and cover the older occurrences too.
+                        # Keep it due when no output channel was available, so an
+                        # ESP32 connecting after server startup still receives it.
+                        if delivered:
+                            await self.store.mark_reminded(event.id, due_keys)
             except Exception as e:
                 logger.error(f"Reminder check error: {e}")
 

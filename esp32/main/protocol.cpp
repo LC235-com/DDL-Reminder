@@ -36,6 +36,18 @@ DDLEvent DDLEvent::from_json(cJSON* obj) {
     if (cJSON* v = cJSON_GetObjectItem(obj, "advance_minutes")) {
         e.advance_minutes = v->valueint;
     }
+    if (cJSON* values = cJSON_GetObjectItem(obj, "reminder_minutes"); values && cJSON_IsArray(values)) {
+        cJSON* value = nullptr;
+        cJSON_ArrayForEach(value, values) {
+            if (cJSON_IsNumber(value)) e.reminder_minutes.push_back(value->valueint);
+        }
+    }
+    if (e.reminder_minutes.empty()) e.reminder_minutes.push_back(e.advance_minutes);
+    if (cJSON* v = cJSON_GetObjectItem(obj, "remind_at_day_start")) {
+        e.remind_at_day_start = cJSON_IsTrue(v);
+    } else {
+        e.remind_at_day_start = true;
+    }
     if (cJSON* v = cJSON_GetObjectItem(obj, "url")) {
         e.url = v->valuestring ? v->valuestring : "";
     }
@@ -63,6 +75,9 @@ cJSON* DDLEvent::to_json() const {
     cJSON_AddStringToObject(obj, "source", source.c_str());
     cJSON_AddStringToObject(obj, "deadline", deadline.c_str());
     cJSON_AddNumberToObject(obj, "advance_minutes", advance_minutes);
+    cJSON* reminders = cJSON_AddArrayToObject(obj, "reminder_minutes");
+    for (int minutes : reminder_minutes) cJSON_AddItemToArray(reminders, cJSON_CreateNumber(minutes));
+    cJSON_AddBoolToObject(obj, "remind_at_day_start", remind_at_day_start);
     cJSON_AddStringToObject(obj, "url", url.c_str());
     cJSON_AddNumberToObject(obj, "rate", rate);
     cJSON_AddStringToObject(obj, "status", status.c_str());
@@ -87,10 +102,13 @@ ProtocolParser::MessageType ProtocolParser::get_message_type(const std::string& 
         else if (cmd_str == "delete_event") type = MessageType::DELETE_EVENT;
         else if (cmd_str == "remind") type = MessageType::REMIND;
         else if (cmd_str == "speak") type = MessageType::SPEAK;
+        else if (cmd_str == "audio_stream_start") type = MessageType::AUDIO_STREAM_START;
+        else if (cmd_str == "audio_stream_end") type = MessageType::AUDIO_STREAM_END;
         else if (cmd_str == "emotion") type = MessageType::EMOTION;
         else if (cmd_str == "led") type = MessageType::LED;
         else if (cmd_str == "config") type = MessageType::CONFIG;
         else if (cmd_str == "asr_result") type = MessageType::ASR_RESULT;
+        else if (cmd_str == "tool_result") type = MessageType::TOOL_RESULT;
         else if (cmd_str == "pong") type = MessageType::PONG;
     }
 
@@ -203,6 +221,32 @@ std::string ProtocolParser::parse_asr_result(const std::string& json_str, bool& 
         cJSON_Delete(root);
     }
     return text;
+}
+
+std::string ProtocolParser::parse_audio_stream_id(const std::string& json_str) {
+    cJSON* root = cJSON_Parse(json_str.c_str());
+    if (!root) return "";
+    cJSON* value = cJSON_GetObjectItem(root, "stream_id");
+    std::string result = value && value->valuestring ? value->valuestring : "";
+    cJSON_Delete(root);
+    return result;
+}
+
+ProtocolParser::ToolResultData ProtocolParser::parse_tool_result(const std::string& json_str) {
+    ToolResultData data;
+    cJSON* root = cJSON_Parse(json_str.c_str());
+    if (!root) return data;
+    if (cJSON* value = cJSON_GetObjectItem(root, "tool")) {
+        data.tool = value->valuestring ? value->valuestring : "";
+    }
+    if (cJSON* value = cJSON_GetObjectItem(root, "success")) {
+        data.success = cJSON_IsTrue(value);
+    }
+    if (cJSON* value = cJSON_GetObjectItem(root, "message")) {
+        data.message = value->valuestring ? value->valuestring : "";
+    }
+    cJSON_Delete(root);
+    return data;
 }
 
 // ── ProtocolBuilder ───────────────────────────────────────────

@@ -1,0 +1,22 @@
+# Python runtime files
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.env
+.env.*
+!.env.example
+
+# Local server state and credentials
+server/data/ddl_store.json
+
+# ESP-IDF generated and machine-local files
+esp32/build/
+esp32/.ccache/
+esp32/sdkconfig
+esp32/sdkconfig.old
+esp32/main/device_config.h
+
+# Logs and local investigation helpers
+*.log
+extract_pdf*.py

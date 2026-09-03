@@ -32,6 +32,7 @@ import time
 import wave
 from datetime import datetime
 from pathlib import Path
+from uuid import uuid4
 
 import websockets
 
@@ -50,11 +51,13 @@ from config import (
 )
 from protocol import (
     msg_sync, msg_new_event, msg_delete_event, msg_remind,
-    msg_speak, msg_emotion, msg_led, msg_pong, msg_asr_result,
+    msg_speak, msg_audio_stream_start, msg_audio_stream_end,
+    msg_emotion, msg_led, msg_pong, msg_asr_result, msg_tool_result,
 )
 from ddl.models import DDLItem
 from ddl.store import EventStore
 from ddl.scheduler import ReminderScheduler
+from notifications import send_mobile_notification
 from ddl.crawler import CrawlerScheduler
 
 logging.basicConfig(
@@ -165,10 +168,114 @@ class ClientState:
         self.audio_buffer = bytearray()
         self.is_recording = False
         self.conversation_history: list[dict] = []
+        # Prevent reminder and assistant audio streams from interleaving.
+        self.speech_send_lock = asyncio.Lock()
 
     def clear_audio(self):
         self.audio_buffer = bytearray()
         self.is_recording = False
+
+
+WRITE_TOOLS = {"add_reminder", "modify_reminder", "delete_reminder", "mark_done"}
+
+
+async def _send_speech(websocket, state: ClientState, text: str, emotion: str, audio: bytes) -> None:
+    """Send one framed PCM stream; WebSocket PING remains keepalive-only."""
+    async with state.speech_send_lock:
+        await websocket.send(json.dumps(msg_speak("", text, emotion), ensure_ascii=False))
+        if not audio:
+            return
+
+        stream_id = uuid4().hex
+        await websocket.send(json.dumps(
+            msg_audio_stream_start(stream_id, SAMPLE_RATE), ensure_ascii=False
+        ))
+        chunk_size = 4096
+        for offset in range(0, len(audio), chunk_size):
+            await websocket.send(audio[offset:offset + chunk_size])
+        await websocket.send(json.dumps(msg_audio_stream_end(stream_id), ensure_ascii=False))
+
+
+def _mutation_tool_hint(text: str) -> str:
+    """Return a strong explicit-action hint; semantic routing remains the LLM's job."""
+    normalized = text.replace(" ", "")
+    keyword_groups = (
+        ("delete_reminder", ("删除", "删掉", "删了", "移除", "取消这个", "不要这个", "不需要了")),
+        ("mark_done", ("已完成", "已经完成", "完成了", "已做完", "做完了", "交完", "交了", "提交了", "搞定了")),
+        ("modify_reminder", ("修改", "更改", "变更", "改一下", "改下", "改到", "改成", "改为", "调整", "推迟", "延后", "提前到", "换成")),
+        ("add_reminder", ("添加", "新增", "新建", "创建", "提醒我", "记一个", "加一个")),
+    )
+    for tool, keywords in keyword_groups:
+        if any(keyword in normalized for keyword in keywords):
+            return tool
+    return ""
+
+
+async def _repair_tool_routing(text: str, messages: list[dict], result: dict) -> tuple[dict, str]:
+    """Force a second semantic pass when explicit mutation words and tool calls disagree."""
+    expected = _mutation_tool_hint(text)
+    if not expected or not llm_module:
+        return result, expected
+
+    calls = result.get("tool_calls", []) or []
+    names = {call.get("function", {}).get("name", "") for call in calls}
+    compatible = {expected}
+    if expected in {"delete_reminder", "mark_done"}:
+        compatible = {"delete_reminder", "mark_done"}
+    if names & compatible:
+        return result, expected
+
+    from llm.openai_compatible import DDL_TOOLS
+    selected = [tool for tool in DDL_TOOLS if tool["function"]["name"] == expected]
+    forced_choice = {"type": "function", "function": {"name": expected}}
+    route_instruction = (
+        f"\n\n用户明确要求执行变更。必须调用 {expected}，"
+        "根据用户原话和当前DDL数据提取准确参数；不要只用文字声称已完成。"
+    )
+    repair_messages = [dict(message) for message in messages]
+    if repair_messages and repair_messages[0].get("role") == "system":
+        repair_messages[0]["content"] = repair_messages[0].get("content", "") + route_instruction
+    else:
+        repair_messages.insert(0, {"role": "system", "content": route_instruction.strip()})
+    logger.warning("Tool routing repair: transcript=%r initial=%s forced=%s",
+                   text, sorted(names), expected)
+    repaired = await llm_module.chat(repair_messages, selected, tool_choice=forced_choice)
+    if repaired.get("tool_calls"):
+        result = {**result, "tool_calls": repaired["tool_calls"]}
+    elif expected in {"delete_reminder", "mark_done"} and store:
+        # Some compatible providers ignore forced tool_choice and return prose.
+        # Completion/removal still has a safe deterministic fallback because the
+        # existing event itself supplies the only required argument.
+        matches = await store.search(keyword=text)
+        if matches:
+            event = matches[0]
+            canonical = " ".join(part for part in (event.course, event.title) if part)
+            result = {**result, "tool_calls": [{
+                "id": f"fallback_{event.id}",
+                "type": "function",
+                "function": {
+                    "name": expected,
+                    "arguments": json.dumps(
+                        {"title_keyword": canonical}, ensure_ascii=False
+                    ),
+                },
+            }]}
+            logger.warning("Using deterministic %s fallback for DDL %s", expected, event.id)
+    return result, expected
+
+
+def _append_tool_results(messages: list[dict], calls: list[dict], reports: list[dict]) -> None:
+    """Append one tool response per call as required by tool-calling APIs."""
+    messages.append({"role": "assistant", "content": None, "tool_calls": calls})
+    by_id = {report.get("tool_call_id", ""): report for report in reports}
+    for call in calls:
+        call_id = call.get("id", "")
+        report = by_id.get(call_id, {})
+        messages.append({
+            "role": "tool",
+            "content": report.get("message", "操作失败：服务器没有返回工具执行结果。"),
+            "tool_call_id": call_id,
+        })
 
 
 # ── Reminder Handler ──────────────────────────────────────────
@@ -194,6 +301,13 @@ async def on_reminder_trigger(event: DDLItem):
 
     event_dict = event.to_dict()
 
+    # Phone-facing channels are independent of the ESP32 connection, so a
+    # temporarily offline device does not lose the reminder.
+    mobile_delivered = await send_mobile_notification(
+        f"DDL提醒：{event.title}", f"{tts_text}\n截止时间：{event.deadline_str()}"
+    )
+
+    device_delivered = False
     for ws, state in connected_clients.items():
         try:
             # Send remind command
@@ -201,16 +315,14 @@ async def on_reminder_trigger(event: DDLItem):
 
             # Also send audio if available (PCM binary chunks + ping to end)
             if audio:
-                await ws.send(json.dumps(msg_speak("", tts_text, emotion), ensure_ascii=False))
-                CHUNK = 4096
-                for offset in range(0, len(audio), CHUNK):
-                    await ws.send(audio[offset:offset + CHUNK])
-                await ws.ping()
+                await _send_speech(ws, state, tts_text, emotion, audio)
 
             # Flash LED red
             await ws.send(json.dumps(msg_led("flash", "#FF0000"), ensure_ascii=False))
+            device_delivered = True
         except Exception as e:
             logger.error(f"Failed to notify client: {e}")
+    return mobile_delivered or device_delivered
 
 
 # ── Voice Pipeline ────────────────────────────────────────────
@@ -263,20 +375,48 @@ async def process_voice_query(websocket, state: ClientState) -> None:
     else:
         result["response"] = "AI服务未配置，请检查API密钥。"
 
+    # The first semantic pass may answer in prose despite an explicit mutation
+    # verb. In that case, force a second LLM pass to extract arguments for the
+    # appropriate tool; the keyword is only a guard, not the argument parser.
+    result, expected_tool = await _repair_tool_routing(transcript, messages, result)
+
     # Step 3: Execute tool calls (with crash guard)
     tool_result = ""
+    tool_reports = []
     original_tool_calls = result.get("tool_calls", [])  # Save BEFORE second LLM call
     if original_tool_calls and intent_parser:
         try:
-            tool_result = await intent_parser.execute(original_tool_calls)
+            tool_result, tool_reports = await intent_parser.execute_detailed(original_tool_calls)
         except Exception as e:
             logger.error(f"Tool execution failed: {e}", exc_info=True)
             tool_result = f"操作失败: {e}"
+            tool_reports = [{
+                "tool": expected_tool or "unknown",
+                "success": False,
+                "message": tool_result,
+                "tool_call_id": "",
+            }]
         if tool_result:
-            # Feed tool results back to LLM for final response
-            messages.append({"role": "assistant", "content": None, "tool_calls": original_tool_calls})
-            messages.append({"role": "tool", "content": tool_result, "tool_call_id": original_tool_calls[0]["id"]})
-            result = await llm_module.chat(messages, None)
+            if any(report["tool"] in WRITE_TOOLS for report in tool_reports):
+                # The spoken/UI confirmation must reflect the store result, not
+                # a second model's potentially optimistic paraphrase.
+                result["response"] = tool_result
+                result["emotion"] = (
+                    "happy" if all(report["success"] for report in tool_reports) else "sad"
+                )
+            else:
+                _append_tool_results(messages, original_tool_calls, tool_reports)
+                result = await llm_module.chat(messages, None)
+    elif expected_tool:
+        failure_message = "操作失败：大模型未能生成有效的工具参数，请换一种更明确的说法。"
+        tool_reports = [{
+            "tool": expected_tool,
+            "success": False,
+            "message": failure_message,
+            "tool_call_id": "",
+        }]
+        result["response"] = failure_message
+        result["emotion"] = "sad"
 
     # Update conversation history
     state.conversation_history.append({"role": "user", "content": transcript})
@@ -285,18 +425,14 @@ async def process_voice_query(websocket, state: ClientState) -> None:
         state.conversation_history = state.conversation_history[-20:]
 
     # After DDL-modifying tools, push updated list to all clients
-    if tool_result and original_tool_calls:
-        read_ops = {"query_ddls", "get_courses"}  # everything else is a write
-        for tc in original_tool_calls:
-            if tc.get("function", {}).get("name") not in read_ops:
-                events = await store.get_pending()
-                sync_data = [e.to_dict() for e in events]
-                for ws_client in connected_clients:
-                    try:
-                        await ws_client.send(json.dumps(msg_sync(sync_data), ensure_ascii=False))
-                    except Exception:
-                        pass
-                break  # only sync once
+    if any(report["success"] and report["tool"] in WRITE_TOOLS for report in tool_reports):
+        events = await store.get_pending()
+        sync_data = [e.to_dict() for e in events]
+        for ws_client in connected_clients:
+            try:
+                await ws_client.send(json.dumps(msg_sync(sync_data), ensure_ascii=False))
+            except Exception:
+                pass
 
     # Step 4: TTS — text to speech
     response_text = result["response"] or ""
@@ -309,22 +445,16 @@ async def process_voice_query(websocket, state: ClientState) -> None:
         await websocket.send(json.dumps(msg_emotion("speaking"), ensure_ascii=False))
         audio = await tts_module.synthesize(response_text)
 
-    # Step 5: Send response to ESP32
-    # Protocol: JSON speak (text+emotion) → binary PCM chunks → ping (end marker)
-    await websocket.send(json.dumps(
-        msg_speak("", response_text, emotion),  # audio sent as binary, not base64
-        ensure_ascii=False,
-    ))
+    # Step 5: Send response using explicit application-level stream boundaries.
+    await _send_speech(websocket, state, response_text, emotion, audio)
 
-    if audio:
-        # Send PCM audio as binary chunks (matching ESP32 streaming parser)
-        CHUNK = 4096
-        for offset in range(0, len(audio), CHUNK):
-            await websocket.send(audio[offset:offset + CHUNK])
-
-        # Send WebSocket ping frame to signal end of audio stream
-        # (ESP32 uses PING opcode to trigger finishStreamingPlayback)
-        await websocket.ping()
+    # Show feedback only for state-changing tools, and only after the answer has
+    # been sent. Success means the EventStore operation actually returned true.
+    for report in tool_reports:
+        if report["tool"] in WRITE_TOOLS:
+            await websocket.send(json.dumps(msg_tool_result(
+                report["tool"], report["success"], report["message"]
+            ), ensure_ascii=False))
 
     logger.info(f"Voice pipeline complete: '{transcript}' → '{response_text[:50]}...'")
 
@@ -354,19 +484,17 @@ async def handle_client(websocket, path=None):
                 try:
                     await websocket.send(json.dumps(msg_remind(event.to_dict()), ensure_ascii=False))
                     dur = event.duration_str()
-                    await websocket.send(json.dumps(
-                        msg_speak("", f"提醒：你在离线时错过了 {event.title} 的提醒，{dur}", "sad"),
-                        ensure_ascii=False))
                     # TTS for missed reminder
                     if tts_module:
                         tts_text = f"提醒：你在离线时错过了 {event.title} 的提醒，{dur}"
                         audio = await tts_module.synthesize(tts_text)
-                        if audio:
-                            await websocket.send(json.dumps(msg_speak("", tts_text, "sad"), ensure_ascii=False))
-                            CHUNK = 4096
-                            for offset in range(0, len(audio), CHUNK):
-                                await websocket.send(audio[offset:offset + CHUNK])
-                            await websocket.ping()
+                        await _send_speech(websocket, state, tts_text, "sad", audio)
+                    else:
+                        await _send_speech(
+                            websocket, state,
+                            f"提醒：你在离线时错过了 {event.title} 的提醒，{dur}",
+                            "sad", b""
+                        )
                     await store.mark_reminded(event.id)
                 except Exception as e:
                     logger.error(f"Failed to send missed reminder: {e}")
@@ -411,28 +539,43 @@ async def handle_client(websocket, path=None):
 
                     from llm.openai_compatible import DDL_TOOLS
                     result = await llm_module.chat(messages, DDL_TOOLS) if llm_module else {"response": "", "tool_calls": [], "emotion": "neutral"}
+                    result, expected_tool = await _repair_tool_routing(text, messages, result)
 
                     # Execute tool calls
                     original_tc = result.get("tool_calls", [])
                     tool_result = ""
+                    tool_reports = []
                     if original_tc and intent_parser:
-                        tool_result = await intent_parser.execute(original_tc)
+                        tool_result, tool_reports = await intent_parser.execute_detailed(original_tc)
                         if tool_result:
-                            messages.append({"role": "assistant", "content": None, "tool_calls": original_tc})
-                            messages.append({"role": "tool", "content": tool_result, "tool_call_id": original_tc[0]["id"]})
-                            result = await llm_module.chat(messages, None)
+                            if any(report["tool"] in WRITE_TOOLS for report in tool_reports):
+                                result["response"] = tool_result
+                                result["emotion"] = (
+                                    "happy" if all(report["success"] for report in tool_reports) else "sad"
+                                )
+                            else:
+                                _append_tool_results(messages, original_tc, tool_reports)
+                                result = await llm_module.chat(messages, None)
+                    elif expected_tool:
+                        failure_message = "操作失败：大模型未能生成有效的工具参数，请换一种更明确的说法。"
+                        tool_reports = [{
+                            "tool": expected_tool,
+                            "success": False,
+                            "message": failure_message,
+                            "tool_call_id": "",
+                        }]
+                        result["response"] = failure_message
+                        result["emotion"] = "sad"
 
                     # Sync after writes
-                    if tool_result and original_tc:
-                        read_ops = {"query_ddls", "get_courses"}
-                        if any(tc.get("function", {}).get("name") not in read_ops for tc in original_tc):
-                            events = await store.get_pending()
-                            sync_data = [e.to_dict() for e in events]
-                            for ws_client in connected_clients:
-                                try:
-                                    await ws_client.send(json.dumps(msg_sync(sync_data), ensure_ascii=False))
-                                except Exception:
-                                    pass
+                    if any(report["success"] and report["tool"] in WRITE_TOOLS for report in tool_reports):
+                        events = await store.get_pending()
+                        sync_data = [e.to_dict() for e in events]
+                        for ws_client in connected_clients:
+                            try:
+                                await ws_client.send(json.dumps(msg_sync(sync_data), ensure_ascii=False))
+                            except Exception:
+                                pass
 
                     state.conversation_history.append({"role": "assistant", "content": result.get("response", "")})
 
@@ -446,14 +589,13 @@ async def handle_client(websocket, path=None):
                     if response_text and tts_module:
                         audio = await tts_module.synthesize(response_text)
 
-                    # Send speak command (text + emotion) then binary PCM audio chunks
-                    await websocket.send(json.dumps(msg_speak("", response_text, emotion), ensure_ascii=False))
+                    await _send_speech(websocket, state, response_text, emotion, audio)
 
-                    if audio:
-                        CHUNK = 4096
-                        for offset in range(0, len(audio), CHUNK):
-                            await websocket.send(audio[offset:offset + CHUNK])
-                        await websocket.ping()
+                    for report in tool_reports:
+                        if report["tool"] in WRITE_TOOLS:
+                            await websocket.send(json.dumps(msg_tool_result(
+                                report["tool"], report["success"], report["message"]
+                            ), ensure_ascii=False))
 
                 elif cmd == "event_action":
                     event_id, action = data.get("id", ""), data.get("action", "")
@@ -483,9 +625,26 @@ async def handle_client(websocket, path=None):
                                     logger.warning(f"Invalid deadline format: {value}")
                             elif field == "advance":
                                 try:
-                                    updates["advance_minutes"] = int(value)
+                                    minutes = max(0, int(value))
+                                    updates["advance_minutes"] = minutes
+                                    updates["reminder_minutes"] = [minutes]
+                                    updates["remind_at_day_start"] = False
                                 except ValueError:
                                     logger.warning(f"Invalid advance value: {value}")
+                            elif field == "reminders":
+                                try:
+                                    # UI contract: at most six offsets, each within
+                                    # 30 days + 23:59, with overlaps merged.
+                                    values = sorted({
+                                        min(44639, max(0, int(v)))
+                                        for v in value.split(",") if v.strip()
+                                    }, reverse=True)[:6]
+                                    updates["reminder_minutes"] = values
+                                    if values:
+                                        updates["advance_minutes"] = values[0]
+                                    updates["remind_at_day_start"] = False
+                                except ValueError:
+                                    logger.warning(f"Invalid reminder list: {value}")
                             if updates:
                                 await store.update_event(event_id, updates)
                                 logger.info(f"✏️ [{client_ip}] Edited {event_id}: {field}={value}")
@@ -500,9 +659,15 @@ async def handle_client(websocket, path=None):
                                         pass
 
                 elif cmd == "request_sync":
+                    sync_started = time.monotonic()
                     events = await store.get_pending()
                     sync_data = [e.to_dict() for e in events]
                     await websocket.send(json.dumps(msg_sync(sync_data), ensure_ascii=False))
+                    logger.info(
+                        "🔄 [%s] DDL sync request served: %d events in %.1f ms",
+                        client_ip, len(sync_data),
+                        (time.monotonic() - sync_started) * 1000,
+                    )
 
                 elif cmd == "add_event":
                     # Direct DDL creation from ESP32 (touch form or voice)
@@ -571,6 +736,13 @@ async def main():
     # Initialize DDL store
     store = EventStore(os.path.join(os.path.dirname(__file__), "data", "ddl_store.json"))
     await store.load()
+    startup_removed = await store.cleanup_old(
+        expired_days=EXPIRED_CLEANUP_DAYS,
+        done_days=EXPIRED_CLEANUP_DAYS,
+    )
+    if startup_removed:
+        logger.info("🧹 Startup cleanup removed %d records older than %d days",
+                    startup_removed, EXPIRED_CLEANUP_DAYS)
     events = await store.get_all()
     pending = await store.get_pending()
     print(f"📚 DDL Store: {len(events)} total, {len(pending)} pending")
@@ -607,12 +779,16 @@ async def main():
     crawler_scheduler.on_new(on_new_crawled)
     await crawler_scheduler.start()
 
-    # Start periodic data cleanup (every 3 days)
+    # Start periodic data cleanup. A cleanup also ran at startup, so restarting
+    # the server does not postpone stale-record removal indefinitely.
     async def cleanup_loop():
         while True:
             await asyncio.sleep(CLEANUP_INTERVAL)
             try:
-                removed = await store.cleanup_old(expired_days=EXPIRED_CLEANUP_DAYS)
+                removed = await store.cleanup_old(
+                    expired_days=EXPIRED_CLEANUP_DAYS,
+                    done_days=EXPIRED_CLEANUP_DAYS,
+                )
                 if removed > 0:
                     logger.info(f"🧹 Cleaned up {removed} old DDL records")
             except Exception as e:

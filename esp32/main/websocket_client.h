@@ -168,9 +168,17 @@ private:
     
     // 事件回调
     EventCallback event_callback_;
+
+    // ESP-IDF splits a frame larger than buffer_size into several DATA events.
+    // Reassemble JSON text before handing it to the protocol parser.
+    std::string text_rx_buffer_;
+    size_t text_rx_chunks_ = 0;
+    size_t text_rx_frame_base_ = 0;
+    bool text_rx_active_ = false;
     
     // 📦 内部配置常量
     static constexpr int BUFFER_SIZE = 8192;                // 数据缓冲区大小（8KB）
+    static constexpr size_t MAX_TEXT_MESSAGE_SIZE = 128 * 1024;
     static constexpr int TASK_STACK_SIZE = 8192;            // WebSocket任务栈大小
     static constexpr int RECONNECT_TASK_STACK_SIZE = 4096;  // 重连任务栈大小
 };

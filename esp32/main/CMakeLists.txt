@@ -12,6 +12,7 @@ idf_component_register(
         "ui/ui_manager.cpp"
         "remote_display.cpp"
         "my_chinese_font.c"
+        "common_symbols_font.c"
     INCLUDE_DIRS
         "."
         "ui"

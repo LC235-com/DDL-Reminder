@@ -123,6 +123,14 @@ esp_err_t WiFiManager::connect() {
     ESP_ERROR_CHECK(esp_wifi_set_mode(WIFI_MODE_STA));      // 设为客户端模式
     ESP_ERROR_CHECK(esp_wifi_set_config(WIFI_IF_STA, &wifi_config));  // 应用配置
     ESP_ERROR_CHECK(esp_wifi_start());                      // 启动WiFi
+    // This device continuously receives PCM over WebSocket. Modem sleep can
+    // defer packets long enough to starve I2S, which is heard as repeated gaps.
+    ret = esp_wifi_set_ps(WIFI_PS_NONE);
+    if (ret != ESP_OK) {
+        ESP_LOGW(TAG, "关闭WiFi省电模式失败: %s", esp_err_to_name(ret));
+    } else {
+        ESP_LOGI(TAG, "WiFi省电已关闭（低延迟音频模式）");
+    }
     
     ESP_LOGI(TAG, "📶 WiFi初始化完成，正在连接到 %s", ssid_.c_str());
     

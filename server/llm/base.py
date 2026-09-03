@@ -16,6 +16,7 @@ class BaseLLM(ABC):
         self,
         messages: list[dict],
         tools: list[dict] | None = None,
+        tool_choice=None,
     ) -> dict:
         """
         Send conversation to LLM and get response.

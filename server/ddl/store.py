@@ -7,9 +7,61 @@ Thread-safe with asyncio locks. Auto-saves on every mutation.
 import asyncio
 import json
 import os
+import re
+import unicodedata
+from difflib import SequenceMatcher
 from pathlib import Path
+from datetime import datetime, timezone, timedelta
 
 from .models import DDLItem
+
+
+def _normalize_match_text(value: str) -> str:
+    """Normalize ASR/tool text without losing Chinese letters or digits."""
+    value = unicodedata.normalize("NFKC", value or "").casefold()
+    value = re.sub(r"[^\w]+", "", value, flags=re.UNICODE)
+    # Spoken Chinese frequently inserts this connector between course/title.
+    return value.replace("_", "").replace("的", "")
+
+
+def _match_score(event: DDLItem, keyword: str) -> int:
+    """Rank a keyword against title, course and their combined display name."""
+    query = _normalize_match_text(keyword)
+    if not query:
+        return 1
+
+    title = _normalize_match_text(event.title)
+    course = _normalize_match_text(event.course)
+    combined = course + title
+    fields = [value for value in (title, course, combined) if value]
+
+    if query == combined or query == title:
+        return 1000
+    if course and title and course in query and title in query:
+        return 980
+    if query in title:
+        return 940
+    if query in combined:
+        return 920
+    if title and title in query:
+        return 880
+
+    # Handle small ASR errors and utterances which omit a suffix such as “时间”.
+    best_ratio = max((SequenceMatcher(None, query, value).ratio() for value in fields), default=0.0)
+    title_match = SequenceMatcher(None, query, title).find_longest_match() if title else None
+    common_title_chars = title_match.size if title_match else 0
+    if course and course in query and common_title_chars >= min(4, len(title)):
+        return 840 + min(common_title_chars, 20)
+    if best_ratio >= 0.72:
+        return int(700 * best_ratio)
+    return 0
+
+
+def _deadline_utc(event: DDLItem) -> datetime:
+    value = datetime.fromisoformat(event.deadline) if isinstance(event.deadline, str) else event.deadline
+    if value.tzinfo is None:
+        value = value.replace(tzinfo=timezone.utc)
+    return value.astimezone(timezone.utc)
 
 
 class EventStore:
@@ -77,6 +129,7 @@ class EventStore:
                     event.id = existing.id
                     event.status = existing.status
                     event.reminder_sent = existing.reminder_sent
+                    event.sent_reminders = existing.sent_reminders
                     self._events[event.id] = event
                     await self._save()
                     return event, False
@@ -108,11 +161,20 @@ class EventStore:
                 return True
         return False
 
-    async def mark_reminded(self, event_id: str) -> bool:
-        """Mark that a reminder has been sent."""
+    async def mark_reminded(self, event_id: str, reminder_keys: list[str] | None = None) -> bool:
+        """Mark one or more schedule occurrences as sent."""
         async with self._lock:
             if event_id in self._events:
-                self._events[event_id].reminder_sent = True
+                event = self._events[event_id]
+                if reminder_keys is None:
+                    # Compatibility for older callers: mark all occurrences due now.
+                    from datetime import datetime, timezone
+                    now = datetime.now(timezone.utc)
+                    reminder_keys = [key for key, when in event.reminder_schedule() if when <= now]
+                event.sent_reminders = list(dict.fromkeys(event.sent_reminders + reminder_keys))
+                event.reminder_sent = all(
+                    key in event.sent_reminders for key, _ in event.reminder_schedule()
+                )
                 await self._save()
                 return True
         return False
@@ -126,6 +188,9 @@ class EventStore:
             for key, value in updates.items():
                 if hasattr(e, key):
                     setattr(e, key, value)
+            if any(key in updates for key in ("deadline", "advance_minutes", "reminder_minutes", "remind_at_day_start")):
+                e.sent_reminders = []
+                e.reminder_sent = False
             await self._save()
             return True
 
@@ -142,33 +207,45 @@ class EventStore:
             return events
 
     async def get_pending(self) -> list[DDLItem]:
-        """Get all pending events (not done/dismissed)."""
+        """Get every unfinished, not-yet-expired event in deadline order."""
         async with self._lock:
+            now = datetime.now(timezone.utc)
+            def is_upcoming(event: DDLItem) -> bool:
+                return _deadline_utc(event) >= now
             return sorted(
-                [e for e in self._events.values() if e.status in ("pending", "snoozed")],
+                [e for e in self._events.values()
+                 if e.status in ("pending", "snoozed") and is_upcoming(e)],
                 key=lambda e: e.deadline_iso()
             )
 
     async def search(self, keyword: str = "", days: int = 0) -> list[DDLItem]:
-        """Search events by keyword. days=0 means all upcoming."""
+        """Search upcoming events across title+course, tolerant of ASR spacing/errors."""
         async with self._lock:
-            results = [e for e in self._events.values() if e.status != "done"]
+            now = datetime.now(timezone.utc)
+            results = []
+            for event in self._events.values():
+                if event.status not in ("pending", "snoozed"):
+                    continue
+                if _deadline_utc(event) >= now:
+                    results.append(event)
             if keyword:
-                kw = keyword.lower()
-                results = [e for e in results if (e.title and kw in e.title.lower()) or (e.course and kw in e.course.lower())]
+                scored = [(_match_score(event, keyword), event) for event in results]
+                results = [event for score, event in scored if score > 0]
+                scores = {event.id: score for score, event in scored if score > 0}
             if days > 0:
-                from datetime import datetime, timezone, timedelta
-                now = datetime.now(timezone.utc)
                 cutoff = now + timedelta(days=days)
-                results = [e for e in results if isinstance(e.deadline, str) or e.deadline.replace(tzinfo=timezone.utc) <= cutoff]
-            results.sort(key=lambda e: e.deadline_iso())
+                results = [e for e in results if _deadline_utc(e) <= cutoff]
+            if keyword:
+                results.sort(key=lambda e: (-scores[e.id], e.deadline_iso()))
+            else:
+                results.sort(key=lambda e: e.deadline_iso())
             return results
 
     async def count(self) -> int:
         async with self._lock:
             return len(self._events)
 
-    async def cleanup_old(self, expired_days: int = 3, done_days: int = 3) -> int:
+    async def cleanup_old(self, expired_days: int = 14, done_days: int = 14) -> int:
         """
         Remove old DDLs:
         - Events marked 'done' older than done_days
@@ -177,7 +254,7 @@ class EventStore:
 
         Returns number of events removed.
         """
-        from datetime import datetime, timezone, timedelta
+        from datetime import datetime, timezone
         now = datetime.now(timezone.utc)
         expired_cutoff = now - timedelta(days=expired_days)
         done_cutoff = now - timedelta(days=done_days)
@@ -235,9 +312,6 @@ class EventStore:
             for e in self._events.values():
                 if e.status not in ("pending", "snoozed"):
                     continue
-                if e.reminder_sent:
-                    continue
-
                 if isinstance(e.deadline, str):
                     try:
                         dl = datetime.fromisoformat(e.deadline)
@@ -248,8 +322,11 @@ class EventStore:
                 if dl.tzinfo is None:
                     dl = dl.replace(tzinfo=timezone.utc)
 
-                reminder_time = dl - timedelta(minutes=e.advance_minutes)
-                if now >= reminder_time and now < dl:
+                has_due = any(
+                    when <= now and key not in e.sent_reminders
+                    for key, when in e.reminder_schedule()
+                )
+                if has_due and now < dl:
                     missed.append(e)
 
             # Sort by most urgent first

@@ -66,9 +66,23 @@ BIT_DEPTH = 16       # 16-bit PCM
 DDL_STORE_PATH = os.path.join(os.path.dirname(__file__), "data", "ddl_store.json")
 REMINDER_CHECK_INTERVAL = 30   # seconds between reminder checks
 CRAWL_INTERVAL = 1800          # seconds (30 minutes) between crawls
-CLEANUP_INTERVAL = 259200      # seconds (3 days) between data cleanups
+CLEANUP_INTERVAL = 604800      # seconds (7 days) between data cleanups
 DEFAULT_ADVANCE_MINUTES = 1440 # 24 hours default advance reminder
-EXPIRED_CLEANUP_DAYS = 3       # days after which expired/done DDLs are cleaned
+EXPIRED_CLEANUP_DAYS = 14      # retain expired/done DDLs for two weeks
+
+# ── Optional mobile notifications ─────────────────────────────
+# Email: use an app password/authorization code rather than the mailbox password.
+NOTIFY_EMAIL_TO = os.environ.get("DDL_NOTIFY_EMAIL_TO", "")
+SMTP_HOST = os.environ.get("DDL_SMTP_HOST", "")
+SMTP_PORT = int(os.environ.get("DDL_SMTP_PORT", "465"))
+SMTP_USER = os.environ.get("DDL_SMTP_USER", "")
+SMTP_PASSWORD = os.environ.get("DDL_SMTP_PASSWORD", "")
+SMTP_FROM = os.environ.get("DDL_SMTP_FROM", SMTP_USER)
+SMTP_SSL = os.environ.get("DDL_SMTP_SSL", "1").lower() not in ("0", "false", "no")
+
+# DingTalk custom robot webhook; secret is optional when signing isn't enabled.
+DINGTALK_WEBHOOK = os.environ.get("DDL_DINGTALK_WEBHOOK", "")
+DINGTALK_SECRET = os.environ.get("DDL_DINGTALK_SECRET", "")
 
 # ── Crawlers ──────────────────────────────────────────────────
 ZJU_ENABLED = bool(os.environ.get("ZJU_USER", ""))

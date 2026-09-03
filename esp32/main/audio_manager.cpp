@@ -16,6 +16,15 @@ extern "C" {
 
 const char* AudioManager::TAG = "AudioManager";
 
+static void apply_pcm_volume(uint8_t* data, size_t size, int volume) {
+    if (!data || volume >= 10) return;
+    int16_t* samples = reinterpret_cast<int16_t*>(data);
+    size_t count = size / sizeof(int16_t);
+    for (size_t i = 0; i < count; ++i) {
+        samples[i] = static_cast<int16_t>((static_cast<int32_t>(samples[i]) * volume) / 10);
+    }
+}
+
 AudioManager::AudioManager(uint32_t sample_rate, uint32_t recording_duration_sec, uint32_t response_duration_sec)
     : sample_rate(sample_rate)
     , recording_duration_sec(recording_duration_sec)
@@ -31,8 +40,6 @@ AudioManager::AudioManager(uint32_t sample_rate, uint32_t recording_duration_sec
     , is_streaming(false)
     , streaming_buffer(nullptr)
     , streaming_buffer_size(STREAMING_BUFFER_SIZE)
-    , streaming_write_pos(0)
-    , streaming_read_pos(0)
 {
     // 🧮 计算所需缓冲区大小
     recording_buffer_size = sample_rate * recording_duration_sec;  // 录音缓冲区（样本数）
@@ -78,11 +85,52 @@ esp_err_t AudioManager::init() {
         return ESP_ERR_NO_MEM;
     }
     ESP_LOGI(TAG, "✓ 流式播放缓冲区分配成功，大小: %zu 字节", streaming_buffer_size);
+
+    streaming_stream = xStreamBufferCreateStatic(
+        streaming_buffer_size, 1, streaming_buffer, &streaming_stream_storage
+    );
+    if (streaming_stream == nullptr) {
+        ESP_LOGE(TAG, "创建流式音频队列失败");
+        free(streaming_buffer);
+        free(recording_buffer);
+        free(response_buffer);
+        streaming_buffer = nullptr;
+        recording_buffer = nullptr;
+        response_buffer = nullptr;
+        return ESP_ERR_NO_MEM;
+    }
+
+    BaseType_t task_result = xTaskCreatePinnedToCore(
+        streamingPlaybackTask, "tts_playback", 4096, this, 6,
+        &streaming_task, tskNO_AFFINITY
+    );
+    if (task_result != pdPASS) {
+        ESP_LOGE(TAG, "创建TTS播放任务失败");
+        streaming_stream = nullptr;
+        free(streaming_buffer);
+        free(recording_buffer);
+        free(response_buffer);
+        streaming_buffer = nullptr;
+        recording_buffer = nullptr;
+        response_buffer = nullptr;
+        return ESP_ERR_NO_MEM;
+    }
     
     return ESP_OK;
 }
 
 void AudioManager::deinit() {
+    streaming_shutdown.store(true);
+    if (streaming_task != nullptr) {
+        xTaskNotifyGive(streaming_task);
+        vTaskDelay(pdMS_TO_TICKS(10));
+        if (streaming_task != nullptr) {
+            vTaskDelete(streaming_task);
+            streaming_task = nullptr;
+        }
+    }
+    streaming_stream = nullptr;
+
     if (recording_buffer != nullptr) {
         free(recording_buffer);
         recording_buffer = nullptr;
@@ -220,146 +268,118 @@ esp_err_t AudioManager::playAudio(const uint8_t* audio_data, size_t data_len, co
 
 void AudioManager::startStreamingPlayback() {
     ESP_LOGI(TAG, "开始流式音频播放");
-    is_streaming = true;
-    streaming_write_pos = 0;
-    streaming_read_pos = 0;
-    
-    // 清空缓冲区
-    if (streaming_buffer) {
-        memset(streaming_buffer, 0, streaming_buffer_size);
+    if (!streaming_stream || !streaming_task) {
+        ESP_LOGE(TAG, "流式音频队列未初始化");
+        return;
     }
+
+    // A new server stream should normally arrive after the previous one has
+    // drained. Give a short tail time to finish instead of resetting live PCM.
+    if (is_streaming.load()) {
+        streaming_input_complete.store(true);
+        xTaskNotifyGive(streaming_task);
+        for (int i = 0; i < 200 && is_streaming.load(); ++i) {
+            vTaskDelay(pdMS_TO_TICKS(10));
+        }
+        if (is_streaming.load()) {
+            ESP_LOGW(TAG, "Previous TTS stream did not drain before next stream");
+            is_streaming.store(false);
+        }
+    }
+
+    xStreamBufferReset(streaming_stream);
+    response_played = false;
+    streaming_input_complete.store(false);
+    is_streaming.store(true);
+    xTaskNotifyGive(streaming_task);
 }
 
 bool AudioManager::addStreamingAudioChunk(const uint8_t* data, size_t size) {
-    if (!is_streaming || !streaming_buffer || !data) {
+    if (!is_streaming.load() || !streaming_stream || !data || size == 0) {
         return false;
     }
-    
-    // 📏 计算环形缓冲区的剩余空间
-    size_t available_space;
-    if (streaming_write_pos >= streaming_read_pos) {
-        // 写指针在读指针后面
-        available_space = streaming_buffer_size - (streaming_write_pos - streaming_read_pos) - 1;
-    } else {
-        // 写指针在读指针前面（已绕回）
-        available_space = streaming_read_pos - streaming_write_pos - 1;
-    }
-    
-    if (size > available_space) {
-        ESP_LOGW(TAG, "流式缓冲区空间不足: 需要 %zu, 可用 %zu", size, available_space);
-        return false;
-    }
-    
-    // 📝 将数据写入环形缓冲区
-    size_t bytes_to_end = streaming_buffer_size - streaming_write_pos;
-    if (size <= bytes_to_end) {
-        // 简单情况：数据不跨越缓冲区末尾
-        memcpy(streaming_buffer + streaming_write_pos, data, size);
-        streaming_write_pos += size;
-    } else {
-        // 复杂情况：数据跨越末尾，需要分两段写入
-        memcpy(streaming_buffer + streaming_write_pos, data, bytes_to_end);
-        memcpy(streaming_buffer, data + bytes_to_end, size - bytes_to_end);
-        streaming_write_pos = size - bytes_to_end;
-    }
-    
-    // 如果写位置到达缓冲区末尾，循环回到开头
-    if (streaming_write_pos >= streaming_buffer_size) {
-        streaming_write_pos = 0;
-    }
-    
-    ESP_LOGD(TAG, "添加流式音频块: %zu 字节, 写位置: %zu, 读位置: %zu", 
-             size, streaming_write_pos, streaming_read_pos);
-    
-    // 🔍 检查是否有足够的数据可以播放
-    size_t available_data;
-    if (streaming_write_pos >= streaming_read_pos) {
-        // 简单情况：写指针在读指针后面
-        available_data = streaming_write_pos - streaming_read_pos;
-    } else {
-        // 复杂情况：数据跨越了缓冲区末尾
-        available_data = streaming_buffer_size - streaming_read_pos + streaming_write_pos;
-    }
-    
-    // 🎵 如果积累了足够的数据（200ms），开始播放
-    while (available_data >= STREAMING_CHUNK_SIZE) {
-        uint8_t chunk[STREAMING_CHUNK_SIZE];
-        
-        // 📖 从环形缓冲区读取一块数据
-        size_t bytes_to_end = streaming_buffer_size - streaming_read_pos;
-        if (STREAMING_CHUNK_SIZE <= bytes_to_end) {
-            memcpy(chunk, streaming_buffer + streaming_read_pos, STREAMING_CHUNK_SIZE);
-            streaming_read_pos += STREAMING_CHUNK_SIZE;
-        } else {
-            memcpy(chunk, streaming_buffer + streaming_read_pos, bytes_to_end);
-            memcpy(chunk + bytes_to_end, streaming_buffer, STREAMING_CHUNK_SIZE - bytes_to_end);
-            streaming_read_pos = STREAMING_CHUNK_SIZE - bytes_to_end;
+
+    size_t sent = 0;
+    while (sent < size && is_streaming.load()) {
+        const size_t written = xStreamBufferSend(
+            streaming_stream, data + sent, size - sent, pdMS_TO_TICKS(500)
+        );
+        if (written == 0) {
+            ESP_LOGW(TAG, "TTS缓冲区写入超时: %zu/%zu bytes, queued=%u",
+                     sent, size,
+                     static_cast<unsigned>(xStreamBufferBytesAvailable(streaming_stream)));
+            return false;
         }
-        
-        // 如果读位置到达缓冲区末尾，循环回到开头
-        if (streaming_read_pos >= streaming_buffer_size) {
-            streaming_read_pos = 0;
-        }
-        
-        // 🎶 播放这一块音频（使用流式版本，不会中断播放）
-        esp_err_t ret = bsp_play_audio_stream(chunk, STREAMING_CHUNK_SIZE);
-        if (ret != ESP_OK) {
-            ESP_LOGE(TAG, "流式音频播放失败: %s", esp_err_to_name(ret));
-            break;
-        }
-        
-        // 重新计算可用数据
-        if (streaming_write_pos >= streaming_read_pos) {
-            available_data = streaming_write_pos - streaming_read_pos;
-        } else {
-            available_data = streaming_buffer_size - streaming_read_pos + streaming_write_pos;
-        }
+        sent += written;
     }
-    
-    return true;
+    return sent == size;
 }
 
 void AudioManager::finishStreamingPlayback() {
-    if (!is_streaming) {
+    if (!is_streaming.load()) {
         return;
     }
-    
-    ESP_LOGI(TAG, "结束流式音频播放");
-    
-    // 🎬 处理最后的尾巴数据（不足200ms的部分）
-    size_t remaining_data;
-    if (streaming_write_pos >= streaming_read_pos) {
-        remaining_data = streaming_write_pos - streaming_read_pos;
-    } else {
-        remaining_data = streaming_buffer_size - streaming_read_pos + streaming_write_pos;
-    }
-    
-    if (remaining_data > 0) {
-        // 分配临时缓冲区
-        uint8_t* remaining_buffer = (uint8_t*)malloc(remaining_data);
-        if (remaining_buffer) {
-            // 读取所有剩余数据
-            if (streaming_write_pos >= streaming_read_pos) {
-                memcpy(remaining_buffer, streaming_buffer + streaming_read_pos, remaining_data);
-            } else {
-                size_t bytes_to_end = streaming_buffer_size - streaming_read_pos;
-                memcpy(remaining_buffer, streaming_buffer + streaming_read_pos, bytes_to_end);
-                memcpy(remaining_buffer + bytes_to_end, streaming_buffer, streaming_write_pos);
-            }
-            
-            // 🎹 播放最后的尾巴数据（使用普通版本，会停止I2S）
-            esp_err_t ret = bsp_play_audio(remaining_buffer, remaining_data);
-            if (ret == ESP_OK) {
-                ESP_LOGI(TAG, "✅ 播放剩余音频: %zu 字节", remaining_data);
-            } else {
-                ESP_LOGE(TAG, "❌ 播放剩余音频失败: %s", esp_err_to_name(ret));
-            }
-            
-            free(remaining_buffer);
+    streaming_input_complete.store(true);
+    if (streaming_task) xTaskNotifyGive(streaming_task);
+    ESP_LOGI(TAG, "TTS音频接收完成，等待后台播放剩余 %u 字节",
+             streaming_stream
+                 ? static_cast<unsigned>(xStreamBufferBytesAvailable(streaming_stream)) : 0U);
+}
+
+void AudioManager::streamingPlaybackTask(void* arg) {
+    static_cast<AudioManager*>(arg)->streamingPlaybackLoop();
+}
+
+void AudioManager::streamingPlaybackLoop() {
+    // Keep the 4KB PCM work area off this task's 4KB stack.
+    static uint8_t chunk[STREAMING_CHUNK_SIZE];
+
+    while (!streaming_shutdown.load()) {
+        ulTaskNotifyTake(pdTRUE, portMAX_DELAY);
+        if (streaming_shutdown.load()) break;
+        if (!is_streaming.load() || !streaming_stream) continue;
+
+        // Wait for half a second of PCM before enabling I2S. Short responses
+        // start as soon as the explicit end marker arrives.
+        while (is_streaming.load() && !streaming_shutdown.load() &&
+               !streaming_input_complete.load() &&
+               xStreamBufferBytesAvailable(streaming_stream) < STREAMING_PREBUFFER_SIZE) {
+            vTaskDelay(pdMS_TO_TICKS(5));
         }
+
+        bool played_any = false;
+        size_t played_bytes = 0;
+        int underruns = 0;
+        while (is_streaming.load() && !streaming_shutdown.load()) {
+            const size_t received = xStreamBufferReceive(
+                streaming_stream, chunk, sizeof(chunk), pdMS_TO_TICKS(30)
+            );
+            if (received > 0) {
+                apply_pcm_volume(chunk, received, volume_.load());
+                const esp_err_t result = bsp_play_audio_stream(chunk, received);
+                if (result != ESP_OK) {
+                    ESP_LOGE(TAG, "后台流式音频播放失败: %s", esp_err_to_name(result));
+                    break;
+                }
+                played_any = true;
+                played_bytes += received;
+                continue;
+            }
+
+            if (streaming_input_complete.load() &&
+                xStreamBufferBytesAvailable(streaming_stream) == 0) {
+                break;
+            }
+            ++underruns;
+        }
+
+        if (played_any) bsp_audio_stop();
+        response_played = true;
+        is_streaming.store(false);
+        ESP_LOGI(TAG, "结束流式音频播放: %zu 字节, underrun=%d",
+                 played_bytes, underruns);
     }
-    
-    is_streaming = false;
-    streaming_write_pos = 0;
-    streaming_read_pos = 0;
+
+    streaming_task = nullptr;
+    vTaskDelete(nullptr);
 }

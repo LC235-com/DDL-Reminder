@@ -24,8 +24,10 @@
 
 #include <stdint.h>
 #include <stdlib.h>
+#include <atomic>
 #include "freertos/FreeRTOS.h"
 #include "freertos/task.h"
+#include "freertos/stream_buffer.h"
 #include "esp_err.h"
 
 class AudioManager {
@@ -175,7 +177,7 @@ public:
      * 
      * @return true 正在播放，false 未在播放
      */
-    bool isStreamingActive() const { return is_streaming; }
+    bool isStreamingActive() const { return is_streaming.load(); }
     
     /**
      * @brief 标记流式播放已完成
@@ -215,6 +217,8 @@ public:
      * @return 采样率（Hz）
      */
     uint32_t getSampleRate() const { return sample_rate; }
+    void setVolume(int level) { volume_.store(level < 0 ? 0 : (level > 10 ? 10 : level)); }
+    int getVolume() const { return volume_.load(); }
 
     /**
      * @brief 获取录音缓冲区大小（样本数）
@@ -231,6 +235,9 @@ public:
     size_t getResponseBufferSize() const { return response_buffer_size; }
 
 private:
+    static void streamingPlaybackTask(void* arg);
+    void streamingPlaybackLoop();
+
     // 🎶 音频参数
     uint32_t sample_rate;               // 采样率（Hz）
     uint32_t recording_duration_sec;    // 最大录音时长（秒）
@@ -250,13 +257,18 @@ private:
 
     
     // 🌊 流式播放相关变量
-    bool is_streaming;                  // 是否在流式播放中
-    uint8_t* streaming_buffer;          // 环形缓冲区
+    std::atomic<bool> is_streaming;     // 是否在流式播放中
+    std::atomic<bool> streaming_input_complete{false};
+    std::atomic<bool> streaming_shutdown{false};
+    std::atomic<int> volume_{8};         // software PCM gain, 0..10
+    uint8_t* streaming_buffer;          // FreeRTOS StreamBuffer backing storage
     size_t streaming_buffer_size;       // 缓冲区大小
-    size_t streaming_write_pos;         // 写入位置
-    size_t streaming_read_pos;          // 读取位置
+    StaticStreamBuffer_t streaming_stream_storage{};
+    StreamBufferHandle_t streaming_stream{nullptr};
+    TaskHandle_t streaming_task{nullptr};
     static const size_t STREAMING_BUFFER_SIZE = 32768; // 32KB环形缓冲区
-    static const size_t STREAMING_CHUNK_SIZE = 3200;   // 每次播放3200字节（200ms）
+    static const size_t STREAMING_CHUNK_SIZE = 4096;   // 128ms @ PCM16/16kHz/mono
+    static const size_t STREAMING_PREBUFFER_SIZE = 16384; // 512ms anti-jitter buffer
 
     // 🏷️ 日志标签
     static const char* TAG;

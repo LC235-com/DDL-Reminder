@@ -1,45 +1,45 @@
 # 智能日程与DDL提醒系统 (DDL-reminder)
 
-## v2.0 — 智能语音管家，触屏交互终端
+## v3.0 — 稳定显示、完整交互与可靠语音控制
 
-PC + ESP32-S3 双端智能DDL提醒系统。相比 v1.0 仅实现了基础 ASR-LLM-TTS 语音回路，v2.0 在以下方面取得重大进展：
+PC + ESP32-S3 双端智能 DDL 提醒系统。v3.0 聚焦长期运行稳定性、触屏/EC11 完整操作、可编辑多级提醒，以及“语音指令确实执行”的可靠性。
 
-### v2.0 核心成果
+### v3.0 核心成果
 
-**🔊 语音交互全面升级**
-- 语音添加、修改、删除、查询 DDL 全功能覆盖
-- 修改/添加后 WebSocket 实时同步至 ESP32 列表（修复 sync 遗漏 bug）
-- FunASR SenseVoiceSmall 格式 token 自动净化
-- 录音防抖保护（800ms 冷却 + rec_busy 锁）
-- 流式 ASR/TTS 文本实时显示在 LCD 语音栏
+**📺 稳定的 LVGL 触屏终端**
+- 240×320 竖屏支持 180° 旋转，主页 / DDL 列表 / 设置均可触屏或 EC11 操作
+- LVGL 更新统一回到 UI 任务并加锁，合并高频同步，降低白屏、看门狗和内存碎片风险
+- DDL 列表支持完整滚动、高亮选择，并插入 1 天 / 7 天 / 1 个月时间节点
+- 首页仅显示两个摘要；列表标题与正常问答保留滚动显示，长历史回复使用单行省略和详情页查看
+- 扩充中文及常用符号字库，修复括号、罗马数字、日期分隔符等方框字符
+- 黑金主题界面，麦克风和删除操作保留红色危险色
 
-**📺 ESP32 触屏终端**
-- **全新 LVGL UI 布局**：时钟/日期 → 表情 → 语音文字栏 → DDL 卡片(×2) → 标签栏 + 录音按钮
-- 标签栏支持触屏点击切换页面（主页 / DDL列表 / 设置），编码器旋转高亮
-- DDL 卡片点击直达详情页，倒计时精确到秒（天/小时/分钟格式）
-- 详情页**双击字段可编辑**（标题/课程/截止时间/提前提醒），小键盘输入（内存优化中）
-- CJK 中文字体正常渲染（14px 1bpp 思源字体，覆盖 CJK Unified Ideographs）
+**🎛️ EC11 与提醒编辑**
+- 标签栏旋转高亮、按键确认；列表旋转选中 DDL，详情页继续编辑
+- 截止时间支持逐位循环修改
+- 每个 DDL 最多 6 条提前提醒，按 30 天 / 24 小时 / 60 分钟编辑
+- 提醒条目支持新增、选中修改和红色删除；重复提醒自动合并，零值单位自动隐藏
+- 默认提醒：提前 1 天、3 小时、1 小时、30 分钟、10 分钟，以及截止当天 08:00
 
-**🕷️ 教务网爬虫（基于 Celechron 架构）**
-- 成功对接 ZJU CAS 统一身份认证（Playwright 自动 RSA 加密登录）
-- **教务网**（zdbk.zju.edu.cn）：爬取期中/期末考试时间，含课程名、教室、座位号
-- **学在浙大**（courses.zju.edu.cn）：爬取作业/待办 DDL
-- 仅保留未来事件，过期自动过滤
-- 数据纯本地存储，保障隐私安全
-- 支持手动 DDL（manual_ddl.json）作为离线补充
+**🎙️ 可靠的语音增删改查**
+- FunASR → LLM 工具调用 → EventStore → Edge-TTS 完整链路
+- 修改、完成或删除必须以服务端真实工具结果为准，避免“嘴上成功、实际未执行”
+- 课程名与标题联合匹配，兼容空格、口语连接词、标点和少量 ASR 近音错误
+- 大模型未按要求返回工具调用时，为完成/删除操作提供确定性兜底
+- 修改已有 DDL 时更新原条目；确实不存在且提供完整截止时间时才新建
 
-**📊 服务端增强**
-- **自动清理**：已完成/已过期超 3 天的 DDL 定期清理（3 天周期）
-- **离线提醒补发**：ESP32 断电期间错过的提醒，重连后自动推送并语音播报
-- **人性化时间显示**：`3d 5h 12m left` 替代原始的 `4000+ 分钟`
-- **DDL 修改去重**：同标题+课程+截止时间的 DDL 自动合并，避免重复
+**🔊 连续低延迟音频**
+- 使用显式 `audio_stream_start` / `audio_stream_end` 边界，不再误用 WebSocket PING 结束 TTS
+- 独立 FreeRTOS 播放任务和 32KB StreamBuffer，预缓存约 512ms 后连续写入 I2S
+- 禁用 Wi-Fi modem sleep，降低无线调度造成的 PCM 欠载和断续
+- 每次播放记录缓冲区 underrun 数，便于从串口日志直接定位音频问题
 
-**🔧 硬件适配**
-- ST7789V 240×320 IPS LCD 正常显示（BGR 像素顺序，SPI Mode 0，20MHz）
-- FT6336U 电容触摸控制器驱动（I2C 0x38，多地址回退探测）
-- EC11 编码器导航（6 脉冲消抖，上下文感知旋转/按键）
-- INMP441 MEMS 麦克风 + MAX98357A 扬声器（I2S 全双工）
-- SK6812 LED 灯带状态指示（录音红/处理蓝/提醒闪烁/待机灭）
+**⏰ 同步、清理与手机通知**
+- 手动刷新显示成功/失败反馈，屏幕长按恢复时同步刷新 DDL
+- 完成或过期记录保留 14 天后清理，清理任务每 7 天运行
+- 历史对话保留最近 20 条，进入记录页自动定位到最新消息
+- 可选 SMTP 邮件和钉钉机器人提醒；移动端通知与 ESP32 在线状态相互独立
+- 设备重连后补发错过的提醒
 
 ---
 
@@ -106,9 +106,10 @@ python test_crawl.py zju    # 仅测试 ZJU 爬虫（教务网 + 学在浙大）
 # 前置条件：ESP-IDF v6.0.2
 cd esp32
 
-# 修改 main/main.cpp 中的 WiFi 和服务器地址
-# WIFI_SSID, WIFI_PASS, WS_URI
-注意：WS_URI 填写服务器地址，如：`ws://192.168.1.100:8888`
+# 创建仅保存在本机的设备配置（不要提交 device_config.h）
+copy main\device_config.example.h main\device_config.h
+# 编辑 device_config.h 中的 WIFI_SSID、WIFI_PASS 和 WS_URI
+# WS_URI 示例：ws://192.168.1.100:8888
 
 idf.py set-target esp32s3
 idf.py build
@@ -157,6 +158,7 @@ ESP32 录音 → PCM 16kHz → WebSocket → 服务器
 | `delete_event` | 删除 DDL 事件 |
 | `remind` | 立即提醒 + 离线补发提醒 |
 | `speak` | TTS 语音 + 文字 + 表情 |
+| `audio_stream_start` / PCM音频 / `audio_stream_end` | 带唯一 stream_id 的 TTS 音频流 |
 | `emotion` | 控制人物表情 |
 | `asr_result` | ASR 识别结果（LCD 实时显示） |
 | `led` | LED 灯带控制 |
@@ -180,6 +182,7 @@ DDL-reminder/
 ├── server/                    # PC 端 Python 服务器
 │   ├── server.py              # 主入口（WebSocket + 清理任务 + 离线提醒）
 │   ├── config.py              # 配置（AI模块/爬虫/清理周期）
+│   ├── notifications.py       # 邮件 + 钉钉机器人通知
 │   ├── protocol.py            # 通信协议定义
 │   ├── system_prompt.md       # LLM 系统提示词
 │   ├── test_crawl.py          # 爬虫测试脚本
@@ -196,7 +199,7 @@ DDL-reminder/
 │   │   ├── scheduler.py       # 定时提醒触发
 │   │   └── crawler.py         # 统一爬虫（ZJU教务网 + 学在浙大 + PTA + Local）
 │   └── data/
-│       ├── ddl_store.json     # DDL 持久化存储
+│       ├── ddl_store.json     # 本地 DDL 数据（运行时生成，不提交 Git）
 │       └── manual_ddl.json    # 手动 DDL 示例数据
 ├── esp32/                     # ESP32-S3 固件
 │   └── main/
@@ -204,27 +207,46 @@ DDL-reminder/
 │       ├── protocol.h/cpp     # WebSocket 协议解析
 │       ├── touch_ft6336.h/cpp # FT6336U 触摸驱动
 │       ├── remote_display.h/cpp # UDP 远程镜像（优化中）
-│       ├── my_chinese_font.c  # CJK 中文字体（14px 1bpp 思源）
+│       ├── common_symbols_font.c # 常用中文、标点及符号字库
+│       ├── device_config.example.h # WiFi/WebSocket 配置模板
 │       └── ui/
 │           ├── ui_manager.h   # UI 管理器接口
 │           └── ui_manager.cpp # LVGL 界面实现（主页/列表/详情/小键盘）
 └── README.md
 ```
 
-## v2.0 vs v1.0 对比
+## v3.0 vs v2.0 对比
 
-| 功能 | v1.0 | v2.0 |
+| 功能 | v2.0 | v3.0 |
 |------|------|------|
-| 语音回路 | ASR→LLM→TTS 基础打通 | 增删改查全覆盖 + 结果实时同步 |
-| LCD 显示 | 240×240 颜色异常 | 240×320 色彩正常 + CJK 中文 |
-| UI 布局 | 简单卡片 + Emoji | 5 层分区布局 + 标签栏触屏切换 |
-| DDL 管理 | 仅查询 | 添加 / 修改 / 完成 / 推迟 / 触屏编辑 |
-| 爬虫 | Playwright 基础版，未验证 | 对接教务网 + 学在浙大，通过验证 |
-| 时间显示 | `4000 分钟` / `300 小时` | `2d 18h 40m left` |
-| 数据清理 | 无 | 3 天自动清理过期 DDL |
-| 离线提醒 | 无 | 断电错过提醒，开机自动补发 |
-| 编码器 | 基础旋转 | 6 脉冲消抖 + 上下文感知 + 标签导航 |
-| 触屏 | 不工作 | FT6336U 驱动就绪（待硬件上拉电阻） |
+| 语音工具 | 依赖模型正确调用 | 强制路由、跨字段匹配、真实结果确认 |
+| TTS 传输 | PING 兼作结束标记 | 显式流边界 + 独立播放任务 + 预缓冲 |
+| LCD 稳定性 | 长时间使用可能白屏 | UI 单线程更新、同步合并、内存监测与恢复 |
+| DDL 列表 | 仅显示可见条目 | 全列表滚动 + 1天/7天/1个月节点 |
+| 提醒设置 | 单一提前时间 | 最多 6 条，30天/24小时/60分钟逐位编辑 |
+| 编码器 | 基础导航 | 标签、列表、详情、设置全过程上下文控制 |
+| 刷新反馈 | 无明确结果 | 成功/失败弹窗及耗时日志 |
+| 手机通知 | 无 | SMTP 邮件与钉钉机器人可选 |
+| 数据维护 | 3 天清理 | 完成/过期保留 14 天，每 7 天清理 |
+
+## 手机提醒（可选）
+
+不设置以下环境变量时，手机通知保持关闭；ESP32 本地提醒不受影响。
+
+```powershell
+# SMTP 邮件（示例使用 SSL 465）
+$env:DDL_NOTIFY_EMAIL_TO="you@example.com"
+$env:DDL_SMTP_HOST="smtp.example.com"
+$env:DDL_SMTP_PORT="465"
+$env:DDL_SMTP_USER="sender@example.com"
+$env:DDL_SMTP_PASSWORD="邮箱授权码"
+
+# 钉钉自定义机器人
+$env:DDL_DINGTALK_WEBHOOK="https://oapi.dingtalk.com/robot/send?access_token=..."
+$env:DDL_DINGTALK_SECRET="SEC..."  # 机器人未启用加签时可省略
+```
+
+新建 DDL 默认在提前 1 天、3 小时、1 小时、30 分钟、10 分钟及截止当天 08:00 提醒。详情页触碰截止时间或提醒时间后，旋转 EC11 逐位修改，短按移动到下一位并在末位保存；把提醒改成 `0090` 会替换为仅提前 90 分钟提醒一次。
 
 ## 参考项目
 

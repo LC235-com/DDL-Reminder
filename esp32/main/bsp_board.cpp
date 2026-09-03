@@ -18,6 +18,7 @@
  */
 
 #include <string.h>
+#include <algorithm>
 #include "bsp_board.h"
 #include "driver/i2s_std.h"
 #include "soc/soc_caps.h"
@@ -36,10 +37,10 @@
 
 // MAX98357A I2S 输出引脚配置
 // MAX98357A 是一个数字音频功放，通过 I2S 接口接收音频数据
+// SD 引脚通过 1MΩ 上拉到 3.3V（功放常开，不可软件关断）
 #define I2S_OUT_BCLK_PIN GPIO_NUM_15 // 位时钟信号 (Bit Clock)
 #define I2S_OUT_LRC_PIN GPIO_NUM_16  // 左右声道时钟信号 (LR Clock)
 #define I2S_OUT_DIN_PIN GPIO_NUM_7   // 数据输入信号 (Data Input)
-#define I2S_OUT_SD_PIN GPIO_NUM_8    // Shutdown引脚 (可选，用于关闭功放)
 
 // I2S 配置参数
 #define I2S_PORT_RX I2S_NUM_0 // 使用 I2S 端口 0 用于录音
@@ -63,7 +64,7 @@ static bool tx_channel_enabled = false;
  * INMP441 是一个数字 MEMS 麦克风，需要特定的 I2S 配置：
  * - 使用标准 I2S 协议 (Philips 格式)
  * - 单声道模式，只使用左声道
- * - 16 位数据宽度
+ * - INMP441 的 24 位有效数据放在 32 位 I2S 时隙中
  *
  * @param sample_rate 采样率 (Hz)
  * @param channel_format 声道数 (1=单声道, 2=立体声)
@@ -84,8 +85,11 @@ static esp_err_t bsp_i2s_init(uint32_t sample_rate, int channel_format, int bits
         return ret;
     }
 
-    // 🎯 确定数据位宽度
-    i2s_data_bit_width_t bit_width = (bits_per_chan == 32) ? I2S_DATA_BIT_WIDTH_32BIT : I2S_DATA_BIT_WIDTH_16BIT;
+    // INMP441 always emits 24-bit two's-complement samples and requires a
+    // 32-BCLK slot. A 16-bit slot truncates the word on the wire and produces
+    // the wrong WS/BCLK frame length.
+    (void)bits_per_chan;
+    i2s_data_bit_width_t bit_width = I2S_DATA_BIT_WIDTH_32BIT;
 
     // 配置 I2S 标准模式，专门针对 INMP441 优化
     i2s_std_config_t std_cfg = {
@@ -189,11 +193,21 @@ esp_err_t bsp_board_init(uint32_t sample_rate, int channel_format, int bits_per_
  */
 esp_err_t bsp_get_feed_data(bool is_get_raw_channel, int16_t *buffer, int buffer_len)
 {
-    esp_err_t ret = ESP_OK;
-    size_t bytes_read = 0;
+    if (!buffer || buffer_len <= 0 || (buffer_len % sizeof(int16_t)) != 0) {
+        return ESP_ERR_INVALID_ARG;
+    }
 
-    // 🎤 从I2S通道读取音频数据
-    ret = i2s_channel_read(rx_handle, buffer, buffer_len, &bytes_read, portMAX_DELAY);
+    constexpr size_t MAX_READ_SAMPLES = 512;
+    const size_t requested_samples = buffer_len / sizeof(int16_t);
+    if (requested_samples > MAX_READ_SAMPLES) return ESP_ERR_INVALID_SIZE;
+
+    // DMA receives one signed 32-bit slot per mono sample. Keep this buffer out
+    // of app_main's stack and convert to the PCM16 format expected by the server.
+    static int32_t raw_samples[MAX_READ_SAMPLES];
+    size_t bytes_read = 0;
+    const size_t raw_bytes = requested_samples * sizeof(int32_t);
+    esp_err_t ret = i2s_channel_read(rx_handle, raw_samples, raw_bytes,
+                                     &bytes_read, portMAX_DELAY);
 
     if (ret != ESP_OK)
     {
@@ -202,43 +216,24 @@ esp_err_t bsp_get_feed_data(bool is_get_raw_channel, int16_t *buffer, int buffer
     }
 
     // 🔍 检查读取的数据长度是否符合预期
-    if (bytes_read != buffer_len)
+    if (bytes_read != raw_bytes)
     {
-        ESP_LOGW(TAG, "⚠️ 预期读取%d字节，实际读取%d字节", buffer_len, bytes_read);
+        ESP_LOGW(TAG, "⚠️ 预期读取%d字节，实际读取%d字节",
+                 (int)raw_bytes, (int)bytes_read);
     }
 
-    // 🎯 INMP441特定的数据处理
-    // INMP441输出24位数据在 32位帧中，左对齐
-    // 我们需要提取最高有效的16位用于语音识别
-    if (!is_get_raw_channel)
-    {
-        int samples = buffer_len / sizeof(int16_t);
-
-        // 🎶 对INMP441的数据进行处理
-        // 麦克风输出左对齐数据，进行信号电平调整
-        for (int i = 0; i < samples; i++)
-        {
-            // 当前使用原始信号电平（无增益）
-            // 测试表明原始电平已足够满足唤醒词检测需求
-            int32_t sample = static_cast<int32_t>(buffer[i]);
-
-            // 🔊 可选：应用2倍增益以提升信号强度（当前已禁用）
-            // 如果发现声音太小，可以取消下面这行的注释
-            // sample = sample * 2;
-
-            // 📦 限制在16位有符号整数范围内
-            if (sample > 32767)
-            {
-                sample = 32767;
-            }
-            if (sample < -32768)
-            {
-                sample = -32768;
-            }
-
-            buffer[i] = static_cast<int16_t>(sample);
-        }
+    const size_t received_samples = bytes_read / sizeof(int32_t);
+    for (size_t i = 0; i < received_samples; ++i) {
+        // The 24 useful bits are MSB-aligned. >>16 selects PCM16; two extra
+        // gain bits improve near-field speech while saturation prevents wrap.
+        int32_t sample = raw_samples[i] >> 14;
+        sample = std::max<int32_t>(-32768, std::min<int32_t>(32767, sample));
+        buffer[i] = static_cast<int16_t>(sample);
     }
+    for (size_t i = received_samples; i < requested_samples; ++i) buffer[i] = 0;
+
+    // The public API always returns PCM16. Retain the flag for compatibility.
+    (void)is_get_raw_channel;
 
     return ESP_OK;
 }
@@ -276,17 +271,8 @@ esp_err_t bsp_audio_init(uint32_t sample_rate, int channel_format, int bits_per_
 {
     esp_err_t ret = ESP_OK;
 
-    // 🔌 初始化MAX98357A的SD引脚（控制功放开关）
-    gpio_config_t io_conf = {
-        .pin_bit_mask = (1ULL << I2S_OUT_SD_PIN),
-        .mode = GPIO_MODE_OUTPUT,
-        .pull_up_en = GPIO_PULLUP_DISABLE,
-        .pull_down_en = GPIO_PULLDOWN_DISABLE,
-        .intr_type = GPIO_INTR_DISABLE
-    };
-    gpio_config(&io_conf);
-    gpio_set_level(I2S_OUT_SD_PIN, 1); // 高电平启用功放
-    ESP_LOGI(TAG, "✅ MAX98357A SD引脚已初始化（GPIO%d）", I2S_OUT_SD_PIN);
+    // SD pin is hardwired to 3.3V via 1MΩ — amp is always enabled
+    ESP_LOGI(TAG, "MAX98357A SD pin hardwired to 3.3V (amp always on)");
 
     // 🔧 创建I2S发送通道配置
     // ESP32作为主机（Master），提供时钟信号给功放
@@ -310,7 +296,7 @@ esp_err_t bsp_audio_init(uint32_t sample_rate, int channel_format, int bits_per_
             .mclk_multiple = I2S_MCLK_MULTIPLE_256,
             .bclk_div = 8,
         },
-        .slot_cfg = I2S_STD_PHILIPS_SLOT_DEFAULT_CONFIG(bit_width, (channel_format == 1) ? I2S_SLOT_MODE_MONO : I2S_SLOT_MODE_STEREO),
+        .slot_cfg = I2S_STD_PHILIPS_SLOT_DEFAULT_CONFIG(bit_width, I2S_SLOT_MODE_MONO),
         .gpio_cfg = {
             .mclk = I2S_GPIO_UNUSED,   // MCLK：MAX98357A不需要主时钟
             .bclk = I2S_OUT_BCLK_PIN,  // BCLK：位时钟→ GPIO15
@@ -380,11 +366,8 @@ esp_err_t bsp_play_audio(const uint8_t *audio_data, size_t data_len)
     // 确保 I2S 发送通道已启用（如果之前被停止了）
     if (!tx_channel_enabled)
     {
-        // 先启用功放
-        gpio_set_level(I2S_OUT_SD_PIN, 1); // 高电平启用功放
-        vTaskDelay(pdMS_TO_TICKS(10)); // 等待功放启动
-        ESP_LOGD(TAG, "✅ MAX98357A功放已启用");
-        
+        // SD pin is hardwired to 3.3V — amp is always on, just re-enable I2S
+
         ret = i2s_channel_enable(tx_handle);
         if (ret != ESP_OK)
         {
@@ -393,10 +376,10 @@ esp_err_t bsp_play_audio(const uint8_t *audio_data, size_t data_len)
         }
         tx_channel_enabled = true;
         ESP_LOGD(TAG, "✅ I2S发送通道已重新启用");
-        
+
         // 发送一小段静音数据来初始化通道
-        const size_t init_silence_size = 256; // 减小到256字节，避免大量内存分配
-        static uint8_t init_silence[256] = {0}; // 使用静态数组，避免动态分配
+        const size_t init_silence_size = 256;
+        static uint8_t init_silence[256] = {0};
         size_t silence_written = 0;
         i2s_channel_write(tx_handle, init_silence, init_silence_size, &silence_written, pdMS_TO_TICKS(10));
     }
@@ -405,7 +388,7 @@ esp_err_t bsp_play_audio(const uint8_t *audio_data, size_t data_len)
     while (total_written < data_len)
     {
         size_t bytes_to_write = data_len - total_written;
-        
+
         // 将音频数据写入 I2S 发送通道
         ret = i2s_channel_write(tx_handle, audio_data + total_written, bytes_to_write, &bytes_written, portMAX_DELAY);
 
@@ -420,7 +403,7 @@ esp_err_t bsp_play_audio(const uint8_t *audio_data, size_t data_len)
         // 显示播放进度（每10KB显示一次）
         if ((total_written % 10240) < bytes_written)
         {
-            ESP_LOGD(TAG, "音频播放进度: %zu/%zu 字节 (%.1f%%)", 
+            ESP_LOGD(TAG, "音频播放进度: %zu/%zu 字节 (%.1f%%)",
                      total_written, data_len, (float)total_written * 100.0f / data_len);
         }
     }
@@ -473,11 +456,8 @@ esp_err_t bsp_play_audio_stream(const uint8_t *audio_data, size_t data_len)
     // 确保 I2S 发送通道已启用（如果之前被停止了）
     if (!tx_channel_enabled)
     {
-        // 先启用功放
-        gpio_set_level(I2S_OUT_SD_PIN, 1); // 高电平启用功放
-        vTaskDelay(pdMS_TO_TICKS(10)); // 等待功放启动
-        ESP_LOGD(TAG, "✅ MAX98357A功放已启用");
-        
+        // SD pin is hardwired to 3.3V — amp is always on, just re-enable I2S
+
         ret = i2s_channel_enable(tx_handle);
         if (ret != ESP_OK)
         {
@@ -486,10 +466,10 @@ esp_err_t bsp_play_audio_stream(const uint8_t *audio_data, size_t data_len)
         }
         tx_channel_enabled = true;
         ESP_LOGD(TAG, "✅ I2S发送通道已重新启用");
-        
+
         // 发送一小段静音数据来初始化通道
-        const size_t init_silence_size = 256; // 减小到256字节，避免大量内存分配
-        static uint8_t init_silence[256] = {0}; // 使用静态数组，避免动态分配
+        const size_t init_silence_size = 256;
+        static uint8_t init_silence[256] = {0};
         size_t silence_written = 0;
         i2s_channel_write(tx_handle, init_silence, init_silence_size, &silence_written, pdMS_TO_TICKS(10));
     }
@@ -498,7 +478,7 @@ esp_err_t bsp_play_audio_stream(const uint8_t *audio_data, size_t data_len)
     while (total_written < data_len)
     {
         size_t bytes_to_write = data_len - total_written;
-        
+
         // 将音频数据写入 I2S 发送通道
         ret = i2s_channel_write(tx_handle, audio_data + total_written, bytes_to_write, &bytes_written, portMAX_DELAY);
 
@@ -513,7 +493,7 @@ esp_err_t bsp_play_audio_stream(const uint8_t *audio_data, size_t data_len)
         // 显示播放进度（每10KB显示一次）
         if ((total_written % 10240) < bytes_written)
         {
-            ESP_LOGD(TAG, "音频播放进度: %zu/%zu 字节 (%.1f%%)", 
+            ESP_LOGD(TAG, "音频播放进度: %zu/%zu 字节 (%.1f%%)",
                      total_written, data_len, (float)total_written * 100.0f / data_len);
         }
     }
@@ -560,15 +540,12 @@ esp_err_t bsp_audio_stop(void)
             free(silence_buffer);
             ESP_LOGD(TAG, "✅ 已发送静音数据清空缓冲区");
         }
-        
+
         // ⏱️ 等待一小段时间让静音数据播放完
         vTaskDelay(pdMS_TO_TICKS(50));
-        
-        // 🔌 先通过SD引脚关闭功放，防止噪音
-        gpio_set_level(I2S_OUT_SD_PIN, 0); // 低电平关闭功放
-        ESP_LOGD(TAG, "✅ MAX98357A功放已关闭");
-        vTaskDelay(pdMS_TO_TICKS(10)); // 等待功放完全关闭
-        
+
+        // SD pin is hardwired to 3.3V — amp stays on; just disable I2S
+
         // 🛑️ 禁用I2S发送通道
         ret = i2s_channel_disable(tx_handle);
         if (ret != ESP_OK)

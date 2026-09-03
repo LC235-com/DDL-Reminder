@@ -42,6 +42,7 @@ void WebSocketClient::websocket_event_handler(void* handler_args, esp_event_base
     event.data = nullptr;
     event.data_len = 0;
     event.op_code = 0;
+    bool clear_text_after_callback = false;
     
     switch (event_id) {
         case WEBSOCKET_EVENT_CONNECTED:
@@ -53,33 +54,112 @@ void WebSocketClient::websocket_event_handler(void* handler_args, esp_event_base
         case WEBSOCKET_EVENT_DISCONNECTED:
             ESP_LOGI(TAG, "🔌 WebSocket已断开");
             ws_client->connected_ = false;
+            ws_client->text_rx_buffer_.clear();
+            ws_client->text_rx_chunks_ = 0;
+            ws_client->text_rx_frame_base_ = 0;
+            ws_client->text_rx_active_ = false;
             event.type = EventType::DISCONNECTED;
             break;
             
         case WEBSOCKET_EVENT_DATA:
             ESP_LOGD(TAG, "收到WebSocket数据，长度: %d 字节, op_code: 0x%02x", 
                     data->data_len, data->op_code);
-            event.data = (const uint8_t*)data->data_ptr;
-            event.data_len = data->data_len;
             event.op_code = data->op_code;
             
             // 🎯 根据操作码判断数据类型
-            if (data->op_code == 0x01) {        // 文本帧（JSON等）
+            if (data->op_code == 0x01 ||
+                (data->op_code == 0x00 && ws_client->text_rx_active_)) {
+                // Text frame or continuation of a fragmented text message.
                 event.type = EventType::DATA_TEXT;
+                const size_t total_len = data->payload_len > 0
+                    ? static_cast<size_t>(data->payload_len)
+                    : static_cast<size_t>(data->data_len);
+                const size_t offset = data->payload_offset > 0
+                    ? static_cast<size_t>(data->payload_offset) : 0;
+                const bool continuation = data->op_code == 0x00;
+                const bool split = continuation || data->fin == 0 || offset > 0 ||
+                    total_len > static_cast<size_t>(data->data_len);
+
+                if (!split) {
+                    event.data = reinterpret_cast<const uint8_t*>(data->data_ptr);
+                    event.data_len = data->data_len;
+                } else {
+                    if (!continuation && offset == 0) {
+                        ws_client->text_rx_buffer_.clear();
+                        ws_client->text_rx_chunks_ = 0;
+                        ws_client->text_rx_frame_base_ = 0;
+                        ws_client->text_rx_active_ = true;
+                        if (total_len > MAX_TEXT_MESSAGE_SIZE) {
+                            ESP_LOGE(TAG, "Text frame too large: %u bytes (limit %u)",
+                                     static_cast<unsigned>(total_len),
+                                     static_cast<unsigned>(MAX_TEXT_MESSAGE_SIZE));
+                            return;
+                        }
+                        ws_client->text_rx_buffer_.reserve(total_len);
+                    } else if (continuation && offset == 0) {
+                        ws_client->text_rx_frame_base_ = ws_client->text_rx_buffer_.size();
+                    }
+                    const size_t message_offset = ws_client->text_rx_frame_base_ + offset;
+                    if (message_offset != ws_client->text_rx_buffer_.size()) {
+                        ESP_LOGE(TAG, "Text frame chunk gap: offset=%u accumulated=%u total=%u",
+                                 static_cast<unsigned>(message_offset),
+                                 static_cast<unsigned>(ws_client->text_rx_buffer_.size()),
+                                 static_cast<unsigned>(total_len));
+                        ws_client->text_rx_buffer_.clear();
+                        ws_client->text_rx_chunks_ = 0;
+                        ws_client->text_rx_frame_base_ = 0;
+                        ws_client->text_rx_active_ = false;
+                        return;
+                    }
+                    if (ws_client->text_rx_buffer_.size() + data->data_len > MAX_TEXT_MESSAGE_SIZE) {
+                        ESP_LOGE(TAG, "Accumulated text frame exceeds %u-byte limit",
+                                 static_cast<unsigned>(MAX_TEXT_MESSAGE_SIZE));
+                        ws_client->text_rx_buffer_.clear();
+                        ws_client->text_rx_chunks_ = 0;
+                        ws_client->text_rx_frame_base_ = 0;
+                        ws_client->text_rx_active_ = false;
+                        return;
+                    }
+                    ws_client->text_rx_buffer_.append(data->data_ptr, data->data_len);
+                    ++ws_client->text_rx_chunks_;
+                    const bool end_of_frame = total_len == 0 ||
+                        offset + static_cast<size_t>(data->data_len) >= total_len;
+                    if (!end_of_frame || data->fin == 0) {
+                        return;
+                    }
+                    ESP_LOGI(TAG, "Text frame reassembled: %u bytes from %u chunks",
+                             static_cast<unsigned>(ws_client->text_rx_buffer_.size()),
+                             static_cast<unsigned>(ws_client->text_rx_chunks_));
+                    event.data = reinterpret_cast<const uint8_t*>(ws_client->text_rx_buffer_.data());
+                    event.data_len = ws_client->text_rx_buffer_.size();
+                    clear_text_after_callback = true;
+                }
             } else if (data->op_code == 0x02) { // 二进制帧（音频等）
                 event.type = EventType::DATA_BINARY;
+                event.data = reinterpret_cast<const uint8_t*>(data->data_ptr);
+                event.data_len = data->data_len;
             } else if (data->op_code == 0x09) { // Ping帧（心跳检测）
                 event.type = EventType::PING;
+                event.data = reinterpret_cast<const uint8_t*>(data->data_ptr);
+                event.data_len = data->data_len;
             } else if (data->op_code == 0x0A) { // Pong帧（心跳回应）
                 event.type = EventType::PONG;
+                event.data = reinterpret_cast<const uint8_t*>(data->data_ptr);
+                event.data_len = data->data_len;
             } else {
                 event.type = EventType::DATA_BINARY; // 其他都当作二进制
+                event.data = reinterpret_cast<const uint8_t*>(data->data_ptr);
+                event.data_len = data->data_len;
             }
             break;
             
         case WEBSOCKET_EVENT_ERROR:
             ESP_LOGI(TAG, "❌ WebSocket错误");
             ws_client->connected_ = false;
+            ws_client->text_rx_buffer_.clear();
+            ws_client->text_rx_chunks_ = 0;
+            ws_client->text_rx_frame_base_ = 0;
+            ws_client->text_rx_active_ = false;
             event.type = EventType::ERROR;
             break;
             
@@ -90,6 +170,12 @@ void WebSocketClient::websocket_event_handler(void* handler_args, esp_event_base
     // 📢 调用用户设置的事件处理函数
     if (ws_client->event_callback_) {
         ws_client->event_callback_(event);
+    }
+    if (clear_text_after_callback) {
+        ws_client->text_rx_buffer_.clear();
+        ws_client->text_rx_chunks_ = 0;
+        ws_client->text_rx_frame_base_ = 0;
+        ws_client->text_rx_active_ = false;
     }
 }
 

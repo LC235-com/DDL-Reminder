@@ -20,12 +20,14 @@ struct DDLEvent {
     std::string type;       // "作业", "考试", "实验", "自定义"
     std::string source;     // "zju", "pta", "manual"
     std::string deadline;   // ISO formatted deadline
-    int advance_minutes;
+    int advance_minutes = 1440;
+    std::vector<int> reminder_minutes;
+    bool remind_at_day_start = true;
     std::string url;
-    int rate;
+    int rate = 0;
     std::string status;     // "pending", "done", "snoozed", "dismissed"
     std::string tag;        // urgency emoji
-    int minutes_remaining;
+    int minutes_remaining = 0;
 
     static DDLEvent from_json(cJSON* obj);
     cJSON* to_json() const;
@@ -43,10 +45,13 @@ public:
         DELETE_EVENT,   // Event removed
         REMIND,         // Immediate reminder
         SPEAK,          // TTS audio + text + emotion
+        AUDIO_STREAM_START, // Explicit PCM stream boundary
+        AUDIO_STREAM_END,
         EMOTION,        // Avatar expression control
         LED,            // LED control
         CONFIG,         // Config update
         ASR_RESULT,     // ASR transcription result
+        TOOL_RESULT,    // Server-confirmed DDL tool execution
         PONG,           // Heartbeat response
     };
 
@@ -64,15 +69,23 @@ public:
         DDLEvent event;
     };
 
+    struct ToolResultData {
+        std::string tool;
+        bool success = false;
+        std::string message;
+    };
+
     static MessageType get_message_type(const std::string& json_str);
     static SyncData parse_sync(const std::string& json_str);
     static DDLEvent parse_new_event(const std::string& json_str);
     static std::string parse_delete_event(const std::string& json_str);
     static RemindData parse_remind(const std::string& json_str);
     static SpeakData parse_speak(const std::string& json_str);
+    static std::string parse_audio_stream_id(const std::string& json_str);
     static std::string parse_emotion(const std::string& json_str);
     static void parse_led(const std::string& json_str, std::string& action, std::string& color);
     static std::string parse_asr_result(const std::string& json_str, bool& is_final);
+    static ToolResultData parse_tool_result(const std::string& json_str);
 };
 
 /**

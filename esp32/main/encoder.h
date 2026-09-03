@@ -37,9 +37,9 @@ private:
     gpio_num_t clk_pin_, dt_pin_, sw_pin_;
     RotateCallback rotate_cb_;
     ButtonCallback button_cb_;
+    std::atomic<uint8_t> last_ab_state_{0};
 
-    static void IRAM_ATTR clk_isr_handler(void* arg);
-    static void IRAM_ATTR dt_isr_handler(void* arg);
+    static void IRAM_ATTR ab_isr_handler(void* arg);
     static void IRAM_ATTR sw_isr_handler(void* arg);
 };
 

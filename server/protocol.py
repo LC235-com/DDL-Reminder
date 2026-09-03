@@ -101,3 +101,32 @@ def get_event_action(msg: dict) -> tuple[str, str]:
 def msg_asr_result(text: str, is_final: bool = False) -> dict:
     """Send ASR transcription result to ESP32 for LCD display."""
     return {"cmd": "asr_result", "text": text, "final": is_final}
+
+
+def msg_tool_result(tool: str, success: bool, message: str) -> dict:
+    """Report a server-confirmed DDL tool execution to the device."""
+    return {
+        "cmd": "tool_result",
+        "tool": tool,
+        "success": bool(success),
+        "message": message,
+    }
+
+
+def msg_audio_stream_start(stream_id: str, sample_rate: int = 16000) -> dict:
+    """Begin one server-to-device PCM stream.
+
+    This is deliberately an application message rather than a WebSocket ping:
+    ping frames are also used automatically for connection keepalive.
+    """
+    return {
+        "cmd": "audio_stream_start",
+        "stream_id": stream_id,
+        "format": "pcm16",
+        "sample_rate": sample_rate,
+    }
+
+
+def msg_audio_stream_end(stream_id: str) -> dict:
+    """End the matching server-to-device PCM stream."""
+    return {"cmd": "audio_stream_end", "stream_id": stream_id}
